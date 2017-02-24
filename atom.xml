@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>i-square | 平方君</title>
-  
+  <subtitle>Keep It Simple, Stupid.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
@@ -9,7 +9,7 @@
   <id>https://i-square.github.io/</id>
   
   <author>
-    <name>i_square | 平方君</name>
+    <name>i-square</name>
     
   </author>
   
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Post Test 发布测试</title>
-    <link href="https://i-square.github.io/2017/02/24/Post-Test-%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95/"/>
-    <id>https://i-square.github.io/2017/02/24/Post-Test-发布测试/</id>
+    <link href="https://i-square.github.io/post/Post-Test-%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95/"/>
+    <id>https://i-square.github.io/post/Post-Test-发布测试/</id>
     <published>2017-02-24T06:33:36.000Z</published>
     <updated>2017-02-24T06:45:47.422Z</updated>
     
@@ -40,8 +40,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://i-square.github.io/2017/02/21/hello-world/"/>
-    <id>https://i-square.github.io/2017/02/21/hello-world/</id>
+    <link href="https://i-square.github.io/post/hello-world/"/>
+    <id>https://i-square.github.io/post/hello-world/</id>
     <published>2017-02-21T06:31:04.101Z</published>
     <updated>2017-02-21T06:31:04.102Z</updated>
     
