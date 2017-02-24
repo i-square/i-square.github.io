@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-02-21T06:31:04.102Z</updated>
+  <updated>2017-02-24T06:45:47.422Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Post Test 发布测试</title>
+    <link href="https://i-square.github.io/2017/02/24/Post-Test-%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95/"/>
+    <id>https://i-square.github.io/2017/02/24/Post-Test-发布测试/</id>
+    <published>2017-02-24T06:33:36.000Z</published>
+    <updated>2017-02-24T06:45:47.422Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先发布一篇测试文章，以后慢慢扩充。</p>
+<p><del>龟速学习<code>Markdown</code>语法ing。</del></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;测试&quot;&gt;&lt;a href=&quot;#测试&quot; class=&quot;headerlink&quot; title=&quot;测试&quot;&gt;&lt;/a&gt;测试&lt;/h2&gt;&lt;p&gt;首先发布一篇测试文章，以后慢慢扩充。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;龟速学习&lt;code&gt;Markdown&lt;/code&gt;语法ing。&lt;/del&gt;&lt;/
+    
+    </summary>
+    
+    
+      <category term="test" scheme="https://i-square.github.io/tags/test/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
