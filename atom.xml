@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>i-square | 平方君</title>
+  <title>平方君的后花园</title>
   <subtitle>Keep It Simple, Stupid.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-02-24T06:45:47.422Z</updated>
+  <updated>2017-02-25T00:54:38.161Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
-    <name>i-square</name>
+    <name>平方君</name>
     
   </author>
   
@@ -20,7 +20,7 @@
     <link href="https://i-square.github.io/post/Post-Test-%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95/"/>
     <id>https://i-square.github.io/post/Post-Test-发布测试/</id>
     <published>2017-02-24T06:33:36.000Z</published>
-    <updated>2017-02-24T06:45:47.422Z</updated>
+    <updated>2017-02-25T00:54:38.161Z</updated>
     
     <content type="html"><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先发布一篇测试文章，以后慢慢扩充。</p>
 <p><del>龟速学习<code>Markdown</code>语法ing。</del></p>
@@ -33,6 +33,8 @@
     
     </summary>
     
+      <category term="测试" scheme="https://i-square.github.io/categories/%E6%B5%8B%E8%AF%95/"/>
+    
     
       <category term="test" scheme="https://i-square.github.io/tags/test/"/>
     
@@ -43,9 +45,10 @@
     <link href="https://i-square.github.io/post/hello-world/"/>
     <id>https://i-square.github.io/post/hello-world/</id>
     <published>2017-02-21T06:31:04.101Z</published>
-    <updated>2017-02-21T06:31:04.102Z</updated>
+    <updated>2017-02-25T00:48:48.221Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
@@ -58,7 +61,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     
