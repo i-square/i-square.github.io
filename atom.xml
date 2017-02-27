@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-02-25T00:54:38.161Z</updated>
+  <updated>2017-02-27T02:15:30.756Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新的起点</title>
+    <link href="https://i-square.github.io/post/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/"/>
+    <id>https://i-square.github.io/post/新的起点/</id>
+    <published>2017-02-25T09:27:39.000Z</published>
+    <updated>2017-02-27T02:15:30.756Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从2013年我搭建的第一个<code>Wordpress</code>博客开始，我陆陆续续尝试过各种博客类网站，有自己搭建的<code>Wordpress</code>博客，也有诸如<code>点点网</code>和<code>lofter</code>这样的轻博客社区，但最终都是留下一篇<code>hello world</code>走人。</p>
+<a id="more"></a>
+<h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>近两年随着<code>github</code>的火热，搭建在<code>github pages</code>上的博客也如雨后春笋一般噌噌地冒出来，我也想尝尝鲜，于是在大谷歌搜索到一篇文章：<a href="https://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="external">使用GitHub和Hexo搭建免费静态Blog</a>，作者：<a href="https://wsgzao.github.io/" target="_blank" rel="external">wsgzao</a>，然后照猫画虎搭建了自己的博客，非常感谢原文博主分享自己的经验，让我这个门外汉也能轻松上手。</p>
+<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><p>这次使用<code>Hexo + github</code>的博客我希望能够长时间更新下去，博客定位大方向是我自己的学习笔记、思考感悟，也会写一些生活随笔，说不定也会分享一些图片、音乐、视频等等，:)</p>
+<h2 id="多说点儿"><a href="#多说点儿" class="headerlink" title="多说点儿"></a>多说点儿</h2><p>刚开始学习用<code>Markdown</code>写文章，还不是太习惯，用到的语法也只有一两种，慢慢完善吧，:P</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;从2013年我搭建的第一个&lt;code&gt;Wordpress&lt;/code&gt;博客开始，我陆陆续续尝试过各种博客类网站，有自己搭建的&lt;code&gt;Wordpress&lt;/code&gt;博客，也有诸如&lt;code&gt;点点网&lt;/code&gt;和&lt;code&gt;lofter&lt;/code&gt;这样的轻博客社区，但最终都是留下一篇&lt;code&gt;hello world&lt;/code&gt;走人。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://i-square.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="博客" scheme="https://i-square.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="hexo" scheme="https://i-square.github.io/tags/hexo/"/>
+    
+      <category term="Github" scheme="https://i-square.github.io/tags/Github/"/>
+    
+  </entry>
   
   <entry>
     <title>Post Test 发布测试</title>
