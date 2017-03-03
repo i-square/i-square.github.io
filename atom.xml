@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-03-02T16:53:12.680Z</updated>
+  <updated>2017-03-03T03:11:48.058Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://i-square.github.io/post/VPS%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1%E5%92%8C%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/"/>
     <id>https://i-square.github.io/post/VPS搭建Shadowsocks服务和优化笔记/</id>
     <published>2017-02-28T03:43:59.000Z</published>
-    <updated>2017-03-02T16:53:12.680Z</updated>
+    <updated>2017-03-03T03:11:48.058Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于最近开始上Github较多，无意中发现Github推出了一个<a href="https://education.github.com/pack" target="_blank" rel="external">学生开发者优惠大礼包</a>，这对于囊中羞涩的学生来说真的是大大的福利，给Github一个大大的赞！</p>
 <p>这个优惠包里头包含很多开发者需要付费购买的服务或者工具的优惠券，其中有一个<a href="https://www.digitalocean.com/" target="_blank" rel="external">DigitalOcean</a>的$50优惠券，对于一直想入一台VPS但又因为价格昂贵望而却步的我来说就是雪中送炭啊，于是我马上注册获取优惠券，随即开始折腾，这里把这两天折腾的过程记录一下。</p>
@@ -130,7 +130,7 @@
 <hr>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>至此，这几天配置shadowsocks的过程便结束了，这里只是将我遇到的情况加以记录，并不能涵盖所有情况，如果碰到其他状况，那么<code>google</code>就好了。</p>
 <p>:P</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> test = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+]]></content>
     
     <summary type="html">
     
@@ -153,7 +153,7 @@
     <link href="https://i-square.github.io/post/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/"/>
     <id>https://i-square.github.io/post/新的起点/</id>
     <published>2017-02-25T09:27:39.000Z</published>
-    <updated>2017-03-01T04:54:10.500Z</updated>
+    <updated>2017-03-01T00:58:27.436Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从2013年我搭建的第一个<code>Wordpress</code>博客开始，我陆陆续续尝试过各种博客类网站，有自己搭建的<code>Wordpress</code>博客，也有诸如<code>点点网</code>和<code>lofter</code>这样的轻博客社区，但最终都是留下一篇<code>hello world</code>走人。</p>
 <a id="more"></a>
@@ -184,7 +184,7 @@
     <link href="https://i-square.github.io/post/Post-Test-%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95/"/>
     <id>https://i-square.github.io/post/Post-Test-发布测试/</id>
     <published>2017-02-24T06:33:36.000Z</published>
-    <updated>2017-03-01T04:54:10.406Z</updated>
+    <updated>2017-03-01T00:58:27.420Z</updated>
     
     <content type="html"><![CDATA[<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>首先发布一篇测试文章，以后慢慢扩充。</p>
 <p><del>龟速学习<code>Markdown</code>语法ing。</del></p>
@@ -209,7 +209,7 @@
     <link href="https://i-square.github.io/post/hello-world/"/>
     <id>https://i-square.github.io/post/hello-world/</id>
     <published>2017-02-23T07:15:45.000Z</published>
-    <updated>2017-03-01T04:54:10.500Z</updated>
+    <updated>2017-03-01T00:58:27.436Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <a id="more"></a>
