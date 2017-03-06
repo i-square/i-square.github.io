@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/增强VPS安全性的常用方法/">
+    
+    
+    <title>增强VPS安全性的常用方法 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="VPS">
+    <meta name="description" content="前言因为上一篇文章中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="增强VPS安全性的常用方法">
+<meta property="og:url" content="https://i-square.github.io/post/增强VPS安全性的常用方法/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="前言因为上一篇文章中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。">
+<meta property="og:updated_time" content="2017-03-06T03:24:30.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="增强VPS安全性的常用方法">
+<meta name="twitter:description" content="前言因为上一篇文章中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。">
+    
+        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">增强VPS安全性的常用方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">增强VPS安全性的常用方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-06T01:24:30.000Z" itemprop="datePublished" class="page-time">
+  2017-03-06
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Denyhosts攻击"><span class="post-toc-number">2.</span> <span class="post-toc-text">Denyhosts攻击</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#修改SSH端口"><span class="post-toc-number">3.</span> <span class="post-toc-text">修改SSH端口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#禁用Root账户"><span class="post-toc-number">4.</span> <span class="post-toc-text">禁用Root账户</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用密钥登录"><span class="post-toc-number">5.</span> <span class="post-toc-text">使用密钥登录</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成密钥"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">生成密钥</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CentOS-7权限问题"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">CentOS 7权限问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#禁止密码登录"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">禁止密码登录</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小结"><span class="post-toc-number">6.</span> <span class="post-toc-text">小结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-增强VPS安全性的常用方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">增强VPS安全性的常用方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年03月06日 9:24" datetime="2017-03-06T01:24:30.000Z"  itemprop="datePublished">2017-03-06</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为<a href="https://i-square.github.io/post/VPS%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1%E5%92%8C%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">上一篇文章</a>中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。</p>
+<a id="more"></a>
+<blockquote>
+<p>Last failed login: Tue Feb 10 23:32:08 EST 2017 from static-15-64-34.rpnspl.com on ssh:notty<br>There were 166 failed login attempts since the last successful login.<br>Last login: Tue Feb 10 18:54:37 2017 from <code>ip</code></p>
+</blockquote>
+<p>这里的<code>ip</code>并不是我的IP地址，也就是说有人(或机器人)在恶意试探我的VPS密码。看到这提示，我马上上谷歌搜索，发现这个现象非常普遍，多数都是被机器人扫描然后试图暴力破解，如果不加以防范，代价会很大。</p>
+<p>我在查问题的时候发现，PuTTY官方并没有提供中文版本，所以网上的汉化版有可能被植入后门，非常不安全，所以在此提醒，这一类涉及重要密码的软件<strong>绝对不要</strong>用民间汉化版！</p>
+<p>那么如何知道自己的VPS账号正在遭受扫描和暴力破解呢？简单的方法就是查看日志：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /var/<span class="built_in">log</span>/auth.log</div></pre></td></tr></table></figure>
+<p>也可以执行以下命令，查询出来的结果中包含了<code>ip地址=数量</code>就是攻击者信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /var/<span class="built_in">log</span>/secure|awk <span class="string">'/Failed/&#123;print $(NF-3)&#125;'</span>|sort|uniq -c|awk <span class="string">'&#123;print $2"="$1;&#125;'</span></div></pre></td></tr></table></figure>
+<p>如何来增强VPS账号的安全性呢？除了养成使用正规软件的好习惯外，还要从VPS本身来加强VPS账号的安全性。</p>
+<ul>
+<li>Linux有一个自动统计VPS登录错误的工具：<code>Denyhosts</code>，一旦登录VPS账号错误次数超过了Denyhosts的安全设置，Denyhosts就会将该IP记录下来，同时将其放入黑名单当中，禁止该IP在某一段时间内继续访问VPS，通过它可以实现自动封锁恶意IP</li>
+<li>默认的SSH端口是22，通过修改自己的SSH端口先为扫描者增加一道端口门槛</li>
+<li>VPS默认的账号是root，如果我们禁用了root，那么要攻破账号又得先暴力猜测VPS的账号，难度又增加几分</li>
+<li>如果还不放心，我们可以直接禁用密码登录验证VPS的方式，改用密钥登录，这样安全系数是相当高了</li>
+</ul>
+<p><em>注：本人主机为CentOS 7 x64系统，以下内容均基于此环境</em></p>
+<h2 id="Denyhosts攻击"><a href="#Denyhosts攻击" class="headerlink" title="Denyhosts攻击"></a>Denyhosts攻击</h2><ol>
+<li>Linux各平台现在基本上都可以直接安装Denyhosts了，直接运行命令安装</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install denyhosts</div></pre></td></tr></table></figure>
+<ol>
+<li><p>安装好了Denyhosts，默认的配置基本上就可以防御一定的暴力攻击了，<code>/etc/hosts.deny</code>文件里保存了被屏蔽的记录。</p>
+</li>
+<li><p>如果你要自定义Denyhosts的相关配置，执行：<code>vi /etc/denyhosts.conf</code>，相关参数的说明可以自行搜索，一般用户默认即可。</p>
+</li>
+</ol>
+<h2 id="修改SSH端口"><a href="#修改SSH端口" class="headerlink" title="修改SSH端口"></a>修改SSH端口</h2><p>输入命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>编辑SSH服务的配置文件，找到<code>#port 22</code>，将前面的<code>#</code>去掉，然后将<code>22</code>修改为你自己设定的端口号，如<code>12345</code>，保存后重启SSH服务以使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
+<h2 id="禁用Root账户"><a href="#禁用Root账户" class="headerlink" title="禁用Root账户"></a>禁用Root账户</h2><p>禁用root账户之前，必须先新建一个新的账户。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">useradd user <span class="comment">#添加用户名</span></div><div class="line">passwd user <span class="comment">#为user用户设置密码</span></div></pre></td></tr></table></figure>
+<p>然后编辑配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>找到里面的<code>PermitRootLogin yes</code>，将后面的<code>yes</code>改成<code>no</code>，如果没有这一行则直接加入即可。保存后重启SSH服务以使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
+<h2 id="使用密钥登录"><a href="#使用密钥登录" class="headerlink" title="使用密钥登录"></a>使用密钥登录</h2><h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>SSH登录方式有账号+密码和密钥认证两种形式，为了阻止暴力破解VPS的账号和密码，我们可以放弃密码验证的方式，改用密钥文件验证。</p>
+<p>以<strong>普通用户</strong>(如user)执行以下命令，在VPS上生成密钥文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
+<p>生成密钥时会询问你密钥保存的位置，默认是<code>/username/.ssh</code>，保持默认即可，你还可以为你的密钥设置一个密码，默认为空。</p>
+<p>密钥生成后，进入密钥存放的目录中，执行以下命令，将公钥生成一个新的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub &gt;&gt; authorized_keys</div></pre></td></tr></table></figure>
+<p>将id-rsa这个私钥文件用winSCP下载到本地，打开PuTTYGen软件，执行Conversions-&gt;Import Key，导入这个私钥文件，然后选择Save private key，这时会在本地生成一个PPK文件，在PuTTY的<code>Connection/SSH/Auth</code>中选择刚刚保存的PPK文件，以后即可用密钥认证登录VPS了。</p>
+<h3 id="CentOS-7权限问题"><a href="#CentOS-7权限问题" class="headerlink" title="CentOS 7权限问题"></a>CentOS 7权限问题</h3><p>CentOS 7系统下，用户user的home目录：<code>/home/user</code>的权限变成了<code>777</code>，造成不能正常登陆SSH，报如下错误：<code>Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)</code></p>
+<p>SSH对公钥、私钥的权限和所有权的要求是非常严格的，总结如下：<br>1、下面两个目录的所有权必须是<code>user</code>，所属组也应该是<code>user</code>，权限必须为<code>700</code>  </p>
+<blockquote>
+<p>/home/user<br>/home/user/.ssh</p>
+</blockquote>
+<p>2、下面公钥文件的所有权必须是<code>user</code>，所属组也应该是<code>user</code>，权限必须为<code>644</code>  </p>
+<blockquote>
+<p>/home/user/.ssh/authorized_keys</p>
+</blockquote>
+<p>3、下面私钥文件的所有权必须是<code>user</code>，所属组也应该是<code>user</code>，权限必须是<code>600</code>  </p>
+<blockquote>
+<p>/home/user/.ssh/id_rsa</p>
+</blockquote>
+<p>接着上面的操作，这次需要获取root权限，首先输入命令<code>su</code>再输入root密码获取root权限，然后依次执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir /etc/ssh/user</div><div class="line">cp /home/user/.ssh/authorized_keys /etc/ssh/user/</div><div class="line">chmod 755 /etc/ssh/user</div><div class="line">chmod 600 /etc/ssh/user/authorized_keys</div><div class="line">chown -R user:user /etc/ssh/user</div></pre></td></tr></table></figure>
+<p>编辑SSH配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure></p>
+<p>找到<code>AuthorizedKeysFile</code>这项(如果没有则添加)，修改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AuthorizedKeysFile /etc/ssh/%u/authorized_keys</div></pre></td></tr></table></figure>
+<p>保存后重启SSH服务以使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
+<h3 id="禁止密码登录"><a href="#禁止密码登录" class="headerlink" title="禁止密码登录"></a>禁止密码登录</h3><p><strong>注意：请确认你已经可以通过密钥认证的方式登录VPS</strong></p>
+<p>有了密钥登录VPS，我们就可以禁止用密码登录这种验证方式了，还是<br>编辑SSH配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>找到<code>PasswordAuthentication</code>(没有则添加)并修改后面的<code>yes</code>为<code>no</code>，保存后重启SSH服务以使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过以上这些措施可以有效防范暴力破解VPS，平时使用官方软件也是提升安全性的一大举措，总而言之，没有绝对的安全，但是只要我们平时稍加留心就不会给破解者可乘之机。</p>
+<blockquote>
+<p>参考链接：<br><a href="https://www.freehao123.com/vps-ssh/" target="_blank" rel="external">https://www.freehao123.com/vps-ssh/</a><br><a href="http://www.cnblogs.com/jxterminator/p/4105545.html" target="_blank" rel="external">http://www.cnblogs.com/jxterminator/p/4105545.html</a></p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-06T03:24:30.868Z" itemprop="dateUpdated">2017年3月6日 11:24</time>
+</span><br>
+
+
+        转载请注明来源，本文固定链接：<a href="/post/增强VPS安全性的常用方法/" target="_blank" rel="external">https://i-square.github.io/post/增强VPS安全性的常用方法/</a>
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/增强VPS安全性的常用方法/&title=《增强VPS安全性的常用方法》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/增强VPS安全性的常用方法/&title=《增强VPS安全性的常用方法》 — 平方君的后花园&source=前言因为上一篇文章中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以r..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/增强VPS安全性的常用方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《增强VPS安全性的常用方法》 — 平方君的后花园&url=https://i-square.github.io/post/增强VPS安全性的常用方法/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/增强VPS安全性的常用方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/VPS搭建Shadowsocks服务和优化笔记/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">VPS搭建Shadowsocks服务和优化笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="增强VPS安全性的常用方法" data-title="增强VPS安全性的常用方法" data-url="https://i-square.github.io/post/增强VPS安全性的常用方法/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'i-square', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君的后花园 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/增强VPS安全性的常用方法/&title=《增强VPS安全性的常用方法》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/增强VPS安全性的常用方法/&title=《增强VPS安全性的常用方法》 — 平方君的后花园&source=前言因为上一篇文章中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以r..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/增强VPS安全性的常用方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《增强VPS安全性的常用方法》 — 平方君的后花园&url=https://i-square.github.io/post/增强VPS安全性的常用方法/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/增强VPS安全性的常用方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3cQWojQQwF0Nz/0jMwq4Gknf+lKuzF61Vw6O56ZSgJSfjrK77+/Lu+f/L/lXyePPPpk+//PXbh4eHhjZb+dL1+zdMrXy/l6S2vYa838fFpeHh4eNd4yQueXpYf9JvNGm4rHh4e3lt5SWLdpsVJCFkFJDw8PLy38hLS6y1o02s8PDy8T+Yli85T3nbpeYH4Yq0FDw8PL+a1DbBP+Ptifw8PDw9v0VVPrs1m5cn3cG14eHh4F3hJunz27G1Lt/kYQb2XeHh4eAvejRZXOwTQDm/Vd+Hh4eFd5s1KqLMzeTasUK8EDw8P7xpv0/JvE+j2CW2DDQ8PD+8GL2/nn92IfKirHbH6oYCLh4eHd4E3a3flYeBAETYIAwf6e3h4eHglLw8PswZ/UkpIAk9e/sDDw8O7wcsLuO2ik6ZXHgyODQ3g4eHhncxXVz9HMivg7oeuisCGh4eHd5Q3GxRo0+58QbPi8mO6j4eHh3eUNzugN2XfpAxxKrnHw8PDu8FrD+VZMWLTGGsDCR4eHt5tXvu42eE+KxwfGCzAw8PDu8DLi7b5cvNmVXJX2wZ73A48PDy8Q7yi9T7K1mdFiryY+8u9eHh4eJd5s/LrZiSrbbzVXwAeHh7eNV6b/s6Gq5IlJqWQoiWGh4eHd4G3b+TnhYakDLEpGUczZXh4eHiHeHnR9lSjKw8kbXli1SXDw8PDi3ntUbsJCW3YyJ//S0qNh4eHd4E3K0kkB3S7xHybVrEODw8P7xCsbWjlqfYmVMy+Bjw8PLwbvLODVvlD87GA/QgCHh4e3g3ebHAqT3nb4sJmgKBOrPHw8PAWvP2hnDyn7U+1YQYPDw/vk3lt+6oNJDPSD/fi4eHhvZXXjpC2d+XvKoIQHh4e3jVevqzNMb1puc0CFR4eHt4N3qwBlhzcsxJGW9hdDQ3g4eHhdby/aHmSl45YJCcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
