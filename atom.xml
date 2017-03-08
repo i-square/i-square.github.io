@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-03-06T03:24:30.868Z</updated>
+  <updated>2017-03-08T10:47:07.365Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://i-square.github.io/post/%E5%A2%9E%E5%BC%BAVPS%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
     <id>https://i-square.github.io/post/增强VPS安全性的常用方法/</id>
     <published>2017-03-06T01:24:30.000Z</published>
-    <updated>2017-03-06T03:24:30.868Z</updated>
+    <updated>2017-03-08T10:47:07.365Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为<a href="https://i-square.github.io/post/VPS%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1%E5%92%8C%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">上一篇文章</a>中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。</p>
 <a id="more"></a>
@@ -30,7 +30,7 @@
 <p>这里的<code>ip</code>并不是我的IP地址，也就是说有人(或机器人)在恶意试探我的VPS密码。看到这提示，我马上上谷歌搜索，发现这个现象非常普遍，多数都是被机器人扫描然后试图暴力破解，如果不加以防范，代价会很大。</p>
 <p>我在查问题的时候发现，PuTTY官方并没有提供中文版本，所以网上的汉化版有可能被植入后门，非常不安全，所以在此提醒，这一类涉及重要密码的软件<strong>绝对不要</strong>用民间汉化版！</p>
 <p>那么如何知道自己的VPS账号正在遭受扫描和暴力破解呢？简单的方法就是查看日志：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /var/<span class="built_in">log</span>/auth.log</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看登录成功的用户信息</span></div><div class="line">last</div><div class="line"><span class="comment"># 最新的登录记录在最前面，所以可以用以下命令来查看。</span></div><div class="line">last | less</div><div class="line"></div><div class="line"><span class="comment"># 查看登录失败的用户信息</span></div><div class="line">lastb</div><div class="line"></div><div class="line"><span class="comment"># 查看登录日志</span></div><div class="line">tail /var/<span class="built_in">log</span>/secure</div></pre></td></tr></table></figure>
 <p>也可以执行以下命令，查询出来的结果中包含了<code>ip地址=数量</code>就是攻击者信息。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /var/<span class="built_in">log</span>/secure|awk <span class="string">'/Failed/&#123;print $(NF-3)&#125;'</span>|sort|uniq -c|awk <span class="string">'&#123;print $2"="$1;&#125;'</span></div></pre></td></tr></table></figure>
 <p>如何来增强VPS账号的安全性呢？除了养成使用正规软件的好习惯外，还要从VPS本身来加强VPS账号的安全性。</p>
