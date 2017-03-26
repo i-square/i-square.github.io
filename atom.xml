@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-03-08T10:47:07.365Z</updated>
+  <updated>2017-03-26T07:29:14.408Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Word2016中右键无法打开Visio图像的解决办法</title>
+    <link href="https://i-square.github.io/post/Word2016%E4%B8%AD%E5%8F%B3%E9%94%AE%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80Visio%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://i-square.github.io/post/Word2016中右键无法打开Visio图像的解决办法/</id>
+    <published>2017-03-26T07:21:56.000Z</published>
+    <updated>2017-03-26T07:29:14.408Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Word2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Word中提供的“打开”和“编辑”功能，那么，如何能够在word2016中打开visio图像呢？</p>
+<a id="more"></a>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在Visio图上使用 <code>ALT + 双击鼠标左键</code> 即可在Visio中打开<br>直接双击Visio图像则是和之前版本一样，在当前Word窗口中打开Visio图。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;在Word2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Word中提供的“打开”和“编辑”功能，那么，如何能够在word2016中打开visio图像呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Word2016" scheme="https://i-square.github.io/tags/Word2016/"/>
+    
+      <category term="Visio" scheme="https://i-square.github.io/tags/Visio/"/>
+    
+  </entry>
   
   <entry>
     <title>增强VPS安全性的常用方法</title>
