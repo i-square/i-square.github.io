@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-03-26T07:29:14.408Z</updated>
+  <updated>2017-03-29T10:55:39.550Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -16,27 +16,69 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Word2016中右键无法打开Visio图像的解决办法</title>
-    <link href="https://i-square.github.io/post/Word2016%E4%B8%AD%E5%8F%B3%E9%94%AE%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80Visio%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
-    <id>https://i-square.github.io/post/Word2016中右键无法打开Visio图像的解决办法/</id>
-    <published>2017-03-26T07:21:56.000Z</published>
-    <updated>2017-03-26T07:29:14.408Z</updated>
+    <title>MathType6.9b不兼容Office2016的解决办法</title>
+    <link href="https://i-square.github.io/post/MathType6-9b%E4%B8%8D%E5%85%BC%E5%AE%B9Office2016%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/</id>
+    <published>2017-03-29T10:37:43.000Z</published>
+    <updated>2017-03-29T10:55:39.550Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Word2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Word中提供的“打开”和“编辑”功能，那么，如何能够在word2016中打开visio图像呢？</p>
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。</p>
 <a id="more"></a>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在Visio图上使用 <code>ALT + 双击鼠标左键</code> 即可在Visio中打开<br>直接双击Visio图像则是和之前版本一样，在当前Word窗口中打开Visio图。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="Office2016支持"><a href="#Office2016支持" class="headerlink" title="Office2016支持"></a>Office2016支持</h3><p>Office2016需要在MathType根目录下添加文件MPlugin.dll，一般在安装文件夹里</p>
+<h3 id="Mathpage-wll未找到问题"><a href="#Mathpage-wll未找到问题" class="headerlink" title="Mathpage.wll未找到问题"></a>Mathpage.wll未找到问题</h3><p>通过以下方法解决(以Office2016为例)：</p>
+<ol>
+<li>依次打开<code>Word→文件→选项→信任中心→信任中心设置→受信任位置→添加新位置</code><br>添加 <code>C:\Program Files\Microsoft Office\Office16\STARTUP</code>，然后关闭Word</li>
+<li>在mathtype安装目录下找到以下2个文件(以64位系统为例):  <ul>
+<li><code>C:\Program Files (x86)\MathType\MathPage\64\MathPage.wll</code></li>
+<li><code>C:\Program Files (x86)\MathType\Office Support\64\MathType Commands 6 For Word 2016.dotm</code></li>
+</ul>
+</li>
+<li>将两个文件分别拷贝到对应的文件夹中:  <ul>
+<li>将<code>MathType Commands 6 For Word 2016.dotm</code> 拷贝到 <code>C:\Program Files\Microsoft Office\Office16\STARTUP</code></li>
+<li>将 <code>MathPage.wll</code> 拷贝到 <code>C:\Program Files\Microsoft Office\Office16</code></li>
+</ul>
+</li>
+<li>重新打开Word你会发现一切都OK了!</li>
+</ol>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;在Word2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Word中提供的“打开”和“编辑”功能，那么，如何能够在word2016中打开visio图像呢？&lt;/p&gt;
+      &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。&lt;/p&gt;
     
     </summary>
     
       <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="Word2016" scheme="https://i-square.github.io/tags/Word2016/"/>
+      <category term="Office" scheme="https://i-square.github.io/tags/Office/"/>
+    
+      <category term="MathType" scheme="https://i-square.github.io/tags/MathType/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Office2016中右键无法打开Visio图像的解决办法</title>
+    <link href="https://i-square.github.io/post/Office2016%E4%B8%AD%E5%8F%B3%E9%94%AE%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80Visio%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://i-square.github.io/post/Office2016中右键无法打开Visio图像的解决办法/</id>
+    <published>2017-03-26T07:21:56.000Z</published>
+    <updated>2017-03-29T10:40:20.943Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Office2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Office中提供的“打开”和“编辑”功能，那么，如何能够在Office2016中打开visio图像呢？</p>
+<a id="more"></a>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在Visio图上使用 <code>ALT + 双击鼠标左键</code> 即可在Visio中打开<br>直接双击Visio图像则是和之前版本一样，在当前Office窗口中打开Visio图。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;在Office2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Office中提供的“打开”和“编辑”功能，那么，如何能够在Office2016中打开visio图像呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Office" scheme="https://i-square.github.io/tags/Office/"/>
     
       <category term="Visio" scheme="https://i-square.github.io/tags/Visio/"/>
     

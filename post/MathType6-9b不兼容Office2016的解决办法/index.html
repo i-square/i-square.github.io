@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/">
+    
+    
+    <title>MathType6.9b不兼容Office2016的解决办法 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Office,MathType">
+    <meta name="description" content="问题安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathType6.9b不兼容Office2016的解决办法">
+<meta property="og:url" content="https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="问题安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。">
+<meta property="og:updated_time" content="2017-03-29T10:55:39.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MathType6.9b不兼容Office2016的解决办法">
+<meta name="twitter:description" content="问题安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。">
+    
+        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MathType6.9b不兼容Office2016的解决办法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MathType6.9b不兼容Office2016的解决办法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-29T10:37:43.000Z" itemprop="datePublished" class="page-time">
+  2017-03-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决办法"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决办法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Office2016支持"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Office2016支持</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mathpage-wll未找到问题"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Mathpage.wll未找到问题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-MathType6-9b不兼容Office2016的解决办法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MathType6.9b不兼容Office2016的解决办法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年03月29日 18:37" datetime="2017-03-29T10:37:43.000Z"  itemprop="datePublished">2017-03-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。</p>
+<a id="more"></a>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="Office2016支持"><a href="#Office2016支持" class="headerlink" title="Office2016支持"></a>Office2016支持</h3><p>Office2016需要在MathType根目录下添加文件MPlugin.dll，一般在安装文件夹里</p>
+<h3 id="Mathpage-wll未找到问题"><a href="#Mathpage-wll未找到问题" class="headerlink" title="Mathpage.wll未找到问题"></a>Mathpage.wll未找到问题</h3><p>通过以下方法解决(以Office2016为例)：</p>
+<ol>
+<li>依次打开<code>Word→文件→选项→信任中心→信任中心设置→受信任位置→添加新位置</code><br>添加 <code>C:\Program Files\Microsoft Office\Office16\STARTUP</code>，然后关闭Word</li>
+<li>在mathtype安装目录下找到以下2个文件(以64位系统为例):  <ul>
+<li><code>C:\Program Files (x86)\MathType\MathPage\64\MathPage.wll</code></li>
+<li><code>C:\Program Files (x86)\MathType\Office Support\64\MathType Commands 6 For Word 2016.dotm</code></li>
+</ul>
+</li>
+<li>将两个文件分别拷贝到对应的文件夹中:  <ul>
+<li>将<code>MathType Commands 6 For Word 2016.dotm</code> 拷贝到 <code>C:\Program Files\Microsoft Office\Office16\STARTUP</code></li>
+<li>将 <code>MathPage.wll</code> 拷贝到 <code>C:\Program Files\Microsoft Office\Office16</code></li>
+</ul>
+</li>
+<li>重新打开Word你会发现一切都OK了!</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-29T10:55:39.550Z" itemprop="dateUpdated">2017年3月29日 18:55</time>
+</span><br>
+
+
+        转载请注明来源，本文固定链接：<a href="/post/MathType6-9b不兼容Office2016的解决办法/" target="_blank" rel="external">https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/</a>
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MathType/">MathType</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Office/">Office</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/&title=《MathType6.9b不兼容Office2016的解决办法》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/&title=《MathType6.9b不兼容Office2016的解决办法》 — 平方君的后花园&source=问题安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MathType6.9b不兼容Office2016的解决办法》 — 平方君的后花园&url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/Office2016中右键无法打开Visio图像的解决办法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Office2016中右键无法打开Visio图像的解决办法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="MathType6-9b不兼容Office2016的解决办法" data-title="MathType6.9b不兼容Office2016的解决办法" data-url="https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'i-square', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君的后花园 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/&title=《MathType6.9b不兼容Office2016的解决办法》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/&title=《MathType6.9b不兼容Office2016的解决办法》 — 平方君的后花园&source=问题安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MathType6.9b不兼容Office2016的解决办法》 — 平方君的后花园&url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3aQWrDQAwF0Nz/0i1000Lq9EsaBRferEqJ7XkOjBRJj0e8Pr7W839+rqv/J5/J7/zYWHh4eHitrScburqqt7mPeD3fIfk8Hh4e3jbvdTDID/crRr7FJDgle8bDw8O7Ay8JCdUwkGPw8PDw/iMvDwyvAdX0/XZxDw8PD69YeJ2UHhLqJB3Hw8PDew+v2gC7w9+L/T08PDy8QVf9VHLcK2TkYeByD3h4eHgLvF76+3qj1VfQK1LkJQw8PDy8DV5+ZPdS26SQkY8d5OEHDw8Pb483acwnx3fvFRwLPHh4eHhHeXnxtDcocOraXm0WDw8Pb4OXN73OpsvV8sRK3w8PDw+vxUseMz/6T/Xxy18GHh4e3jIvDwl5E6sXYPKXXggMeHh4eAu86s/+SYMqKRYfKHng4eHhvZ23N541abDlwQkPDw9vm3dq1KmXBOfF3OT1FX4x4OHh4RV5vV5Zklj3jvskICXJPR4eHt47efPDOn98dZigWebAw8PDO8qbN/6rk075U6ph5vJ7w8PDw1vjVQcFqlflZdzeENgfDTA8PDy8Q7xJ+WBy9FebZ71RLTw8PLwNXrWxdOpwrw4HFNpdz8UIPDw8vKO8SRGht5VqgMnDQ2FKAg8PD2/AO7WV3ljVqcDz6H2teHh4eGPeZHyqd89eIThvwuHh4eFt8M6WA3rJ8WR0IGrO4eHh4R3l5WMB1dGBPI2ulncLDTM8PDy8ZV6yqolyNWXPwdF98PDw8BZ41Vvnw1KTQYRqan6AioeHh1fkJcEgT7Lz0JLD8uLIL9fi4eHhrfGqD86P9byQkb+UJCzh4eHh3YFXvXX1qmqzLQkneHh4eHfjJVvMy7t5Up4n3Hh4eHh7vOR2SZo7T7gnT8TDw8N7D2/eAKtutxp4qkn24f4eHh4e3vf6BHVNac7wQjaSAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
