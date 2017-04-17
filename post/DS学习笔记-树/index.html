@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/DS学习笔记-树/">
+    
+    
+    <title>数据结构学习笔记（四）：树 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构">
+    <meta name="description" content="内容
+了解树是如何用于实现文件系统的
+了解树如何用来计算算术表达式的值
+了解如何用树实现O(logN)时间进行搜素
+讨论并使用set和map
+
+二叉树的遍历
+前序：先处理自己后处理左右儿子
+中序：先处理左儿子再处理自己再处理右儿子
+后序：先处理左右儿子再处理自己
+
+二叉查找树（平均深度O(logN)）性质：对于树中的每个节点X，左子树中所有项的值小于X中的项，右子树中所有项的值大于X中的项缺点：不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记（四）：树">
+<meta property="og:url" content="https://i-square.github.io/post/DS学习笔记-树/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="内容
+了解树是如何用于实现文件系统的
+了解树如何用来计算算术表达式的值
+了解如何用树实现O(logN)时间进行搜素
+讨论并使用set和map
+
+二叉树的遍历
+前序：先处理自己后处理左右儿子
+中序：先处理左儿子再处理自己再处理右儿子
+后序：先处理左右儿子再处理自己
+
+二叉查找树（平均深度O(logN)）性质：对于树中的每个节点X，左子树中所有项的值小于X中的项，右子树中所有项的值大于X中的项缺点：不">
+<meta property="og:updated_time" content="2017-04-17T07:45:46.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记（四）：树">
+<meta name="twitter:description" content="内容
+了解树是如何用于实现文件系统的
+了解树如何用来计算算术表达式的值
+了解如何用树实现O(logN)时间进行搜素
+讨论并使用set和map
+
+二叉树的遍历
+前序：先处理自己后处理左右儿子
+中序：先处理左儿子再处理自己再处理右儿子
+后序：先处理左右儿子再处理自己
+
+二叉查找树（平均深度O(logN)）性质：对于树中的每个节点X，左子树中所有项的值小于X中的项，右子树中所有项的值大于X中的项缺点：不">
+    
+        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">数据结构学习笔记（四）：树</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">数据结构学习笔记（四）：树</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-03-31T14:05:29.000Z" itemprop="datePublished" class="page-time">
+  2017-03-31
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内容"><span class="post-toc-number">1.</span> <span class="post-toc-text">内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二叉树的遍历"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">二叉树的遍历</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二叉查找树（平均深度O-logN-）"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">二叉查找树（平均深度O(logN)）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AVL树"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">AVL树</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#伸展树"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">伸展树</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#B树（平衡M路树）"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">B树（平衡M路树）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">注意</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-DS学习笔记-树"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">数据结构学习笔记（四）：树</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年03月31日 22:05" datetime="2017-03-31T14:05:29.000Z"  itemprop="datePublished">2017-03-31</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>了解树是如何用于实现文件系统的</li>
+<li>了解树如何用来计算算术表达式的值</li>
+<li>了解如何用树实现O(logN)时间进行搜素</li>
+<li>讨论并使用set和map</li>
+</ul>
+<h3 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h3><ul>
+<li>前序：先处理自己后处理左右儿子</li>
+<li>中序：先处理左儿子再处理自己再处理右儿子</li>
+<li>后序：先处理左右儿子再处理自己</li>
+</ul>
+<h3 id="二叉查找树（平均深度O-logN-）"><a href="#二叉查找树（平均深度O-logN-）" class="headerlink" title="二叉查找树（平均深度O(logN)）"></a>二叉查找树（平均深度O(logN)）</h3><p>性质：对于树中的每个节点X，左子树中所有项的值小于X中的项，右子树中所有项的值大于X中的项<br>缺点：不能动态调整，若输入为已排序序列则构造出最坏情况下的斜树</p>
+<h3 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h3><ul>
+<li>带有<strong>平衡条件</strong>的二叉查找树</li>
+<li>一棵AVL树是每个节点的左子树和右子树的高度最多相差1的二叉查找树（空树高度定义为-1）</li>
+<li>插入新节点可能破坏AVL树的平衡，需要通过<strong>旋转</strong>解决</li>
+</ul>
+<p>把需要平衡的节点叫α  </p>
+<ol>
+<li>对α的左儿子的左子树进行一次插入</li>
+<li>对α的左儿子的右子树进行一次插入</li>
+<li>对α的右儿子的左子树进行一次插入</li>
+<li>对α的右儿子的右子树进行一次插入</li>
+</ol>
+<p>1和4（左左，右右）发生在外边，进行一次<strong>单旋转</strong>即可，2和3（左右，右左）则发生在内部，需要通过<strong>双旋转</strong>调整</p>
+<h3 id="伸展树"><a href="#伸展树" class="headerlink" title="伸展树"></a>伸展树</h3><p>节点可以达到任意深度，每次访问某节点后把该节点调整为根节点，任意连续M次操作花费O(MlogN)时间</p>
+<h3 id="B树（平衡M路树）"><a href="#B树（平衡M路树）" class="headerlink" title="B树（平衡M路树）"></a>B树（平衡M路树）</h3><p>M=3时：2-3树，实现平衡查找树的另一种方法</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>通过插入元素构造查找树，然后执行中序遍历，可以得到排序后的元素。<br>这是一种O(NlogN)的排序算法</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-04-17T07:45:46.578Z" itemprop="dateUpdated">2017年4月17日 15:45</time>
+</span><br>
+
+
+        转载请注明来源，本文固定链接：<a href="/post/DS学习笔记-树/" target="_blank" rel="external">https://i-square.github.io/post/DS学习笔记-树/</a>
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/DS学习笔记-树/&title=《数据结构学习笔记（四）：树》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/DS学习笔记-树/&title=《数据结构学习笔记（四）：树》 — 平方君的后花园&source=如果有人闲得慌来到这里问这里是什么地方我就告诉他这是我家后花园。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/DS学习笔记-树/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构学习笔记（四）：树》 — 平方君的后花园&url=https://i-square.github.io/post/DS学习笔记-树/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/DS学习笔记-树/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/post/DS学习笔记-散列/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">数据结构学习笔记（五）：散列</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/MathType6-9b不兼容Office2016的解决办法/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MathType6.9b不兼容Office2016的解决办法</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="DS学习笔记-树" data-title="数据结构学习笔记（四）：树" data-url="https://i-square.github.io/post/DS学习笔记-树/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'i-square', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.7');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君的后花园 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/DS学习笔记-树/&title=《数据结构学习笔记（四）：树》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/DS学习笔记-树/&title=《数据结构学习笔记（四）：树》 — 平方君的后花园&source=如果有人闲得慌来到这里问这里是什么地方我就告诉他这是我家后花园。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/DS学习笔记-树/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构学习笔记（四）：树》 — 平方君的后花园&url=https://i-square.github.io/post/DS学习笔记-树/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/DS学习笔记-树/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACN0lEQVR42u3awY6DMAxF0f7/TzPSrEbqEO6zaSWcm1XVBshh4TqxXy88jt9x9v3f8T7//dez789m3jZkyJDxWMaxHOtlkfnpEtNnyZAhYx9Gerv1tSTUrp/F1yZDhgwZHSpJCklwlyFDhoxOwCUbWr7p5QFdhgwZezJIECQpHZ+THsDdtheXIUPGAxlpYeCbnz9Y35AhQ8ZDGEc40pJk7RguXpUMGTJGM8gxPQ+7NUCabp4+RYYMGUMZtQJk50V0AvHpc2XIkDGaUTsOI7dO28v460P/GzJkyBjE4AfxtV95UK61X/yzF5chQ8ZoBt9ephG9dpzH8TJkyJjNIMuttTuQckI/cMuQIWNPBi8upqWCu8oGp+uUIUPGUEatqYIf4qehmSSjQc+IDBkyRjB4OwUJiPx18AJn+hJlyJAxj9EvVfJUj7dupOUEGTJkzGbUmrE64FqLBmo+kyFDxlAGT/I6TRW1MmdwhCdDhowNGLUj+36zRboxjv8xZMiQMYLxifCaJohpW5gMGTJ2Y3TSu1pnB39ZQUlVhgwZGzA6rRI8mNY2yUFJQIYMGUMZJCyShfKEr1PUvLhWhgwZQxlHOEhovjfgrlvTZMiQsQOj1p7FkWla2TmYkyFDxmwGP+oi8/tlUXKfiwxXhgwZQxm1IJsCOrH/YqYMGTJkLB9MFpe2UPC7yZAhQ0ar4wyz0+aPVmooQ4aMxzLuaoColRNe4bhotpAhQ8Y4Ru2yFMwxtWYOGTJkDGX8ANWu0T/ahF8tAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
