@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/C盘根目录下的两个sys文件说明/">
+    
+    
+    <title>C盘根目录下的两个sys文件说明 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Windows">
+    <meta name="description" content="前言实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C盘根目录下的两个sys文件说明">
+<meta property="og:url" content="https://i-square.github.io/post/C盘根目录下的两个sys文件说明/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="前言实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。">
+<meta property="og:updated_time" content="2017-04-19T08:43:58.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C盘根目录下的两个sys文件说明">
+<meta name="twitter:description" content="前言实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。">
+    
+        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">C盘根目录下的两个sys文件说明</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">C盘根目录下的两个sys文件说明</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-19T08:24:22.000Z" itemprop="datePublished" class="page-time">
+  2017-04-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#pagefile-sys"><span class="post-toc-number">2.</span> <span class="post-toc-text">pagefile.sys</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优化方法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">优化方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#hiberfil-sys"><span class="post-toc-number">3.</span> <span class="post-toc-text">hiberfil.sys</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优化方法-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">优化方法</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-C盘根目录下的两个sys文件说明"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">C盘根目录下的两个sys文件说明</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年04月19日 16:24" datetime="2017-04-19T08:24:22.000Z"  itemprop="datePublished">2017-04-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。</p>
+<a id="more"></a>
+<h2 id="pagefile-sys"><a href="#pagefile-sys" class="headerlink" title="pagefile.sys"></a>pagefile.sys</h2><p><code>pagefile.sys</code>是系统安装过程中创建的虚拟内存页面文件。这个文件的大小是自己系统虚拟内存设置的最小值的大小。假如虚拟内存的设置为800MB－1600MB 那么你在自己的设定驱动盘下面就可看到大小为800MB的<code>pagefile.sys</code>文件。</p>
+<h3 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h3><p>通常自己可以在<code>我的电脑</code>右键<code>属性</code>–&gt;<code>高级</code>–&gt;<code>性能</code>–&gt;<code>高级</code>–&gt;<code>虚拟内存</code>中将所有盘的虚拟内存设置为无分页文件，并选择<code>设置</code>后重启系统，就可以删除页面文件<code>pagefile.sys</code>。</p>
+<h2 id="hiberfil-sys"><a href="#hiberfil-sys" class="headerlink" title="hiberfil.sys"></a>hiberfil.sys</h2><p>这个文件是系统的休眠功能所占用的硬盘空间的文件（Windows默认休眠功能是处于打开状态的），电脑处于休眠状态时，内存中的所有内容将保存到硬盘，并且电脑会被关闭。电脑在返回打开状态之后，关闭电脑时打开的所有程序和文档将全都还原到桌面。也就是说，当你让电脑进入休眠状态时，Windows在关闭系统前将所有的内存内容写入<code>hiberfil.sys</code>文件，当你重新打开电脑，操作系统使用<code>hiberfil.sys</code>把所有信息放回内存，电脑恢复到关闭前的状态。然而，只要休眠功能开启，Windows就会在硬盘上留下<code>hiberfil.sys</code>文件，即使你从来不休眠。</p>
+<h3 id="优化方法-1"><a href="#优化方法-1" class="headerlink" title="优化方法"></a>优化方法</h3><p>以管理员身份运行CMD，然后输入命令<code>powercfg -h off</code>，回车后立即生效，<code>hiberfil.sys</code>文件已经不见了。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-04-19T08:43:58.185Z" itemprop="dateUpdated">2017年4月19日 16:43</time>
+</span><br>
+
+
+        转载请注明来源，本文固定链接：<a href="/post/C盘根目录下的两个sys文件说明/" target="_blank" rel="external">https://i-square.github.io/post/C盘根目录下的两个sys文件说明/</a>
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/&title=《C盘根目录下的两个sys文件说明》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/&title=《C盘根目录下的两个sys文件说明》 — 平方君的后花园&source=前言实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C盘根目录下的两个sys文件说明》 — 平方君的后花园&url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/DS学习笔记-散列/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数据结构学习笔记（五）：散列</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君的后花园 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/&title=《C盘根目录下的两个sys文件说明》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/&title=《C盘根目录下的两个sys文件说明》 — 平方君的后花园&source=前言实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C盘根目录下的两个sys文件说明》 — 平方君的后花园&url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/C盘根目录下的两个sys文件说明/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3a0U7DQAwEwP7/T5dXpJJmbZ+rIk2eUBuSmyDFZn2PR3w8X47fn78/8+r812+vzrm617EDDw8Pb7z0q2W9x1xdubro/Grv14yHh4e3zcsXl9ys+lpPikdyNTw8PLxv5uUFo1pOkuYbDw8P73/xoka2hcxJeHh4eN/Ay+PXasg7eXzJJ8eyFjw8PLyYl0+RvufnlfkeHh4e3niqnr9wk8LQG6c9BwceHh7eBi9/4SbgvBXOw9wkNLkJiPHw8PCO8noxxHve/AHlY7Cbh4iHh4e3zOttBehtKaiGC82mHw8PD2+Nt/hqjrcR9MZaN/fFw8PDW+Mlo/3qeCwPdifbCwr1BA8PD+8oL1lib5NWXlR6W7gKLTUeHh7eGi+JYnvFplqE8rJ0ScXDw8P7CC+/cT7umpyTP5pC3cPDw8Mb8KpBbTXwzdvrSbx7szY8PDy8o7zqgH8SvPbGab1Hg4eHh7fHSy6XR6i9oLZ6Zv67eHh4eBu8fJtUfunygL8V6UbRCR4eHt4HeZNXdrLoeYAbBR94eHh4y7xJqz1vnXvN/c2fBw8PD2+BV21qqyOrPAiebzVIImY8PDy8Oa83qs8LSfXzalt/w8bDw8Nb4M3D0/nmquogrRdq4OHh4Z3l9Qb/1SsUOvpBifrjWzw8PLw1XrVUbGw7mDf0hS/w8PDwxrzq6z6Pbnuv/mN3wcPDw1vj9eKJswvNH0ohc8DDw8M7ynsWj17DnRekZCtVoYzh4eHhLfAmr918E0DeuOcNdG+TAR4eHt4pXlIMemOt6qauvGwUCgMeHh7eGm8jls2LSl4qyqEJHh4e3tfwJguttubVklMegOHh4eEt8/LgdRLF5le4KSF4eHh4a7w8qM3H/9W0eL716rIw4OHh4R3lVf/hzxvf6jXXGXh4eHhT3g8rcO4DxKM3vAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
