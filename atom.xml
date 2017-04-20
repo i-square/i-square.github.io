@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-04-19T08:43:58.185Z</updated>
+  <updated>2017-04-20T14:27:48.633Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构学习笔记（六）：优先队列（堆）</title>
+    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%88%E5%A0%86%EF%BC%89/"/>
+    <id>https://i-square.github.io/post/DS学习笔记-优先队列（堆）/</id>
+    <published>2017-04-20T14:27:15.000Z</published>
+    <updated>2017-04-20T14:27:48.633Z</updated>
+    
+    <content type="html"><![CDATA[<p>本章讨论优先队列（priority queue），介绍优先队列在离散事件模拟中的应用<br>作者评价：这类数据结构属于计算机科学中最雅致的一种</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>优先队列ADT的高效实现</li>
+<li>优先队列的使用</li>
+<li>优先队列的高级实现</li>
+</ul>
+<h2 id="二叉堆-binary-heap"><a href="#二叉堆-binary-heap" class="headerlink" title="二叉堆 (binary heap)"></a>二叉堆 (binary heap)</h2><p>插入删除最坏O(logN)，实际上插入花费常数平均时间，若无删除干扰，该结构将以线性时间建立一个具有N项的优先队列。<br>与二叉查找树一样，堆具有两个性质，堆的操作必须满足所有性质才能终止。</p>
+<h3 id="结构性质"><a href="#结构性质" class="headerlink" title="结构性质"></a>结构性质</h3><p>堆是一棵<strong>完全二叉树</strong>（三角形缺右下角），特例是满二叉树（三角形），最底层元素必须从左往右填入，如有空缺则不是完全二叉树<br>一棵高为h的完全二叉树有[2^h , 2^(h+1) - 1]个节点，这意味着完全二叉树的高是 下取整(logN)，显然它是O(logN)的<br>因为此规律，所以堆可以用数组表示而不用链表，对于数组中任一位置i上的元素，其左儿子在位置2i上，右儿子在左儿子后的(2i+1)上，它的父亲在位置 下取整(i/2) 上</p>
+<h3 id="堆序性质"><a href="#堆序性质" class="headerlink" title="堆序性质"></a>堆序性质</h3><p>在堆中，除根节点以外，每一个节点的值都大于（或等于）它的父节点的值<br>根据堆序性质，最小值总在根结点，因此可以以O(1)时间做findMin<br>相应地，通过改变堆序性质，也可以建立一个max堆，以O(1)时间做findMax</p>
+<h3 id="插入（上滤策略）"><a href="#插入（上滤策略）" class="headerlink" title="插入（上滤策略）"></a>插入（上滤策略）</h3><p>为了插入新元素X，在堆的下一个可用位置（为了满足结构性质）创建一个空穴，若X放入空穴仍满足堆序性质，则插入完成，否则交换空穴和其父节点，直到X被放入并满足堆序性质为止</p>
+<h3 id="删除（下滤策略）"><a href="#删除（下滤策略）" class="headerlink" title="删除（下滤策略）"></a>删除（下滤策略）</h3><p>找出最小元很容易，难的是删除它。<br>当删除一个最小元时，堆中最后一个元素X必须移动到该堆的某个地方。策略是在根节点建立一个空穴，然后将两个儿子中的较小者移入空穴，重复该步骤直到X可以被放入空穴中。代码中则是用X直接替换根结点的值，然后下滤。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>在堆的实现中经常出现的错误是，当堆中存在偶数个元素时，将出现一个节点只有一个儿子的情况。因此我们必须以节点不总有两个儿子为前提，这需要额外的测试。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="选择问题"><a href="#选择问题" class="headerlink" title="选择问题"></a>选择问题</h4><p>输入N个元素及整数k，找出第k个最大的元素，极端情况是k=上取整(N/2)，此时实际上是找中位数，以下两个算法都能在找中位数的情况下以O(NlogN)时间运行</p>
+<ul>
+<li>A 将N个元素读入数组，对数组应用buildHeap，再执行k次deleteMin，最后根节点上的就是第k个最小值，构造一个最大堆就可以找到第k个最大值</li>
+<li>B 用buildHeap将前k个元素构造成一个最大堆，若下一个元素大于堆里的最小值，则删除最小值，插入新元素，最终的最小值就是所求的第k个最大值</li>
+</ul>
+<h2 id="d堆"><a href="#d堆" class="headerlink" title="d堆"></a>d堆</h2><p>类似B树，深度变浅，每个节点有d个儿子</p>
+<h2 id="左式堆-leftist-heap"><a href="#左式堆-leftist-heap" class="headerlink" title="左式堆 (leftist heap)"></a>左式堆 (leftist heap)</h2><p>左式堆也是二叉树，但它不是理想平衡的，事实上是趋于非常不平衡</p>
+<p>定义任一节点X的<strong>零路径长(null path length)</strong>npl(X)为从X到一个不具有两个儿子的节点的最短路径长<br>因此，具有0个或1个儿子的节点npl为0，而npl(NULL)=-1<br>注意，任一节点的npl比它儿子节点的npl的最小值多1</p>
+<h3 id="左式堆性质"><a href="#左式堆性质" class="headerlink" title="左式堆性质"></a>左式堆性质</h3><p>对于堆中的每一个节点X，左儿子的npl至少与右儿子的npl一样大<br>这个性质导致树向左增加深度，沿左式堆右侧的右路径是堆中最短的路径<br>定理：在右路径上有r个节点的左式堆必然至少有2^r -1个节点</p>
+<p>对左式堆的基本操作是合并。插入可以看成是合并一个单节点堆，删除即是删掉根结点，然后合并左右子树。</p>
+<h2 id="斜堆-skew-heap"><a href="#斜堆-skew-heap" class="headerlink" title="斜堆 (skew heap)"></a>斜堆 (skew heap)</h2><p>斜堆是左式堆的自调节形式，具有堆序，但不存在结构限制。斜堆不需要存储npl，每次合并无条件交换左右儿子。</p>
+<h2 id="二项队列-binomial-queue"><a href="#二项队列-binomial-queue" class="headerlink" title="二项队列 (binomial queue)"></a>二项队列 (binomial queue)</h2><p>以最坏O(logN)支持插入、合并、deleteMin，插入操作平均花费常数时间</p>
+<p>实质是由<strong>二项树</strong>(binomial tree)构成的<strong>森林</strong>(forest)。<br>每一个高度上最多存在一棵二项树。高度为k的二项树Bk是通过将一棵二项树B(k-1)附接到另一棵二项树B(k-1)的根上构成的。高度为k的二项树有2^k个节点，在深度d处的节点数是二项系数C(d,k)</p>
+<p>如果把堆序性质施加到二项树上并允许任意高度上最多一棵二项树，则可以用二项树的集合唯一地表示任意大小的优先队列。如大小为13的优先队列可以用B3,B2,B0表示，可以写成1101，同时也是13的二进制形式。</p>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><p>基本操作仍然是合并，思想是从小到大合并相同高度的二项树<br>插入是特殊情况下的合并<br>deleteMin将原二项队列一分为二，再合并</p>
+<p>编程需要注意<strong>进位</strong>的实现</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本章讨论优先队列（priority queue），介绍优先队列在离散事件模拟中的应用&lt;br&gt;作者评价：这类数据结构属于计算机科学中最雅致的一种&lt;/p&gt;
+&lt;h2 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; class=&quot;headerlink&quot; title=&quot;内容&quot;&gt;&lt;/a&gt;内
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>C盘根目录下的两个sys文件说明</title>
@@ -354,103 +405,6 @@
     
     
       <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>增强VPS安全性的常用方法</title>
-    <link href="https://i-square.github.io/post/%E5%A2%9E%E5%BC%BAVPS%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    <id>https://i-square.github.io/post/增强VPS安全性的常用方法/</id>
-    <published>2017-03-06T01:24:30.000Z</published>
-    <updated>2017-03-08T10:47:07.365Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为<a href="https://i-square.github.io/post/VPS%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1%E5%92%8C%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/">上一篇文章</a>中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。</p>
-<a id="more"></a>
-<blockquote>
-<p>Last failed login: Tue Feb 10 23:32:08 EST 2017 from static-15-64-34.rpnspl.com on ssh:notty<br>There were 166 failed login attempts since the last successful login.<br>Last login: Tue Feb 10 18:54:37 2017 from <code>ip</code></p>
-</blockquote>
-<p>这里的<code>ip</code>并不是我的IP地址，也就是说有人(或机器人)在恶意试探我的VPS密码。看到这提示，我马上上谷歌搜索，发现这个现象非常普遍，多数都是被机器人扫描然后试图暴力破解，如果不加以防范，代价会很大。</p>
-<p>我在查问题的时候发现，PuTTY官方并没有提供中文版本，所以网上的汉化版有可能被植入后门，非常不安全，所以在此提醒，这一类涉及重要密码的软件<strong>绝对不要</strong>用民间汉化版！</p>
-<p>那么如何知道自己的VPS账号正在遭受扫描和暴力破解呢？简单的方法就是查看日志：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看登录成功的用户信息</span></div><div class="line">last</div><div class="line"><span class="comment"># 最新的登录记录在最前面，所以可以用以下命令来查看。</span></div><div class="line">last | less</div><div class="line"></div><div class="line"><span class="comment"># 查看登录失败的用户信息</span></div><div class="line">lastb</div><div class="line"></div><div class="line"><span class="comment"># 查看登录日志</span></div><div class="line">tail /var/<span class="built_in">log</span>/secure</div></pre></td></tr></table></figure>
-<p>也可以执行以下命令，查询出来的结果中包含了<code>ip地址=数量</code>就是攻击者信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /var/<span class="built_in">log</span>/secure|awk <span class="string">'/Failed/&#123;print $(NF-3)&#125;'</span>|sort|uniq -c|awk <span class="string">'&#123;print $2"="$1;&#125;'</span></div></pre></td></tr></table></figure>
-<p>如何来增强VPS账号的安全性呢？除了养成使用正规软件的好习惯外，还要从VPS本身来加强VPS账号的安全性。</p>
-<ul>
-<li>Linux有一个自动统计VPS登录错误的工具：<code>Denyhosts</code>，一旦登录VPS账号错误次数超过了Denyhosts的安全设置，Denyhosts就会将该IP记录下来，同时将其放入黑名单当中，禁止该IP在某一段时间内继续访问VPS，通过它可以实现自动封锁恶意IP</li>
-<li>默认的SSH端口是22，通过修改自己的SSH端口先为扫描者增加一道端口门槛</li>
-<li>VPS默认的账号是root，如果我们禁用了root，那么要攻破账号又得先暴力猜测VPS的账号，难度又增加几分</li>
-<li>如果还不放心，我们可以直接禁用密码登录验证VPS的方式，改用密钥登录，这样安全系数是相当高了</li>
-</ul>
-<p><em>注：本人主机为CentOS 7 x64系统，以下内容均基于此环境</em></p>
-<h2 id="Denyhosts攻击"><a href="#Denyhosts攻击" class="headerlink" title="Denyhosts攻击"></a>Denyhosts攻击</h2><ol>
-<li>Linux各平台现在基本上都可以直接安装Denyhosts了，直接运行命令安装</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install denyhosts</div></pre></td></tr></table></figure>
-<ol>
-<li><p>安装好了Denyhosts，默认的配置基本上就可以防御一定的暴力攻击了，<code>/etc/hosts.deny</code>文件里保存了被屏蔽的记录。</p>
-</li>
-<li><p>如果你要自定义Denyhosts的相关配置，执行：<code>vi /etc/denyhosts.conf</code>，相关参数的说明可以自行搜索，一般用户默认即可。</p>
-</li>
-</ol>
-<h2 id="修改SSH端口"><a href="#修改SSH端口" class="headerlink" title="修改SSH端口"></a>修改SSH端口</h2><p>输入命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
-<p>编辑SSH服务的配置文件，找到<code>#port 22</code>，将前面的<code>#</code>去掉，然后将<code>22</code>修改为你自己设定的端口号，如<code>12345</code>，保存后重启SSH服务以使配置生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
-<h2 id="禁用Root账户"><a href="#禁用Root账户" class="headerlink" title="禁用Root账户"></a>禁用Root账户</h2><p>禁用root账户之前，必须先新建一个新的账户。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">useradd user <span class="comment">#添加用户名</span></div><div class="line">passwd user <span class="comment">#为user用户设置密码</span></div></pre></td></tr></table></figure>
-<p>然后编辑配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
-<p>找到里面的<code>PermitRootLogin yes</code>，将后面的<code>yes</code>改成<code>no</code>，如果没有这一行则直接加入即可。保存后重启SSH服务以使配置生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
-<h2 id="使用密钥登录"><a href="#使用密钥登录" class="headerlink" title="使用密钥登录"></a>使用密钥登录</h2><h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>SSH登录方式有账号+密码和密钥认证两种形式，为了阻止暴力破解VPS的账号和密码，我们可以放弃密码验证的方式，改用密钥文件验证。</p>
-<p>以<strong>普通用户</strong>(如user)执行以下命令，在VPS上生成密钥文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
-<p>生成密钥时会询问你密钥保存的位置，默认是<code>/username/.ssh</code>，保持默认即可，你还可以为你的密钥设置一个密码，默认为空。</p>
-<p>密钥生成后，进入密钥存放的目录中，执行以下命令，将公钥生成一个新的文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.pub &gt;&gt; authorized_keys</div></pre></td></tr></table></figure>
-<p>将id-rsa这个私钥文件用winSCP下载到本地，打开PuTTYGen软件，执行Conversions-&gt;Import Key，导入这个私钥文件，然后选择Save private key，这时会在本地生成一个PPK文件，在PuTTY的<code>Connection/SSH/Auth</code>中选择刚刚保存的PPK文件，以后即可用密钥认证登录VPS了。</p>
-<h3 id="CentOS-7权限问题"><a href="#CentOS-7权限问题" class="headerlink" title="CentOS 7权限问题"></a>CentOS 7权限问题</h3><p>CentOS 7系统下，用户user的home目录：<code>/home/user</code>的权限变成了<code>777</code>，造成不能正常登陆SSH，报如下错误：<code>Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)</code></p>
-<p>SSH对公钥、私钥的权限和所有权的要求是非常严格的，总结如下：<br>1、下面两个目录的所有权必须是<code>user</code>，所属组也应该是<code>user</code>，权限必须为<code>700</code>  </p>
-<blockquote>
-<p>/home/user<br>/home/user/.ssh</p>
-</blockquote>
-<p>2、下面公钥文件的所有权必须是<code>user</code>，所属组也应该是<code>user</code>，权限必须为<code>644</code>  </p>
-<blockquote>
-<p>/home/user/.ssh/authorized_keys</p>
-</blockquote>
-<p>3、下面私钥文件的所有权必须是<code>user</code>，所属组也应该是<code>user</code>，权限必须是<code>600</code>  </p>
-<blockquote>
-<p>/home/user/.ssh/id_rsa</p>
-</blockquote>
-<p>接着上面的操作，这次需要获取root权限，首先输入命令<code>su</code>再输入root密码获取root权限，然后依次执行以下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir /etc/ssh/user</div><div class="line">cp /home/user/.ssh/authorized_keys /etc/ssh/user/</div><div class="line">chmod 755 /etc/ssh/user</div><div class="line">chmod 600 /etc/ssh/user/authorized_keys</div><div class="line">chown -R user:user /etc/ssh/user</div></pre></td></tr></table></figure>
-<p>编辑SSH配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure></p>
-<p>找到<code>AuthorizedKeysFile</code>这项(如果没有则添加)，修改为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AuthorizedKeysFile /etc/ssh/%u/authorized_keys</div></pre></td></tr></table></figure>
-<p>保存后重启SSH服务以使配置生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
-<h3 id="禁止密码登录"><a href="#禁止密码登录" class="headerlink" title="禁止密码登录"></a>禁止密码登录</h3><p><strong>注意：请确认你已经可以通过密钥认证的方式登录VPS</strong></p>
-<p>有了密钥登录VPS，我们就可以禁止用密码登录这种验证方式了，还是<br>编辑SSH配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
-<p>找到<code>PasswordAuthentication</code>(没有则添加)并修改后面的<code>yes</code>为<code>no</code>，保存后重启SSH服务以使配置生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl restart sshd.service</div></pre></td></tr></table></figure>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过以上这些措施可以有效防范暴力破解VPS，平时使用官方软件也是提升安全性的一大举措，总而言之，没有绝对的安全，但是只要我们平时稍加留心就不会给破解者可乘之机。</p>
-<blockquote>
-<p>参考链接：<br><a href="https://www.freehao123.com/vps-ssh/" target="_blank" rel="external">https://www.freehao123.com/vps-ssh/</a><br><a href="http://www.cnblogs.com/jxterminator/p/4105545.html" target="_blank" rel="external">http://www.cnblogs.com/jxterminator/p/4105545.html</a></p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;因为&lt;a href=&quot;https://i-square.github.io/post/VPS%E6%90%AD%E5%BB%BAShadowsocks%E6%9C%8D%E5%8A%A1%E5%92%8C%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/&quot;&gt;上一篇文章&lt;/a&gt;中提到的目的，我入手了DO的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="VPS" scheme="https://i-square.github.io/tags/VPS/"/>
     
   </entry>
   
