@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-04-24T03:25:11.779Z</updated>
+  <updated>2017-04-24T07:43:04.961Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构学习笔记（八）：不相交集类</title>
+    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86%E7%B1%BB/"/>
+    <id>https://i-square.github.io/post/DS学习笔记-不相交集类/</id>
+    <published>2017-04-24T07:42:58.000Z</published>
+    <updated>2017-04-24T07:43:04.961Z</updated>
+    
+    <content type="html"><![CDATA[<p>这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。</p>
+<h2 id="等价关系-equivalence-relation"><a href="#等价关系-equivalence-relation" class="headerlink" title="等价关系 (equivalence relation)"></a>等价关系 (equivalence relation)</h2><p>若对于每一对元素(a,b),a,b∈S, <code>a R b</code>或者为true或者为false，则称在集合S上定义关系R。如果<code>a R b</code>为true，我们说a和b有关系。</p>
+<p><strong>等价关系</strong>是满足下列三个性质的关系R：</p>
+<ol>
+<li>自反性：对于所有的a∈S，<code>a R a</code></li>
+<li>对称性：<code>a R b</code>当且仅当<code>b R a</code></li>
+<li>传递性：若<code>a R b</code>且b R c则<code>a R c</code></li>
+</ol>
+<p>元素a∈S的<strong>等价类</strong>(equivalence class)是S的子集，它包含所有与a有（等价）关系的元素。注意，等价类形成对S的一个划分：S的每一个成员恰好出现在一个等价类中。为确定是否a~b，我们只需验证a和b是否都在同一个等价类中。</p>
+<p>输入数据最初是N个集合(collection)的类，每个集合含有一个元素。初始的描述是所有的关系均为false（自反的关系除外）。每个集合都有一个不同的元素，从而<code>Si∩Sj=⊙</code>，称为<strong>不相交</strong>(disjoint)</p>
+<p>基本操作有两种，称为<strong>求并/查找</strong>(union/find)算法。</p>
+<h2 id="灵巧求并算法"><a href="#灵巧求并算法" class="headerlink" title="灵巧求并算法"></a>灵巧求并算法</h2><p>直观的union操作相当随意，它简单地通过使第二棵树成为第一棵树的子树而完成合并。对其进行简单改进，使得总是较小的树成为较大的树的子树，称为<strong>按大小求并</strong>(union by size)，它保证树的深度最大是O(logN)。<br>连续M次操作平均需要O(M)时间。</p>
+<p>另一种方法是<strong>按高度求并</strong>(union by height)，它同样保证树的深度最大是O(logN)。做法是使浅的树成为深的树的子树。</p>
+<h2 id="一个应用"><a href="#一个应用" class="headerlink" title="一个应用"></a>一个应用</h2><p>应用求并/查找数据结构的一个例子是迷宫的生成。初始化时所有格子都在自己的等价类中，之后不断合并，最终生成迷宫。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。&lt;/p&gt;
+&lt;h2 id=&quot;等价关系-equivalence-relation&quot;&gt;&lt;a href=&quot;#等价关系-equivalence-relation&quot; class=&quot;headerli
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构学习笔记（七）：排序</title>
@@ -417,44 +454,6 @@
 &lt;li&gt;大O标记&lt;/li&gt;
 &lt;li&gt;计算大O时的一般法则&lt;ul&gt;
 &lt;li&gt;对数规律的一般法则&lt;b
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构学习笔记（一）：引论</title>
-    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%BC%95%E8%AE%BA/"/>
-    <id>https://i-square.github.io/post/DS学习笔记-引论/</id>
-    <published>2017-03-24T06:22:23.000Z</published>
-    <updated>2017-04-19T08:46:49.187Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
-<li>介绍基本数学知识</li>
-<li>简要复习递归</li>
-<li>介绍用到的C++知识</li>
-</ul>
-<h2 id="递归的四条基本法则"><a href="#递归的四条基本法则" class="headerlink" title="递归的四条基本法则"></a>递归的四条基本法则</h2><ol>
-<li>基准情形。必须总有某些基准情形不用递归就能求解。  </li>
-<li>不断推进。对于那些需要递归求解的情形，递归调用必须总能够朝着基准情形的方向推进。  </li>
-<li>设计法则。假设所有的递归调用都能运行。  </li>
-<li>合成效益法则。在求解一个问题的同一实例时，切勿在不同的递归调用中做重复性的工作。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; class=&quot;headerlink&quot; title=&quot;内容&quot;&gt;&lt;/a&gt;内容&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;介绍基本数学知识&lt;/li&gt;
-&lt;li&gt;简要复习递归&lt;/li&gt;
-&lt;li&gt;介绍用到的C++知识&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;
     
     </summary>
     

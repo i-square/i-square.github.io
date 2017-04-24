@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/DS学习笔记-不相交集类/">
+    
+    
+    <title>数据结构学习笔记（八）：不相交集类 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构">
+    <meta name="description" content="这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。
+等价关系 (equivalence relation)若对于每一对元素(a,b),a,b∈S, a R b或者为true或者为false，则称在集合S上定义关系R。如果a R b为true，我们说a和b有关系。
+等价关系是满足下列三个性质的关系R：
+
+自反性：对于所有的a∈S，a R a
+对称性：a R b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记（八）：不相交集类">
+<meta property="og:url" content="https://i-square.github.io/post/DS学习笔记-不相交集类/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。
+等价关系 (equivalence relation)若对于每一对元素(a,b),a,b∈S, a R b或者为true或者为false，则称在集合S上定义关系R。如果a R b为true，我们说a和b有关系。
+等价关系是满足下列三个性质的关系R：
+
+自反性：对于所有的a∈S，a R a
+对称性：a R b">
+<meta property="og:updated_time" content="2017-04-24T07:43:04.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记（八）：不相交集类">
+<meta name="twitter:description" content="这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。
+等价关系 (equivalence relation)若对于每一对元素(a,b),a,b∈S, a R b或者为true或者为false，则称在集合S上定义关系R。如果a R b为true，我们说a和b有关系。
+等价关系是满足下列三个性质的关系R：
+
+自反性：对于所有的a∈S，a R a
+对称性：a R b">
+    
+        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">数据结构学习笔记（八）：不相交集类</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">数据结构学习笔记（八）：不相交集类</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-24T07:42:58.000Z" itemprop="datePublished" class="page-time">
+  2017-04-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#等价关系-equivalence-relation"><span class="post-toc-number">1.</span> <span class="post-toc-text">等价关系 (equivalence relation)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#灵巧求并算法"><span class="post-toc-number">2.</span> <span class="post-toc-text">灵巧求并算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一个应用"><span class="post-toc-number">3.</span> <span class="post-toc-text">一个应用</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-DS学习笔记-不相交集类"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">数据结构学习笔记（八）：不相交集类</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年04月24日 15:42" datetime="2017-04-24T07:42:58.000Z"  itemprop="datePublished">2017-04-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/学习笔记/">学习笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。</p>
+<h2 id="等价关系-equivalence-relation"><a href="#等价关系-equivalence-relation" class="headerlink" title="等价关系 (equivalence relation)"></a>等价关系 (equivalence relation)</h2><p>若对于每一对元素(a,b),a,b∈S, <code>a R b</code>或者为true或者为false，则称在集合S上定义关系R。如果<code>a R b</code>为true，我们说a和b有关系。</p>
+<p><strong>等价关系</strong>是满足下列三个性质的关系R：</p>
+<ol>
+<li>自反性：对于所有的a∈S，<code>a R a</code></li>
+<li>对称性：<code>a R b</code>当且仅当<code>b R a</code></li>
+<li>传递性：若<code>a R b</code>且b R c则<code>a R c</code></li>
+</ol>
+<p>元素a∈S的<strong>等价类</strong>(equivalence class)是S的子集，它包含所有与a有（等价）关系的元素。注意，等价类形成对S的一个划分：S的每一个成员恰好出现在一个等价类中。为确定是否a~b，我们只需验证a和b是否都在同一个等价类中。</p>
+<p>输入数据最初是N个集合(collection)的类，每个集合含有一个元素。初始的描述是所有的关系均为false（自反的关系除外）。每个集合都有一个不同的元素，从而<code>Si∩Sj=⊙</code>，称为<strong>不相交</strong>(disjoint)</p>
+<p>基本操作有两种，称为<strong>求并/查找</strong>(union/find)算法。</p>
+<h2 id="灵巧求并算法"><a href="#灵巧求并算法" class="headerlink" title="灵巧求并算法"></a>灵巧求并算法</h2><p>直观的union操作相当随意，它简单地通过使第二棵树成为第一棵树的子树而完成合并。对其进行简单改进，使得总是较小的树成为较大的树的子树，称为<strong>按大小求并</strong>(union by size)，它保证树的深度最大是O(logN)。<br>连续M次操作平均需要O(M)时间。</p>
+<p>另一种方法是<strong>按高度求并</strong>(union by height)，它同样保证树的深度最大是O(logN)。做法是使浅的树成为深的树的子树。</p>
+<h2 id="一个应用"><a href="#一个应用" class="headerlink" title="一个应用"></a>一个应用</h2><p>应用求并/查找数据结构的一个例子是迷宫的生成。初始化时所有格子都在自己的等价类中，之后不断合并，最终生成迷宫。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-04-24T07:43:04.961Z" itemprop="dateUpdated">2017年4月24日 15:43</time>
+</span><br>
+
+
+        转载请注明来源，本文固定链接：<a href="/post/DS学习笔记-不相交集类/" target="_blank" rel="external">https://i-square.github.io/post/DS学习笔记-不相交集类/</a>
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/DS学习笔记-不相交集类/&title=《数据结构学习笔记（八）：不相交集类》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/DS学习笔记-不相交集类/&title=《数据结构学习笔记（八）：不相交集类》 — 平方君的后花园&source=如果有人闲得慌来到这里问这里是什么地方我就告诉他这是我家后花园。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/DS学习笔记-不相交集类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构学习笔记（八）：不相交集类》 — 平方君的后花园&url=https://i-square.github.io/post/DS学习笔记-不相交集类/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/DS学习笔记-不相交集类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/DS学习笔记-排序/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数据结构学习笔记（七）：排序</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君的后花园 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/DS学习笔记-不相交集类/&title=《数据结构学习笔记（八）：不相交集类》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/DS学习笔记-不相交集类/&title=《数据结构学习笔记（八）：不相交集类》 — 平方君的后花园&source=如果有人闲得慌来到这里问这里是什么地方我就告诉他这是我家后花园。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/DS学习笔记-不相交集类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数据结构学习笔记（八）：不相交集类》 — 平方君的后花园&url=https://i-square.github.io/post/DS学习笔记-不相交集类/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/DS学习笔记-不相交集类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3a0WrDMAwF0P7/T3ewp8Hm9Eqy0w5OnkpoYh8XLFfS4xFfz+/r9+efd1b3V29bPZXMYfOFh4eH15r66rrmTaaYj5g/+8dM8PDw8I7x8mCQB4lkIa4XKB93eR8PDw/vrbw8PCTbejW04OHh4f1H3jzR8Iyvt8U9PDw8vJiXDJOTkm8mydkknGzLteDh4eHFvEkB7F2fb6rv4eHh4RWr6tXt/lw5rTlPPDw8vAO8Xvm/OsX80FxtGogCBh4eHt5W3vVGvLeBoJqkyJPFy/ng4eHhHePl4eH66JwMnxyye7v6H3fw8PDwDvAmW/w8PEzaCJIlxsPDwzvHqx5w8waCXlNX7yBeQOLh4eGNeb1jcS9FO9nQ80N8VADDw8PD28o7kUqopjl68Q0PDw/vNK/H6BXMqoFhW5YaDw8P73CFKOrSaj1VTUnkhbdClQ8PDw9vzOslWKvJgupWXi10LUMXHh4e3gFeNZUwL3HNUx7JQfyRrxYeHh5ekZc8XN24zyWCk8QuHh4e3j28avG+92w+reo7lz8PHh4e3gFe9c9/lZd/p1r0KswKDw8P73ZektidNxlMlmMUGPDw8PBavAkgDwbVqU8O7htWBQ8PD6/6Bz5uFKi2F/SaCfKFW6Zx8fDw8DbxdgWGciNUkNKdFOc2H6nx8PDwLnm9RGq+fffOwxsO3Hh4eHhbeflEJ0nbaho3b7d68WY8PDy8W3h5+2kyfPXQPEngjup7eHh4eAFv11QScJJZzVu4CiEBDw8Pbytv0ljQCwy7Smu9oIWHh4e3i9ebULVgVm04yFMVL1IYeHh4eMd41dao6lSqb8tjVxQY8PDw8D6A12uNmiSI8yXAw8PD+xzeNaYw5PjQXGjqwsPDwzvG65X2e81VefktHx0PDw/vTl61AJY3EPTCybzBCw8PD+8Y7wsDmOQpt7LoIgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
