@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-04-20T14:27:48.633Z</updated>
+  <updated>2017-04-24T03:25:11.779Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据结构学习笔记（七）：排序</title>
+    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%8E%92%E5%BA%8F/"/>
+    <id>https://i-square.github.io/post/DS学习笔记-排序/</id>
+    <published>2017-04-23T14:01:12.000Z</published>
+    <updated>2017-04-24T03:25:11.779Z</updated>
+    
+    <content type="html"><![CDATA[<p>在内存里的排序称为内部排序，而在磁盘上的排序称为外部排序。<br>假设输入数据支持”&lt;”和”&gt;”操作符，除赋值运算外，这种运算是仅有的允许对输入数据进行的操作，在此条件下的排序称为基于比较的排序。</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>对内部排序的考查将指出：</p>
+<ul>
+<li>存在几种直观的算法以O(N^2)排序，如冒泡、选择、插入排序</li>
+<li>希尔排序编程简单，以o(N^2)运行，在实践中很有效</li>
+<li>还有一些稍微复杂的O(NlogN)算法</li>
+<li>任何只使用比较的排序算法在最坏情形下和平均情形下均需要Ω(NlogN)次比较</li>
+</ul>
+<h2 id="插入排序-insertion-sort"><a href="#插入排序-insertion-sort" class="headerlink" title="插入排序 (insertion sort)"></a>插入排序 (insertion sort)</h2><p>插入排序由N-1趟（pass）排序组成，排序策略是，在第p趟，将位置p上的元素向左移动至它在前p+1个元素中的正确位置上。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>O(N^2) 精确界，反序输入可达。<br>若已排序输入，则O(N)<br>平均情形Θ(N^2)</p>
+<h2 id="一些简单排序算法的下界"><a href="#一些简单排序算法的下界" class="headerlink" title="一些简单排序算法的下界"></a>一些简单排序算法的下界</h2><p>定理1 N个互异元素的数组的平均逆序数是N(N-1)/4<br>定理2 通过交换相邻元素进行排序的任何算法平均需要Ω(N^2)时间<br>对冒泡排序、选择排序、插入排序都有效<br>定理2告诉我们，为了以o(N^2)排序，必须执行比较，特别是要对相距较远的元素进行交换。排序通过删除逆序得以继续进行，为了有效进行，必须每次交换删除多个逆序。</p>
+<h2 id="希尔排序-shell-sort"><a href="#希尔排序-shell-sort" class="headerlink" title="希尔排序 (shell sort)"></a>希尔排序 (shell sort)</h2><p>发明者是Donald Shell，该算法是冲破二次时间屏障的第一批算法之一，不过，直到它最初被发现的若干年后才证明了它的亚二次时间界。</p>
+<p>它通过比较相距一定间隔的元素来工作，各趟比较所用的距离随着算法的进行而减小，直到只比较相邻元素的最后一趟排序为止。因此，希尔排序又是也叫做<strong>缩减增量排序</strong>(diminishing increment sort)</p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>使用希尔增量的最坏情形Θ(N^2)<br>Hibbard增量：1，3，7，…… ，2^k - 1<br>使用Hibbard增量的最坏情形Θ(N^(3/2))<br>Sedgewick提出了几种增量序列，最坏情形时间O(N^(4/3))<br>希尔排序的性能在实践中是可以接受的，由于编程简单，适度数量的输入数据经常选用。</p>
+<h2 id="堆排序-heap-sort"><a href="#堆排序-heap-sort" class="headerlink" title="堆排序 (heap sort)"></a>堆排序 (heap sort)</h2><p>如第六章所说，优先队列可以用O(NlogN)时间进行排序，基于该思想的算法称为堆排序</p>
+<p>由数组建立N个元素的二叉堆花费O(N)时间，每次deleteMin花费O(logN)，N次总共花费O(NlogN)<br>使用了附加数组，存储需求增加了一倍</p>
+<p>避免使用附加数组的方法：每次deleteMin之后把min放到刚刚空出来的位置上，N次deleteMin之后，数组将是递减顺序，因此可以构建max堆</p>
+<ol>
+<li>以O(N)建立max堆</li>
+<li>交换最后一个和第一个元素，堆大小减1并下滤，相当于执行deleteMax</li>
+<li>循环执行步骤2，N-1次</li>
+</ol>
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>在最坏情形下堆排序最多使用2NlogN-O(N)次比较<br>堆排序非常稳定：它平均使用的比较只比最坏情形界指出的略少</p>
+<p>定理1 对N个互异项的随机排列进行堆排序，所用的比较平均次数为2NlogN-O(NloglogN)</p>
+<p>可以证明，堆排序总是至少使用NlogN-O(N)次比较，而且存在达到这个界的数据。似乎平均情形也应该是2NlogN-O(N)次比较（而不是定理1中的第二项），但目前无法证明</p>
+<h2 id="归并排序-merge-sort"><a href="#归并排序-merge-sort" class="headerlink" title="归并排序 (merge sort)"></a>归并排序 (merge sort)</h2><p>以最坏情形O(NlogN)时间运行，所使用的比较次数几乎是最优的，它是递归算法的一个很好的实例</p>
+<p>算法的基本操作是合并两个已排序的表，取两个输入A、B，一个输出C，每次将A、B中的小者放入C，相关的位置推进，这显然是线性的</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>基准情形：N=1时，结果是显然的<br>否则，递归地将前半部分和后半部分各自归并排序，再将两部分合并</p>
+<p>该算法是经典的<strong>分治</strong>策略，它将问题<strong>分</strong>(divide)成一些小问题然后递归求解，而<strong>治</strong>(conquering)的阶段则是将分的阶段解得的各答案合并在一起</p>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>分析递归例程技巧的经典实例：必须给运行时间写出一个递推关系。<br>假设N是2的幂，从而总可以将它分裂成相等的两部分。对于N=1，所用时间是常数，将其记为1。则有<br>T(1) = 1<br>T(N) = 2T(N/2) + N<br>求解得 T(N) = NlogN + N = O(NlogN)</p>
+<p>利弊：在java中比较耗时多于移动，因此在java中归并排序是一般目的排序的最佳选择；但在C++中，比较耗时少而复制对象代价很大，因此实践中不常用</p>
+<h2 id="快速排序-quick-sort"><a href="#快速排序-quick-sort" class="headerlink" title="快速排序 (quick sort)"></a>快速排序 (quick sort)</h2><p>快排是实践中最快的已知排序算法，平均运行时间是O(NlogN)，最坏情形是O(N^2)，但稍作努力就可避免。<br>通过将堆排序与快速排序结合，可以在堆排序O(NlogN)最坏运行时间下，得到几乎所有输入的最快运行时间。</p>
+<p>快排也是分治的递归算法，排序数组S步骤如下：</p>
+<ol>
+<li>若S中元素数是0或1，则返回</li>
+<li>取S中任一元素v，称之为<strong>枢纽元</strong>(pivot)</li>
+<li>将S-{v}（S中其余元素）<strong>划分</strong>成两个不相交的集合：S1={x∈S-{v}|x≤v}和S2={x∈S-{v}|x≥v}</li>
+<li>返回{quickSort(S1),后跟v,继而quickSort(S2)}</li>
+</ol>
+<p>第三步中划分的标准不是唯一的，因此这就成了设计决策。一部分好的实现方法是将这种情形尽可能有效地处理。直观地看，我们希望枢纽元能将元素对半分，一半在S1，另一半在S2。</p>
+<h3 id="选取枢纽元"><a href="#选取枢纽元" class="headerlink" title="选取枢纽元"></a>选取枢纽元</h3><ol>
+<li>一种典型的错误是将第一个元素选作枢纽元。若输入随机，那么这是可以接受的，但实际情况有很多预排序的序列，这样的分割是劣质的。类似的还有选取前2个元素的大者，这是一样的，不要使用。</li>
+<li>一种安全的做法是随机选取枢纽元，但这取决于随机数生成器的质量，而且声称随机数的代价一般也是很昂贵的。</li>
+<li>三数中值分割法<br>一组N个数的中值是第上取整(N/2)个最大的数。枢纽元的最好选择是数组的中值，但算出中值代价太高。一般的做法是选取左端、右端和中心位置上的三个元素的中值作为枢纽元。显然该方法消除了预排序输入的不好情形，并且减少了约14%的比较次数。</li>
+</ol>
+<h3 id="分割策略"><a href="#分割策略" class="headerlink" title="分割策略"></a>分割策略</h3><ol>
+<li>将枢纽元与最后的元素交换</li>
+<li>i从第一个元素开始，j从倒数第二个元素开始</li>
+<li>当i在j左边时，右移i，移过小于枢纽元的元素，j左移，移过大于枢纽元的元素，i,j都停止时交换两个元素，直到i,j交错</li>
+<li>将枢纽元与i所指向的元素交换</li>
+</ol>
+<p>如何处理等于枢纽元的元素？<br>若等于，则停止移动</p>
+<h3 id="小数组"><a href="#小数组" class="headerlink" title="小数组"></a>小数组</h3><p>对于很小的数组（N≤20），快速排序不如插入排序，而且，因为快排是递归的，这样的情形经常发生。通常的解决办法是，对于小数组使用插入排序。一种好的截止范围(cutoff range)是N=10</p>
+<h3 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h3><p>最坏情形：O(N^2)<br>最佳情形：O(NlogN)<br>平均情形：O(NlogN)</p>
+<h2 id="快速选择-quick-select"><a href="#快速选择-quick-select" class="headerlink" title="快速选择 (quick select)"></a>快速选择 (quick select)</h2><p>修改快速排序以解决选择问题，即找第k个最大（小）元。</p>
+<p>前3步和快速排序一样<br>第4步</p>
+<ul>
+<li>若k≤S1，那么k必然在S1中，返回quickSelect(S1, K)</li>
+<li>若k = 1 + |S1|，那么枢纽元就是第k个最小元</li>
+<li>否则，第k个最小元就在S2中，它是S2中的第（k-|S1|-1）个最小元，返回quickSelect(S2, k-|S1|-1)</li>
+</ul>
+<h3 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h3><p>与快排相比，快速选择只进行了一次递归调用而不是两次</p>
+<p>最坏情形：O(N^2)，当S1和S2一个是空时<br>平均情形：O(N)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在内存里的排序称为内部排序，而在磁盘上的排序称为外部排序。&lt;br&gt;假设输入数据支持”&amp;lt;”和”&amp;gt;”操作符，除赋值运算外，这种运算是仅有的允许对输入数据进行的操作，在此条件下的排序称为基于比较的排序。&lt;/p&gt;
+&lt;h2 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; cl
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构学习笔记（六）：优先队列（堆）</title>
@@ -369,35 +455,6 @@
 &lt;li&gt;介绍用到的C++知识&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构学习笔记（零）：开始</title>
-    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%BC%80%E5%A7%8B/"/>
-    <id>https://i-square.github.io/post/DS学习笔记-开始/</id>
-    <published>2017-03-23T03:23:54.000Z</published>
-    <updated>2017-04-17T08:00:26.355Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为了准备今年后半年到来的秋招，我决定开始学习数据结构，为后面的学习打基础，采用的教材是weiss的《数据结构与算法分析C++描述》，计划实现书上上的示例代码以及力所能及的课后习题。</p>
-<p>在Github上同步源码，项目地址：<a href="https://github.com/i-square/Data-Structure" target="_blank" rel="external">https://github.com/i-square/Data-Structure</a></p>
-<h2 id="学习环境"><a href="#学习环境" class="headerlink" title="学习环境"></a>学习环境</h2><ul>
-<li>Windows 10 &amp; 8.1</li>
-<li>Visual Studio 2015 with update 3</li>
-<li>C++ (部分C++11语法)</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;为了准备今年后半年到来的秋招，我决定开始学习数据结构，为后面的学习打基础，采用的教材是weiss的《数据结构与算法分析C++描述》，计划实现
     
     </summary>
     
