@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-04-24T07:43:04.961Z</updated>
+  <updated>2017-05-22T14:52:02.485Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用C++11实现一个简易计时器类</title>
+    <link href="https://i-square.github.io/post/%E4%BD%BF%E7%94%A8C++11%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E8%AE%A1%E6%97%B6%E5%99%A8%E7%B1%BB/"/>
+    <id>https://i-square.github.io/post/使用C++11实现一个简易计时器类/</id>
+    <published>2017-05-22T12:59:21.000Z</published>
+    <updated>2017-05-22T14:52:02.485Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>计时器可能是大多数程序员都自己实现过的一个功能，尤其是<code>C++</code>这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。<code>C++11</code>标准发布之后，新增了<code>chrono</code>命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。</p>
+<a id="more"></a>
+<h2 id="旧式计时器类"><a href="#旧式计时器类" class="headerlink" title="旧式计时器类"></a>旧式计时器类</h2><p>先说一下以往的方法，在<code>Windows</code>平台上，想要实现一个高精度的计时器，一般会用到2个<code>Windows API</code>，<code>QueryPerformanceFrequency</code>和<code>QueryPerformanceCounter</code>，配合使用获取高精度时间间隔。而<code>linux</code>平台则一般使用<code>gettimeofday</code>函数，可以获取微妙精度的时间，如需更高精度，则可能要用到汇编。</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>它可能长这样，为了兼顾不同平台，需要预处理宏的帮忙。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(_WINSOCK2API_) &amp;&amp; !defined(_WINSOCKAPI_)</span></div><div class="line"><span class="keyword">struct</span> timeval &#123;</div><div class="line">    <span class="keyword">long</span> tv_sec;</div><div class="line">    <span class="keyword">long</span> tv_usec;</div><div class="line">&#125;;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> timer_dt;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Timer &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	Timer();</div><div class="line">	~Timer() &#123;&#125;;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</div><div class="line">	<span class="function">timer_dt <span class="title">get_time</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	<span class="keyword">double</span> freq;</div><div class="line">	LARGE_INTEGER start_time;</div><div class="line">	LARGE_INTEGER finish_time;</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line">	<span class="keyword">struct</span> timeval start_time;</div><div class="line">	<span class="keyword">struct</span> timeval finish_time;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>核心的3个函数<code>start()</code>、<code>stop()</code>和<code>get_time()</code>的实现可能是这样的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 构造函数里获取高精度时钟的频率</span></div><div class="line">Timer::Timer() &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	LARGE_INTEGER tmp;</div><div class="line">	QueryPerformanceFrequency((LARGE_INTEGER*)&amp;tmp);</div><div class="line">	freq = (<span class="keyword">double</span>)tmp.QuadPart/<span class="number">1000.0</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> Timer::start() &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	QueryPerformanceCounter((LARGE_INTEGER*) &amp;start_time);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line">	gettimeofday(&amp;start_time, <span class="number">0</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">void</span> Timer::stop() &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	QueryPerformanceCounter((LARGE_INTEGER*) &amp;finish_time);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line">	gettimeofday(&amp;finish_time, <span class="number">0</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line">timer_dt Timer::get_time() &#123;</div><div class="line">	timer_dt interval = <span class="number">0.0f</span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	interval = (timer_dt)((<span class="keyword">double</span>)(finish_time.QuadPart</div><div class="line">		- start_time.QuadPart)	/ freq);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">	<span class="comment">// time difference in milli-seconds</span></div><div class="line">	interval = (timer_dt) (<span class="number">1000.0</span> * ( finish_time.tv_sec - start_time.tv_sec)</div><div class="line">		+(<span class="number">0.001</span> * (finish_time.tv_usec - start_time.tv_usec)));</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line"></div><div class="line">	<span class="keyword">return</span> interval;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="C-11-计时器类"><a href="#C-11-计时器类" class="headerlink" title="C++11 计时器类"></a>C++11 计时器类</h2><p><code>C++11</code>标准发布之后，给我们带来了<code>chrono</code>命名空间，里面的东西虽说名字特别难记:P，但是用起来很方便，用它来实现一个跨平台、高精度的计时器类只需要十几行代码，甚至核心代码只有3行：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"><span class="comment">// 这里为了方便说明直接用了该命名空间，实际情况请酌情使用</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::chrono;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Timer &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Timer() : tpStart(high_resolution_clock::now()), tpStop(tpStart) &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123; tpStart = high_resolution_clock::now(); &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123; tpStop = high_resolution_clock::now(); &#125;</div><div class="line"></div><div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> span&gt;</div><div class="line">    <span class="function"><span class="keyword">auto</span> <span class="title">delta</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> duration_cast&lt;span&gt;(tpStop - tpStart).count(); &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    time_point&lt;high_resolution_clock&gt; tpStart;</div><div class="line">    time_point&lt;high_resolution_clock&gt; tpStop;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>没错，只需要这些代码就可以实现一个跨平台且高精度的计时器类，使用方法也非常简单，可以按需选择精度，例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Timer t;</div><div class="line"><span class="comment">// some code here</span></div><div class="line">t.stop();</div><div class="line"><span class="comment">// 调用 delta() 函数时需指定精度，以下四种均在chrono命名空间内定义</span></div><div class="line"><span class="comment">// seconds, milliseconds, microseconds, nanoseconds</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"the xxx time is: "</span> &lt;&lt; t.delta&lt;nanoseconds&gt;() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; <span class="comment">// 输出纳秒</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"the xxx time is: "</span> &lt;&lt; t.delta&lt;milliseconds&gt;() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  <span class="comment">// 输出毫秒</span></div></pre></td></tr></table></figure></p>
+<p>为了方便使用，还可以加入以下两个函数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> span&gt;</div><div class="line"><span class="function"><span class="keyword">auto</span> <span class="title">stop_delta</span><span class="params">()</span> </span>&#123; stop(); <span class="keyword">return</span> duration_cast&lt;span&gt;(tpStop - tpStart).count(); &#125;</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> span&gt;</div><div class="line"><span class="function"><span class="keyword">auto</span> <span class="title">stop_delta_start</span><span class="params">()</span> </span>&#123;</div><div class="line">    stop();</div><div class="line">    <span class="keyword">auto</span> ts = duration_cast&lt;span&gt;(tpStop - tpStart).count();</div><div class="line">    start();</div><div class="line">    <span class="keyword">return</span> ts;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>C++11新增的这个<code>chrono</code>命名空间非常方便好用，由于是标准库，在跨平台方面具有天然优势，在代码简洁程度上也比原来要好，配合模板更加可以减少代码量，当然它不止能用来做计时器用，还有很多别的方面的应用，在此就不多说了，以后可能会补充。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;计时器可能是大多数程序员都自己实现过的一个功能，尤其是&lt;code&gt;C++&lt;/code&gt;这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。&lt;code&gt;C++11&lt;/code&gt;标准发布之后，新增了&lt;code&gt;chrono&lt;/code&gt;命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="C++11" scheme="https://i-square.github.io/tags/C-11/"/>
+    
+      <category term="计时器" scheme="https://i-square.github.io/tags/%E8%AE%A1%E6%97%B6%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构学习笔记（八）：不相交集类</title>
@@ -422,45 +455,6 @@
       <category term="Office" scheme="https://i-square.github.io/tags/Office/"/>
     
       <category term="Visio" scheme="https://i-square.github.io/tags/Visio/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构学习笔记（二）：算法分析</title>
-    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/"/>
-    <id>https://i-square.github.io/post/DS学习笔记-算法分析/</id>
-    <published>2017-03-25T14:48:53.000Z</published>
-    <updated>2017-04-17T07:43:12.691Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
-<li>主要内容是复杂度分析</li>
-<li>大O标记</li>
-<li>计算大O时的一般法则<ul>
-<li>对数规律的一般法则<br>如果一个算法用常数时间（O(1)）将问题的大小削减为其一部分（通常是1/2），那么该算法就是O(logN)的。</li>
-</ul>
-</li>
-</ul>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><ol>
-<li>二分搜索提供了O(logN)的查找算法</li>
-<li>最大公因数的欧几里得算法也是O(logN)的</li>
-<li>幂运算的递归算法</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; class=&quot;headerlink&quot; title=&quot;内容&quot;&gt;&lt;/a&gt;内容&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;主要内容是复杂度分析&lt;/li&gt;
-&lt;li&gt;大O标记&lt;/li&gt;
-&lt;li&gt;计算大O时的一般法则&lt;ul&gt;
-&lt;li&gt;对数规律的一般法则&lt;b
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   

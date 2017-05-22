@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/使用C++11实现一个简易计时器类/">
+    
+    
+    <title>使用C++11实现一个简易计时器类 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="C++11,计时器">
+    <meta name="description" content="前言计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。C++11标准发布之后，新增了chrono命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用C++11实现一个简易计时器类">
+<meta property="og:url" content="https://i-square.github.io/post/使用C++11实现一个简易计时器类/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="前言计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。C++11标准发布之后，新增了chrono命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。">
+<meta property="og:updated_time" content="2017-05-22T14:52:02.485Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用C++11实现一个简易计时器类">
+<meta name="twitter:description" content="前言计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。C++11标准发布之后，新增了chrono命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。">
+    
+        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用C++11实现一个简易计时器类</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用C++11实现一个简易计时器类</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-05-22T12:59:21.000Z" itemprop="datePublished" class="page-time">
+  2017-05-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#旧式计时器类"><span class="post-toc-number">2.</span> <span class="post-toc-text">旧式计时器类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#接口"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">接口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#C-11-计时器类"><span class="post-toc-number">3.</span> <span class="post-toc-text">C++11 计时器类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-使用C++11实现一个简易计时器类"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用C++11实现一个简易计时器类</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年05月22日 20:59" datetime="2017-05-22T12:59:21.000Z"  itemprop="datePublished">2017-05-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>计时器可能是大多数程序员都自己实现过的一个功能，尤其是<code>C++</code>这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。<code>C++11</code>标准发布之后，新增了<code>chrono</code>命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。</p>
+<a id="more"></a>
+<h2 id="旧式计时器类"><a href="#旧式计时器类" class="headerlink" title="旧式计时器类"></a>旧式计时器类</h2><p>先说一下以往的方法，在<code>Windows</code>平台上，想要实现一个高精度的计时器，一般会用到2个<code>Windows API</code>，<code>QueryPerformanceFrequency</code>和<code>QueryPerformanceCounter</code>，配合使用获取高精度时间间隔。而<code>linux</code>平台则一般使用<code>gettimeofday</code>函数，可以获取微妙精度的时间，如需更高精度，则可能要用到汇编。</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>它可能长这样，为了兼顾不同平台，需要预处理宏的帮忙。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(_WINSOCK2API_) &amp;&amp; !defined(_WINSOCKAPI_)</span></div><div class="line"><span class="keyword">struct</span> timeval &#123;</div><div class="line">    <span class="keyword">long</span> tv_sec;</div><div class="line">    <span class="keyword">long</span> tv_usec;</div><div class="line">&#125;;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> timer_dt;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Timer &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	Timer();</div><div class="line">	~Timer() &#123;&#125;;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</div><div class="line">	<span class="function">timer_dt <span class="title">get_time</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	<span class="keyword">double</span> freq;</div><div class="line">	LARGE_INTEGER start_time;</div><div class="line">	LARGE_INTEGER finish_time;</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line">	<span class="keyword">struct</span> timeval start_time;</div><div class="line">	<span class="keyword">struct</span> timeval finish_time;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>核心的3个函数<code>start()</code>、<code>stop()</code>和<code>get_time()</code>的实现可能是这样的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 构造函数里获取高精度时钟的频率</span></div><div class="line">Timer::Timer() &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	LARGE_INTEGER tmp;</div><div class="line">	QueryPerformanceFrequency((LARGE_INTEGER*)&amp;tmp);</div><div class="line">	freq = (<span class="keyword">double</span>)tmp.QuadPart/<span class="number">1000.0</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">&#125;</div><div class="line"><span class="keyword">void</span> Timer::start() &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	QueryPerformanceCounter((LARGE_INTEGER*) &amp;start_time);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line">	gettimeofday(&amp;start_time, <span class="number">0</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">void</span> Timer::stop() &#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	QueryPerformanceCounter((LARGE_INTEGER*) &amp;finish_time);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span><span class="comment">//_WIN32</span></span></div><div class="line">	gettimeofday(&amp;finish_time, <span class="number">0</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line">&#125;</div><div class="line"></div><div class="line">timer_dt Timer::get_time() &#123;</div><div class="line">	timer_dt interval = <span class="number">0.0f</span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">	interval = (timer_dt)((<span class="keyword">double</span>)(finish_time.QuadPart</div><div class="line">		- start_time.QuadPart)	/ freq);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">	<span class="comment">// time difference in milli-seconds</span></div><div class="line">	interval = (timer_dt) (<span class="number">1000.0</span> * ( finish_time.tv_sec - start_time.tv_sec)</div><div class="line">		+(<span class="number">0.001</span> * (finish_time.tv_usec - start_time.tv_usec)));</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span><span class="comment">//_WIN32</span></span></div><div class="line"></div><div class="line">	<span class="keyword">return</span> interval;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="C-11-计时器类"><a href="#C-11-计时器类" class="headerlink" title="C++11 计时器类"></a>C++11 计时器类</h2><p><code>C++11</code>标准发布之后，给我们带来了<code>chrono</code>命名空间，里面的东西虽说名字特别难记:P，但是用起来很方便，用它来实现一个跨平台、高精度的计时器类只需要十几行代码，甚至核心代码只有3行：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"><span class="comment">// 这里为了方便说明直接用了该命名空间，实际情况请酌情使用</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>::chrono;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Timer &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    Timer() : tpStart(high_resolution_clock::now()), tpStop(tpStart) &#123;&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123; tpStart = high_resolution_clock::now(); &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123; tpStop = high_resolution_clock::now(); &#125;</div><div class="line"></div><div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> span&gt;</div><div class="line">    <span class="function"><span class="keyword">auto</span> <span class="title">delta</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> duration_cast&lt;span&gt;(tpStop - tpStart).count(); &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    time_point&lt;high_resolution_clock&gt; tpStart;</div><div class="line">    time_point&lt;high_resolution_clock&gt; tpStop;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>没错，只需要这些代码就可以实现一个跨平台且高精度的计时器类，使用方法也非常简单，可以按需选择精度，例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Timer t;</div><div class="line"><span class="comment">// some code here</span></div><div class="line">t.stop();</div><div class="line"><span class="comment">// 调用 delta() 函数时需指定精度，以下四种均在chrono命名空间内定义</span></div><div class="line"><span class="comment">// seconds, milliseconds, microseconds, nanoseconds</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"the xxx time is: "</span> &lt;&lt; t.delta&lt;nanoseconds&gt;() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; <span class="comment">// 输出纳秒</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"the xxx time is: "</span> &lt;&lt; t.delta&lt;milliseconds&gt;() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;  <span class="comment">// 输出毫秒</span></div></pre></td></tr></table></figure></p>
+<p>为了方便使用，还可以加入以下两个函数。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> span&gt;</div><div class="line"><span class="function"><span class="keyword">auto</span> <span class="title">stop_delta</span><span class="params">()</span> </span>&#123; stop(); <span class="keyword">return</span> duration_cast&lt;span&gt;(tpStop - tpStart).count(); &#125;</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> span&gt;</div><div class="line"><span class="function"><span class="keyword">auto</span> <span class="title">stop_delta_start</span><span class="params">()</span> </span>&#123;</div><div class="line">    stop();</div><div class="line">    <span class="keyword">auto</span> ts = duration_cast&lt;span&gt;(tpStop - tpStart).count();</div><div class="line">    start();</div><div class="line">    <span class="keyword">return</span> ts;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>C++11新增的这个<code>chrono</code>命名空间非常方便好用，由于是标准库，在跨平台方面具有天然优势，在代码简洁程度上也比原来要好，配合模板更加可以减少代码量，当然它不止能用来做计时器用，还有很多别的方面的应用，在此就不多说了，以后可能会补充。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-22T14:52:02.485Z" itemprop="dateUpdated">2017年5月22日 22:52</time>
+</span><br>
+
+
+        转载请注明来源，本文固定链接：<a href="/post/使用C++11实现一个简易计时器类/" target="_blank" rel="external">https://i-square.github.io/post/使用C++11实现一个简易计时器类/</a>
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计时器/">计时器</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/&title=《使用C++11实现一个简易计时器类》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/&title=《使用C++11实现一个简易计时器类》 — 平方君的后花园&source=前言计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/使用C++11实现一个简易计时器类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用C++11实现一个简易计时器类》 — 平方君的后花园&url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/DS学习笔记-不相交集类/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数据结构学习笔记（八）：不相交集类</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君的后花园 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/&title=《使用C++11实现一个简易计时器类》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/&title=《使用C++11实现一个简易计时器类》 — 平方君的后花园&source=前言计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/使用C++11实现一个简易计时器类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用C++11实现一个简易计时器类》 — 平方君的后花园&url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/使用C++11实现一个简易计时器类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQW7jMAwF0N7/0p1tB4Nx/ielIAWeV0HtOHpaiCzJr6/4+v5xJU8+v+Hf6/mZ5zcfuPDw8PAWS09++JmULPp5O5LvJmvGw8PDu81LFp0EjHxBefjJgwQeHh7eb+G1gOT9SbDBw8PD+y28ZCmbz0kxAg8PD+8TeJtXn92gWeJ+oNaCh4eHF/PyLtLnfL7S38PDw8Nbd9XbguysuZWXNurV4uHh4V3g5QduPkywGaWaDS68aKHh4eHhvZGXjEmdvdtubhSQ8PDw8C7z2lfkhdQ8qLT1hMN1FDw8PLxHXvvPfz5cNQsDs80qQgIeHh7eIV5SUKhHnUan9CZovZiJwMPDw7vGmxVqN4d7frcevcLDw8O7wDtVJsjHBfattTwdx8PDw7vBm+1HcvTnz7QpeBFg8PDw8C7wkle3L9rg88GsthSCh4eHd4qXNKiSn5y1tXJM/vxff8HDw8N7Cy//mbbUO9ugJKjUPTc8PDy8o7yi+nu0CDvbghfP4+Hh4V3j7csBeSDZMOpyCR4eHt4FXtvoytPf/ThX/kw0GYGHh4d3iHd24GlTDt6Uif+7Bjw8PLxrvDZRTu4m25SEgdVAAx4eHt5lXj5W1RYLZu3/PNWOqtR4eHh4h3ibZLct5ubhpE3uXwQYPDw8vMu8WZs/AW+S7FWJGQ8PD+8yLwkDeSI+Cx7J3XwoAQ8PD+/9vPag37TN2sZbtCo8PDy8o7zv8soP69kWtAl3MRmBh4eHd4jXtrjyouqsaJuPYRUNMDw8PLwLvLa1n989W+DIAwMeHh7ee3h5spsfyu02bcoQLwIDHh4e3gfw2ty8hc1KD3h4eHifz8tLurNcty3mHkup8fDw8Mqme7vozRBVPpQw3DI8PDy8C7x9QpwsJfnWrOgwJOHh4eFNeH8AcnZzqL7mAkoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.7" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
