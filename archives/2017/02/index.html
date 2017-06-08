@@ -32,10 +32,10 @@
 <meta name="twitter:title" content="平方君的后花园">
 <meta name="twitter:description" content="如果有人闲得慌来到这里问这里是什么地方我就告诉他这是我家后花园。">
     
-        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+        <link rel="alternate" type="application/atom+xml" title="平方君的后花园" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 </head>
 
@@ -47,14 +47,14 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">平方君</h5>
-          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+          <a href="mailto:i_square@qq.com" title="i_square@qq.com" class="mail">i_square@qq.com</a>
         </hgroup>
       </div>
     </div>
@@ -151,6 +151,7 @@
 
     
 
+
 </header>
 
 <div class="container body-wrap fade">
@@ -158,14 +159,14 @@
 
     
             
-            <h3 class="archive-separator">February, 2017</h3>
+            <h3 class="archive-separator">二月, 2017</h3>
             <div class="waterfall">
     
 
         <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017年02月28日 11:43" datetime="2017-02-28T03:43:59.000Z"  itemprop="datePublished">Feb 28</time>
+      <time class="post-time" title="2017-02-28 11:43:59" datetime="2017-02-28T03:43:59.000Z"  itemprop="datePublished">2017-02-28</time>
 
       
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
@@ -199,7 +200,7 @@
         <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017年02月25日 17:27" datetime="2017-02-25T09:27:39.000Z"  itemprop="datePublished">Feb 25</time>
+      <time class="post-time" title="2017-02-25 17:27:39" datetime="2017-02-25T09:27:39.000Z"  itemprop="datePublished">2017-02-25</time>
 
       
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/随笔/">随笔</a></li></ul>
@@ -233,7 +234,7 @@
         <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017年02月24日 14:33" datetime="2017-02-24T06:33:36.000Z"  itemprop="datePublished">Feb 24</time>
+      <time class="post-time" title="2017-02-24 14:33:36" datetime="2017-02-24T06:33:36.000Z"  itemprop="datePublished">2017-02-24</time>
 
       
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/测试/">测试</a></li></ul>
@@ -267,7 +268,7 @@
         <div class="waterfall-item">
   <article class="article-card archive-article">
     <div class="post-meta">
-      <time class="post-time" title="2017年02月23日 15:15" datetime="2017-02-23T07:15:45.000Z"  itemprop="datePublished">Feb 23</time>
+      <time class="post-time" title="2017-02-23 15:15:45" datetime="2017-02-23T07:15:45.000Z"  itemprop="datePublished">2017-02-23</time>
 
       
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/测试/">测试</a></li></ul>
@@ -316,14 +317,16 @@
 
 
         <p>
-            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>平方君的后花园 &copy; 2017</span>
+            <span>平方君 &copy; 2017</span>
         </p>
     </div>
 </footer>
@@ -387,7 +390,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.4.7"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -407,7 +410,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.4.7" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
@@ -415,6 +418,26 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
 
 
 </body>

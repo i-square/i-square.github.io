@@ -110,19 +110,9 @@
 
             toc.querySelector('a[href="#' + titles[0].id + '"]').parentNode.classList.add('active');
 
-            forEach.call($$('a[href^="#"]'), function (el) {
-
-                el.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    var top = offset($('[id="' + decodeURIComponent(this.hash).substr(1) + '"]')).y - headerH;
-                    // animate(Blog.goTop.bind(Blog, top));
-                    docEl.scrollTop = top;
-                })
-            });
-
             return {
                 fixed: function (top) {
-                    top >= bannerH - headerH ? toc.classList.add('fixed') : toc.classList.remove('fixed')
+                    top >= bannerH - headerH ? toc.classList.add('fixed') : toc.classList.remove('fixed');
                 },
                 actived: function (top) {
                     for (i = 0, len = titles.length; i < len; i++) {
@@ -410,14 +400,17 @@
     };
 
     w.addEventListener('load', function () {
+        loading.classList.remove('active');
+        Blog.page.loaded();
+        w.lazyScripts && w.lazyScripts.length && Blog.loadScript(w.lazyScripts)
+    });
+
+    w.addEventListener('DOMContentLoaded', function() {
         Blog.waterfall();
         var top = docEl.scrollTop;
         Blog.toc.fixed(top);
         Blog.toc.actived(top);
-        loading.classList.remove('active');
         Blog.page.loaded();
-
-        w.lazyScripts && w.lazyScripts.length && Blog.loadScript(w.lazyScripts)
     });
 
     var ignoreUnload = false;

@@ -30,16 +30,16 @@
 <meta property="og:site_name" content="平方君的后花园">
 <meta property="og:description" content="前言由于最近开始上Github较多，无意中发现Github推出了一个学生开发者优惠大礼包，这对于囊中羞涩的学生来说真的是大大的福利，给Github一个大大的赞！
 这个优惠包里头包含很多开发者需要付费购买的服务或者工具的优惠券，其中有一个DigitalOcean的$50优惠券，对于一直想入一台VPS但又因为价格昂贵望而却步的我来说就是雪中送炭啊，于是我马上注册获取优惠券，随即开始折腾，这里把这两天折">
-<meta property="og:updated_time" content="2017-03-03T03:11:48.058Z">
+<meta property="og:updated_time" content="2017-06-08T12:34:52.469Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VPS搭建Shadowsocks服务和优化笔记">
 <meta name="twitter:description" content="前言由于最近开始上Github较多，无意中发现Github推出了一个学生开发者优惠大礼包，这对于囊中羞涩的学生来说真的是大大的福利，给Github一个大大的赞！
 这个优惠包里头包含很多开发者需要付费购买的服务或者工具的优惠券，其中有一个DigitalOcean的$50优惠券，对于一直想入一台VPS但又因为价格昂贵望而却步的我来说就是雪中送炭啊，于是我马上注册获取优惠券，随即开始折腾，这里把这两天折">
     
-        <link rel="alternative" href="/atom.xml" title="平方君的后花园" type="application/atom+xml">
+        <link rel="alternate" type="application/atom+xml" title="平方君的后花园" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="/css/style.css?v=1.4.7">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 </head>
 
@@ -51,14 +51,14 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">平方君</h5>
-          <a href="mailto:i_square@outlook.com" title="i_square@outlook.com" class="mail">i_square@outlook.com</a>
+          <a href="mailto:i_square@qq.com" title="i_square@qq.com" class="mail">i_square@qq.com</a>
         </hgroup>
       </div>
     </div>
@@ -163,6 +163,7 @@
 
     
 
+
 </header>
 
 
@@ -181,7 +182,7 @@
     <div class="post-card">
         <h1 class="post-card-title">VPS搭建Shadowsocks服务和优化笔记</h1>
         <div class="post-meta">
-            <time class="post-time" title="2017年02月28日 11:43" datetime="2017-02-28T03:43:59.000Z"  itemprop="datePublished">2017-02-28</time>
+            <time class="post-time" title="2017-02-28 11:43:59" datetime="2017-02-28T03:43:59.000Z"  itemprop="datePublished">2017-02-28</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
@@ -312,12 +313,10 @@
         <blockquote class="post-copyright">
     <div class="content">
         
-<span class="post-time">
-    最后更新时间：<time datetime="2017-03-03T03:11:48.058Z" itemprop="dateUpdated">2017年3月3日 11:11</time>
-</span><br>
 
-
-        转载请注明来源，本文固定链接：<a href="/post/VPS搭建Shadowsocks服务和优化笔记/" target="_blank" rel="external">https://i-square.github.io/post/VPS搭建Shadowsocks服务和优化笔记/</a>
+        
+        <b>Copyright:</b> 转载请注明来源，本文固定链接：<a href="/post/VPS搭建Shadowsocks服务和优化笔记/" target="_blank" rel="external">https://i-square.github.io/post/VPS搭建Shadowsocks服务和优化笔记/</a>
+        
     </div>
     <footer>
         <a href="https://i-square.github.io">
@@ -417,6 +416,32 @@
 
 
 
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'i-square',
+            repo: 'i-square.github.io',
+            oauth: {
+                client_id: '62261636c7581c94e991',
+                client_secret: '9c9a8b500e79af2557b97c91d831f2855871ad38',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
 </article>
 
 
@@ -437,14 +462,16 @@
 
 
         <p>
-            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>平方君的后花园 &copy; 2017</span>
+            <span>平方君 &copy; 2017</span>
         </p>
     </div>
 </footer>
@@ -508,7 +535,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 </script>
 
-<script src="/js/main.min.js?v=1.4.7"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -528,7 +555,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.4.7" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
@@ -536,6 +563,26 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
 
 
 </body>
