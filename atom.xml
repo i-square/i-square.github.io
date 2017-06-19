@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-06-08T12:34:52.469Z</updated>
+  <updated>2017-06-19T15:05:29.838Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -16,11 +16,74 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>MFC+BCG库静态链接方法总结</title>
+    <link href="https://i-square.github.io/post/MFC-BCG%E5%BA%93%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>https://i-square.github.io/post/MFC-BCG库静态链接方法总结/</id>
+    <published>2017-06-19T14:24:59.000Z</published>
+    <updated>2017-06-19T15:05:29.838Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是<code>Win10 + VS2015</code>, 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到<code>Windows Server 2008 R2</code>系统下，会出现缺少<code>xxx.dll</code>的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持<code>Windows Server 2008 R2</code>，最低得是<code>Windows Server 2008 R2 with SP1</code>，安装运行库的法子走不通，只能换一条路了。</p>
+<a id="more"></a>
+<h2 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h2><p>MFC程序可以用动态链接或者静态链接的方式使用MFC的库，动态链接的好处是最后生成的exe文件非常小，缺点是目标机器必须安装对应的运行库，或者要在文件夹里手动放入所需的dll；静态链接的好处是直接把VC的运行库链接到最终的exe里，不必安装运行库或者添加一堆dll就可以直接运行，缺点是生成的exe会比较大。</p>
+<p>静态链接多占用的那一点空间对我来说没什么影响，所以我打算采取静态链接的方法解决上面提到的问题，MFC的库好办，只需要改项目属性就可以了，而静态链接BCG库则多一点波折，关于如何静态链接BCG库网上也有很多方法，但是并不全面，经过一番查找，我自己总结了在MFC里静态链接BCG库的方法，内容主要参考自<a href="https://support.bcgsoft.com/KB/Category/19-technical-questions" target="_blank" rel="external">BCG技术问答</a>里的<a href="https://support.bcgsoft.com/KB/View/37-how-can-i-add-a-library-to-my-static-mfc-project" target="_blank" rel="external">这个问题</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li>编译所需版本的静态库lib文件（这一步在安装BCG库的时候一般做过了，直接拷贝出来就行，如<code>BCGCBPRO2510STATICU140.lib</code>）</li>
+</ol>
+<ul>
+<li>修改项目属性<ul>
+<li><code>C/C++</code>-&gt;<code>代码生成</code>-&gt;<code>运行库</code>里选择<code>MT</code>(release)或者<code>MTd</code>(debug)</li>
+<li><code>常规</code>里选择<code>在静态库中使用 MFC</code></li>
+</ul>
+</li>
+<li>将BCGSoft\BCGControlBarPro\BCGCBPro\Styles下的<ul>
+<li><code>Office 2010 (blue)</code>文件夹(以该主题为例)</li>
+<li><code>BCGPStyle2010Blue.rc</code>和<code>BCGPStyle2010Blue.rc2</code>文件</li>
+</ul>
+</li>
+<li>拷贝到<code>你的项目主目录</code></li>
+</ul>
+<h3 id="修改stdafx-cpp"><a href="#修改stdafx-cpp" class="headerlink" title="修改stdafx.cpp"></a>修改<code>stdafx.cpp</code></h3><p>在<code>stdafx.cpp</code>文件的最后（在<code>#include stdafx.h</code>之后）添加以下代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> _MSC_VER &gt; 1500</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> COMPILE_MULTIMON_STUBS</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(push)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(disable: 4996)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"multimon.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(pop)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="修改资源文件属性"><a href="#修改资源文件属性" class="headerlink" title="修改资源文件属性"></a>修改资源文件属性</h3><p>在资源视图的对话框上点击右键，选择<code>资源包括(L)...</code></p>
+<ol>
+<li>在<code>只读符号指令</code>里添加<code>#include &quot;bcgprores.h&quot;</code></li>
+</ol>
+<ul>
+<li>在<code>编译时指令</code>里<ul>
+<li>移除<code>_AFX_NO_SPLITTER_RESOURCES</code></li>
+<li>添加<code>#include &quot;BCGCBPro.rc&quot;</code>和<code>#include &quot;BCGPStyle2010Blue.rc&quot;</code></li>
+<li>如果你想动态链接MFC，静态链接BCG, 则添加<code>&quot;#define _BCGCBPRO_STATIC_&quot;</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>(这条基本不用管)如果你的项目是从MFC版本2008或更高版本移植的，请删除资源文件中对<code>afxribbon.rc</code>的所有引用，因为它和<code>BCGCBPro.rc</code>冲突</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是&lt;code&gt;Win10 + VS2015&lt;/code&gt;, 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到&lt;code&gt;Windows Server 2008 R2&lt;/code&gt;系统下，会出现缺少&lt;code&gt;xxx.dll&lt;/code&gt;的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持&lt;code&gt;Windows Server 2008 R2&lt;/code&gt;，最低得是&lt;code&gt;Windows Server 2008 R2 with SP1&lt;/code&gt;，安装运行库的法子走不通，只能换一条路了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="MFC" scheme="https://i-square.github.io/tags/MFC/"/>
+    
+      <category term="BCG库" scheme="https://i-square.github.io/tags/BCG%E5%BA%93/"/>
+    
+      <category term="静态链接" scheme="https://i-square.github.io/tags/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用C++11实现一个简易计时器类</title>
     <link href="https://i-square.github.io/post/%E4%BD%BF%E7%94%A8C++11%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E8%AE%A1%E6%97%B6%E5%99%A8%E7%B1%BB/"/>
     <id>https://i-square.github.io/post/使用C++11实现一个简易计时器类/</id>
     <published>2017-05-22T12:59:21.000Z</published>
-    <updated>2017-06-08T12:34:52.469Z</updated>
+    <updated>2017-05-22T14:52:02.485Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>计时器可能是大多数程序员都自己实现过的一个功能，尤其是<code>C++</code>这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。<code>C++11</code>标准发布之后，新增了<code>chrono</code>命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。</p>
 <a id="more"></a>
@@ -53,7 +116,7 @@
     <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86%E7%B1%BB/"/>
     <id>https://i-square.github.io/post/DS学习笔记-不相交集类/</id>
     <published>2017-04-24T07:42:58.000Z</published>
-    <updated>2017-06-08T12:34:52.344Z</updated>
+    <updated>2017-04-24T07:43:04.961Z</updated>
     
     <content type="html"><![CDATA[<p>这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。</p>
 <h2 id="等价关系-equivalence-relation"><a href="#等价关系-equivalence-relation" class="headerlink" title="等价关系 (equivalence relation)"></a>等价关系 (equivalence relation)</h2><p>若对于每一对元素(a,b),a,b∈S, <code>a R b</code>或者为true或者为false，则称在集合S上定义关系R。如果<code>a R b</code>为true，我们说a和b有关系。</p>
@@ -90,7 +153,7 @@
     <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%8E%92%E5%BA%8F/"/>
     <id>https://i-square.github.io/post/DS学习笔记-排序/</id>
     <published>2017-04-23T14:01:12.000Z</published>
-    <updated>2017-06-08T12:34:52.391Z</updated>
+    <updated>2017-04-24T03:25:11.779Z</updated>
     
     <content type="html"><![CDATA[<p>在内存里的排序称为内部排序，而在磁盘上的排序称为外部排序。<br>假设输入数据支持”&lt;”和”&gt;”操作符，除赋值运算外，这种运算是仅有的允许对输入数据进行的操作，在此条件下的排序称为基于比较的排序。</p>
 <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>对内部排序的考查将指出：</p>
@@ -176,7 +239,7 @@
     <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%88%E5%A0%86%EF%BC%89/"/>
     <id>https://i-square.github.io/post/DS学习笔记-优先队列（堆）/</id>
     <published>2017-04-20T14:27:15.000Z</published>
-    <updated>2017-06-08T12:34:52.360Z</updated>
+    <updated>2017-04-20T14:27:48.633Z</updated>
     
     <content type="html"><![CDATA[<p>本章讨论优先队列（priority queue），介绍优先队列在离散事件模拟中的应用<br>作者评价：这类数据结构属于计算机科学中最雅致的一种</p>
 <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
@@ -227,7 +290,7 @@
     <link href="https://i-square.github.io/post/C%E7%9B%98%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E4%B8%A4%E4%B8%AAsys%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E/"/>
     <id>https://i-square.github.io/post/C盘根目录下的两个sys文件说明/</id>
     <published>2017-04-19T08:24:22.000Z</published>
-    <updated>2017-06-08T12:34:52.329Z</updated>
+    <updated>2017-04-19T08:43:58.185Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。</p>
 <a id="more"></a>
@@ -255,7 +318,7 @@
     <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%A3%E5%88%97/"/>
     <id>https://i-square.github.io/post/DS学习笔记-散列/</id>
     <published>2017-04-07T14:48:51.000Z</published>
-    <updated>2017-06-08T12:34:52.391Z</updated>
+    <updated>2017-04-19T08:46:25.022Z</updated>
     
     <content type="html"><![CDATA[<p>散列表（hash table）的实现通常称为散列（hashing），指用于以O(1)时间执行插入、删除和查找的技术，但不支持需要排序信息的树操作，比如findMin、findMax以及在线性时间内按顺序打印整个表都不支持</p>
 <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>中心数据结构是<strong>散列表</strong></p>
@@ -300,7 +363,7 @@
     <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%A0%91/"/>
     <id>https://i-square.github.io/post/DS学习笔记-树/</id>
     <published>2017-03-31T14:05:29.000Z</published>
-    <updated>2017-06-08T12:34:52.407Z</updated>
+    <updated>2017-04-19T08:46:42.100Z</updated>
     
     <content type="html"><![CDATA[<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
 <li>了解树是如何用于实现文件系统的</li>
@@ -353,7 +416,7 @@
     <link href="https://i-square.github.io/post/MathType6-9b%E4%B8%8D%E5%85%BC%E5%AE%B9Office2016%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
     <id>https://i-square.github.io/post/MathType6-9b不兼容Office2016的解决办法/</id>
     <published>2017-03-29T10:37:43.000Z</published>
-    <updated>2017-06-08T12:34:52.454Z</updated>
+    <updated>2017-03-29T10:55:39.550Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>安装MathType6.9b后打开Word2016，发现菜单栏里并没有集成MathType，想办法解决以后，菜单栏上已经集成了MathType，但是仍然不能用，每次打开Word都会弹框提示Mathpage.wll未找到，无奈又去网上找寻了解决办法，在这里记录一下，就当云笔记了。</p>
 <a id="more"></a>
@@ -395,7 +458,7 @@
     <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%A1%A8%E3%80%81%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"/>
     <id>https://i-square.github.io/post/DS学习笔记-表、栈和队列/</id>
     <published>2017-03-27T07:27:43.000Z</published>
-    <updated>2017-06-08T12:34:52.422Z</updated>
+    <updated>2017-04-17T07:44:39.466Z</updated>
     
     <content type="html"><![CDATA[<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
 <li>介绍三种基本的数据结构</li>
@@ -428,33 +491,6 @@
     
     
       <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Office2016中右键无法打开Visio图像的解决办法</title>
-    <link href="https://i-square.github.io/post/Office2016%E4%B8%AD%E5%8F%B3%E9%94%AE%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80Visio%E5%9B%BE%E5%83%8F%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
-    <id>https://i-square.github.io/post/Office2016中右键无法打开Visio图像的解决办法/</id>
-    <published>2017-03-26T07:21:56.000Z</published>
-    <updated>2017-06-08T12:34:52.454Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Office2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Office中提供的“打开”和“编辑”功能，那么，如何能够在Office2016中打开visio图像呢？</p>
-<a id="more"></a>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在Visio图上使用 <code>ALT + 双击鼠标左键</code> 即可在Visio中打开<br>直接双击Visio图像则是和之前版本一样，在当前Office窗口中打开Visio图。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;在Office2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Office中提供的“打开”和“编辑”功能，那么，如何能够在Office2016中打开visio图像呢？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="Office" scheme="https://i-square.github.io/tags/Office/"/>
-    
-      <category term="Visio" scheme="https://i-square.github.io/tags/Visio/"/>
     
   </entry>
   

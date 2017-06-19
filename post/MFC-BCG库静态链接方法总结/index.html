@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/MFC-BCG库静态链接方法总结/">
+    
+    
+    <title>MFC+BCG库静态链接方法总结 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="MFC,BCG库,静态链接">
+    <meta name="description" content="前言最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是Win10 + VS2015, 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到Windows Server 2008 R2系统下，会出现缺少xxx.dll的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MFC+BCG库静态链接方法总结">
+<meta property="og:url" content="https://i-square.github.io/post/MFC-BCG库静态链接方法总结/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="前言最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是Win10 + VS2015, 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到Windows Server 2008 R2系统下，会出现缺少xxx.dll的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持Wind">
+<meta property="og:updated_time" content="2017-06-19T15:05:29.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MFC+BCG库静态链接方法总结">
+<meta name="twitter:description" content="前言最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是Win10 + VS2015, 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到Windows Server 2008 R2系统下，会出现缺少xxx.dll的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持Wind">
+    
+        <link rel="alternate" type="application/atom+xml" title="平方君的后花园" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@qq.com" title="i_square@qq.com" class="mail">i_square@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MFC+BCG库静态链接方法总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MFC+BCG库静态链接方法总结</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-19T14:24:59.000Z" itemprop="datePublished" class="page-time">
+  2017-06-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#静态链接"><span class="post-toc-number">2.</span> <span class="post-toc-text">静态链接</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#准备"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">准备</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改stdafx-cpp"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">修改stdafx.cpp</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改资源文件属性"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">修改资源文件属性</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-MFC-BCG库静态链接方法总结"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MFC+BCG库静态链接方法总结</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-19 22:24:59" datetime="2017-06-19T14:24:59.000Z"  itemprop="datePublished">2017-06-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是<code>Win10 + VS2015</code>, 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到<code>Windows Server 2008 R2</code>系统下，会出现缺少<code>xxx.dll</code>的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持<code>Windows Server 2008 R2</code>，最低得是<code>Windows Server 2008 R2 with SP1</code>，安装运行库的法子走不通，只能换一条路了。</p>
+<a id="more"></a>
+<h2 id="静态链接"><a href="#静态链接" class="headerlink" title="静态链接"></a>静态链接</h2><p>MFC程序可以用动态链接或者静态链接的方式使用MFC的库，动态链接的好处是最后生成的exe文件非常小，缺点是目标机器必须安装对应的运行库，或者要在文件夹里手动放入所需的dll；静态链接的好处是直接把VC的运行库链接到最终的exe里，不必安装运行库或者添加一堆dll就可以直接运行，缺点是生成的exe会比较大。</p>
+<p>静态链接多占用的那一点空间对我来说没什么影响，所以我打算采取静态链接的方法解决上面提到的问题，MFC的库好办，只需要改项目属性就可以了，而静态链接BCG库则多一点波折，关于如何静态链接BCG库网上也有很多方法，但是并不全面，经过一番查找，我自己总结了在MFC里静态链接BCG库的方法，内容主要参考自<a href="https://support.bcgsoft.com/KB/Category/19-technical-questions" target="_blank" rel="external">BCG技术问答</a>里的<a href="https://support.bcgsoft.com/KB/View/37-how-can-i-add-a-library-to-my-static-mfc-project" target="_blank" rel="external">这个问题</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><ol>
+<li>编译所需版本的静态库lib文件（这一步在安装BCG库的时候一般做过了，直接拷贝出来就行，如<code>BCGCBPRO2510STATICU140.lib</code>）</li>
+</ol>
+<ul>
+<li>修改项目属性<ul>
+<li><code>C/C++</code>-&gt;<code>代码生成</code>-&gt;<code>运行库</code>里选择<code>MT</code>(release)或者<code>MTd</code>(debug)</li>
+<li><code>常规</code>里选择<code>在静态库中使用 MFC</code></li>
+</ul>
+</li>
+<li>将BCGSoft\BCGControlBarPro\BCGCBPro\Styles下的<ul>
+<li><code>Office 2010 (blue)</code>文件夹(以该主题为例)</li>
+<li><code>BCGPStyle2010Blue.rc</code>和<code>BCGPStyle2010Blue.rc2</code>文件</li>
+</ul>
+</li>
+<li>拷贝到<code>你的项目主目录</code></li>
+</ul>
+<h3 id="修改stdafx-cpp"><a href="#修改stdafx-cpp" class="headerlink" title="修改stdafx.cpp"></a>修改<code>stdafx.cpp</code></h3><p>在<code>stdafx.cpp</code>文件的最后（在<code>#include stdafx.h</code>之后）添加以下代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> _MSC_VER &gt; 1500</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> COMPILE_MULTIMON_STUBS</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(push)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(disable: 4996)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"multimon.h"</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">pragma</span> <span class="meta-keyword">warning</span>(pop)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<h3 id="修改资源文件属性"><a href="#修改资源文件属性" class="headerlink" title="修改资源文件属性"></a>修改资源文件属性</h3><p>在资源视图的对话框上点击右键，选择<code>资源包括(L)...</code></p>
+<ol>
+<li>在<code>只读符号指令</code>里添加<code>#include &quot;bcgprores.h&quot;</code></li>
+</ol>
+<ul>
+<li>在<code>编译时指令</code>里<ul>
+<li>移除<code>_AFX_NO_SPLITTER_RESOURCES</code></li>
+<li>添加<code>#include &quot;BCGCBPro.rc&quot;</code>和<code>#include &quot;BCGPStyle2010Blue.rc&quot;</code></li>
+<li>如果你想动态链接MFC，静态链接BCG, 则添加<code>&quot;#define _BCGCBPRO_STATIC_&quot;</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>(这条基本不用管)如果你的项目是从MFC版本2008或更高版本移植的，请删除资源文件中对<code>afxribbon.rc</code>的所有引用，因为它和<code>BCGCBPro.rc</code>冲突</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        <b>Copyright:</b> 转载请注明来源，本文固定链接：<a href="/post/MFC-BCG库静态链接方法总结/" target="_blank" rel="external">https://i-square.github.io/post/MFC-BCG库静态链接方法总结/</a>
+        
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BCG库/">BCG库</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MFC/">MFC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/静态链接/">静态链接</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/&title=《MFC+BCG库静态链接方法总结》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/&title=《MFC+BCG库静态链接方法总结》 — 平方君的后花园&source=前言最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是Win10 + VS2015, 在我自己的机器上测试的时候一直都是使用动态链接的方式，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MFC+BCG库静态链接方法总结》 — 平方君的后花园&url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/使用C++11实现一个简易计时器类/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用C++11实现一个简易计时器类</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'i-square',
+            repo: 'i-square.github.io',
+            oauth: {
+                client_id: '62261636c7581c94e991',
+                client_secret: '9c9a8b500e79af2557b97c91d831f2855871ad38',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/&title=《MFC+BCG库静态链接方法总结》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/&title=《MFC+BCG库静态链接方法总结》 — 平方君的后花园&source=前言最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是Win10 + VS2015, 在我自己的机器上测试的时候一直都是使用动态链接的方式，..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MFC+BCG库静态链接方法总结》 — 平方君的后花园&url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/MFC-BCG库静态链接方法总结/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aQW4bMRAEQP//0w6QU4B45e4ZUtCh9iRYlsmiAA7dw6+v+Pn++/z7+ul5+tT/P3969+l3Xv/+6sHDw8MbTf31dJ94+cBPn9qMmCwxHh4e3j1eUgxeL0o76f0or+eMh4eH9wm8dmv+ZcsOisrrUoGHh4f3+bxkEq/jhu/4wcPDw/t8XrvFJ1FsvhBtjHsla8HDw8M7M5/iaPvO19f7e3h4eHijrnq+7Z49KLdl6XEsPDw8vAu8/ArULHrIW1x5vFtfXMDDw8M7ymsb/5tterOIbYPth7qHh4eHd4jXNvg3R95krNeXFdqx8PDw8G7wZsPMrhTsl6C9voCHh4d3j5dEAG0YkRebtggVhQQPDw/vAi+Zbh7Cbhpms5sA0ReDh4eHd5SXD9BuzW3Jad+N2mN4eHh4F3izhtbX+mmLx/BOBB4eHt4F3uwQfLYwtAFxAv6h7uHh4eEd4m0OzfkRPI8z8lHarwEPDw/vFG8TAcw2+vYyQR4TR/09PDw8vDVvfxSeTXez9ecLioeHh/dO3ixg3QTEM9iBBhgeHh7egpeUitnAeQFow+KiDYaHh4d3lJd8bD/FNtJN4t1itnh4eHiHeG1Umjfsi5i1vIhQRBh4eHh4F3izg+wmnK3rVdlIi75DPDw8vDVvNvypiGG2rLMAGg8PD+8GLznIJi2rfeCbzKEeBQ8PD+8QL9niN0fndplyWBRY4OHh4V3mbQLTPDLID9MHLijg4eHhHeWdCmfbuCFvd7Vl4/HqAB4eHt4h3mbbbacy2/TzQLk97uPh4eFteO2/98lGf6O1lrTBfrkZgYeHh3eUl09lUx7a4HjTtMPDw8P7NN7s3ba5tbnigIeHh/cJvH1bK//7m3fx8PDw3sObDbBpSs3GqpteeHh4eBd4+wbYrPG/4SWHdTw8PLwLvD/KZ3OoD7RaHgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
