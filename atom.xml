@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-06-19T15:05:29.838Z</updated>
+  <updated>2017-07-03T14:41:12.112Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OneDriveSetup.exe占用大量CPU的解决办法</title>
+    <link href="https://i-square.github.io/post/OneDriveSetup-exe%E5%8D%A0%E7%94%A8%E5%A4%A7%E9%87%8FCPU%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/</id>
+    <published>2017-07-03T14:27:29.000Z</published>
+    <updated>2017-07-03T14:41:12.112Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在<code>OneDriveSetup.exe</code>这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。</p>
+<a id="more"></a>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>解决办法最早是在德国微软论坛里发布的，发布时间是2017年6月26日，这里是<a href="https://answers.microsoft.com/de-de/windows/forum/windows_10-performance/onedrivesetupexe-32bit-lastet-cpu-dauerhaft-mit-ca/ae516fe5-7b88-4e87-bf37-fbc94d1a7664" target="_blank" rel="external">原帖地址</a></p>
+<p>以下是操作步骤：</p>
+<ol>
+<li>在任务管理器里面结束进程<code>OneDriveSetup.exe</code></li>
+<li>进入<code>C:\Users\your username\AppData\Local\Microsoft\OneDrive\setup\logs</code>文件夹，删除以下2个文件(如果看不到这两个文件，需要先设置显示隐藏文件和显示系统文件)<ul>
+<li><code>UserTelemetryCache.otc</code></li>
+<li><code>UserTelemetryCache.otc.session</code></li>
+</ul>
+</li>
+<li>删除后进入<code>C:\Users\your username\AppData\Local\Microsoft\OneDrive\Update</code>文件夹运行里面的<code>OneDriveSetup.exe</code>安装更新即可</li>
+</ol>
+<p>这个时间<code>OneDriveSetup.exe</code>不会在占用大量CPU，也不会一直在后台跑了，enjoy</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在&lt;code&gt;OneDriveSetup.exe&lt;/code&gt;这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://i-square.github.io/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Win10" scheme="https://i-square.github.io/tags/Win10/"/>
+    
+      <category term="OneDrive" scheme="https://i-square.github.io/tags/OneDrive/"/>
+    
+  </entry>
   
   <entry>
     <title>MFC+BCG库静态链接方法总结</title>
@@ -457,47 +495,6 @@
       <category term="Office" scheme="https://i-square.github.io/tags/Office/"/>
     
       <category term="MathType" scheme="https://i-square.github.io/tags/MathType/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据结构学习笔记（三）：表、栈和队列</title>
-    <link href="https://i-square.github.io/post/DS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%A1%A8%E3%80%81%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"/>
-    <id>https://i-square.github.io/post/DS学习笔记-表、栈和队列/</id>
-    <published>2017-03-27T07:27:43.000Z</published>
-    <updated>2017-04-17T07:44:39.466Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
-<li>介绍三种基本的数据结构</li>
-<li>介绍抽象数据类型(ADT, abstract data type)的概念</li>
-<li>介绍栈ADT及其在实现递归方面的应用</li>
-<li>介绍队列ADT及其在操作系统和算法设计中的应用</li>
-<li>给出vector和list的重要子集的实现</li>
-</ul>
-<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>栈是一个表，因此任何实现表的方法都能实现栈。</p>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><ol>
-<li>符号平衡</li>
-<li>后缀（逆波兰）表达式计算</li>
-<li>中缀到后缀的转换</li>
-<li>函数调用<br>（代码实现了一个简单的计算器，应保证输入合法）</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="快慢指针"><a href="#快慢指针" class="headerlink" title="快慢指针"></a>快慢指针</h3><p>ex 3.34 提示：判断一个链表是否有环，只使用O(1)的额外空间，使用两个迭代器p,q p每次递增1，q每次递增2，若q到了末尾则没环，否则pq必定在环中间相遇</p>
-<p>也可用于快速找出单链表的中间节点</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;内容&quot;&gt;&lt;a href=&quot;#内容&quot; class=&quot;headerlink&quot; title=&quot;内容&quot;&gt;&lt;/a&gt;内容&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;介绍三种基本的数据结构&lt;/li&gt;
-&lt;li&gt;介绍抽象数据类型(ADT, abstract data type)的概念&lt;/li&gt;
-&lt;
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="数据结构" scheme="https://i-square.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    <link rel="canonical" href="https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/">
+    
+    
+    <title>OneDriveSetup.exe占用大量CPU的解决办法 | 平方君的后花园 | Keep It Simple, Stupid.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Win10,OneDrive">
+    <meta name="description" content="前言从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在OneDriveSetup.exe这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OneDriveSetup.exe占用大量CPU的解决办法">
+<meta property="og:url" content="https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/index.html">
+<meta property="og:site_name" content="平方君的后花园">
+<meta property="og:description" content="前言从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在OneDriveSetup.exe这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。">
+<meta property="og:updated_time" content="2017-07-03T14:41:12.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OneDriveSetup.exe占用大量CPU的解决办法">
+<meta name="twitter:description" content="前言从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在OneDriveSetup.exe这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。">
+    
+        <link rel="alternate" type="application/atom+xml" title="平方君的后花园" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">平方君</h5>
+          <a href="mailto:i_square@qq.com" title="i_square@qq.com" class="mail">i_square@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页 | Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档 | archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签 | tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类 | Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于 | About
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/i-square" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/love.html" target="_blank" >
+                <i class="icon icon-lg icon-heart"></i>
+                Love Story
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">OneDriveSetup.exe占用大量CPU的解决办法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">OneDriveSetup.exe占用大量CPU的解决办法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-03T14:27:29.000Z" itemprop="datePublished" class="page-time">
+  2017-07-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-OneDriveSetup-exe占用大量CPU的解决办法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">OneDriveSetup.exe占用大量CPU的解决办法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-03 22:27:29" datetime="2017-07-03T14:27:29.000Z"  itemprop="datePublished">2017-07-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/笔记/">笔记</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在<code>OneDriveSetup.exe</code>这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。</p>
+<a id="more"></a>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>解决办法最早是在德国微软论坛里发布的，发布时间是2017年6月26日，这里是<a href="https://answers.microsoft.com/de-de/windows/forum/windows_10-performance/onedrivesetupexe-32bit-lastet-cpu-dauerhaft-mit-ca/ae516fe5-7b88-4e87-bf37-fbc94d1a7664" target="_blank" rel="external">原帖地址</a></p>
+<p>以下是操作步骤：</p>
+<ol>
+<li>在任务管理器里面结束进程<code>OneDriveSetup.exe</code></li>
+<li>进入<code>C:\Users\your username\AppData\Local\Microsoft\OneDrive\setup\logs</code>文件夹，删除以下2个文件(如果看不到这两个文件，需要先设置显示隐藏文件和显示系统文件)<ul>
+<li><code>UserTelemetryCache.otc</code></li>
+<li><code>UserTelemetryCache.otc.session</code></li>
+</ul>
+</li>
+<li>删除后进入<code>C:\Users\your username\AppData\Local\Microsoft\OneDrive\Update</code>文件夹运行里面的<code>OneDriveSetup.exe</code>安装更新即可</li>
+</ol>
+<p>这个时间<code>OneDriveSetup.exe</code>不会在占用大量CPU，也不会一直在后台跑了，enjoy</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+
+        
+        <b>Copyright:</b> 转载请注明来源，本文固定链接：<a href="/post/OneDriveSetup-exe占用大量CPU的解决办法/" target="_blank" rel="external">https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/</a>
+        
+    </div>
+    <footer>
+        <a href="https://i-square.github.io">
+            <img src="/img/avatar.jpg" alt="平方君">
+            平方君
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OneDrive/">OneDrive</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win10/">Win10</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/&title=《OneDriveSetup.exe占用大量CPU的解决办法》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/&title=《OneDriveSetup.exe占用大量CPU的解决办法》 — 平方君的后花园&source=前言从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在OneDriveSetup.exe这个进程上，然而当时我上..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OneDriveSetup.exe占用大量CPU的解决办法》 — 平方君的后花园&url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/post/MFC-BCG库静态链接方法总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MFC+BCG库静态链接方法总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'i-square',
+            repo: 'i-square.github.io',
+            oauth: {
+                client_id: '62261636c7581c94e991',
+                client_secret: '9c9a8b500e79af2557b97c91d831f2855871ad38',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>平方君 &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/&title=《OneDriveSetup.exe占用大量CPU的解决办法》 — 平方君的后花园&pic=https://i-square.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/&title=《OneDriveSetup.exe占用大量CPU的解决办法》 — 平方君的后花园&source=前言从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在OneDriveSetup.exe这个进程上，然而当时我上..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《OneDriveSetup.exe占用大量CPU的解决办法》 — 平方君的后花园&url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/&via=https://i-square.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3a0U7DMAwF0P3/T49XJKC9tuNtQqdPiHVNTpCacO3HI76eP67vv/95T/K061GS3x+78PDw8MZTv2Yk07p+TnLnX8uXzxkPDw9vm3f9+r5+NVe3imd8XS9KtOXg4eHhfSQvQebbAB4eHt5/4lWXIDko90IKPDw8vE/g5YfayT3z7WQxa8HDw8PrjPWYT+I1P6/U9/Dw8PDGVfVqYWwSzs6f+cvT8PDw8BZ4k0NtfvDNQ4deBHwzLh4eHt5RXnJInUSryXdPRQw3WwIeHh7eAq/5iNZhulcMq5bT8PDw8DZ4pw61+ZIlC5R8Nznc4+Hh4e3xJvHBJMjoVa+ST0e9Y3h4eHhBu1W15l7lzYOJ5gzx8PDwlnm9En4+3etR8oAjOaDj4eHhbfNe0yw1iTmSP8OBnjI8PDy8mNd7RPVwXI0eDpTB8PDw8BZ4yfA5+ywmSqCTGBoPDw9vgXeq7yDZMKpls15zGB4eHt4eL48e8qJUtQA22U5u5oyHh4e3xuu9+nv3V8OFXusAHh4e3h6vWlLqtQtUQ9hqpHuzHHh4eHgLvF5kUJ1ivkC9klshmMDDw8M7yqvGCr0CWC9vrjY64OHh4W3woqbP1us4b43Kt4Q8bi7sVHh4eHgtXt5WVSX1YtycN0pZ8PDw8Fq8/FhcbQvobS15a0KzmwwPDw9vzJsUovImrWpZqxfy3oQReHh4eId4eQxRnej1S/8UO9pU8PDw8I7ynsWrd/x923Pw8PDwdp/TDCzyULW6fHnrwCiJwcPDw2vxkiF7jGSsee568ykeHh7eGi9/Eef4+RTz3exmY8DDw8N7E6/aUDU/TE/ux8PDw/sEXu/VXJ1QNa69mRseHh7eGi8PIyZDJtSk+aAwOh4eHt4Cr/qvfpV9tmA2jy3w8PDwBrwvOHX5PvPxZVoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
