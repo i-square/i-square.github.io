@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://i-square.github.io/"/>
-  <updated>2017-07-03T14:41:12.112Z</updated>
+  <updated>2017-07-15T08:03:15.887Z</updated>
   <id>https://i-square.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://i-square.github.io/post/OneDriveSetup-exe%E5%8D%A0%E7%94%A8%E5%A4%A7%E9%87%8FCPU%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
     <id>https://i-square.github.io/post/OneDriveSetup-exe占用大量CPU的解决办法/</id>
     <published>2017-07-03T14:27:29.000Z</published>
-    <updated>2017-07-03T14:41:12.112Z</updated>
+    <updated>2017-07-15T08:03:15.887Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>从前两周开始我的实验室电脑出现了CPU占用率一直保持在25%以上的现象，经过排查发现问题出在<code>OneDriveSetup.exe</code>这个进程上，然而当时我上谷歌各种搜索也没有找到解决办法，后来也就没管，但是今天无意中正好看到解决办法，在这里分享出来，希望遇到这个问题的能够尽早解决。</p>
 <a id="more"></a>
@@ -35,7 +35,7 @@
 </li>
 <li>删除后进入<code>C:\Users\your username\AppData\Local\Microsoft\OneDrive\Update</code>文件夹运行里面的<code>OneDriveSetup.exe</code>安装更新即可</li>
 </ol>
-<p>这个时间<code>OneDriveSetup.exe</code>不会在占用大量CPU，也不会一直在后台跑了，enjoy</p>
+<p>这个时候<code>OneDriveSetup.exe</code>不会在占用大量CPU，也不会一直在后台跑了，enjoy</p>
 ]]></content>
     
     <summary type="html">
