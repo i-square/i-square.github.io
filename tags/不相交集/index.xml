@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>不相交集 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/</link><description>Recent content in 不相交集 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 24 Apr 2017 15:42:58 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86/index.xml" rel="self" type="application/rss+xml"/><item><title>数据结构学习笔记（八）：不相交集类</title><link>https://i-square.github.io/p/Data-structure-study-notes-8-Disjoint-set-classes/</link><pubDate>Mon, 24 Apr 2017 15:42:58 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-8-Disjoint-set-classes/</guid><description>&lt;p>这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。&lt;/p>
+&lt;h2 id="等价关系-equivalence-relation">等价关系 (equivalence relation)&lt;/h2>
+&lt;p>若对于每一对元素(a,b),a,b∈S, &lt;code>a R b&lt;/code>或者为true或者为false，则称在集合S上定义关系R。如果&lt;code>a R b&lt;/code>为true，我们说a和b有关系。&lt;/p>
+&lt;p>&lt;strong>等价关系&lt;/strong>是满足下列三个性质的关系R：&lt;/p>
+&lt;ol>
+&lt;li>自反性：对于所有的a∈S，&lt;code>a R a&lt;/code>&lt;/li>
+&lt;li>对称性：&lt;code>a R b&lt;/code>当且仅当&lt;code>b R a&lt;/code>&lt;/li>
+&lt;li>传递性：若&lt;code>a R b&lt;/code>且b R c则&lt;code>a R c&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>元素a∈S的&lt;strong>等价类&lt;/strong>(equivalence class)是S的子集，它包含所有与a有（等价）关系的元素。注意，等价类形成对S的一个划分：S的每一个成员恰好出现在一个等价类中。为确定是否a~b，我们只需验证a和b是否都在同一个等价类中。&lt;/p>
+&lt;p>输入数据最初是N个集合(collection)的类，每个集合含有一个元素。初始的描述是所有的关系均为false（自反的关系除外）。每个集合都有一个不同的元素，从而&lt;code>Si∩Sj=⊙&lt;/code>，称为&lt;strong>不相交&lt;/strong>(disjoint)&lt;/p>
+&lt;p>基本操作有两种，称为&lt;strong>求并/查找&lt;/strong>(union/find)算法。&lt;/p>
+&lt;h2 id="灵巧求并算法">灵巧求并算法&lt;/h2>
+&lt;p>直观的union操作相当随意，它简单地通过使第二棵树成为第一棵树的子树而完成合并。对其进行简单改进，使得总是较小的树成为较大的树的子树，称为&lt;strong>按大小求并&lt;/strong>(union by size)，它保证树的深度最大是O(logN)。&lt;br>
+连续M次操作平均需要O(M)时间。&lt;/p>
+&lt;p>另一种方法是&lt;strong>按高度求并&lt;/strong>(union by height)，它同样保证树的深度最大是O(logN)。做法是使浅的树成为深的树的子树。&lt;/p>
+&lt;h2 id="一个应用">一个应用&lt;/h2>
+&lt;p>应用求并/查找数据结构的一个例子是迷宫的生成。初始化时所有格子都在自己的等价类中，之后不断合并，最终生成迷宫。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>github on 平方君的后花园</title><link>https://i-square.github.io/tags/github/</link><description>Recent content in github on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Sat, 25 Feb 2017 17:27:39 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>新的起点</title><link>https://i-square.github.io/p/New-Start-Hexo/</link><pubDate>Sat, 25 Feb 2017 17:27:39 +0000</pubDate><guid>https://i-square.github.io/p/New-Start-Hexo/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>从2013年我搭建的第一个 &lt;code>Wordpress&lt;/code> 博客开始，我陆陆续续尝试过各种博客类网站，有自己搭建的 &lt;code>Wordpress&lt;/code> 博客，也有诸如 &lt;code>点点网&lt;/code> 和 &lt;code>lofter&lt;/code> 这样的轻博客社区，但最终都是留下一篇 &lt;code>hello world&lt;/code> 走人。&lt;/p>
+&lt;!-- more -->
+&lt;h2 id="缘起">缘起&lt;/h2>
+&lt;p>近两年随着 &lt;code>github&lt;/code> 的火热，搭建在 &lt;code>github pages&lt;/code> 上的博客也如雨后春笋一般噌噌地冒出来，我也想尝尝鲜，于是在大谷歌搜索到一篇文章：&lt;a class="link" href="https://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="noopener"
+>使用GitHub和Hexo搭建免费静态Blog&lt;/a>，作者：&lt;a class="link" href="https://wsgzao.github.io/" target="_blank" rel="noopener"
+>wsgzao&lt;/a>，然后照猫画虎搭建了自己的博客，非常感谢原文博主分享自己的经验，让我这个门外汉也能轻松上手。&lt;/p>
+&lt;h2 id="展望">展望&lt;/h2>
+&lt;p>这次使用 &lt;code>Hexo + github&lt;/code> 的博客我希望能够长时间更新下去，博客定位大方向是我自己的学习笔记、思考感悟，也会写一些生活随笔，说不定也会分享一些图片、音乐、视频等等，:)&lt;/p>
+&lt;h2 id="多说点儿">多说点儿&lt;/h2>
+&lt;p>刚开始学习用 &lt;code>Markdown&lt;/code> 写文章，还不是太习惯，用到的语法也只有一两种，慢慢完善吧，:P&lt;/p></description></item></channel></rss>

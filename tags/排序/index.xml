@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>排序 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E6%8E%92%E5%BA%8F/</link><description>Recent content in 排序 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Sun, 23 Apr 2017 22:01:12 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E6%8E%92%E5%BA%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>数据结构学习笔记（七）：排序</title><link>https://i-square.github.io/p/Data-structure-study-notes-7-sorting/</link><pubDate>Sun, 23 Apr 2017 22:01:12 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-7-sorting/</guid><description>&lt;p>在内存里的排序称为内部排序，而在磁盘上的排序称为外部排序。&lt;br>
+假设输入数据支持&amp;quot;&amp;lt;&amp;ldquo;和&amp;rdquo;&amp;gt;&amp;ldquo;操作符，除赋值运算外，这种运算是仅有的允许对输入数据进行的操作，在此条件下的排序称为基于比较的排序。&lt;/p>
+&lt;h2 id="内容">内容&lt;/h2>
+&lt;p>对内部排序的考查将指出：&lt;/p>
+&lt;ul>
+&lt;li>存在几种直观的算法以O(N^2)排序，如冒泡、选择、插入排序&lt;/li>
+&lt;li>希尔排序编程简单，以o(N^2)运行，在实践中很有效&lt;/li>
+&lt;li>还有一些稍微复杂的O(NlogN)算法&lt;/li>
+&lt;li>任何只使用比较的排序算法在最坏情形下和平均情形下均需要Ω(NlogN)次比较&lt;/li>
+&lt;/ul>
+&lt;h2 id="插入排序-insertion-sort">插入排序 (insertion sort)&lt;/h2>
+&lt;p>插入排序由N-1趟（pass）排序组成，排序策略是，在第p趟，将位置p上的元素向左移动至它在前p+1个元素中的正确位置上。&lt;/p>
+&lt;h3 id="分析">分析&lt;/h3>
+&lt;p>O(N^2) 精确界，反序输入可达。&lt;br>
+若已排序输入，则O(N)&lt;br>
+平均情形Θ(N^2)&lt;/p>
+&lt;h2 id="一些简单排序算法的下界">一些简单排序算法的下界&lt;/h2>
+&lt;p>定理1 N个互异元素的数组的平均逆序数是N(N-1)/4&lt;br>
+定理2 通过交换相邻元素进行排序的任何算法平均需要Ω(N^2)时间&lt;br>
+对冒泡排序、选择排序、插入排序都有效&lt;br>
+定理2告诉我们，为了以o(N^2)排序，必须执行比较，特别是要对相距较远的元素进行交换。排序通过删除逆序得以继续进行，为了有效进行，必须每次交换删除多个逆序。&lt;/p>
+&lt;h2 id="希尔排序-shell-sort">希尔排序 (shell sort)&lt;/h2>
+&lt;p>发明者是Donald Shell，该算法是冲破二次时间屏障的第一批算法之一，不过，直到它最初被发现的若干年后才证明了它的亚二次时间界。&lt;/p>
+&lt;p>它通过比较相距一定间隔的元素来工作，各趟比较所用的距离随着算法的进行而减小，直到只比较相邻元素的最后一趟排序为止。因此，希尔排序又是也叫做&lt;strong>缩减增量排序&lt;/strong>(diminishing increment sort)&lt;/p>
+&lt;h3 id="分析-1">分析&lt;/h3>
+&lt;p>使用希尔增量的最坏情形Θ(N^2)&lt;br>
+Hibbard增量：1，3，7，…… ，2^k - 1&lt;br>
+使用Hibbard增量的最坏情形Θ(N^(3/2))&lt;br>
+Sedgewick提出了几种增量序列，最坏情形时间O(N^(4/3))&lt;br>
+希尔排序的性能在实践中是可以接受的，由于编程简单，适度数量的输入数据经常选用。&lt;/p>
+&lt;h2 id="堆排序-heap-sort">堆排序 (heap sort)&lt;/h2>
+&lt;p>如第六章所说，优先队列可以用O(NlogN)时间进行排序，基于该思想的算法称为堆排序&lt;/p>
+&lt;p>由数组建立N个元素的二叉堆花费O(N)时间，每次deleteMin花费O(logN)，N次总共花费O(NlogN)&lt;br>
+使用了附加数组，存储需求增加了一倍&lt;/p>
+&lt;p>避免使用附加数组的方法：每次deleteMin之后把min放到刚刚空出来的位置上，N次deleteMin之后，数组将是递减顺序，因此可以构建max堆&lt;/p>
+&lt;ol>
+&lt;li>以O(N)建立max堆&lt;/li>
+&lt;li>交换最后一个和第一个元素，堆大小减1并下滤，相当于执行deleteMax&lt;/li>
+&lt;li>循环执行步骤2，N-1次&lt;/li>
+&lt;/ol>
+&lt;h3 id="分析-2">分析&lt;/h3>
+&lt;p>在最坏情形下堆排序最多使用2NlogN-O(N)次比较&lt;br>
+堆排序非常稳定：它平均使用的比较只比最坏情形界指出的略少&lt;/p>
+&lt;p>定理1 对N个互异项的随机排列进行堆排序，所用的比较平均次数为2NlogN-O(NloglogN)&lt;/p>
+&lt;p>可以证明，堆排序总是至少使用NlogN-O(N)次比较，而且存在达到这个界的数据。似乎平均情形也应该是2NlogN-O(N)次比较（而不是定理1中的第二项），但目前无法证明&lt;/p>
+&lt;h2 id="归并排序-merge-sort">归并排序 (merge sort)&lt;/h2>
+&lt;p>以最坏情形O(NlogN)时间运行，所使用的比较次数几乎是最优的，它是递归算法的一个很好的实例&lt;/p>
+&lt;p>算法的基本操作是合并两个已排序的表，取两个输入A、B，一个输出C，每次将A、B中的小者放入C，相关的位置推进，这显然是线性的&lt;/p>
+&lt;h3 id="算法">算法&lt;/h3>
+&lt;p>基准情形：N=1时，结果是显然的&lt;br>
+否则，递归地将前半部分和后半部分各自归并排序，再将两部分合并&lt;/p>
+&lt;p>该算法是经典的&lt;strong>分治&lt;/strong>策略，它将问题&lt;strong>分&lt;/strong>(divide)成一些小问题然后递归求解，而&lt;strong>治&lt;/strong>(conquering)的阶段则是将分的阶段解得的各答案合并在一起&lt;/p>
+&lt;h3 id="分析-3">分析&lt;/h3>
+&lt;p>分析递归例程技巧的经典实例：必须给运行时间写出一个递推关系。&lt;br>
+假设N是2的幂，从而总可以将它分裂成相等的两部分。对于N=1，所用时间是常数，将其记为1。则有&lt;br>
+T(1) = 1&lt;br>
+T(N) = 2T(N/2) + N&lt;br>
+求解得 T(N) = NlogN + N = O(NlogN)&lt;/p>
+&lt;p>利弊：在java中比较耗时多于移动，因此在java中归并排序是一般目的排序的最佳选择；但在C++中，比较耗时少而复制对象代价很大，因此实践中不常用&lt;/p>
+&lt;h2 id="快速排序-quick-sort">快速排序 (quick sort)&lt;/h2>
+&lt;p>快排是实践中最快的已知排序算法，平均运行时间是O(NlogN)，最坏情形是O(N^2)，但稍作努力就可避免。&lt;br>
+通过将堆排序与快速排序结合，可以在堆排序O(NlogN)最坏运行时间下，得到几乎所有输入的最快运行时间。&lt;/p>
+&lt;p>快排也是分治的递归算法，排序数组S步骤如下：&lt;/p>
+&lt;ol>
+&lt;li>若S中元素数是0或1，则返回&lt;/li>
+&lt;li>取S中任一元素v，称之为&lt;strong>枢纽元&lt;/strong>(pivot)&lt;/li>
+&lt;li>将S-{v}（S中其余元素）&lt;strong>划分&lt;/strong>成两个不相交的集合：S1={x∈S-{v}|x≤v}和S2={x∈S-{v}|x≥v}&lt;/li>
+&lt;li>返回{quickSort(S1),后跟v,继而quickSort(S2)}&lt;/li>
+&lt;/ol>
+&lt;p>第三步中划分的标准不是唯一的，因此这就成了设计决策。一部分好的实现方法是将这种情形尽可能有效地处理。直观地看，我们希望枢纽元能将元素对半分，一半在S1，另一半在S2。&lt;/p>
+&lt;h3 id="选取枢纽元">选取枢纽元&lt;/h3>
+&lt;ol>
+&lt;li>一种典型的错误是将第一个元素选作枢纽元。若输入随机，那么这是可以接受的，但实际情况有很多预排序的序列，这样的分割是劣质的。类似的还有选取前2个元素的大者，这是一样的，不要使用。&lt;/li>
+&lt;li>一种安全的做法是随机选取枢纽元，但这取决于随机数生成器的质量，而且声称随机数的代价一般也是很昂贵的。&lt;/li>
+&lt;li>三数中值分割法&lt;br>
+一组N个数的中值是第上取整(N/2)个最大的数。枢纽元的最好选择是数组的中值，但算出中值代价太高。一般的做法是选取左端、右端和中心位置上的三个元素的中值作为枢纽元。显然该方法消除了预排序输入的不好情形，并且减少了约14%的比较次数。&lt;/li>
+&lt;/ol>
+&lt;h3 id="分割策略">分割策略&lt;/h3>
+&lt;ol>
+&lt;li>将枢纽元与最后的元素交换&lt;/li>
+&lt;li>i从第一个元素开始，j从倒数第二个元素开始&lt;/li>
+&lt;li>当i在j左边时，右移i，移过小于枢纽元的元素，j左移，移过大于枢纽元的元素，i,j都停止时交换两个元素，直到i,j交错&lt;/li>
+&lt;li>将枢纽元与i所指向的元素交换&lt;/li>
+&lt;/ol>
+&lt;p>如何处理等于枢纽元的元素？&lt;br>
+若等于，则停止移动&lt;/p>
+&lt;h3 id="小数组">小数组&lt;/h3>
+&lt;p>对于很小的数组（N≤20），快速排序不如插入排序，而且，因为快排是递归的，这样的情形经常发生。通常的解决办法是，对于小数组使用插入排序。一种好的截止范围(cutoff range)是N=10&lt;/p>
+&lt;h3 id="分析-4">分析&lt;/h3>
+&lt;p>最坏情形：O(N^2)
+最佳情形：O(NlogN)
+平均情形：O(NlogN)&lt;/p>
+&lt;h2 id="快速选择-quick-select">快速选择 (quick select)&lt;/h2>
+&lt;p>修改快速排序以解决选择问题，即找第k个最大（小）元。&lt;/p>
+&lt;p>前3步和快速排序一样&lt;br>
+第4步&lt;/p>
+&lt;ul>
+&lt;li>若k≤S1，那么k必然在S1中，返回quickSelect(S1, K)&lt;/li>
+&lt;li>若k = 1 + |S1|，那么枢纽元就是第k个最小元&lt;/li>
+&lt;li>否则，第k个最小元就在S2中，它是S2中的第（k-|S1|-1）个最小元，返回quickSelect(S2, k-|S1|-1)&lt;/li>
+&lt;/ul>
+&lt;h3 id="分析-5">分析&lt;/h3>
+&lt;p>与快排相比，快速选择只进行了一次递归调用而不是两次&lt;/p>
+&lt;p>最坏情形：O(N^2)，当S1和S2一个是空时
+平均情形：O(N)&lt;/p></description></item></channel></rss>

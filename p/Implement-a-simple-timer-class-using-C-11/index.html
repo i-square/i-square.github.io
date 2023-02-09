@@ -1,0 +1,313 @@
+<!doctype html><html lang=zh-hans dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前言 计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。C++11标准发布之后，新增了chrono命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。
+旧式计时器类 先说一下以往的方法，在 Windows 平台上，想要实现一个高精度的计时器，一般会用到2个 Windows API ， QueryPerformanceFrequency 和 QueryPerformanceCounter ，配合使用获取高精度时间间隔。而 linux 平台则一般使用 gettimeofday 函数，可以获取微妙精度的时间，如需更高精度，则可能要用到汇编。
+接口 它可能长这样，为了兼顾不同平台，需要预处理宏的帮忙。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include &amp;lt;time.h&amp;gt; #ifdef _WIN32 #include &amp;lt;windows.h&amp;gt; #if !defined(_WINSOCK2API_) &amp;amp;&amp;amp; !defined(_WINSOCKAPI_) struct timeval { long tv_sec; long tv_usec; }; #endif #else//_WIN32 #include &amp;lt;sys/time."><title>使用C++11实现一个简易计时器类</title><link rel=canonical href=https://i-square.github.io/p/Implement-a-simple-timer-class-using-C-11/><link rel=stylesheet href=/scss/style.min.8191399262444ab68b72a18c97392f5349be20a1615d77445be51e974c144cff.css><meta property="og:title" content="使用C++11实现一个简易计时器类"><meta property="og:description" content="前言 计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。C++11标准发布之后，新增了chrono命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。
+旧式计时器类 先说一下以往的方法，在 Windows 平台上，想要实现一个高精度的计时器，一般会用到2个 Windows API ， QueryPerformanceFrequency 和 QueryPerformanceCounter ，配合使用获取高精度时间间隔。而 linux 平台则一般使用 gettimeofday 函数，可以获取微妙精度的时间，如需更高精度，则可能要用到汇编。
+接口 它可能长这样，为了兼顾不同平台，需要预处理宏的帮忙。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include &amp;lt;time.h&amp;gt; #ifdef _WIN32 #include &amp;lt;windows.h&amp;gt; #if !defined(_WINSOCK2API_) &amp;amp;&amp;amp; !defined(_WINSOCKAPI_) struct timeval { long tv_sec; long tv_usec; }; #endif #else//_WIN32 #include &amp;lt;sys/time."><meta property="og:url" content="https://i-square.github.io/p/Implement-a-simple-timer-class-using-C-11/"><meta property="og:site_name" content="平方君的后花园"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="C++11"><meta property="article:tag" content="计时器"><meta property="article:published_time" content="2017-05-22T20:59:21+00:00"><meta property="article:modified_time" content="2017-05-22T20:59:21+00:00"><meta name=twitter:title content="使用C++11实现一个简易计时器类"><meta name=twitter:description content="前言 计时器可能是大多数程序员都自己实现过的一个功能，尤其是C++这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。C++11标准发布之后，新增了chrono命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。
+旧式计时器类 先说一下以往的方法，在 Windows 平台上，想要实现一个高精度的计时器，一般会用到2个 Windows API ， QueryPerformanceFrequency 和 QueryPerformanceCounter ，配合使用获取高精度时间间隔。而 linux 平台则一般使用 gettimeofday 函数，可以获取微妙精度的时间，如需更高精度，则可能要用到汇编。
+接口 它可能长这样，为了兼顾不同平台，需要预处理宏的帮忙。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include &amp;lt;time.h&amp;gt; #ifdef _WIN32 #include &amp;lt;windows.h&amp;gt; #if !defined(_WINSOCK2API_) &amp;amp;&amp;amp; !defined(_WINSOCKAPI_) struct timeval { long tv_sec; long tv_usec; }; #endif #else//_WIN32 #include &amp;lt;sys/time."><link rel="shortcut icon" href=/favicon.ico></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu5ad7b3c288b7ec9c6597012c8b723e22_6153_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>💤</span></figure><div class=site-meta><h1 class=site-name><a href=/>平方君的后花园</a></h1><h2 class=site-description>人生苦短，及时行乐。</h2></div></header><ol class=social-menu><li><a href=mailto:i_square@qq.com target=_blank title=E-Mail rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M3 7l9 6 9-6"/></svg></a></li><li><a href=https://github.com/i-square target=_blank title=GitHub rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>主页 | Home</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>归档 | Archives</span></a></li><li><a href=/categories/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg><span>分类 | Categories</span></a></li><li><a href=/tags/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11 3l9 9a1.5 1.5.0 010 2l-6 6a1.5 1.5.0 01-2 0L3 11V7a4 4 0 014-4h4"/><circle cx="9" cy="9" r="2"/></svg><span>标签 | Tags</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>搜索 | Search</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg><span>链接 | Links</span></a></li><li><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span>关于 | About</span></a></li><li><a href=/love.html target=_blank><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572 12 20l-7.5-7.428A5 5 0 1112 6.006a5 5 0 117.5 6.572"/></svg><span>Love Story</span></a></li><div class=menu-bottom-section><li id=i18n-switch><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg><select name=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://i-square.github.io/ selected>中文</option><option value=https://i-square.github.io/en/>English</option></select></li><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>暗色模式</span></li></div></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#旧式计时器类>旧式计时器类</a><ol><li><a href=#接口>接口</a></li><li><a href=#实现>实现</a></li></ol></li><li><a href=#c11-计时器类>C++11 计时器类</a><ol><li><a href=#chrono>chrono</a></li><li><a href=#ratio>ratio</a></li></ol></li><li><a href=#总结>总结</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E7%AC%94%E8%AE%B0/>笔记</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/Implement-a-simple-timer-class-using-C-11/>使用C++11实现一个简易计时器类</a></h2></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>May 22, 2017</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><section class=article-content><h2 id=前言>前言</h2><p>计时器可能是大多数程序员都自己实现过的一个功能，尤其是<code>C++</code>这种没有计时器类可以直接调用的，一般都会自己实现一个，而由于硬件的原因，想要一个跨平台的计时器功能还要兼顾不同的硬件平台，增加程序员的工作量。<code>C++11</code>标准发布之后，新增了<code>chrono</code>命名空间，里面包含了大量与时间相关的功能，利用它可以非常方便的写出一个计时器类。</p><h2 id=旧式计时器类>旧式计时器类</h2><p>先说一下以往的方法，在 <code>Windows</code> 平台上，想要实现一个高精度的计时器，一般会用到2个 <code>Windows API</code> ， <code>QueryPerformanceFrequency</code> 和 <code>QueryPerformanceCounter</code> ，配合使用获取高精度时间间隔。而 <code>linux</code> 平台则一般使用 <code>gettimeofday</code> 函数，可以获取微妙精度的时间，如需更高精度，则可能要用到汇编。</p><h3 id=接口>接口</h3><p>它可能长这样，为了兼顾不同平台，需要预处理宏的帮忙。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;time.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#ifdef _WIN32
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;windows.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#if !defined(_WINSOCK2API_) &amp;&amp; !defined(_WINSOCKAPI_)
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=k>struct</span> <span class=nc>timeval</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>long</span> <span class=n>tv_sec</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>long</span> <span class=n>tv_usec</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=cp>#endif
+</span></span></span><span class=line><span class=cl><span class=cp>#else</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;sys/time.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#endif</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=k>typedef</span> <span class=kt>double</span> <span class=n>timer_dt</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Timer</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=n>Timer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=o>~</span><span class=n>Timer</span><span class=p>()</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=kt>void</span> <span class=nf>start</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=kt>void</span> <span class=nf>stop</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=n>timer_dt</span> <span class=nf>get_time</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#ifdef _WIN32
+</span></span></span><span class=line><span class=cl><span class=cp></span>	<span class=kt>double</span> <span class=n>freq</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>LARGE_INTEGER</span> <span class=n>start_time</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>LARGE_INTEGER</span> <span class=n>finish_time</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=cp>#else</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=k>struct</span> <span class=nc>timeval</span> <span class=n>start_time</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>struct</span> <span class=nc>timeval</span> <span class=n>finish_time</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=cp>#endif</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=实现>实现</h3><p>核心的3个函数<code>start()</code>、<code>stop()</code>和<code>get_time()</code>的实现可能是这样的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=c1>// 构造函数里获取高精度时钟的频率
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>Timer</span><span class=o>::</span><span class=n>Timer</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=cp>#ifdef _WIN32
+</span></span></span><span class=line><span class=cl><span class=cp></span>	<span class=n>LARGE_INTEGER</span> <span class=n>tmp</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>QueryPerformanceFrequency</span><span class=p>((</span><span class=n>LARGE_INTEGER</span><span class=o>*</span><span class=p>)</span><span class=o>&amp;</span><span class=n>tmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>freq</span> <span class=o>=</span> <span class=p>(</span><span class=kt>double</span><span class=p>)</span><span class=n>tmp</span><span class=p>.</span><span class=n>QuadPart</span><span class=o>/</span><span class=mf>1000.0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=cp>#endif
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=n>Timer</span><span class=o>::</span><span class=n>start</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=cp>#ifdef _WIN32
+</span></span></span><span class=line><span class=cl><span class=cp></span>	<span class=n>QueryPerformanceCounter</span><span class=p>((</span><span class=n>LARGE_INTEGER</span><span class=o>*</span><span class=p>)</span> <span class=o>&amp;</span><span class=n>start_time</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=cp>#else</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>gettimeofday</span><span class=p>(</span><span class=o>&amp;</span><span class=n>start_time</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=cp>#endif</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=n>Timer</span><span class=o>::</span><span class=n>stop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=cp>#ifdef _WIN32
+</span></span></span><span class=line><span class=cl><span class=cp></span>	<span class=n>QueryPerformanceCounter</span><span class=p>((</span><span class=n>LARGE_INTEGER</span><span class=o>*</span><span class=p>)</span> <span class=o>&amp;</span><span class=n>finish_time</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=cp>#else</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>gettimeofday</span><span class=p>(</span><span class=o>&amp;</span><span class=n>finish_time</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=cp>#endif</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>timer_dt</span> <span class=n>Timer</span><span class=o>::</span><span class=n>get_time</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=n>timer_dt</span> <span class=n>interval</span> <span class=o>=</span> <span class=mf>0.0f</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#ifdef _WIN32
+</span></span></span><span class=line><span class=cl><span class=cp></span>	<span class=n>interval</span> <span class=o>=</span> <span class=p>(</span><span class=n>timer_dt</span><span class=p>)((</span><span class=kt>double</span><span class=p>)(</span><span class=n>finish_time</span><span class=p>.</span><span class=n>QuadPart</span>
+</span></span><span class=line><span class=cl>		<span class=o>-</span> <span class=n>start_time</span><span class=p>.</span><span class=n>QuadPart</span><span class=p>)</span>	<span class=o>/</span> <span class=n>freq</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=cp>#else
+</span></span></span><span class=line><span class=cl><span class=cp></span>	<span class=c1>// time difference in milli-seconds
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>interval</span> <span class=o>=</span> <span class=p>(</span><span class=n>timer_dt</span><span class=p>)</span> <span class=p>(</span><span class=mf>1000.0</span> <span class=o>*</span> <span class=p>(</span> <span class=n>finish_time</span><span class=p>.</span><span class=n>tv_sec</span> <span class=o>-</span> <span class=n>start_time</span><span class=p>.</span><span class=n>tv_sec</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=o>+</span><span class=p>(</span><span class=mf>0.001</span> <span class=o>*</span> <span class=p>(</span><span class=n>finish_time</span><span class=p>.</span><span class=n>tv_usec</span> <span class=o>-</span> <span class=n>start_time</span><span class=p>.</span><span class=n>tv_usec</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl><span class=cp>#endif</span><span class=c1>//_WIN32
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>interval</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=c11-计时器类>C++11 计时器类</h2><h3 id=chrono>chrono</h3><p><code>C++11</code> 标准发布之后，给我们带来了 <code>chrono</code> 命名空间，里面的东西虽说名字特别难记:P，但是用起来很方便，用它来实现一个跨平台、高精度的计时器类只需要十几行代码，甚至核心代码只有3行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;chrono&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=c1>// 这里为了方便说明直接用了该命名空间，实际情况请酌情使用
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=o>::</span><span class=n>chrono</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Timer</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>Timer</span><span class=p>()</span> <span class=o>:</span> <span class=n>tpStart</span><span class=p>(</span><span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>()),</span> <span class=n>tpStop</span><span class=p>(</span><span class=n>tpStart</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=kt>void</span> <span class=n>start</span><span class=p>()</span> <span class=p>{</span> <span class=n>tpStart</span> <span class=o>=</span> <span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>void</span> <span class=nf>stop</span><span class=p>()</span> <span class=p>{</span> <span class=n>tpStop</span> <span class=o>=</span> <span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>template</span> <span class=o>&lt;</span><span class=k>typename</span> <span class=n>span</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=k>auto</span> <span class=n>delta</span><span class=p>()</span> <span class=k>const</span> <span class=p>{</span> <span class=k>return</span> <span class=n>duration_cast</span><span class=o>&lt;</span><span class=n>span</span><span class=o>&gt;</span><span class=p>(</span><span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>()</span> <span class=o>-</span> <span class=n>tpStart</span><span class=p>).</span><span class=n>count</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>private</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>time_point</span><span class=o>&lt;</span><span class=n>high_resolution_clock</span><span class=o>&gt;</span> <span class=n>tpStart</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time_point</span><span class=o>&lt;</span><span class=n>high_resolution_clock</span><span class=o>&gt;</span> <span class=n>tpStop</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><p>没错，只需要这些代码就可以实现一个跨平台且高精度的计时器类，使用方法也非常简单，可以按需选择精度，例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=n>Timer</span> <span class=n>t</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// some code here
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>t</span><span class=p>.</span><span class=n>stop</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=c1>// 调用 delta() 函数时需指定精度，以下四种均在chrono命名空间内定义
+</span></span></span><span class=line><span class=cl><span class=c1>// seconds, milliseconds, microseconds, nanoseconds
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>std</span><span class=o>::</span><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;the xxx time is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>t</span><span class=p>.</span><span class=n>delta</span><span class=o>&lt;</span><span class=n>nanoseconds</span><span class=o>&gt;</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span> <span class=c1>// 输出纳秒
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>std</span><span class=o>::</span><span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;the xxx time is: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>t</span><span class=p>.</span><span class=n>delta</span><span class=o>&lt;</span><span class=n>milliseconds</span><span class=o>&gt;</span><span class=p>()</span> <span class=o>&lt;&lt;</span> <span class=n>std</span><span class=o>::</span><span class=n>endl</span><span class=p>;</span>  <span class=c1>// 输出毫秒
+</span></span></span></code></pre></td></tr></table></div></div><p>为了方便使用，还可以加入以下两个函数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=k>template</span> <span class=o>&lt;</span><span class=k>typename</span> <span class=n>span</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=k>auto</span> <span class=n>stop_delta</span><span class=p>()</span> <span class=p>{</span> <span class=n>stop</span><span class=p>();</span> <span class=k>return</span> <span class=n>duration_cast</span><span class=o>&lt;</span><span class=n>span</span><span class=o>&gt;</span><span class=p>(</span><span class=n>tpStop</span> <span class=o>-</span> <span class=n>tpStart</span><span class=p>).</span><span class=n>count</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>template</span> <span class=o>&lt;</span><span class=k>typename</span> <span class=n>span</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=k>auto</span> <span class=n>stop_delta_start</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>stop</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>auto</span> <span class=n>ts</span> <span class=o>=</span> <span class=n>duration_cast</span><span class=o>&lt;</span><span class=n>span</span><span class=o>&gt;</span><span class=p>(</span><span class=n>tpStop</span> <span class=o>-</span> <span class=n>tpStart</span><span class=p>).</span><span class=n>count</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=n>start</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>ts</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=ratio>ratio</h3><p>C++11还增加了 <code>ratio</code> 命名空间，顾名思义，这个命名空间里定义了一堆比率，如 <code>std::milli</code> 、 <code>std::micro</code> 、 <code>std::nano</code> ，配合这些比率我们就可以实现一个返回浮点数的计时器了，核心代码如下，只是修改了一点点内容:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;chrono&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;ratio&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=c1>// 这里为了方便说明直接用了该命名空间，实际情况请酌情使用
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=o>::</span><span class=n>chrono</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Timer</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>using</span> <span class=n>s</span> <span class=o>=</span> <span class=n>std</span><span class=o>::</span><span class=n>ratio</span><span class=o>&lt;</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=o>&gt;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>using</span> <span class=n>ms</span> <span class=o>=</span> <span class=n>std</span><span class=o>::</span><span class=n>ratio</span><span class=o>&lt;</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1000</span><span class=o>&gt;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>using</span> <span class=n>us</span> <span class=o>=</span> <span class=n>std</span><span class=o>::</span><span class=n>ratio</span><span class=o>&lt;</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1000000</span><span class=o>&gt;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>using</span> <span class=n>ns</span> <span class=o>=</span> <span class=n>std</span><span class=o>::</span><span class=n>ratio</span><span class=o>&lt;</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1000000000</span><span class=o>&gt;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>Timer</span><span class=p>()</span> <span class=o>:</span> <span class=n>tpStart</span><span class=p>(</span><span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>()),</span> <span class=n>tpStop</span><span class=p>(</span><span class=n>tpStart</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>public</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=kt>void</span> <span class=n>start</span><span class=p>()</span> <span class=p>{</span> <span class=n>tpStart</span> <span class=o>=</span> <span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kt>void</span> <span class=nf>stop</span><span class=p>()</span> <span class=p>{</span> <span class=n>tpStop</span> <span class=o>=</span> <span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>template</span> <span class=o>&lt;</span><span class=k>typename</span> <span class=n>span</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=k>auto</span> <span class=n>delta</span><span class=p>()</span> <span class=k>const</span> <span class=p>{</span> <span class=k>return</span> <span class=n>duration</span><span class=o>&lt;</span><span class=kt>double</span><span class=p>,</span> <span class=n>span</span><span class=o>&gt;</span><span class=p>(</span><span class=n>high_resolution_clock</span><span class=o>::</span><span class=n>now</span><span class=p>()</span> <span class=o>-</span> <span class=n>tpStart</span><span class=p>).</span><span class=n>count</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>template</span> <span class=o>&lt;</span><span class=k>typename</span> <span class=n>span</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=k>auto</span> <span class=n>stop_delta</span><span class=p>()</span> <span class=p>{</span> <span class=n>stop</span><span class=p>();</span> <span class=k>return</span> <span class=n>duration</span><span class=o>&lt;</span><span class=kt>double</span><span class=p>,</span> <span class=n>span</span><span class=o>&gt;</span><span class=p>(</span><span class=n>tpStop</span> <span class=o>-</span> <span class=n>tpStart</span><span class=p>).</span><span class=n>count</span><span class=p>();</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>template</span> <span class=o>&lt;</span><span class=k>typename</span> <span class=n>span</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=k>auto</span> <span class=n>stop_delta_start</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>stop</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=k>auto</span> <span class=n>ts</span> <span class=o>=</span> <span class=n>duration</span><span class=o>&lt;</span><span class=kt>double</span><span class=p>,</span> <span class=n>span</span><span class=o>&gt;</span><span class=p>(</span><span class=n>tpStop</span> <span class=o>-</span> <span class=n>tpStart</span><span class=p>).</span><span class=n>count</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=n>start</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>ts</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>private</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>time_point</span><span class=o>&lt;</span><span class=n>high_resolution_clock</span><span class=o>&gt;</span> <span class=n>tpStart</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>time_point</span><span class=o>&lt;</span><span class=n>high_resolution_clock</span><span class=o>&gt;</span> <span class=n>tpStop</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=总结>总结</h2><p>C++11新增的这个 <code>chrono</code> 命名空间非常方便好用，由于是标准库，在跨平台方面具有天然优势，在代码简洁程度上也比原来要好，配合模板更加可以减少代码量，当然它不止能用来做计时器用，还有很多别的方面的应用，在此就不多说了，以后可能会补充。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/C++11/>C++11</a>
+<a href=/tags/%E8%AE%A1%E6%97%B6%E5%99%A8/>计时器</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/Solution-to-the-problem-that-OneDriveSetup.exe-eat-CPU/><div class=article-details><h2 class=article-title>OneDriveSetup.exe占用大量CPU的解决办法</h2></div></a></article><article><a href=/p/Summary-of-MFC-BCG-library-static-link-method/><div class=article-details><h2 class=article-title>MFC+BCG库静态链接方法总结</h2></div></a></article><article><a href=/p/Description-of-the-two-sys-files-in-the-root-directory-of-the-C-drive/><div class=article-details><h2 class=article-title>C盘根目录下的两个sys文件说明</h2></div></a></article><article><a href=/p/Solution-to-the-problem-that-MathType6.9b-is-not-compatible-with-Office2016/><div class=article-details><h2 class=article-title>MathType6.9b不兼容Office2016的解决办法</h2></div></a></article><article><a href=/p/Solution-to-the-problem-that-cannot-open-the-Visio-object-by-right-click-in-Office2016/><div class=article-details><h2 class=article-title>Office2016中右键无法打开Visio图像的解决办法</h2></div></a></article></div></div></aside><div id=cusdis_thread data-host=https://cusdis.com data-app-id=0d2babe1-c058-48ca-a64b-c5afdfa1cb19 data-page-id=1703e5e8ce8b49e4e4b7e24c1ac86adf data-page-url=https://i-square.github.io/p/Implement-a-simple-timer-class-using-C-11/ data-page-title=使用C++11实现一个简易计时器类></div><script async defer src=https://cusdis.com/js/cusdis.es.js></script>
+<script>function setCusdisTheme(e){let t=document.querySelector("#cusdis_thread iframe");t&&window.CUSDIS.setTheme(e)}window.addEventListener("onColorSchemeChange",e=>{setCusdisTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+2017 -
+2023 平方君的后花园</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.16.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

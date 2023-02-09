@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MFC on 平方君的后花园</title><link>https://i-square.github.io/tags/MFC/</link><description>Recent content in MFC on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 19 Jun 2017 22:24:59 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/MFC/index.xml" rel="self" type="application/rss+xml"/><item><title>MFC+BCG库静态链接方法总结</title><link>https://i-square.github.io/p/Summary-of-MFC-BCG-library-static-link-method/</link><pubDate>Mon, 19 Jun 2017 22:24:59 +0000</pubDate><guid>https://i-square.github.io/p/Summary-of-MFC-BCG-library-static-link-method/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>最近在做一个MFC项目，使用了有名的BCG界面库，我的编程平台是 &lt;code>Win10 + VS2015&lt;/code> , 在我自己的机器上测试的时候一直都是使用动态链接的方式，没有什么问题，但是当切换到 &lt;code>Windows Server 2008 R2&lt;/code> 系统下，会出现缺少 &lt;code>xxx.dll&lt;/code> 的错误，按照往常的做法，缺少的文件也就是VC的运行库，然而我安装VS2015的运行库却失败了，网上一查才发现VS2015的运行时库不支持 &lt;code>Windows Server 2008 R2&lt;/code> ，最低得是 &lt;code>Windows Server 2008 R2 with SP1&lt;/code> ，安装运行库的法子走不通，只能换一条路了。&lt;/p>
+&lt;!-- more -->
+&lt;h2 id="静态链接">静态链接&lt;/h2>
+&lt;p>MFC程序可以用动态链接或者静态链接的方式使用MFC的库，动态链接的好处是最后生成的exe文件非常小，缺点是目标机器必须安装对应的运行库，或者要在文件夹里手动放入所需的dll；静态链接的好处是直接把VC的运行库链接到最终的exe里，不必安装运行库或者添加一堆dll就可以直接运行，缺点是生成的exe会比较大。&lt;/p>
+&lt;p>静态链接多占用的那一点空间对我来说没什么影响，所以我打算采取静态链接的方法解决上面提到的问题，MFC的库好办，只需要改项目属性就可以了，而静态链接BCG库则多一点波折，关于如何静态链接BCG库网上也有很多方法，但是并不全面，经过一番查找，我自己总结了在MFC里静态链接BCG库的方法，内容主要参考自&lt;a class="link" href="https://support.bcgsoft.com/KB/Category/19-technical-questions" target="_blank" rel="noopener"
+>BCG技术问答&lt;/a>里的&lt;a class="link" href="https://support.bcgsoft.com/KB/View/37-how-can-i-add-a-library-to-my-static-mfc-project" target="_blank" rel="noopener"
+>这个问题&lt;/a>&lt;/p>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;h3 id="准备">准备&lt;/h3>
+&lt;ol>
+&lt;li>编译所需版本的静态库lib文件（这一步在安装BCG库的时候一般做过了，直接拷贝出来就行，如 &lt;code>BCGCBPRO2510STATICU140.lib&lt;/code> ）&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>修改项目属性
+&lt;ul>
+&lt;li>&lt;code>C/C++&lt;/code> -&amp;gt; &lt;code>代码生成&lt;/code> -&amp;gt; &lt;code>运行库&lt;/code> 里选择 &lt;code>MT&lt;/code> (release)或者 &lt;code>MTd&lt;/code> (debug)&lt;/li>
+&lt;li>&lt;code>常规&lt;/code> 里选择 &lt;code>在静态库中使用 MFC&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>将BCGSoft\BCGControlBarPro\BCGCBPro\Styles下的
+&lt;ul>
+&lt;li>&lt;code>Office 2010 (blue)&lt;/code> 文件夹(以该主题为例)&lt;/li>
+&lt;li>&lt;code>BCGPStyle2010Blue.rc&lt;/code> 和 &lt;code>BCGPStyle2010Blue.rc2&lt;/code> 文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>拷贝到&lt;code>你的项目主目录&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="修改-stdafxcpp">修改 &lt;code>stdafx.cpp&lt;/code>&lt;/h3>
+&lt;p>在 &lt;code>stdafx.cpp&lt;/code> 文件的最后（在 &lt;code>#include stdafx.h&lt;/code> 之后）添加以下代码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#if _MSC_VER &amp;gt; 1500
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define COMPILE_MULTIMON_STUBS
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#pragma warning(push)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#pragma warning(disable: 4996)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;#34;multimon.h&amp;#34;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#pragma warning(pop)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="修改资源文件属性">修改资源文件属性&lt;/h3>
+&lt;p>在资源视图的对话框上点击右键，选择 &lt;code>资源包括(L)...&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>在 &lt;code>只读符号指令&lt;/code> 里添加 &lt;code>#include &amp;quot;bcgprores.h&amp;quot;&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>在&lt;code>编译时指令&lt;/code>里
+&lt;ul>
+&lt;li>移除&lt;code>_AFX_NO_SPLITTER_RESOURCES&lt;/code>&lt;/li>
+&lt;li>添加&lt;code>#include &amp;quot;BCGCBPro.rc&amp;quot;&lt;/code>和&lt;code>#include &amp;quot;BCGPStyle2010Blue.rc&amp;quot;&lt;/code>&lt;/li>
+&lt;li>如果你想动态链接MFC，静态链接BCG, 则添加&lt;code>&amp;quot;#define _BCGCBPRO_STATIC_&amp;quot;&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;ul>
+&lt;li>(这条基本不用管)如果你的项目是从MFC版本2008或更高版本移植的，请删除资源文件中对 &lt;code>afxribbon.rc&lt;/code> 的所有引用，因为它和 &lt;code>BCGCBPro.rc&lt;/code> 冲突&lt;/li>
+&lt;/ul></description></item></channel></rss>

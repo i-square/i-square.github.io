@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>栈 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E6%A0%88/</link><description>Recent content in 栈 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 27 Mar 2017 15:27:43 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E6%A0%88/index.xml" rel="self" type="application/rss+xml"/><item><title>数据结构学习笔记（三）：表、栈和队列</title><link>https://i-square.github.io/p/Data-structure-study-notes-3-tables-stacks-and-queues/</link><pubDate>Mon, 27 Mar 2017 15:27:43 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-3-tables-stacks-and-queues/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>介绍三种基本的数据结构&lt;/li>
+&lt;li>介绍抽象数据类型(ADT, abstract data type)的概念&lt;/li>
+&lt;li>介绍栈ADT及其在实现递归方面的应用&lt;/li>
+&lt;li>介绍队列ADT及其在操作系统和算法设计中的应用&lt;/li>
+&lt;li>给出vector和list的重要子集的实现&lt;/li>
+&lt;/ul>
+&lt;h2 id="栈">栈&lt;/h2>
+&lt;h3 id="实现">实现&lt;/h3>
+&lt;p>栈是一个表，因此任何实现表的方法都能实现栈。&lt;/p>
+&lt;h3 id="应用">应用&lt;/h3>
+&lt;ol>
+&lt;li>符号平衡&lt;/li>
+&lt;li>后缀（逆波兰）表达式计算&lt;/li>
+&lt;li>中缀到后缀的转换&lt;/li>
+&lt;li>函数调用&lt;br>
+（代码实现了一个简单的计算器，应保证输入合法）&lt;/li>
+&lt;/ol>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;h3 id="快慢指针">快慢指针&lt;/h3>
+&lt;p>ex 3.34 提示：判断一个链表是否有环，只使用O(1)的额外空间，使用两个迭代器p,q p每次递增1，q每次递增2，若q到了末尾则没环，否则pq必定在环中间相遇&lt;/p>
+&lt;p>也可用于快速找出单链表的中间节点&lt;/p></description></item></channel></rss>

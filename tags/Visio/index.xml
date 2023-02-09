@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Visio on 平方君的后花园</title><link>https://i-square.github.io/tags/Visio/</link><description>Recent content in Visio on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Sun, 26 Mar 2017 15:21:56 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/Visio/index.xml" rel="self" type="application/rss+xml"/><item><title>Office2016中右键无法打开Visio图像的解决办法</title><link>https://i-square.github.io/p/Solution-to-the-problem-that-cannot-open-the-Visio-object-by-right-click-in-Office2016/</link><pubDate>Sun, 26 Mar 2017 15:21:56 +0000</pubDate><guid>https://i-square.github.io/p/Solution-to-the-problem-that-cannot-open-the-Visio-object-by-right-click-in-Office2016/</guid><description>&lt;h2 id="问题">问题&lt;/h2>
+&lt;p>在Office2016中，右键Visio图像，只有“转换”功能，而不再提供之前早期Office中提供的“打开”和“编辑”功能，那么，如何能够在Office2016中打开visio图像呢？&lt;/p>
+&lt;!-- more -->
+&lt;h2 id="解决办法">解决办法&lt;/h2>
+&lt;p>在Visio图上使用 &lt;code>ALT + 双击鼠标左键&lt;/code> 即可在Visio中打开&lt;br>
+直接双击Visio图像则是和之前版本一样，在当前Office窗口中打开Visio图。&lt;/p></description></item></channel></rss>

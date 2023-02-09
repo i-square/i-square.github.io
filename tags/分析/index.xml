@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>分析 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E5%88%86%E6%9E%90/</link><description>Recent content in 分析 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Sat, 25 Mar 2017 22:48:53 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml"/><item><title>数据结构学习笔记（二）：算法分析</title><link>https://i-square.github.io/p/Data-structure-study-notes-2-algorithm-analysis/</link><pubDate>Sat, 25 Mar 2017 22:48:53 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-2-algorithm-analysis/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>主要内容是复杂度分析&lt;/li>
+&lt;li>大O标记&lt;/li>
+&lt;li>计算大O时的一般法则
+&lt;ul>
+&lt;li>对数规律的一般法则&lt;br>
+如果一个算法用常数时间（O(1)）将问题的大小削减为其一部分（通常是1/2），那么该算法就是O(logN)的。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="例子">例子&lt;/h2>
+&lt;ol>
+&lt;li>二分搜索提供了O(logN)的查找算法&lt;/li>
+&lt;li>最大公因数的欧几里得算法也是O(logN)的&lt;/li>
+&lt;li>幂运算的递归算法&lt;/li>
+&lt;/ol></description></item></channel></rss>

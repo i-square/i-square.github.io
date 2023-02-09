@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>树 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E6%A0%91/</link><description>Recent content in 树 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Fri, 31 Mar 2017 22:05:29 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E6%A0%91/index.xml" rel="self" type="application/rss+xml"/><item><title>数据结构学习笔记（四）：树</title><link>https://i-square.github.io/p/Data-structure-study-notes-4-tree/</link><pubDate>Fri, 31 Mar 2017 22:05:29 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-4-tree/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>了解树是如何用于实现文件系统的&lt;/li>
+&lt;li>了解树如何用来计算算术表达式的值&lt;/li>
+&lt;li>了解如何用树实现O(logN)时间进行搜素&lt;/li>
+&lt;li>讨论并使用set和map&lt;/li>
+&lt;/ul>
+&lt;h2 id="二叉树的遍历">二叉树的遍历&lt;/h2>
+&lt;ul>
+&lt;li>前序：先处理自己后处理左右儿子&lt;/li>
+&lt;li>中序：先处理左儿子再处理自己再处理右儿子&lt;/li>
+&lt;li>后序：先处理左右儿子再处理自己&lt;/li>
+&lt;/ul>
+&lt;h2 id="二叉查找树平均深度ologn">二叉查找树（平均深度O(logN)）&lt;/h2>
+&lt;p>性质：对于树中的每个节点X，左子树中所有项的值小于X中的项，右子树中所有项的值大于X中的项&lt;br>
+缺点：不能动态调整，若输入为已排序序列则构造出最坏情况下的斜树&lt;/p>
+&lt;h2 id="avl树">AVL树&lt;/h2>
+&lt;ul>
+&lt;li>带有&lt;strong>平衡条件&lt;/strong>的二叉查找树&lt;/li>
+&lt;li>一棵AVL树是每个节点的左子树和右子树的高度最多相差1的二叉查找树（空树高度定义为-1）&lt;/li>
+&lt;li>插入新节点可能破坏AVL树的平衡，需要通过&lt;strong>旋转&lt;/strong>解决&lt;/li>
+&lt;/ul>
+&lt;p>把需要平衡的节点叫α&lt;/p>
+&lt;ol>
+&lt;li>对α的左儿子的左子树进行一次插入&lt;/li>
+&lt;li>对α的左儿子的右子树进行一次插入&lt;/li>
+&lt;li>对α的右儿子的左子树进行一次插入&lt;/li>
+&lt;li>对α的右儿子的右子树进行一次插入&lt;/li>
+&lt;/ol>
+&lt;p>1和4（左左，右右）发生在外边，进行一次&lt;strong>单旋转&lt;/strong>即可，2和3（左右，右左）则发生在内部，需要通过&lt;strong>双旋转&lt;/strong>调整&lt;/p>
+&lt;h2 id="伸展树">伸展树&lt;/h2>
+&lt;p>节点可以达到任意深度，每次访问某节点后把该节点调整为根节点，任意连续M次操作花费O(MlogN)时间&lt;/p>
+&lt;h2 id="b树平衡m路树">B树（平衡M路树）&lt;/h2>
+&lt;p>M=3时：2-3树，实现平衡查找树的另一种方法&lt;/p>
+&lt;h2 id="注意">注意&lt;/h2>
+&lt;p>通过插入元素构造查找树，然后执行中序遍历，可以得到排序后的元素。&lt;br>
+这是一种O(NlogN)的排序算法&lt;/p></description></item></channel></rss>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据结构 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link><description>Recent content in 数据结构 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 24 Apr 2017 15:42:58 +0000</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml"/><item><title>数据结构学习笔记（八）：不相交集类</title><link>https://i-square.github.io/p/Data-structure-study-notes-8-Disjoint-set-classes/</link><pubDate>Mon, 24 Apr 2017 15:42:58 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-8-Disjoint-set-classes/</guid><description>&lt;p>这一章介绍解决等价问题的一种有效数据结构。实现简单，也非常快，每种操作只需要常数平均时间。&lt;/p>
+&lt;h2 id="等价关系-equivalence-relation">等价关系 (equivalence relation)&lt;/h2>
+&lt;p>若对于每一对元素(a,b),a,b∈S, &lt;code>a R b&lt;/code>或者为true或者为false，则称在集合S上定义关系R。如果&lt;code>a R b&lt;/code>为true，我们说a和b有关系。&lt;/p>
+&lt;p>&lt;strong>等价关系&lt;/strong>是满足下列三个性质的关系R：&lt;/p>
+&lt;ol>
+&lt;li>自反性：对于所有的a∈S，&lt;code>a R a&lt;/code>&lt;/li>
+&lt;li>对称性：&lt;code>a R b&lt;/code>当且仅当&lt;code>b R a&lt;/code>&lt;/li>
+&lt;li>传递性：若&lt;code>a R b&lt;/code>且b R c则&lt;code>a R c&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>元素a∈S的&lt;strong>等价类&lt;/strong>(equivalence class)是S的子集，它包含所有与a有（等价）关系的元素。注意，等价类形成对S的一个划分：S的每一个成员恰好出现在一个等价类中。为确定是否a~b，我们只需验证a和b是否都在同一个等价类中。&lt;/p>
+&lt;p>输入数据最初是N个集合(collection)的类，每个集合含有一个元素。初始的描述是所有的关系均为false（自反的关系除外）。每个集合都有一个不同的元素，从而&lt;code>Si∩Sj=⊙&lt;/code>，称为&lt;strong>不相交&lt;/strong>(disjoint)&lt;/p>
+&lt;p>基本操作有两种，称为&lt;strong>求并/查找&lt;/strong>(union/find)算法。&lt;/p>
+&lt;h2 id="灵巧求并算法">灵巧求并算法&lt;/h2>
+&lt;p>直观的union操作相当随意，它简单地通过使第二棵树成为第一棵树的子树而完成合并。对其进行简单改进，使得总是较小的树成为较大的树的子树，称为&lt;strong>按大小求并&lt;/strong>(union by size)，它保证树的深度最大是O(logN)。&lt;br>
+连续M次操作平均需要O(M)时间。&lt;/p>
+&lt;p>另一种方法是&lt;strong>按高度求并&lt;/strong>(union by height)，它同样保证树的深度最大是O(logN)。做法是使浅的树成为深的树的子树。&lt;/p>
+&lt;h2 id="一个应用">一个应用&lt;/h2>
+&lt;p>应用求并/查找数据结构的一个例子是迷宫的生成。初始化时所有格子都在自己的等价类中，之后不断合并，最终生成迷宫。&lt;/p></description></item><item><title>数据结构学习笔记（七）：排序</title><link>https://i-square.github.io/p/Data-structure-study-notes-7-sorting/</link><pubDate>Sun, 23 Apr 2017 22:01:12 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-7-sorting/</guid><description>&lt;p>在内存里的排序称为内部排序，而在磁盘上的排序称为外部排序。&lt;br>
+假设输入数据支持&amp;quot;&amp;lt;&amp;ldquo;和&amp;rdquo;&amp;gt;&amp;ldquo;操作符，除赋值运算外，这种运算是仅有的允许对输入数据进行的操作，在此条件下的排序称为基于比较的排序。&lt;/p>
+&lt;h2 id="内容">内容&lt;/h2>
+&lt;p>对内部排序的考查将指出：&lt;/p>
+&lt;ul>
+&lt;li>存在几种直观的算法以O(N^2)排序，如冒泡、选择、插入排序&lt;/li>
+&lt;li>希尔排序编程简单，以o(N^2)运行，在实践中很有效&lt;/li>
+&lt;li>还有一些稍微复杂的O(NlogN)算法&lt;/li>
+&lt;li>任何只使用比较的排序算法在最坏情形下和平均情形下均需要Ω(NlogN)次比较&lt;/li>
+&lt;/ul>
+&lt;h2 id="插入排序-insertion-sort">插入排序 (insertion sort)&lt;/h2>
+&lt;p>插入排序由N-1趟（pass）排序组成，排序策略是，在第p趟，将位置p上的元素向左移动至它在前p+1个元素中的正确位置上。&lt;/p>
+&lt;h3 id="分析">分析&lt;/h3>
+&lt;p>O(N^2) 精确界，反序输入可达。&lt;br>
+若已排序输入，则O(N)&lt;br>
+平均情形Θ(N^2)&lt;/p>
+&lt;h2 id="一些简单排序算法的下界">一些简单排序算法的下界&lt;/h2>
+&lt;p>定理1 N个互异元素的数组的平均逆序数是N(N-1)/4&lt;br>
+定理2 通过交换相邻元素进行排序的任何算法平均需要Ω(N^2)时间&lt;br>
+对冒泡排序、选择排序、插入排序都有效&lt;br>
+定理2告诉我们，为了以o(N^2)排序，必须执行比较，特别是要对相距较远的元素进行交换。排序通过删除逆序得以继续进行，为了有效进行，必须每次交换删除多个逆序。&lt;/p>
+&lt;h2 id="希尔排序-shell-sort">希尔排序 (shell sort)&lt;/h2>
+&lt;p>发明者是Donald Shell，该算法是冲破二次时间屏障的第一批算法之一，不过，直到它最初被发现的若干年后才证明了它的亚二次时间界。&lt;/p>
+&lt;p>它通过比较相距一定间隔的元素来工作，各趟比较所用的距离随着算法的进行而减小，直到只比较相邻元素的最后一趟排序为止。因此，希尔排序又是也叫做&lt;strong>缩减增量排序&lt;/strong>(diminishing increment sort)&lt;/p>
+&lt;h3 id="分析-1">分析&lt;/h3>
+&lt;p>使用希尔增量的最坏情形Θ(N^2)&lt;br>
+Hibbard增量：1，3，7，…… ，2^k - 1&lt;br>
+使用Hibbard增量的最坏情形Θ(N^(3/2))&lt;br>
+Sedgewick提出了几种增量序列，最坏情形时间O(N^(4/3))&lt;br>
+希尔排序的性能在实践中是可以接受的，由于编程简单，适度数量的输入数据经常选用。&lt;/p>
+&lt;h2 id="堆排序-heap-sort">堆排序 (heap sort)&lt;/h2>
+&lt;p>如第六章所说，优先队列可以用O(NlogN)时间进行排序，基于该思想的算法称为堆排序&lt;/p>
+&lt;p>由数组建立N个元素的二叉堆花费O(N)时间，每次deleteMin花费O(logN)，N次总共花费O(NlogN)&lt;br>
+使用了附加数组，存储需求增加了一倍&lt;/p>
+&lt;p>避免使用附加数组的方法：每次deleteMin之后把min放到刚刚空出来的位置上，N次deleteMin之后，数组将是递减顺序，因此可以构建max堆&lt;/p>
+&lt;ol>
+&lt;li>以O(N)建立max堆&lt;/li>
+&lt;li>交换最后一个和第一个元素，堆大小减1并下滤，相当于执行deleteMax&lt;/li>
+&lt;li>循环执行步骤2，N-1次&lt;/li>
+&lt;/ol>
+&lt;h3 id="分析-2">分析&lt;/h3>
+&lt;p>在最坏情形下堆排序最多使用2NlogN-O(N)次比较&lt;br>
+堆排序非常稳定：它平均使用的比较只比最坏情形界指出的略少&lt;/p>
+&lt;p>定理1 对N个互异项的随机排列进行堆排序，所用的比较平均次数为2NlogN-O(NloglogN)&lt;/p>
+&lt;p>可以证明，堆排序总是至少使用NlogN-O(N)次比较，而且存在达到这个界的数据。似乎平均情形也应该是2NlogN-O(N)次比较（而不是定理1中的第二项），但目前无法证明&lt;/p>
+&lt;h2 id="归并排序-merge-sort">归并排序 (merge sort)&lt;/h2>
+&lt;p>以最坏情形O(NlogN)时间运行，所使用的比较次数几乎是最优的，它是递归算法的一个很好的实例&lt;/p>
+&lt;p>算法的基本操作是合并两个已排序的表，取两个输入A、B，一个输出C，每次将A、B中的小者放入C，相关的位置推进，这显然是线性的&lt;/p>
+&lt;h3 id="算法">算法&lt;/h3>
+&lt;p>基准情形：N=1时，结果是显然的&lt;br>
+否则，递归地将前半部分和后半部分各自归并排序，再将两部分合并&lt;/p>
+&lt;p>该算法是经典的&lt;strong>分治&lt;/strong>策略，它将问题&lt;strong>分&lt;/strong>(divide)成一些小问题然后递归求解，而&lt;strong>治&lt;/strong>(conquering)的阶段则是将分的阶段解得的各答案合并在一起&lt;/p>
+&lt;h3 id="分析-3">分析&lt;/h3>
+&lt;p>分析递归例程技巧的经典实例：必须给运行时间写出一个递推关系。&lt;br>
+假设N是2的幂，从而总可以将它分裂成相等的两部分。对于N=1，所用时间是常数，将其记为1。则有&lt;br>
+T(1) = 1&lt;br>
+T(N) = 2T(N/2) + N&lt;br>
+求解得 T(N) = NlogN + N = O(NlogN)&lt;/p>
+&lt;p>利弊：在java中比较耗时多于移动，因此在java中归并排序是一般目的排序的最佳选择；但在C++中，比较耗时少而复制对象代价很大，因此实践中不常用&lt;/p>
+&lt;h2 id="快速排序-quick-sort">快速排序 (quick sort)&lt;/h2>
+&lt;p>快排是实践中最快的已知排序算法，平均运行时间是O(NlogN)，最坏情形是O(N^2)，但稍作努力就可避免。&lt;br>
+通过将堆排序与快速排序结合，可以在堆排序O(NlogN)最坏运行时间下，得到几乎所有输入的最快运行时间。&lt;/p>
+&lt;p>快排也是分治的递归算法，排序数组S步骤如下：&lt;/p>
+&lt;ol>
+&lt;li>若S中元素数是0或1，则返回&lt;/li>
+&lt;li>取S中任一元素v，称之为&lt;strong>枢纽元&lt;/strong>(pivot)&lt;/li>
+&lt;li>将S-{v}（S中其余元素）&lt;strong>划分&lt;/strong>成两个不相交的集合：S1={x∈S-{v}|x≤v}和S2={x∈S-{v}|x≥v}&lt;/li>
+&lt;li>返回{quickSort(S1),后跟v,继而quickSort(S2)}&lt;/li>
+&lt;/ol>
+&lt;p>第三步中划分的标准不是唯一的，因此这就成了设计决策。一部分好的实现方法是将这种情形尽可能有效地处理。直观地看，我们希望枢纽元能将元素对半分，一半在S1，另一半在S2。&lt;/p>
+&lt;h3 id="选取枢纽元">选取枢纽元&lt;/h3>
+&lt;ol>
+&lt;li>一种典型的错误是将第一个元素选作枢纽元。若输入随机，那么这是可以接受的，但实际情况有很多预排序的序列，这样的分割是劣质的。类似的还有选取前2个元素的大者，这是一样的，不要使用。&lt;/li>
+&lt;li>一种安全的做法是随机选取枢纽元，但这取决于随机数生成器的质量，而且声称随机数的代价一般也是很昂贵的。&lt;/li>
+&lt;li>三数中值分割法&lt;br>
+一组N个数的中值是第上取整(N/2)个最大的数。枢纽元的最好选择是数组的中值，但算出中值代价太高。一般的做法是选取左端、右端和中心位置上的三个元素的中值作为枢纽元。显然该方法消除了预排序输入的不好情形，并且减少了约14%的比较次数。&lt;/li>
+&lt;/ol>
+&lt;h3 id="分割策略">分割策略&lt;/h3>
+&lt;ol>
+&lt;li>将枢纽元与最后的元素交换&lt;/li>
+&lt;li>i从第一个元素开始，j从倒数第二个元素开始&lt;/li>
+&lt;li>当i在j左边时，右移i，移过小于枢纽元的元素，j左移，移过大于枢纽元的元素，i,j都停止时交换两个元素，直到i,j交错&lt;/li>
+&lt;li>将枢纽元与i所指向的元素交换&lt;/li>
+&lt;/ol>
+&lt;p>如何处理等于枢纽元的元素？&lt;br>
+若等于，则停止移动&lt;/p>
+&lt;h3 id="小数组">小数组&lt;/h3>
+&lt;p>对于很小的数组（N≤20），快速排序不如插入排序，而且，因为快排是递归的，这样的情形经常发生。通常的解决办法是，对于小数组使用插入排序。一种好的截止范围(cutoff range)是N=10&lt;/p>
+&lt;h3 id="分析-4">分析&lt;/h3>
+&lt;p>最坏情形：O(N^2)
+最佳情形：O(NlogN)
+平均情形：O(NlogN)&lt;/p>
+&lt;h2 id="快速选择-quick-select">快速选择 (quick select)&lt;/h2>
+&lt;p>修改快速排序以解决选择问题，即找第k个最大（小）元。&lt;/p>
+&lt;p>前3步和快速排序一样&lt;br>
+第4步&lt;/p>
+&lt;ul>
+&lt;li>若k≤S1，那么k必然在S1中，返回quickSelect(S1, K)&lt;/li>
+&lt;li>若k = 1 + |S1|，那么枢纽元就是第k个最小元&lt;/li>
+&lt;li>否则，第k个最小元就在S2中，它是S2中的第（k-|S1|-1）个最小元，返回quickSelect(S2, k-|S1|-1)&lt;/li>
+&lt;/ul>
+&lt;h3 id="分析-5">分析&lt;/h3>
+&lt;p>与快排相比，快速选择只进行了一次递归调用而不是两次&lt;/p>
+&lt;p>最坏情形：O(N^2)，当S1和S2一个是空时
+平均情形：O(N)&lt;/p></description></item><item><title>数据结构学习笔记（六）：优先队列（堆）</title><link>https://i-square.github.io/p/Data-structure-study-notes-6-priority-queue-heap/</link><pubDate>Thu, 20 Apr 2017 22:27:15 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-6-priority-queue-heap/</guid><description>&lt;p>本章讨论优先队列（priority queue），介绍优先队列在离散事件模拟中的应用&lt;br>
+作者评价：这类数据结构属于计算机科学中最雅致的一种&lt;/p>
+&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>优先队列ADT的高效实现&lt;/li>
+&lt;li>优先队列的使用&lt;/li>
+&lt;li>优先队列的高级实现&lt;/li>
+&lt;/ul>
+&lt;h2 id="二叉堆-binary-heap">二叉堆 (binary heap)&lt;/h2>
+&lt;p>插入删除最坏O(logN)，实际上插入花费常数平均时间，若无删除干扰，该结构将以线性时间建立一个具有N项的优先队列。&lt;br>
+与二叉查找树一样，堆具有两个性质，堆的操作必须满足所有性质才能终止。&lt;/p>
+&lt;h3 id="结构性质">结构性质&lt;/h3>
+&lt;p>堆是一棵&lt;strong>完全二叉树&lt;/strong>（三角形缺右下角），特例是满二叉树（三角形），最底层元素必须从左往右填入，如有空缺则不是完全二叉树&lt;br>
+一棵高为h的完全二叉树有[2^h , 2^(h+1) - 1]个节点，这意味着完全二叉树的高是 下取整(logN)，显然它是O(logN)的&lt;br>
+因为此规律，所以堆可以用数组表示而不用链表，对于数组中任一位置i上的元素，其左儿子在位置2i上，右儿子在左儿子后的(2i+1)上，它的父亲在位置 下取整(i/2) 上&lt;/p>
+&lt;h3 id="堆序性质">堆序性质&lt;/h3>
+&lt;p>在堆中，除根节点以外，每一个节点的值都大于（或等于）它的父节点的值&lt;br>
+根据堆序性质，最小值总在根结点，因此可以以O(1)时间做findMin&lt;br>
+相应地，通过改变堆序性质，也可以建立一个max堆，以O(1)时间做findMax&lt;/p>
+&lt;h3 id="插入上滤策略">插入（上滤策略）&lt;/h3>
+&lt;p>为了插入新元素X，在堆的下一个可用位置（为了满足结构性质）创建一个空穴，若X放入空穴仍满足堆序性质，则插入完成，否则交换空穴和其父节点，直到X被放入并满足堆序性质为止&lt;/p>
+&lt;h3 id="删除下滤策略">删除（下滤策略）&lt;/h3>
+&lt;p>找出最小元很容易，难的是删除它。&lt;br>
+当删除一个最小元时，堆中最后一个元素X必须移动到该堆的某个地方。策略是在根节点建立一个空穴，然后将两个儿子中的较小者移入空穴，重复该步骤直到X可以被放入空穴中。代码中则是用X直接替换根结点的值，然后下滤。&lt;/p>
+&lt;h3 id="注意">注意&lt;/h3>
+&lt;p>在堆的实现中经常出现的错误是，当堆中存在偶数个元素时，将出现一个节点只有一个儿子的情况。因此我们必须以节点不总有两个儿子为前提，这需要额外的测试。&lt;/p>
+&lt;h3 id="应用">应用&lt;/h3>
+&lt;h4 id="选择问题">选择问题&lt;/h4>
+&lt;p>输入N个元素及整数k，找出第k个最大的元素，极端情况是k=上取整(N/2)，此时实际上是找中位数，以下两个算法都能在找中位数的情况下以O(NlogN)时间运行&lt;/p>
+&lt;ul>
+&lt;li>A 将N个元素读入数组，对数组应用buildHeap，再执行k次deleteMin，最后根节点上的就是第k个最小值，构造一个最大堆就可以找到第k个最大值&lt;/li>
+&lt;li>B 用buildHeap将前k个元素构造成一个最大堆，若下一个元素大于堆里的最小值，则删除最小值，插入新元素，最终的最小值就是所求的第k个最大值&lt;/li>
+&lt;/ul>
+&lt;h2 id="d堆">d堆&lt;/h2>
+&lt;p>类似B树，深度变浅，每个节点有d个儿子&lt;/p>
+&lt;h2 id="左式堆-leftist-heap">左式堆 (leftist heap)&lt;/h2>
+&lt;p>左式堆也是二叉树，但它不是理想平衡的，事实上是趋于非常不平衡&lt;/p>
+&lt;p>定义任一节点X的**零路径长(null path length)**npl(X)为从X到一个不具有两个儿子的节点的最短路径长&lt;br>
+因此，具有0个或1个儿子的节点npl为0，而npl(NULL)=-1&lt;br>
+注意，任一节点的npl比它儿子节点的npl的最小值多1&lt;/p>
+&lt;h3 id="左式堆性质">左式堆性质&lt;/h3>
+&lt;p>对于堆中的每一个节点X，左儿子的npl至少与右儿子的npl一样大&lt;br>
+这个性质导致树向左增加深度，沿左式堆右侧的右路径是堆中最短的路径&lt;br>
+定理：在右路径上有r个节点的左式堆必然至少有2^r -1个节点&lt;/p>
+&lt;p>对左式堆的基本操作是合并。插入可以看成是合并一个单节点堆，删除即是删掉根结点，然后合并左右子树。&lt;/p>
+&lt;h2 id="斜堆-skew-heap">斜堆 (skew heap)&lt;/h2>
+&lt;p>斜堆是左式堆的自调节形式，具有堆序，但不存在结构限制。斜堆不需要存储npl，每次合并无条件交换左右儿子。&lt;/p>
+&lt;h2 id="二项队列-binomial-queue">二项队列 (binomial queue)&lt;/h2>
+&lt;p>以最坏O(logN)支持插入、合并、deleteMin，插入操作平均花费常数时间&lt;/p>
+&lt;p>实质是由&lt;strong>二项树&lt;/strong>(binomial tree)构成的&lt;strong>森林&lt;/strong>(forest)。&lt;br>
+每一个高度上最多存在一棵二项树。高度为k的二项树Bk是通过将一棵二项树B(k-1)附接到另一棵二项树B(k-1)的根上构成的。高度为k的二项树有2^k个节点，在深度d处的节点数是二项系数C(d,k)&lt;/p>
+&lt;p>如果把堆序性质施加到二项树上并允许任意高度上最多一棵二项树，则可以用二项树的集合唯一地表示任意大小的优先队列。如大小为13的优先队列可以用B3,B2,B0表示，可以写成1101，同时也是13的二进制形式。&lt;/p>
+&lt;h3 id="操作">操作&lt;/h3>
+&lt;p>基本操作仍然是合并，思想是从小到大合并相同高度的二项树&lt;br>
+插入是特殊情况下的合并&lt;br>
+deleteMin将原二项队列一分为二，再合并&lt;/p>
+&lt;p>编程需要注意&lt;strong>进位&lt;/strong>的实现&lt;/p></description></item><item><title>数据结构学习笔记（五）：散列</title><link>https://i-square.github.io/p/Data-structure-study-notes-5-hash/</link><pubDate>Fri, 07 Apr 2017 22:48:51 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-5-hash/</guid><description>&lt;p>散列表（hash table）的实现通常称为散列（hashing），指用于以O(1)时间执行插入、删除和查找的技术，但不支持需要排序信息的树操作，比如findMin、findMax以及在线性时间内按顺序打印整个表都不支持&lt;/p>
+&lt;h2 id="内容">内容&lt;/h2>
+&lt;p>中心数据结构是&lt;strong>散列表&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>实现散列表的几种方法&lt;/li>
+&lt;li>分析比较几种方法&lt;/li>
+&lt;li>介绍散列的多种应用&lt;/li>
+&lt;li>比较散列表与二叉查找树&lt;/li>
+&lt;/ul>
+&lt;h2 id="散列函数">散列函数&lt;/h2>
+&lt;p>基本思想：将每个键(Key)映射到从[0, TableSize)这个范围中的某个数，并且将其放到适当的单元中，这个映射就称为&lt;strong>散列函数&lt;/strong>。&lt;br>
+问题：选择一个函数，决定当两个键散列到同一个值的时候（称为**冲突(collision)**应该做什么以及如何确定散列表的大小。&lt;br>
+&lt;em>注：一般使表的大小为素数，有助于避免部分冲突问题&lt;/em>&lt;/p>
+&lt;h3 id="装填因子load-factor">装填因子(load factor)&lt;/h3>
+&lt;p>定义散列表的装填因子 λ 为散列表中的元素个数与散列表大小的比值。&lt;/p>
+&lt;h2 id="分离链接法">分离链接法&lt;/h2>
+&lt;p>将散列到同一个值的所有元素保留到一个链表中。&lt;br>
+一般法则：使 λ ≈ 1，控制链表的长度，若 λ &amp;gt; 1 则通过再散列扩充&lt;/p>
+&lt;h2 id="开放定址法">开放定址法&lt;/h2>
+&lt;p>不用链表存储，实现分配较大空间，称为&lt;strong>探测散列表&lt;/strong>&lt;br>
+hi(x) = (hash(x) + f(i)) mod TableSize, f(0) = 0.&lt;br>
+一般 λ &amp;gt; 0.5 就要再散列&lt;/p>
+&lt;ul>
+&lt;li>线性探测 f(i) = i&lt;/li>
+&lt;li>平方探测 f(i) = i^2&lt;/li>
+&lt;li>双散列 f(i) = i * hash2(x), hash2(x) = R - (x mod R) 这样的函数会起作用，其中R为小于TableSize的素数&lt;/li>
+&lt;/ul>
+&lt;h2 id="再散列rehash">再散列(rehash)&lt;/h2>
+&lt;ol>
+&lt;li>只要表到一半就再散列&lt;/li>
+&lt;li>只有插入失败时才再散列&lt;/li>
+&lt;li>途中策略：当表到达某一个装填因子时进行再散列（最优）&lt;/li>
+&lt;/ol></description></item><item><title>数据结构学习笔记（四）：树</title><link>https://i-square.github.io/p/Data-structure-study-notes-4-tree/</link><pubDate>Fri, 31 Mar 2017 22:05:29 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-4-tree/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>了解树是如何用于实现文件系统的&lt;/li>
+&lt;li>了解树如何用来计算算术表达式的值&lt;/li>
+&lt;li>了解如何用树实现O(logN)时间进行搜素&lt;/li>
+&lt;li>讨论并使用set和map&lt;/li>
+&lt;/ul>
+&lt;h2 id="二叉树的遍历">二叉树的遍历&lt;/h2>
+&lt;ul>
+&lt;li>前序：先处理自己后处理左右儿子&lt;/li>
+&lt;li>中序：先处理左儿子再处理自己再处理右儿子&lt;/li>
+&lt;li>后序：先处理左右儿子再处理自己&lt;/li>
+&lt;/ul>
+&lt;h2 id="二叉查找树平均深度ologn">二叉查找树（平均深度O(logN)）&lt;/h2>
+&lt;p>性质：对于树中的每个节点X，左子树中所有项的值小于X中的项，右子树中所有项的值大于X中的项&lt;br>
+缺点：不能动态调整，若输入为已排序序列则构造出最坏情况下的斜树&lt;/p>
+&lt;h2 id="avl树">AVL树&lt;/h2>
+&lt;ul>
+&lt;li>带有&lt;strong>平衡条件&lt;/strong>的二叉查找树&lt;/li>
+&lt;li>一棵AVL树是每个节点的左子树和右子树的高度最多相差1的二叉查找树（空树高度定义为-1）&lt;/li>
+&lt;li>插入新节点可能破坏AVL树的平衡，需要通过&lt;strong>旋转&lt;/strong>解决&lt;/li>
+&lt;/ul>
+&lt;p>把需要平衡的节点叫α&lt;/p>
+&lt;ol>
+&lt;li>对α的左儿子的左子树进行一次插入&lt;/li>
+&lt;li>对α的左儿子的右子树进行一次插入&lt;/li>
+&lt;li>对α的右儿子的左子树进行一次插入&lt;/li>
+&lt;li>对α的右儿子的右子树进行一次插入&lt;/li>
+&lt;/ol>
+&lt;p>1和4（左左，右右）发生在外边，进行一次&lt;strong>单旋转&lt;/strong>即可，2和3（左右，右左）则发生在内部，需要通过&lt;strong>双旋转&lt;/strong>调整&lt;/p>
+&lt;h2 id="伸展树">伸展树&lt;/h2>
+&lt;p>节点可以达到任意深度，每次访问某节点后把该节点调整为根节点，任意连续M次操作花费O(MlogN)时间&lt;/p>
+&lt;h2 id="b树平衡m路树">B树（平衡M路树）&lt;/h2>
+&lt;p>M=3时：2-3树，实现平衡查找树的另一种方法&lt;/p>
+&lt;h2 id="注意">注意&lt;/h2>
+&lt;p>通过插入元素构造查找树，然后执行中序遍历，可以得到排序后的元素。&lt;br>
+这是一种O(NlogN)的排序算法&lt;/p></description></item><item><title>数据结构学习笔记（三）：表、栈和队列</title><link>https://i-square.github.io/p/Data-structure-study-notes-3-tables-stacks-and-queues/</link><pubDate>Mon, 27 Mar 2017 15:27:43 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-3-tables-stacks-and-queues/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>介绍三种基本的数据结构&lt;/li>
+&lt;li>介绍抽象数据类型(ADT, abstract data type)的概念&lt;/li>
+&lt;li>介绍栈ADT及其在实现递归方面的应用&lt;/li>
+&lt;li>介绍队列ADT及其在操作系统和算法设计中的应用&lt;/li>
+&lt;li>给出vector和list的重要子集的实现&lt;/li>
+&lt;/ul>
+&lt;h2 id="栈">栈&lt;/h2>
+&lt;h3 id="实现">实现&lt;/h3>
+&lt;p>栈是一个表，因此任何实现表的方法都能实现栈。&lt;/p>
+&lt;h3 id="应用">应用&lt;/h3>
+&lt;ol>
+&lt;li>符号平衡&lt;/li>
+&lt;li>后缀（逆波兰）表达式计算&lt;/li>
+&lt;li>中缀到后缀的转换&lt;/li>
+&lt;li>函数调用&lt;br>
+（代码实现了一个简单的计算器，应保证输入合法）&lt;/li>
+&lt;/ol>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;h3 id="快慢指针">快慢指针&lt;/h3>
+&lt;p>ex 3.34 提示：判断一个链表是否有环，只使用O(1)的额外空间，使用两个迭代器p,q p每次递增1，q每次递增2，若q到了末尾则没环，否则pq必定在环中间相遇&lt;/p>
+&lt;p>也可用于快速找出单链表的中间节点&lt;/p></description></item><item><title>数据结构学习笔记（二）：算法分析</title><link>https://i-square.github.io/p/Data-structure-study-notes-2-algorithm-analysis/</link><pubDate>Sat, 25 Mar 2017 22:48:53 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-2-algorithm-analysis/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>主要内容是复杂度分析&lt;/li>
+&lt;li>大O标记&lt;/li>
+&lt;li>计算大O时的一般法则
+&lt;ul>
+&lt;li>对数规律的一般法则&lt;br>
+如果一个算法用常数时间（O(1)）将问题的大小削减为其一部分（通常是1/2），那么该算法就是O(logN)的。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="例子">例子&lt;/h2>
+&lt;ol>
+&lt;li>二分搜索提供了O(logN)的查找算法&lt;/li>
+&lt;li>最大公因数的欧几里得算法也是O(logN)的&lt;/li>
+&lt;li>幂运算的递归算法&lt;/li>
+&lt;/ol></description></item><item><title>数据结构学习笔记（一）：引论</title><link>https://i-square.github.io/p/Data-structure-study-notes-1-introduction/</link><pubDate>Fri, 24 Mar 2017 14:22:23 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-1-introduction/</guid><description>&lt;h2 id="内容">内容&lt;/h2>
+&lt;ul>
+&lt;li>介绍基本数学知识&lt;/li>
+&lt;li>简要复习递归&lt;/li>
+&lt;li>介绍用到的C++知识&lt;/li>
+&lt;/ul>
+&lt;h2 id="递归的四条基本法则">递归的四条基本法则&lt;/h2>
+&lt;ol>
+&lt;li>基准情形。必须总有某些基准情形不用递归就能求解。&lt;/li>
+&lt;li>不断推进。对于那些需要递归求解的情形，递归调用必须总能够朝着基准情形的方向推进。&lt;/li>
+&lt;li>设计法则。假设所有的递归调用都能运行。&lt;/li>
+&lt;li>合成效益法则。在求解一个问题的同一实例时，切勿在不同的递归调用中做重复性的工作。&lt;/li>
+&lt;/ol></description></item><item><title>数据结构学习笔记（零）：开始</title><link>https://i-square.github.io/p/Data-structure-study-notes-0-start/</link><pubDate>Thu, 23 Mar 2017 11:23:54 +0000</pubDate><guid>https://i-square.github.io/p/Data-structure-study-notes-0-start/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>为了准备今年后半年到来的秋招，我决定开始学习数据结构，为后面的学习打基础，采用的教材是weiss的《数据结构与算法分析C++描述》，计划实现书上上的示例代码以及力所能及的课后习题。&lt;/p>
+&lt;p>在Github上同步源码，项目地址：&lt;a class="link" href="https://github.com/i-square/Data-Structure" target="_blank" rel="noopener"
+>https://github.com/i-square/Data-Structure&lt;/a>&lt;/p>
+&lt;h2 id="学习环境">学习环境&lt;/h2>
+&lt;ul>
+&lt;li>Windows 10 &amp;amp; 8.1&lt;/li>
+&lt;li>Visual Studio 2015 with update 3&lt;/li>
+&lt;li>C++ (部分C++11语法)&lt;/li>
+&lt;/ul></description></item></channel></rss>

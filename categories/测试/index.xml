@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>测试 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E6%B5%8B%E8%AF%95/</link><description>Recent content in 测试 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Fri, 24 Feb 2017 14:33:36 +0000</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml"/><item><title>Post Test 发布测试</title><link>https://i-square.github.io/p/Post-Test/</link><pubDate>Fri, 24 Feb 2017 14:33:36 +0000</pubDate><guid>https://i-square.github.io/p/Post-Test/</guid><description>&lt;h2 id="测试">测试&lt;/h2>
+&lt;p>首先发布一篇测试文章，以后慢慢扩充。&lt;/p>
+&lt;p>&lt;del>龟速学习 &lt;code>Markdown&lt;/code> 语法ing。&lt;/del>&lt;/p></description></item><item><title>Hello World</title><link>https://i-square.github.io/p/Hexo-Hello-World/</link><pubDate>Thu, 23 Feb 2017 15:15:45 +0000</pubDate><guid>https://i-square.github.io/p/Hexo-Hello-World/</guid><description>&lt;p>Welcome to &lt;a class="link" href="https://hexo.io/" target="_blank" rel="noopener"
+>Hexo&lt;/a>! This is your very first post. Check &lt;a class="link" href="https://hexo.io/docs/" target="_blank" rel="noopener"
+>documentation&lt;/a> for more info. If you get any problems when using Hexo, you can find the answer in &lt;a class="link" href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener"
+>troubleshooting&lt;/a> or you can ask me on &lt;a class="link" href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener"
+>GitHub&lt;/a>.&lt;/p>
+&lt;!-- more -->
+&lt;h2 id="quick-start">Quick Start&lt;/h2>
+&lt;h3 id="create-a-new-post">Create a new post&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ hexo new &lt;span class="s2">&amp;#34;My New Post&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>More info: &lt;a class="link" href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener"
+>Writing&lt;/a>&lt;/p>
+&lt;h3 id="run-server">Run server&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ hexo server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>More info: &lt;a class="link" href="https://hexo.io/docs/server.html" target="_blank" rel="noopener"
+>Server&lt;/a>&lt;/p>
+&lt;h3 id="generate-static-files">Generate static files&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ hexo generate
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>More info: &lt;a class="link" href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener"
+>Generating&lt;/a>&lt;/p>
+&lt;h3 id="deploy-to-remote-sites">Deploy to remote sites&lt;/h3>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ hexo deploy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>More info: &lt;a class="link" href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener"
+>Deployment&lt;/a>&lt;/p></description></item></channel></rss>
