@@ -1,4 +1,91 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>博客 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E5%8D%9A%E5%AE%A2/</link><description>Recent content in 博客 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Sat, 25 Feb 2017 17:27:39 +0000</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml"/><item><title>新的起点</title><link>https://i-square.github.io/p/New-Start-Hexo/</link><pubDate>Sat, 25 Feb 2017 17:27:39 +0000</pubDate><guid>https://i-square.github.io/p/New-Start-Hexo/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>博客 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E5%8D%9A%E5%AE%A2/</link><description>Recent content in 博客 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Thu, 09 Feb 2023 18:25:40 +0800</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E5%8D%9A%E5%AE%A2/index.xml" rel="self" type="application/rss+xml"/><item><title>博客迁移-从hexo到hugo</title><link>https://i-square.github.io/p/Blog-migration-from-hexo-to-hugo/</link><pubDate>Thu, 09 Feb 2023 18:25:40 +0800</pubDate><guid>https://i-square.github.io/p/Blog-migration-from-hexo-to-hugo/</guid><description>&lt;img src="https://i-square.github.io/p/Blog-migration-from-hexo-to-hugo/hexo2hugo.png" alt="Featured image of post 博客迁移-从hexo到hugo" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>几年前还在读研的时候，有空折腾了一下 &lt;code>hexo&lt;/code> ，在 &lt;code>github pages&lt;/code> 上搭建了一个静态博客，刚开始还写了一些文章，后来新鲜劲过了就荒废了，最近看到好多人用 &lt;code>hugo&lt;/code> ，又想拾起来写写博客，遂折腾之。&lt;/p>
+&lt;h2 id="动机">动机&lt;/h2>
+&lt;p>想替换掉 &lt;code>hexo&lt;/code> 的原因主要有二：&lt;/p>
+&lt;ol>
+&lt;li>我不是前端开发者，折腾 &lt;code>hexo&lt;/code> 的环境比较费劲，当初搭建的时候就遇到各种坑，更换一台电脑之后想重新再搭建一套又得耗费不少精力；而 &lt;code>hugo&lt;/code> 发布的是二进制程序，更换机器后直接下载二进制安装即可，省时省力。&lt;/li>
+&lt;li>性能方面， &lt;code>hexo&lt;/code> 随着文章数量增加，生成的时间会越来越多；而 &lt;code>hugo&lt;/code> 基本不存在主要的问题，能够做到实时预览。&lt;/li>
+&lt;/ol>
+&lt;h2 id="过程">过程&lt;/h2>
+&lt;p>得益于我之前部署过 &lt;code>hexo + github pages&lt;/code> 的方案，整个迁移的过程还是比较顺利的，主要参考了&lt;a class="link" href="https://www.pseudoyu.com/zh/" target="_blank" rel="noopener"
+>pseudoyu&lt;/a> 大佬的这篇文章： &lt;a class="link" href="https://www.pseudoyu.com/zh/2022/05/29/deploy_your_blog_using_hugo_and_github_action/" target="_blank" rel="noopener"
+>Hugo + GitHub Action，搭建你的博客自动发布系统&lt;/a>&lt;/p>
+&lt;h3 id="主题">主题&lt;/h3>
+&lt;p>首先要做的便是选择一个称心的主题了，官方主题都在这： &lt;a class="link" href="https://themes.gohugo.io/" target="_blank" rel="noopener"
+>Hugo Themes&lt;/a>&lt;/p>
+&lt;p>我的选择方式是随心，第一眼看中哪个就用哪个，一眼望去 &lt;a class="link" href="https://themes.gohugo.io/themes/hugo-theme-stack/" target="_blank" rel="noopener"
+>hugo-theme-stack&lt;/a> 主题跟我之前用的 &lt;code>hexo&lt;/code> 主题比较像，符合我的眼缘，嗯，就是它了！&lt;/p>
+&lt;h4 id="侧栏自定义">侧栏自定义&lt;/h4>
+&lt;p>我之前的 &lt;code>hexo&lt;/code> 博客侧栏放了两部分内容&lt;/p>
+&lt;ul>
+&lt;li>一部分是博客的功能按钮，比如 &lt;code>主页&lt;/code> &amp;amp; &lt;code>归档&lt;/code> 等，点击后跳转到博客内链&lt;/li>
+&lt;li>二部分是外链按钮，比如 &lt;code>Github&lt;/code> &amp;amp; &lt;code>Love Story&lt;/code> ，点击后打开新标签页，跳转到对应链接&lt;/li>
+&lt;/ul>
+&lt;p>第一部分的自定义，需要在 &lt;code>content/page/&lt;/code> 下建立对应的文件夹，放入 &lt;code>index.md&lt;/code> ，写好 &lt;code>front matter&lt;/code> 即可，几个关键点：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">comments&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 是否开启评论&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">menu&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">weight&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>-&lt;span class="m">40&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 权重，越小位置越靠上&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">params&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">icon&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># svg图，可以放在 assets/icons/ 下&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>而第二部分的自定义，则是直接修改 &lt;code>config.yaml&lt;/code> 文件，在 &lt;code>menu&lt;/code> -&amp;gt; &lt;code>main&lt;/code> 下直接添加需要的 &lt;code>url&lt;/code> ，比如我的侧栏 &lt;code>Love Story&lt;/code> 按钮配置如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">menu&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">identifier&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">love&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Love Story&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">url&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/love&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 这里也可以是完整的外链&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">params&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">icon&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">heart&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">newtab&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 是否新标签页打开&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="图片的运用">图片的运用&lt;/h4>
+&lt;p>我用的主题针对图片的显示有一些 feature，比如题图、分类图等，使用好了自然更加美观。&lt;/p>
+&lt;p>比如文章题图，在首页显示时，会占据卡片式的上半部分；再比如分类图，在点击侧栏的 &lt;code>归档&lt;/code> 和 &lt;code>分类&lt;/code> 按钮时，可以看到效果。&lt;/p>
+&lt;p>&lt;em>顺带一提，我建议尽量使用矢量图，既能适配多分辨率，又能节省空间&lt;/em>&lt;/p>
+&lt;h3 id="文章迁移">文章迁移&lt;/h3>
+&lt;p>虽然之前的博客没有多少文章，但也是自己的回忆和记录，当然是要全数保留下来的。&lt;/p>
+&lt;p>因为都是 &lt;code>markdown&lt;/code> 方式的文章，内容方面并没有什么障碍，迁移中的问题主要集中在文章永久链接的转换和文章存放上面。&lt;/p>
+&lt;p>好在 &lt;code>hugo&lt;/code> 解决这两个问题比较方便，分别做下介绍。&lt;/p>
+&lt;h4 id="永久链接">永久链接&lt;/h4>
+&lt;p>之前的博客没有考虑太多，直接使用了 &lt;code>md&lt;/code> 文件的文件名作为永久链接，这样会有两个问题&lt;/p>
+&lt;ol>
+&lt;li>中文文件名会造成中文链接，实际解析时会被转换为一堆字符，不美观，也不便于传播记忆&lt;/li>
+&lt;li>目录结构、文件名一旦有变化，链接就会变化，其他人访问原链接就是 &lt;code>404&lt;/code> 了&lt;/li>
+&lt;/ol>
+&lt;p>而在 &lt;code>hugo&lt;/code> 中，可以设置每篇文章的 &lt;code>slug&lt;/code> 作为永久链接，这样只需要文章的 &lt;code>slug&lt;/code> 全英文，并且保持唯一即可。&lt;/p>
+&lt;h4 id="目录结构">目录结构&lt;/h4>
+&lt;p>相应地， &lt;code>hugo&lt;/code> 中其实不存在目录结构的问题，不管在任意文件夹放置 &lt;code>md&lt;/code> 文件，随意命名都可以，只要保证 &lt;code>slug&lt;/code> 唯一就行了，这样大大方便了文章的组织问题。&lt;/p>
+&lt;p>在文章数量少的时期可以按年存放文章，文章数量多起来可以按月、按日，随心所欲。&lt;/p>
+&lt;h3 id="自动化部署">自动化部署&lt;/h3>
+&lt;p>这部分直接参考其他教程文章，利用 &lt;code>github action&lt;/code> 实现自动化的发布网页到自己的 &lt;code>xxx/xxx.github.io&lt;/code> 仓库里，我抄的是 &lt;a class="link" href="https://www.pseudoyu.com/zh/2022/05/29/deploy_your_blog_using_hugo_and_github_action/" target="_blank" rel="noopener"
+>Hugo + GitHub Action，搭建你的博客自动发布系统&lt;/a> 里的配置。&lt;/p>
+&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>这一圈折腾下来，感觉不坚持写一段时间都对不起自己的折腾之心，哈哈，且行且看。&lt;/p></description></item><item><title>新的起点</title><link>https://i-square.github.io/p/New-Start-Hexo/</link><pubDate>Sat, 25 Feb 2017 17:27:39 +0000</pubDate><guid>https://i-square.github.io/p/New-Start-Hexo/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>从2013年我搭建的第一个 &lt;code>Wordpress&lt;/code> 博客开始，我陆陆续续尝试过各种博客类网站，有自己搭建的 &lt;code>Wordpress&lt;/code> 博客，也有诸如 &lt;code>点点网&lt;/code> 和 &lt;code>lofter&lt;/code> 这样的轻博客社区，但最终都是留下一篇 &lt;code>hello world&lt;/code> 走人。&lt;/p>
 &lt;!-- more -->
 &lt;h2 id="缘起">缘起&lt;/h2>
