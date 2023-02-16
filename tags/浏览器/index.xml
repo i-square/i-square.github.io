@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>浏览器 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</link><description>Recent content in 浏览器 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Thu, 25 Aug 2022 17:55:27 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>高效冲浪指北</title><link>https://i-square.github.io/p/Guide-to-Efficient-Surfing/</link><pubDate>Thu, 25 Aug 2022 17:55:27 +0800</pubDate><guid>https://i-square.github.io/p/Guide-to-Efficient-Surfing/</guid><description>&lt;img src="https://i-square.github.io/p/Guide-to-Efficient-Surfing/wave-riding.svg" alt="Featured image of post 高效冲浪指北" />&lt;h2 id="引言">引言&lt;/h2>
+&lt;h3 id="分享内容">分享内容&lt;/h3>
+&lt;ul>
+&lt;li>工具推荐&lt;/li>
+&lt;li>方法分享&lt;/li>
+&lt;li>开拓思路&lt;/li>
+&lt;/ul>
+&lt;h3 id="如何高效">如何高效？&lt;/h3>
+&lt;ul>
+&lt;li>聚焦：摒除杂质&lt;/li>
+&lt;li>有序：有条不紊&lt;/li>
+&lt;li>简化：化繁为简&lt;/li>
+&lt;/ul>
+&lt;h2 id="浏览器">浏览器&lt;/h2>
+&lt;h3 id="发展史">发展史&lt;/h3>
+&lt;h4 id="内核">内核&lt;/h4>
+&lt;ul>
+&lt;li>Trident（IE） -&amp;gt; EdgeHTML（早期edge）&lt;/li>
+&lt;li>KHTML -&amp;gt; WebKit （早期Safari）&lt;/li>
+&lt;li>↘ Chromium（早期chrome）-&amp;gt; Blink（后期chrome等）&lt;/li>
+&lt;li>↘ WebKit2（后期Safari）&lt;/li>
+&lt;li>Gecko（早期firefox） -&amp;gt; Servo&lt;/li>
+&lt;li>Presto（早期opera）&lt;/li>
+&lt;/ul>
+&lt;h4 id="浏览器大战">浏览器大战&lt;/h4>
+&lt;ul>
+&lt;li>第一次大战：垄断之战
+&lt;ul>
+&lt;li>Netscape Navigator&lt;/li>
+&lt;li>Internet Explorer&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>第二次大战：标准之战
+&lt;ul>
+&lt;li>IE&lt;/li>
+&lt;li>Opera&lt;/li>
+&lt;li>Firefox&lt;/li>
+&lt;li>Safari&lt;/li>
+&lt;li>Chrome&lt;/li>
+&lt;li>Maxthon&lt;/li>
+&lt;li>Edge&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="扩展">扩展&lt;/h3>
+&lt;h3 id="广告过滤">广告过滤&lt;/h3>
+&lt;ul>
+&lt;li>Adblock Plus/AdBlock&lt;/li>
+&lt;li>uBlock Origin&lt;/li>
+&lt;/ul>
+&lt;h3 id="脚本管理">脚本管理&lt;/h3>
+&lt;ul>
+&lt;li>Greasemonkey&lt;/li>
+&lt;li>Violentmonkey&lt;/li>
+&lt;li>Tampermonkey&lt;/li>
+&lt;/ul>
+&lt;h3 id="网络代理">网络代理&lt;/h3>
+&lt;ul>
+&lt;li>AutoProxy&lt;/li>
+&lt;li>SwitchyOmega&lt;/li>
+&lt;/ul>
+&lt;h3 id="键盘导航">键盘导航&lt;/h3>
+&lt;ul>
+&lt;li>Vimium&lt;/li>
+&lt;li>Surfingkeys&lt;/li>
+&lt;/ul>
+&lt;h2 id="实用工具">实用工具&lt;/h2>
+&lt;h3 id="全局广告过滤">全局广告过滤&lt;/h3>
+&lt;h4 id="路由器openwrt">路由器(OpenWrt)&lt;/h4>
+&lt;ul>
+&lt;li>Adbyby&lt;/li>
+&lt;li>KoolProxy&lt;/li>
+&lt;/ul>
+&lt;h4 id="桌面端">桌面端&lt;/h4>
+&lt;ul>
+&lt;li>hosts&lt;/li>
+&lt;li>AdGuard&lt;/li>
+&lt;/ul>
+&lt;h3 id="全局代理管理">全局代理管理&lt;/h3>
+&lt;ul>
+&lt;li>系统代理&lt;/li>
+&lt;li>Proxifier&lt;/li>
+&lt;/ul>
+&lt;h3 id="全局手势">全局手势&lt;/h3>
+&lt;h4 id="鼠标手势">鼠标手势&lt;/h4>
+&lt;ul>
+&lt;li>Win：WGestures/StrokesPlus&lt;/li>
+&lt;li>Ubuntu：EasyStroke&lt;/li>
+&lt;/ul>
+&lt;h4 id="触摸板手势">触摸板手势&lt;/h4>
+&lt;ul>
+&lt;li>Win：GestureSign&lt;/li>
+&lt;li>Mac：Jitouch&lt;/li>
+&lt;/ul>
+&lt;h3 id="多任务管理">多任务管理&lt;/h3>
+&lt;ul>
+&lt;li>单机：多桌面+单桌面任务聚焦&lt;/li>
+&lt;li>多机
+&lt;ul>
+&lt;li>原则：扬长避短&lt;/li>
+&lt;li>VSCode Remote、虚拟机、远程桌面&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="终端">终端&lt;/h2>
+&lt;h4 id="模拟器">模拟器&lt;/h4>
+&lt;ul>
+&lt;li>Win：XShell/SecureCRT&lt;/li>
+&lt;li>Mac：iTerm2
+&lt;ul>
+&lt;li>会话管理&lt;/li>
+&lt;li>脚本管理&lt;/li>
+&lt;li>分屏（显示共用，多终端）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="zsh">zsh&lt;/h4>
+&lt;ul>
+&lt;li>配置：oh my zsh&lt;/li>
+&lt;li>主题：powerlevel10k&lt;/li>
+&lt;/ul>
+&lt;h4 id="tmux">tmux&lt;/h4>
+&lt;ul>
+&lt;li>终端复用&lt;/li>
+&lt;li>Tmux Plugin Manager
+&lt;ul>
+&lt;li>会话恢复：tmux-resurrect&lt;/li>
+&lt;li>会话保存：tmux-continuum&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="docker">docker&lt;/h4>
+&lt;ul>
+&lt;li>环境隔离&lt;/li>
+&lt;li>轻量化&lt;/li>
+&lt;li>微服务&lt;/li>
+&lt;li>k8s&lt;/li>
+&lt;/ul>
+&lt;h4 id="shell脚本">shell脚本&lt;/h4>
+&lt;ul>
+&lt;li>grep&lt;/li>
+&lt;li>awk&lt;/li>
+&lt;li>sed&lt;/li>
+&lt;/ul></description></item></channel></rss>
