@@ -6,3 +6,5 @@
 * `hexo-backup` 是使用 `hexo` 时的备份分支，已有几年未更新
 * `gh-pages` 是使用 `hugo` 构建，利用 `github action` 自动生成的分支，是当前的展示分支
 
+## gh-pages 发布状态
+![](https://github.com/i-square/hugo-blog/workflows/GitHub%20Page/badge.svg)
