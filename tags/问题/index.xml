@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>问题 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E9%97%AE%E9%A2%98/</link><description>Recent content in 问题 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 17 Oct 2022 20:43:45 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E9%97%AE%E9%A2%98/index.xml" rel="self" type="application/rss+xml"/><item><title>升级MacOS12.x(Monterey)后sudo无法使用问题及解决方式</title><link>https://i-square.github.io/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/</link><pubDate>Mon, 17 Oct 2022 20:43:45 +0800</pubDate><guid>https://i-square.github.io/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/</guid><description>&lt;img src="https://i-square.github.io/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/macOS-Monterey-on-MBP-Feature.webp" alt="Featured image of post 升级MacOS12.x(Monterey)后sudo无法使用问题及解决方式" />&lt;h2 id="问题">问题&lt;/h2>
+&lt;p>升级到 MacOS Monterey 以后会强行恢复 sudoers 文件到默认状态，即使用户在 admin 组里也无法使用 sudo&lt;/p>
+&lt;p>当然，此时也是无法修改 sudoers 文件的&lt;/p>
+&lt;h2 id="过程">过程&lt;/h2>
+&lt;p>在谷歌搜索了一下，果然已经有人遇到了类似问题，在解决过程中参考了外网的3篇帖子&lt;/p>
+&lt;h3 id="尝试">尝试&lt;/h3>
+&lt;p>首先找到了这篇帖子： &lt;a class="link" href="https://www.reddit.com/r/MacOS/comments/rd0w69/upgraded_to_monterey_1201_now_user_not_in_sudoers/" target="_blank" rel="noopener"
+>r/MacOS&lt;/a>，虽然没有解决问题，但从中学到了从Finder里直接拷贝系统文件的方法，需要权限时会弹框确认（指纹or密码）&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>SHIFT + CMD + .&lt;/code> 显示隐藏文件&lt;/li>
+&lt;li>拷贝 &lt;code>/etc/sudoers&lt;/code> 文件到可编辑目录&lt;/li>
+&lt;li>修改文件，加入我的用户（比如user）和免密设置，如下&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">##&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># User specification&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">root &lt;span class="nv">ALL&lt;/span>&lt;span class="o">=(&lt;/span>ALL:ALL&lt;span class="o">)&lt;/span> ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user &lt;span class="nv">ALL&lt;/span>&lt;span class="o">=(&lt;/span>ALL:ALL&lt;span class="o">)&lt;/span> NOPASSWD:ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">##&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="4">
+&lt;li>再从 Finder 里直接拷贝修改后的问题替换原文件&lt;/li>
+&lt;li>此时执行 sudo 命令仍然会报错 &lt;code>sudo: /etc/sudoers is owned by uid xxx, should be 0&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;h3 id="解决uid问题">解决uid问题&lt;/h3>
+&lt;p>之后又在 &lt;a class="link" href="https://apple.stackexchange.com/questions/157772/sudo-etc-sudoers-is-owned-by-uid-501-should-be-0" target="_blank" rel="noopener"
+>StackExchange&lt;/a> 里学到了两种方式解决这个问题：&lt;/p>
+&lt;ol>
+&lt;li>开机按 &lt;code>CMD + S&lt;/code> 进入 recovery 模式，以root权限执行如下命令后，即可解决&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">mount -uw /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown root:wheel /etc/sudoers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod &lt;span class="m">440&lt;/span> /etc/sudoers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>利用 Apple Script 修改文件权限，弹框确认权限（指纹or密码）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">osascript -e &lt;span class="s1">&amp;#39;do shell script &amp;#34;chown root:wheel /etc/sudoers; chmod 440 /etc/sudoers; chmod -N /etc/sudoers&amp;#34; with administrator privileges&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>事实上，完全可以直接用Apple Script修改 &lt;code>/etc/sudoers&lt;/code> 文件，比如 &lt;a class="link" href="https://dev.to/rezende79/user-is-not-in-the-sudoers-file-after-monterey-upgrade-3e4p" target="_blank" rel="noopener"
+>这篇文章&lt;/a> 里提到的方式&lt;/p>
+&lt;p>创建一个 &lt;code>/tmp/sudoers&lt;/code> 文件，按需修改，然后直接替换 &lt;code>/etc/sudoers&lt;/code> 文件即可，如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">osascript -e &lt;span class="s1">&amp;#39;do shell script &amp;#34;cat /tmp/sudoers &amp;gt; /etc/sudoers; chown root:wheel /etc/sudoers&amp;#34; with administrator privileges&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
