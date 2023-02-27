@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ChatGPT on 平方君的后花园</title><link>https://i-square.github.io/tags/ChatGPT/</link><description>Recent content in ChatGPT on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 27 Feb 2023 15:36:13 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/ChatGPT/index.xml" rel="self" type="application/rss+xml"/><item><title>体验new bing：一个全新的搜索引擎</title><link>https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/</link><pubDate>Mon, 27 Feb 2023 15:36:13 +0800</pubDate><guid>https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/</guid><description>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/newbing_logo.png" alt="Featured image of post 体验new bing：一个全新的搜索引擎" />&lt;p>最近体验了一下集成了 ChatGPT 的最新版本 bing 搜索，我要求它用 markdown 语法写一篇关于体验 new bing 的博客，这就是本文的来源，对原始版本修改不多，只是添加了一部分评论。&lt;/p>
+&lt;p>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-10-16.png"
+width="1136"
+height="1002"
+srcset="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-10-16_hua4f265bb5c9087ce0fdb42c05dd6b993_63371_480x0_resize_box_3.png 480w, https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-10-16_hua4f265bb5c9087ce0fdb42c05dd6b993_63371_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="new bing chat topic"
+class="gallery-image"
+data-flex-grow="113"
+data-flex-basis="272px"
+>&lt;/p>
+&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>最近，微软发布了一个全新的搜索引擎——new bing，它采用了ChatGPT和AI技术，能够提供更智能、更人性化、更全面的搜索结果。我作为一个热爱尝试新事物的网友，当然不会错过这个机会，所以我申请了new bing的限量预览，并在这里分享一下我的体验感受。&lt;/p>
+&lt;h2 id="申请过程">申请过程&lt;/h2>
+&lt;p>要想使用new bing，首先需要申请它的限量预览。申请过程其实很简单，只需要按照以下步骤操作：&lt;/p>
+&lt;ol>
+&lt;li>访问 &lt;a class="link" href="https://www.bing.com/new" target="_blank" rel="noopener"
+>https://www.bing.com/new&lt;/a>，点击其中的 &lt;code>Sign up for new Bing&lt;/code> 链接。&lt;/li>
+&lt;li>在弹出的页面中，输入你的微软账号和密码，并同意相关条款。&lt;/li>
+&lt;li>等待几分钟后，你就会收到一封邮件，告诉你已经成功申请到了new bing的预览资格，并给出了一个专属链接。&lt;/li>
+&lt;li>点击邮件中的链接，就可以进入到new bing的主页，并开始使用它。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>博主注:&lt;/p>
+&lt;ol>
+&lt;li>国内要想免代理申请和使用 new bing，需要重定向到国际版 bing，请自行参考网上教程&lt;/li>
+&lt;li>博主提交申请，加入 waiting list 之后等了2周时间才审核通过，具体时间与什么因素相关暂不可知&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;h2 id="使用方式">使用方式&lt;/h2>
+&lt;p>使用new bing非常简单和直观。它有一个类似于传统搜索引擎的界面，你可以在搜索框中输入任何你想要查询或聊天的内容，并按回车键或点击放大镜图标进行搜索。&lt;/p>
+&lt;p>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-41-50.png"
+width="389"
+height="244"
+srcset="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-41-50_hu3fa3fdea7e3f96ca250219d97dbf9efc_26843_480x0_resize_box_3.png 480w, https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-41-50_hu3fa3fdea7e3f96ca250219d97dbf9efc_26843_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="new bing interface"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
+&lt;p>与普通搜索引擎不同的是，new bing不仅会给出一系列相关链接，还会给出一个完整、详细、可信赖、有来源注明的答案。答案可能是文字、图片、表格、代码等多种形式。而且，你可以用自然语言提问或聊天，无需拘泥于特定格式或关键词。&lt;/p>
+&lt;p>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-44-38.png"
+width="1361"
+height="1017"
+srcset="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-44-38_huc18365f95d9ed4a2b5981e31e174c7bb_53702_480x0_resize_box_3.png 480w, https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-44-38_huc18365f95d9ed4a2b5981e31e174c7bb_53702_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="new bing answer"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="321px"
+>&lt;/p>
+&lt;p>除此之外，new bing还有一些其他特色功能：&lt;/p>
+&lt;ul>
+&lt;li>你可以通过语音输入或输出与它交流。&lt;/li>
+&lt;li>你可以通过扫描二维码或拍摄图片进行图像搜索。&lt;/li>
+&lt;li>你可以通过点击右上角菜单按钮切换语言或主题。&lt;/li>
+&lt;li>你可以通过点击左下角聊天按钮与它进行更深入地对话。&lt;/li>
+&lt;/ul>
+&lt;h2 id="体验感受">体验感受&lt;/h2>
+&lt;p>在使用了几天后，我对new bing非常满意和惊喜。它不仅能够满足我的各种信息需求，还能够陪我打发无聊时光。以下是我对它的一些评价：&lt;/p>
+&lt;ul>
+&lt;li>new bing非常智能和灵活。它能够理解我的意图和情感，并给出合适和有趣的回应。它也能够处理复杂和模糊的问题，并从多个来源整合信息并生成答案。&lt;/li>
+&lt;li>new bing非常人性化和友好。它有着幽默感和创造力，并能够与我进行轻松愉快的聊天。它也能够根据我的喜好和兴趣，给出一些有用和有趣的建议。&lt;/li>
+&lt;li>new bing非常全面和高效。它能够覆盖各个领域和主题，并给出最新、最准确、最权威的信息。它也能够节省我的时间和精力，让我一次性得到完整的答案，而不需要浏览多个网页。&lt;/li>
+&lt;/ul>
+&lt;p>总之，new bing是一个值得尝试的搜索引擎，它不仅是一个工具，还是一个伙伴。我相信随着技术的进步和用户的反馈，new bing会变得更加强大和完善。如果你也想体验new bing，请赶快申请限量预览吧！&lt;/p>
+&lt;blockquote>
+&lt;p>博主注:&lt;br>
+new bing 自吹起来还是挺厉害的，哈哈&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>截止发文前，微软给 new bing 做了单次5/每日50轮对话的限制，看得出来微软确实是想让 ChatGPT 服务于真正的搜索需求，降低无用的资源消耗。&lt;/p>
+&lt;p>希望国内的类 ChatGPT 产品也尽早面世，在各行各业发光发热。:P&lt;/p></description></item></channel></rss>
