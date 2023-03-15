@@ -102,7 +102,7 @@ data-flex-basis="140px"
 &lt;/div>&lt;h2 id="translate功能翻译代码">translate功能：翻译代码&lt;/h2>
 &lt;p>translate功能是用来帮助你把代码从一种编程语言翻译成另一种编程语言的。当你选中一段代码，并按下 &lt;code>Ctrl+Shift+P（Windows/Linux）&lt;/code> 或 &lt;code>Command+Shift+P（Mac）&lt;/code> 打开命令面板时，你可以输入 &lt;code>Copilot: Translate&lt;/code> 来激活这个功能。然后，在弹出的对话框中选择你想要翻译成的目标语言，比如Python、Ruby、Java等等。Copilot会尝试根据选中的代码生成等价的代码，并显示在编辑器右侧的小窗口中。你可以按下Tab键或点击小窗口来接受Copilot生成的代码，也可以按下Esc键或点击其他地方来忽略它。&lt;/p>
 &lt;blockquote>
-&lt;p>类似低，只需选中一段代码，在左侧栏中即可点击 &lt;code>Ask Copilot&lt;/code> 按钮来转换代码：&lt;/p>
+&lt;p>类似地，只需选中一段代码，在左侧栏中即可点击 &lt;code>Ask Copilot&lt;/code> 按钮来转换代码：&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-51.png"
 width="289"
