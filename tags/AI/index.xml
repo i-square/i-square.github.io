@@ -1,4 +1,221 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on 平方君的后花园</title><link>https://i-square.github.io/tags/AI/</link><description>Recent content in AI on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Mon, 27 Feb 2023 15:36:13 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/AI/index.xml" rel="self" type="application/rss+xml"/><item><title>体验new bing：一个全新的搜索引擎</title><link>https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/</link><pubDate>Mon, 27 Feb 2023 15:36:13 +0800</pubDate><guid>https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/</guid><description>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/newbing_logo.png" alt="Featured image of post 体验new bing：一个全新的搜索引擎" />&lt;p>最近体验了一下集成了 ChatGPT 的最新版本 bing 搜索，我要求它用 markdown 语法写一篇关于体验 new bing 的博客，这就是本文的来源，对原始版本修改不多，只是添加了一部分评论。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AI on 平方君的后花园</title><link>https://i-square.github.io/tags/AI/</link><description>Recent content in AI on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-Hans</language><lastBuildDate>Wed, 15 Mar 2023 13:15:09 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/AI/index.xml" rel="self" type="application/rss+xml"/><item><title>体验GitHub Copilot Labs：探索AI在编程领域的无限可能</title><link>https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/</link><pubDate>Wed, 15 Mar 2023 13:15:09 +0800</pubDate><guid>https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/</guid><description>&lt;img src="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg" alt="Featured image of post 体验GitHub Copilot Labs：探索AI在编程领域的无限可能" />&lt;h2 id="github-copilot-labs">GitHub Copilot Labs&lt;/h2>
+&lt;p>GitHub Copilot是一个基于人工智能的编程助手，它可以根据你输入的代码、注释、变量名等信息，自动给出可能符合你意图的代码建议。它可以帮助你快速完成各种编程任务，从简单的函数定义到复杂的算法实现。&lt;/p>
+&lt;p>GitHub Copilot Labs是一个与GitHub Copilot配套使用的VS Code扩展插件，它提供了一些实验性的功能，用来探索人工智能在编程领域的更多可能性。目前有四个功能可用：explain、translate、IDE Brushes和test generation，目前我只体验了前两个功能。&lt;/p>
+&lt;h2 id="安装和使用">安装和使用&lt;/h2>
+&lt;p>要使用GitHub Copilot Labs，首先需要安装VS Code，并且拥有一个GitHub Copilot许可证。如果你还没有许可证，可以在&lt;a class="link" href="https://github.com/features/copilot" target="_blank" rel="noopener"
+>这里&lt;/a>申请一个免费试用或付费购买。&lt;/p>
+&lt;p>然后，在VS Code的扩展市场中搜索并安装“Copilot Labs”这个插件。安装完成后，你会看到VS Code侧边栏上出现了一个Copilot图标。点击这个图标，就可以打开Copilot Labs面板，并看到四个不同的功能选项卡。&lt;/p>
+&lt;h2 id="explain功能解释代码">explain功能：解释代码&lt;/h2>
+&lt;p>explain功能是用来帮助你理解代码的含义和作用的。当你选中一段代码，并按下 &lt;code>Ctrl+Shift+P（Windows/Linux）&lt;/code> 或 &lt;code>Command+Shift+P（Mac）&lt;/code> 打开命令面板时，你可以输入 &lt;code>Copilot: Explain&lt;/code> 来激活这个功能。然后，在弹出的对话框中输入一个问题，比如 &lt;code>what does this code do?&lt;/code> 或 &lt;code>how to use this function?&lt;/code> 等等。Copilot会尝试根据选中的代码给出一个简洁明了的回答，类似于一个教程或文档。你可以通过点击 &lt;code>Ask Copilot&lt;/code> 按钮来重复这个过程，直到你满意为止。&lt;/p>
+&lt;blockquote>
+&lt;p>当然也有更直观的操作方式，如图，只需选中一段代码，在左侧栏中即可点击 &lt;code>Ask Copilot&lt;/code> 按钮：&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-11.png"
+width="293"
+height="502"
+srcset="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-11_hu89a107b293ad3d1a3f8232b62910f562_18470_480x0_resize_box_3.png 480w, https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-11_hu89a107b293ad3d1a3f8232b62910f562_18470_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="58"
+data-flex-basis="140px"
+>&lt;/p>
+&lt;h3 id="explain功能示例">explain功能示例&lt;/h3>
+&lt;ul>
+&lt;li>Python：如何使用factorial函数&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Explain code: how to use this function?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Copilot answer:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">This function calculates the factorial of a given number n. The factorial of n is defined as the product of all positive integers from 1 to n. For example, factorial(5) = 5 * 4 * 3 * 2 * 1 = 120.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">To use this function, you can call it with an argument that is a non-negative integer. For example:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="c1"># prints 120&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="c1"># prints 1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="c1"># raises an exception&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>JavaScript：如何反转字符串&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Explain code: what does this code do?
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="nx">reverseString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">reversed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">reversed&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">reversed&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Copilot answer:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">This&lt;/span> &lt;span class="nx">code&lt;/span> &lt;span class="nx">defines&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="nx">named&lt;/span> &lt;span class="nx">reverseString&lt;/span> &lt;span class="nx">that&lt;/span> &lt;span class="nx">takes&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">string&lt;/span> &lt;span class="nx">as&lt;/span> &lt;span class="nx">an&lt;/span> &lt;span class="nx">argument&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">string&lt;/span> &lt;span class="nx">that&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">reverse&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">original&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&lt;/span> &lt;span class="nx">For&lt;/span> &lt;span class="nx">example&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">reverseString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;hello&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="s2">&amp;#34;olleh&amp;#34;&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="nx">uses&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">loop&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">iterate&lt;/span> &lt;span class="nx">over&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">characters&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">input&lt;/span> &lt;span class="nx">string&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">beginning&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="nx">concatenates&lt;/span> &lt;span class="nx">them&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">variable&lt;/span> &lt;span class="nx">named&lt;/span> &lt;span class="nx">reversed&lt;/span>&lt;span class="p">.&lt;/span> &lt;span class="nx">At&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">loop&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">reversed&lt;/span> &lt;span class="nx">contains&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">reversed&lt;/span> &lt;span class="nx">string&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">which&lt;/span> &lt;span class="nx">is&lt;/span> &lt;span class="nx">returned&lt;/span> &lt;span class="nx">by&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="translate功能翻译代码">translate功能：翻译代码&lt;/h2>
+&lt;p>translate功能是用来帮助你把代码从一种编程语言翻译成另一种编程语言的。当你选中一段代码，并按下 &lt;code>Ctrl+Shift+P（Windows/Linux）&lt;/code> 或 &lt;code>Command+Shift+P（Mac）&lt;/code> 打开命令面板时，你可以输入 &lt;code>Copilot: Translate&lt;/code> 来激活这个功能。然后，在弹出的对话框中选择你想要翻译成的目标语言，比如Python、Ruby、Java等等。Copilot会尝试根据选中的代码生成等价的代码，并显示在编辑器右侧的小窗口中。你可以按下Tab键或点击小窗口来接受Copilot生成的代码，也可以按下Esc键或点击其他地方来忽略它。&lt;/p>
+&lt;blockquote>
+&lt;p>类似低，只需选中一段代码，在左侧栏中即可点击 &lt;code>Ask Copilot&lt;/code> 按钮来转换代码：&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-51.png"
+width="289"
+height="470"
+srcset="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-51_huf39538feaadfd95facc96f2001a27d0e_13051_480x0_resize_box_3.png 480w, https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/screenshots/2023-03-15-13-51-51_huf39538feaadfd95facc96f2001a27d0e_13051_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="61"
+data-flex-basis="147px"
+>&lt;/p>
+&lt;h3 id="translate功能示例">translate功能示例&lt;/h3>
+&lt;ul>
+&lt;li>Python到Rust：计算阶乘&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Translate code into: Rust&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">n&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Copilot answer:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>: &lt;span class="kt">i32&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">i32&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">else&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>JavaScript到C#：反转字符串&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Translate code into: C#
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="nx">reverseString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">reversed&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">reversed&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">reversed&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-C#" data-lang="C#">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Copilot answer:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">string&lt;/span> &lt;span class="n">reverseString&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">string&lt;/span> &lt;span class="n">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">string&lt;/span> &lt;span class="n">reversed&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Length&lt;/span> &lt;span class="p">-&lt;/span> &lt;span class="m">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;gt;=&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">--)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">reversed&lt;/span> &lt;span class="p">+=&lt;/span> &lt;span class="n">str&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">reversed&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="体验感想">体验感想&lt;/h2>
+&lt;p>使用GitHub Copilot Labs一段时间后，我觉得它是一个非常棒的工具，能够给我带来很多编程上的便利和帮助。它让我写代码更快更轻松，理解代码更容易更深入，修改代码更直观更灵活，测试代码更方便更有效。它也让我有机会学习和尝试一些新的编程语言和框架，增加我的知识和技能。&lt;/p>
+&lt;p>当然，GitHub Copilot Labs也不是万能的，它还有一些需要改进和完善的地方。比如：&lt;/p>
+&lt;ul>
+&lt;li>它需要联网才能工作，如果网络出现问题或中断，就无法获得代码建议。&lt;/li>
+&lt;li>它不能保证生成的代码都是正确、安全、高效、规范的，需要我们自己检查和验证。&lt;/li>
+&lt;li>它不能取代我们作为程序员的创造力、逻辑思维、问题解决能力等核心素质。&lt;/li>
+&lt;/ul>
+&lt;p>所以，我认为GitHub Copilot Labs是一个很好的辅助工具，但不是一个替代工具。它可以节省我们的时间和精力，但不能代替我们的主观判断和责任意识。我们应该合理地使用它，并且不断地学习和进步。&lt;/p>
+&lt;p>总之，我非常喜欢GitHub Copilot Labs，并且期待它未来能够发展得更好。我也建议你试一试这个工具，并且分享你自己的反馈和意见。让我们一起探索人工智能在编程领域的更多可能性吧！&lt;/p>
+&lt;h2 id="真感想">真·感想&lt;/h2>
+&lt;p>作为一个程序员，体验过new bing和copilot之后，确实感觉到时代变了，AI距离实用越来越近了。就拿 new bing 来说，我现在遇到一些问题就想先问问它，很大概率它能帮我解决。再看copilot，我只试用了几天就离不开它的便利性了，而且随着你熟悉了用法，会觉得它越用越好用，确实提升了工作效率。&lt;/p>
+&lt;p>当然啦，这两个工具也不是万能神器，还有很多地方需要我们自己动脑子和创新。我觉得AI不是要抢我们的饭碗，而是要做我们的小帮手。我们应该好好利用AI的优势来提高我们的生活和工作质量，并且对AI保持理性和负责。&lt;/p></description></item><item><title>体验new bing：一个全新的搜索引擎</title><link>https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/</link><pubDate>Mon, 27 Feb 2023 15:36:13 +0800</pubDate><guid>https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/</guid><description>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/newbing_logo.png" alt="Featured image of post 体验new bing：一个全新的搜索引擎" />&lt;p>最近体验了一下集成了 ChatGPT 的最新版本 bing 搜索，我要求它用 markdown 语法写一篇关于体验 new bing 的博客，这就是本文的来源，对原始版本修改不多，只是添加了一部分评论。&lt;/p>
 &lt;p>&lt;img src="https://i-square.github.io/p/Experience-new-bing-a-brand-new-search-engine/screenshots/2023-02-27-16-10-16.png"
 width="1136"
 height="1002"
@@ -23,7 +240,10 @@ data-flex-basis="272px"
 &lt;blockquote>
 &lt;p>博主注:&lt;/p>
 &lt;ol>
-&lt;li>国内要想免代理申请和使用 new bing，需要重定向到国际版 bing，请自行参考网上教程&lt;/li>
+&lt;li>国内要想免代理申请和使用 new bing，需要重定向到国际版 bing，请自行参考网上教程，比如 &lt;a class="link" href="https://www.yitoujing.com/article/21" target="_blank" rel="noopener"
+>这篇文章&lt;/a>&lt;/li>
+&lt;li>有可能频繁跳出REF页面导致用不了聊天功能，在 &lt;code>bing.com&lt;/code> 页面清除 &lt;code>bing.com&lt;/code> 的cookies重新登录即可，参考 &lt;a class="link" href="https://blog.csdn.net/AI_Fanatic/article/details/129053010" target="_blank" rel="noopener"
+>原文章&lt;/a>&lt;/li>
 &lt;li>博主提交申请，加入 waiting list 之后等了2周时间才审核通过，具体时间与什么因素相关暂不可知&lt;/li>
 &lt;/ol>
 &lt;/blockquote>
