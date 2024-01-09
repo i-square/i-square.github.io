@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 平方君的后花园</title><link>https://i-square.github.io/post/</link><description>Recent content in Posts on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 15 Mar 2023 13:15:09 +0800</lastBuildDate><atom:link href="https://i-square.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>体验GitHub Copilot Labs：探索AI在编程领域的无限可能</title><link>https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/</link><pubDate>Wed, 15 Mar 2023 13:15:09 +0800</pubDate><guid>https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/</guid><description>&lt;img src="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg" alt="Featured image of post 体验GitHub Copilot Labs：探索AI在编程领域的无限可能" />&lt;h2 id="github-copilot-labs">GitHub Copilot Labs&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 平方君的后花园</title><link>https://i-square.github.io/post/</link><description>Recent content in Posts on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 09 Jan 2024 18:50:55 +0800</lastBuildDate><atom:link href="https://i-square.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.png" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第一节，课程地址：&lt;a class="link" href="https://www.bilibili.com/video/BV1Rc411b7ns/" target="_blank" rel="noopener"
+>https://www.bilibili.com/video/BV1Rc411b7ns/&lt;/a>&lt;/p>
+&lt;h2 id="从专用模型到通用大模型">从专用模型到通用大模型&lt;/h2>
+&lt;p>在过去，人工智能领域的发展一直遵循着一个基本原则：一个模型对应一个场景或者任务。然而，随着技术的进步和需求的增长，这一格局正在发生深刻的变化。如今，我们正迈向一个新的时代，一个模型不再局限于一个场景或任务，而是可以应用于多个场景、多模态的复杂环境中。&lt;/p>
+&lt;h2 id="书生浦语大模型发展历程">书生·浦语大模型发展历程&lt;/h2>
+&lt;p>书生·浦语大模型的发展历程彰显了这一变革的重要性。它从轻量级的7B社区模型，逐步升级到中量级的20B商业模型，再到重量级的123B全场景模型。这一演进不仅仅是在模型规模上的提升，更是对多模态、多场景应用需求的积极响应。&lt;/p>
+&lt;h3 id="interlm-20b全面领先的开源模型">InterLM-20B：全面领先的开源模型&lt;/h3>
+&lt;p>&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
+>InterLM-20B&lt;/a>是一款千亿参数级别的开源模型，其性能在全球范围内处于领先地位。与相近规模的Llama-33B、Llama2-13B以及国内主流的7B、13B开源模型相比，InterLM-20B在不足三分之一的参数量下，却达到了Llama2-70B的水平。&lt;/p>
+&lt;h2 id="从模型到应用六个关键步骤">从模型到应用：六个关键步骤&lt;/h2>
+&lt;h3 id="第一步模型选型">第一步：模型选型&lt;/h3>
+&lt;p>在应用场景中，根据多个大模型的相关维度进行能力比较，并进行模型评测。初步选型后，可确定意向大模型。&lt;/p>
+&lt;h3 id="第二步评估业务场景复杂度">第二步：评估业务场景复杂度&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>业务场景简单：&lt;/strong> 如果业务场景不太复杂，可以直接将选定的模型应用于场景中。&lt;/li>
+&lt;li>&lt;strong>业务场景复杂：&lt;/strong> 对于复杂场景，通常直接使用开源模型难以满足需求，需要进一步微调、进行prompt工程等构建工作。&lt;/li>
+&lt;/ul>
+&lt;h3 id="第三步判断微调策略">第三步：判断微调策略&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>全参数微调：&lt;/strong> 若算力足够，可以进行全参数微调，提高模型性能。&lt;/li>
+&lt;li>&lt;strong>部分参数微调：&lt;/strong> 如果算力受限，只能进行部分参数微调，固定大部分参数，调整一小部分参数。&lt;/li>
+&lt;/ul>
+&lt;h3 id="第四步构建智能体">第四步：构建智能体&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>模型与环境交互：&lt;/strong> 考虑模型与环境的交互，特别是如果需要调用外部API或与已有业务数据库交互，则需要构建智能体。&lt;/li>
+&lt;li>&lt;strong>无环境交互：&lt;/strong> 如果模型在业务场景中不需要与环境进行交互，可以直接将微调好的模型应用于场景。&lt;/li>
+&lt;/ul>
+&lt;h3 id="第五步模型评测与应用上线">第五步：模型评测与应用上线&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>模型评测：&lt;/strong> 进行模型评测，确保在实际场景中表现良好。&lt;/li>
+&lt;li>&lt;strong>上线或迭代：&lt;/strong> 根据评测结果，决定是否上线应用或者继续迭代模型。&lt;/li>
+&lt;/ul>
+&lt;h3 id="第六步模型部署">第六步：模型部署&lt;/h3>
+&lt;p>考虑软件系统相关性能、安全、功能等方面内容：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>资源优化：&lt;/strong> 考虑如何以更少的资源部署模型。&lt;/li>
+&lt;li>&lt;strong>吞吐量提升：&lt;/strong> 提升整个应用的吞吐量，确保在生产环境中的性能表现。&lt;/li>
+&lt;/ul>
+&lt;p>这六个步骤构成了从选择模型到应用部署的全链条，确保在实际应用中大模型能够充分发挥作用。&lt;/p>
+&lt;h2 id="书生-浦语全链条开源开放体系">书生-浦语全链条开源开放体系&lt;/h2>
+&lt;p>书生·浦语大模型打破了传统的人工智能应用模式，提出了全链条开源开放体系。这一体系涵盖了从数据到预训练、微调、部署、评测到应用的全过程，为通用人工智能的实现提供了完整的解决方案。数据（&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
+>书生·万卷&lt;/a>）作为起点，经过&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
+>IntermLM-Train&lt;/a>的预训练，使用&lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+>XTuner&lt;/a>进行微调，通过&lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
+>LMDeploy&lt;/a>实现部署，通过&lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
+>OpenCompass&lt;/a>进行全面评测，最终应用在&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
+>Lagent&lt;/a>构建的多模态智能体中。&lt;/p>
+&lt;p>这一全链条开源开放体系，为大模型的发展提供了创新性的方法，促使人工智能更好地服务于多样化的现实需求。&lt;/p>
+&lt;h3 id="数据覆盖多模态和任务">数据：覆盖多模态和任务&lt;/h3>
+&lt;p>全链条开源体系以&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
+>书生-万卷&lt;/a>为基础，涵盖了多模态和多任务的数据需求，为模型的学习提供了全面支持。&lt;/p>
+&lt;h4 id="opendatalab开放数据平台">OpenDataLab：开放数据平台&lt;/h4>
+&lt;p>&lt;a class="link" href="https://github.com/opendatalab" target="_blank" rel="noopener"
+>OpenDataLab&lt;/a>作为开放数据平台，不仅包含丰富多样的开放数据，还为大模型的发展提供了数据支持和实验平台。&lt;/p>
+&lt;h3 id="预训练并行训练极致优化">预训练：并行训练，极致优化&lt;/h3>
+&lt;p>&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
+>InterLM&lt;/a>采用并行训练的方式，通过极致优化实现了高效的预训练，为模型的通用性奠定基础。&lt;/p>
+&lt;h3 id="微调xtuner支持全参数微调支持lora等低成本微调">微调：XTuner，支持全参数微调，支持Lora等低成本微调&lt;/h3>
+&lt;p>微调阶段使用&lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+>XTuner&lt;/a>工具，支持全参数微调，同时还支持诸如Lora等低成本微调方法，使模型更好地适应各种特定任务。&lt;/p>
+&lt;p>特性：&lt;/p>
+&lt;ul>
+&lt;li>增量续训：让基座模型学习新知识，垂直领域&lt;/li>
+&lt;li>有监督微调：让模型学会理解和遵循各种指令。一般采用全量参数微调和部分参数微调等方法。&lt;/li>
+&lt;li>多种微调算法：多种微调策略与算法，覆盖各类SFT场景。&lt;/li>
+&lt;li>适配多种开源生态：支持加载HuggingFace、ModelScope模型或者数据级&lt;/li>
+&lt;li>自动优化加速：开发者无需关注复杂的显存优化和计算加速细节&lt;/li>
+&lt;/ul>
+&lt;h3 id="部署lmdeploy全链路部署性能领先">部署：LMDeploy，全链路部署，性能领先&lt;/h3>
+&lt;p>&lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
+>LMDeploy&lt;/a>提供了全链路部署的解决方案，包括模型轻量化、推理和服务，使得大模型在GPU上的部署更加高效，性能领先。&lt;/p>
+&lt;h3 id="评测opencompass全方位评测性能可以复现全球领先的大模型开源评测体系">评测：OpenCompass，全方位评测，性能可以复现，全球领先的大模型开源评测体系&lt;/h3>
+&lt;p>评测阶段使用&lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
+>OpenCompass&lt;/a>工具，全方位评测模型性能，保证了评测结果的复现性，成为全球领先的大模型开源评测体系。&lt;/p>
+&lt;p>特性：&lt;/p>
+&lt;ul>
+&lt;li>丰富模型支持：开源模型、API模型一站式评测。&lt;/li>
+&lt;li>分布式高效评测：支持千亿参数模型在海量数据集上分布式评测。&lt;/li>
+&lt;li>便捷的数据集接口：支持社区用户根据自身需求快速添加自定义数据集。&lt;/li>
+&lt;li>敏捷的能力迭代：每周更新大模型能力榜单。&lt;/li>
+&lt;/ul>
+&lt;h3 id="应用legentagentlego-支持多种智能体支持代码解释器和多种工具">应用：Legent、AgentLego 支持多种智能体，支持代码解释器和多种工具&lt;/h3>
+&lt;p>最终，模型的应用在&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
+>Legent&lt;/a>和&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
+>AgentLego&lt;/a>等多种智能体中得以体现，支持代码解释器和多种工具，实现了多模态智能体的灵活应用。&lt;/p>
+&lt;p>特性：&lt;/p>
+&lt;ul>
+&lt;li>丰富的工具集合，尤其是提供了大量视觉、多模态相关领域的工具。&lt;/li>
+&lt;li>支持多个主流智能体系统，如LangChain、Transformers Agent、Lagent等。&lt;/li>
+&lt;li>灵活的多模态工具调用接口，可以轻松支持各类输入输出格式的工具函数&lt;/li>
+&lt;li>一键式远程工具部署，轻松使用和调试大模型智能体。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>&lt;strong>相关链接：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>书生·浦语大模型实战营地址：&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>https://github.com/InternLM/tutorial&lt;/a>&lt;/li>
+&lt;li>书生·万卷开源地址：&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
+>https://github.com/opendatalab/WanJuan1.0&lt;/a>&lt;/li>
+&lt;li>InternLM开源地址：&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
+>https://github.com/InternLM/InternLM&lt;/a>&lt;/li>
+&lt;li>XTuner开源地址：&lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+>https://github.com/InternLM/xtuner&lt;/a>&lt;/li>
+&lt;li>LMDeploy开源地址：&lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
+>https://github.com/InternLM/lmdeploy&lt;/a>&lt;/li>
+&lt;li>OpenCompass开源地址：&lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
+>https://github.com/open-compass/opencompass&lt;/a>&lt;/li>
+&lt;li>OpenDataLab地址：&lt;a class="link" href="https://opendatalab.org.cn/" target="_blank" rel="noopener"
+>https://opendatalab.org.cn/&lt;/a>&lt;/li>
+&lt;li>OpenDataLab开源地址：&lt;a class="link" href="https://github.com/opendatalab" target="_blank" rel="noopener"
+>https://github.com/opendatalab&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>体验GitHub Copilot Labs：探索AI在编程领域的无限可能</title><link>https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/</link><pubDate>Wed, 15 Mar 2023 13:15:09 +0800</pubDate><guid>https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/</guid><description>&lt;img src="https://i-square.github.io/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg" alt="Featured image of post 体验GitHub Copilot Labs：探索AI在编程领域的无限可能" />&lt;h2 id="github-copilot-labs">GitHub Copilot Labs&lt;/h2>
 &lt;p>GitHub Copilot是一个基于人工智能的编程助手，它可以根据你输入的代码、注释、变量名等信息，自动给出可能符合你意图的代码建议。它可以帮助你快速完成各种编程任务，从简单的函数定义到复杂的算法实现。&lt;/p>
 &lt;p>GitHub Copilot Labs是一个与GitHub Copilot配套使用的VS Code扩展插件，它提供了一些实验性的功能，用来探索人工智能在编程领域的更多可能性。目前有四个功能可用：explain、translate、IDE Brushes和test generation，目前我只体验了前两个功能。&lt;/p>
 &lt;h2 id="安装和使用">安装和使用&lt;/h2>
