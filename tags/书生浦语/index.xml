@@ -1,4 +1,257 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>书生·浦语 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/</link><description>Recent content in 书生·浦语 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 09 Jan 2024 18:50:55 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.png" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>书生·浦语 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/</link><description>Recent content in 书生·浦语 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 10 Jan 2024 15:44:22 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.png" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第二节&lt;/p>
+&lt;ul>
+&lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1Ci4y1z72H/" target="_blank" rel="noopener"
+>B站_BV1Ci4y1z72H&lt;/a>&lt;/li>
+&lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/helloworld/hello_world.md" target="_blank" rel="noopener"
+>InternLM/tutorial_helloworld&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="笔记">笔记&lt;/h2>
+&lt;p>由于配套的说明文档已经记录的相当详细并且图文并茂，这节课丝毫没有记录笔记的必要，所以本文仅仅记录课后作业&lt;/p>
+&lt;h2 id="基础作业">基础作业&lt;/h2>
+&lt;h3 id="hf模型下载">HF模型下载&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：熟悉 &lt;code>hugging face&lt;/code> 下载功能，使用 &lt;code>huggingface_hub&lt;/code> python 包，下载 &lt;code>InternLM-20B&lt;/code> 的 &lt;code>config.json&lt;/code> 文件到本地（需截图下载过程）。&lt;/p>
+&lt;/blockquote>
+&lt;p>这个无需多言，只是基本的命令使用，需要注意的是，由于众所周知的原因，国内直接下载 &lt;code>hugging face&lt;/code> 是不行的，这里使用镜像站 &lt;a class="link" href="https://hf-mirror.com/" target="_blank" rel="noopener"
+>hf-mirror&lt;/a>。&lt;/p>
+&lt;ul>
+&lt;li>结果图：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/0_hf_download.png"
+width="1621"
+height="776"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/0_hf_download_hu499ec520d3afab854757ac9da67bb810_11368_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/0_hf_download_hu499ec520d3afab854757ac9da67bb810_11368_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="0_hf_download"
+class="gallery-image"
+data-flex-grow="208"
+data-flex-basis="501px"
+>&lt;/li>
+&lt;/ul>
+&lt;h3 id="浦语7b模型部署demo">浦语7B模型部署demo&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：使用 InternLM-Chat-7B 模型生成 300 字的小故事（需截图）。&lt;/p>
+&lt;/blockquote>
+&lt;p>这里我们可以使用两种demo来完成，分别是 &lt;code>cli_demo&lt;/code> 和 &lt;code>web_demo&lt;/code>，详细步骤参考配套教学文档，以下为大致总结：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>环境准备：&lt;/strong>
+&lt;ul>
+&lt;li>在 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+>InternStudio&lt;/a> 平台选择 A100(1/4) 的配置，使用 &lt;code>Cuda11.7-conda&lt;/code> 镜像。&lt;/li>
+&lt;li>打开开发机，进入终端，切换到 &lt;code>bash&lt;/code> 环境。&lt;/li>
+&lt;li>使用提供的脚本克隆并激活 &lt;code>pytorch 2.0.1&lt;/code> 的 &lt;code>conda&lt;/code> 环境，然后安装所需依赖。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>模型下载：&lt;/strong>
+&lt;ul>
+&lt;li>复制已准备好的 &lt;code>InternLM&lt;/code> 模型到指定目录，或使用 &lt;code>modelscope&lt;/code> 中的 &lt;code>snapshot_download&lt;/code> 函数下载模型（&lt;strong>推荐&lt;/strong>，跑满带宽），或在 &lt;code>huggingface&lt;/code>、&lt;code>OpenXLab&lt;/code> 等处下载。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>代码准备：&lt;/strong>
+&lt;ul>
+&lt;li>在 &lt;code>/root&lt;/code> 路径下新建 &lt;code>code&lt;/code> 目录，&lt;code>clone&lt;/code> 指定版本的代码。&lt;/li>
+&lt;li>在 &lt;code>/root/code/InternLM&lt;/code> 目录下新建 &lt;code>cli_demo.py&lt;/code> 文件，使用 &lt;code>transformers&lt;/code> 和 &lt;code>torch&lt;/code> 库运行大模型。&lt;/li>
+&lt;li>修改 &lt;code>/root/code/InternLM/web_demo.py&lt;/code> 中的模型路径为本地路径。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>终端运行：&lt;/strong>
+&lt;ul>
+&lt;li>运行 &lt;code>xxx_demo.py&lt;/code> 文件，即可体验 &lt;code>InternLM-Chat-7B&lt;/code> 模型的对话能力。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;em>使用的prompt：帮我生成一个300字的小故事，主角是打工人叫平方君，内容是他通过不断努力升职加薪、当上总经理、出任CEO、迎娶白富美、走上人生巅峰的励志故事&lt;/em>&lt;/p>
+&lt;h4 id="cli_demo">cli_demo&lt;/h4>
+&lt;ul>
+&lt;li>结果图：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_cli_demo.png"
+width="1577"
+height="274"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_cli_demo_hu99fda8c5f448e7626395faf60b70fb9d_12647_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_cli_demo_hu99fda8c5f448e7626395faf60b70fb9d_12647_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="1_cli_demo"
+class="gallery-image"
+data-flex-grow="575"
+data-flex-basis="1381px"
+>&lt;/li>
+&lt;/ul>
+&lt;h4 id="web_demo">web_demo&lt;/h4>
+&lt;p>由于 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+>InternStudio&lt;/a> 平台的开发机不能直接通过web访问，所以需要做一下端口映射，原理是利用 &lt;code>ssh&lt;/code> 做端口转发。&lt;/p>
+&lt;p>在本地主机运行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">ssh -CNg -L 8008:127.0.0.1:8008 root@ssh.intern-ai.org.cn -p &lt;span class="m">34664&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>各部分解释如下：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>ssh:&lt;/strong> 启动SSH客户端程序。&lt;/li>
+&lt;li>&lt;strong>-C:&lt;/strong> 启用压缩。数据传输时进行压缩，提高传输效率。&lt;/li>
+&lt;li>&lt;strong>-N:&lt;/strong> 不执行任何命令，主要用于纯粹建立连接。在这里，它告诉SSH客户端不要执行远程命令。&lt;/li>
+&lt;li>&lt;strong>-g:&lt;/strong> 允许远程主机连接到本地的转发端口。在这里，它允许其他主机连接到本地端口8008。&lt;/li>
+&lt;li>&lt;strong>-L 8008:127.0.0.1:8008:&lt;/strong> 设置本地端口转发。将本地端口8008转发到远程主机的127.0.0.1（即本地主机）的8008端口。&lt;/li>
+&lt;li>&lt;strong>&lt;a class="link" href="mailto:root@ssh.intern-ai.org.cn" >root@ssh.intern-ai.org.cn&lt;/a>:&lt;/strong> 远程SSH服务器的用户名和主机地址。&lt;/li>
+&lt;li>&lt;strong>-p 34664:&lt;/strong> 指定SSH服务器的端口号。&lt;/li>
+&lt;/ul>
+&lt;p>此命令的目的是在本地端口&lt;code>8008&lt;/code>上创建一个SSH隧道，将流量转发到远程服务器上的相同端口，同时允许其他主机通过该远程服务器连接到本地端口。&lt;/p>
+&lt;hr>
+&lt;p>作业部分：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>终端命令：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_web_demo_cmd.png"
+width="1199"
+height="315"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_web_demo_cmd_hu21a629fe185c1cf89f832c6c759b0d48_11983_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_web_demo_cmd_hu21a629fe185c1cf89f832c6c759b0d48_11983_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="1_web_demo_cmd"
+class="gallery-image"
+data-flex-grow="380"
+data-flex-basis="913px"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>结果图：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_web_demo.png"
+width="744"
+height="783"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_web_demo_hu710490253f319d20449554139d9d539f_37125_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_web_demo_hu710490253f319d20449554139d9d539f_37125_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="1_web_demo"
+class="gallery-image"
+data-flex-grow="95"
+data-flex-basis="228px"
+>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="进阶作业可选做">进阶作业（可选做）&lt;/h2>
+&lt;h3 id="lagent部署demo">Lagent部署demo&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：完成 &lt;code>Lagent&lt;/code> 工具调用 Demo 创作部署（需截图）&lt;/p>
+&lt;/blockquote>
+&lt;p>由于涉及到图形化操作，这里只有 &lt;code>web_demo&lt;/code>，详细步骤参考配套教学文档，以下为大致总结：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>环境准备：&lt;/strong>
+&lt;ul>
+&lt;li>沿用之前的环境。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>模型下载：&lt;/strong>
+&lt;ul>
+&lt;li>不再赘述。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Lagent 安装和修改代码：&lt;/strong>
+&lt;ul>
+&lt;li>切换到 &lt;code>/root/code&lt;/code> 目录，克隆 &lt;code>lagent&lt;/code> 仓库，并通过 &lt;code>pip install -e .&lt;/code> 源码安装。&lt;/li>
+&lt;li>修改 &lt;code>react_web_demo.py&lt;/code> 文件，替换为相应代码。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Demo 运行：&lt;/strong>
+&lt;ul>
+&lt;li>在终端运行 &lt;code>streamlit&lt;/code> 命令，启动 &lt;code>Web&lt;/code> 页面。&lt;/li>
+&lt;li>在浏览器中访问 &lt;code>http://127.0.0.1:8008&lt;/code> 查看 Demo。&lt;/li>
+&lt;li>选择 &lt;code>InternLM&lt;/code> 模型，输入问题，观察 &lt;code>Lagent&lt;/code> 调度并处理的过程。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>作业部分：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>终端命令：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/3_lagent_web_demo_cmd.png"
+width="1215"
+height="372"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/3_lagent_web_demo_cmd_huf9307425b8e4bd7b19b23abd694151b4_22417_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/3_lagent_web_demo_cmd_huf9307425b8e4bd7b19b23abd694151b4_22417_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="3_lagent_web_demo_cmd"
+class="gallery-image"
+data-flex-grow="326"
+data-flex-basis="783px"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>结果图：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/3_lagent_web_demo.png"
+width="1152"
+height="990"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/3_lagent_web_demo_hu8077bf684fa137e1dd412753bccca3a1_25738_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/3_lagent_web_demo_hu8077bf684fa137e1dd412753bccca3a1_25738_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="3_lagent_web_demo"
+class="gallery-image"
+data-flex-grow="116"
+data-flex-basis="279px"
+>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="浦语灵笔部署demo">浦语·灵笔部署demo&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：完成浦语·灵笔的图文理解及创作部署（需截图）&lt;/p>
+&lt;/blockquote>
+&lt;p>由于涉及到图形化操作，这里也只有 &lt;code>web_demo&lt;/code>，详细步骤参考配套教学文档，以下为大致总结：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>环境准备：&lt;/strong>
+&lt;ul>
+&lt;li>继续沿用之前的环境。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>模型下载：&lt;/strong>
+&lt;ul>
+&lt;li>用同样的方式，准备 &lt;code>internlm-xcomposer-7b&lt;/code> 模型到指定目录。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>代码准备：&lt;/strong>
+&lt;ul>
+&lt;li>在 &lt;code>/root/code&lt;/code> 目录下克隆 &lt;code>InternLM-XComposer&lt;/code> 仓库的代码，切换到指定的 commit 版本，以便对齐教学结果。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Demo 运行：&lt;/strong>
+&lt;ul>
+&lt;li>在终端运行 &lt;code>web_demo.py&lt;/code> 文件，启动 &lt;code>Web&lt;/code> 页面。&lt;/li>
+&lt;li>在浏览器中访问 &lt;code>http://127.0.0.1:8008&lt;/code>，体验图文理解创作的功能。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>作业部分： 从终端的log来看，浦语·灵笔的创作流程大致上是先用语言模型生成文章，再选取合适的图片插入点，然后在数据库里根据关键词搜索匹配的图片，之后下载图片，并组合生成一份 &lt;code>markdown&lt;/code> 文档。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>终端命令：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo_cmd.png"
+width="2206"
+height="5648"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo_cmd_huc420ff8248919de7c2b5d7333db1365b_566511_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo_cmd_huc420ff8248919de7c2b5d7333db1365b_566511_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="4_xcomposer_web_demo_cmd"
+class="gallery-image"
+data-flex-grow="39"
+data-flex-basis="93px"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>结果图1-图文生成：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1.png"
+width="1649"
+height="1314"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1_huad2742065b10b65ab0bb83bbc250b0e4_221384_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1_huad2742065b10b65ab0bb83bbc250b0e4_221384_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="4_xcomposer_web_demo1"
+class="gallery-image"
+data-flex-grow="125"
+data-flex-basis="301px"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>结果图2-多模态对话：&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2.png"
+width="1581"
+height="1105"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2_hu3d2a8f82c46d0e32ef88acc02b980a77_66778_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2_hu3d2a8f82c46d0e32ef88acc02b980a77_66778_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="4_xcomposer_web_demo2"
+class="gallery-image"
+data-flex-grow="143"
+data-flex-basis="343px"
+>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.png" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第一节，课程地址：&lt;a class="link" href="https://www.bilibili.com/video/BV1Rc411b7ns/" target="_blank" rel="noopener"
 >https://www.bilibili.com/video/BV1Rc411b7ns/&lt;/a>&lt;/p>
