@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 平方君的后花园</title><link>https://i-square.github.io/post/</link><description>Recent content in Posts on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 11 Jan 2024 16:56:30 +0800</lastBuildDate><atom:link href="https://i-square.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.png" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 平方君的后花园</title><link>https://i-square.github.io/post/</link><description>Recent content in Posts on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 11 Jan 2024 16:56:30 +0800</lastBuildDate><atom:link href="https://i-square.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.webp" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
->书生·浦语大模型实战营&lt;/a>的课程笔记系列第二节&lt;/p>
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第三节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1sT4y1p71V/" target="_blank" rel="noopener"
 >B站 BV1sT4y1p71V&lt;/a>&lt;/li>
@@ -198,7 +198,7 @@ data-flex-basis="423px"
 &lt;p>目标：选择一个垂直领域，收集该领域的专业资料构建专业知识库，并搭建专业问答助手，并在 &lt;a class="link" href="https://openxlab.org.cn/apps" target="_blank" rel="noopener"
 >OpenXLab&lt;/a> 上成功部署（截图，并提供应用地址）&lt;/p>
 &lt;/blockquote>
-&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.png" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.webp" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第二节&lt;/p>
 &lt;ul>
@@ -432,10 +432,10 @@ data-flex-basis="93px"
 &lt;ul>
 &lt;li>结果图1-图文生成：&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1.png"
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1.webp"
 width="1649"
 height="1314"
-srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1_huad2742065b10b65ab0bb83bbc250b0e4_221384_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1_huad2742065b10b65ab0bb83bbc250b0e4_221384_1024x0_resize_box_3.png 1024w"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1_hu40027a68ac8fe4cd5dcffe9b97848ec3_90100_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo1_hu40027a68ac8fe4cd5dcffe9b97848ec3_90100_1024x0_resize_q75_h2_box_2.webp 1024w"
 loading="lazy"
 alt="4_xcomposer_web_demo1"
 class="gallery-image"
@@ -445,16 +445,16 @@ data-flex-basis="301px"
 &lt;ul>
 &lt;li>结果图2-多模态对话：&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2.png"
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2.webp"
 width="1581"
 height="1105"
-srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2_hu3d2a8f82c46d0e32ef88acc02b980a77_66778_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2_hu3d2a8f82c46d0e32ef88acc02b980a77_66778_1024x0_resize_box_3.png 1024w"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2_hu22c55a1ac784658fb8301f51d84583ab_54784_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/4_xcomposer_web_demo2_hu22c55a1ac784658fb8301f51d84583ab_54784_1024x0_resize_q75_h2_box_2.webp 1024w"
 loading="lazy"
 alt="4_xcomposer_web_demo2"
 class="gallery-image"
 data-flex-grow="143"
 data-flex-basis="343px"
->&lt;/p></description></item><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.png" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言&lt;/h2>
+>&lt;/p></description></item><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.webp" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第一节，课程地址：&lt;a class="link" href="https://www.bilibili.com/video/BV1Rc411b7ns/" target="_blank" rel="noopener"
 >https://www.bilibili.com/video/BV1Rc411b7ns/&lt;/a>&lt;/p>
