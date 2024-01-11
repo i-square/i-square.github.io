@@ -1,11 +1,211 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 平方君的后花园</title><link>https://i-square.github.io/post/</link><description>Recent content in Posts on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 10 Jan 2024 15:44:22 +0800</lastBuildDate><atom:link href="https://i-square.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.png" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 平方君的后花园</title><link>https://i-square.github.io/post/</link><description>Recent content in Posts on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 11 Jan 2024 16:56:30 +0800</lastBuildDate><atom:link href="https://i-square.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.png" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第二节&lt;/p>
+&lt;ul>
+&lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1sT4y1p71V/" target="_blank" rel="noopener"
+>B站 BV1sT4y1p71V&lt;/a>&lt;/li>
+&lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/langchain/readme.md" target="_blank" rel="noopener"
+>InternLM/tutorial langchain&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="llm的局限性">LLM的局限性&lt;/h2>
+&lt;ul>
+&lt;li>知识时效性受限：如何让LLM能够获取最新的知识&lt;/li>
+&lt;li>专业能力有限：如何打造垂域大模型&lt;/li>
+&lt;li>定制化成本高：如何打造个人专属的LLM应用&lt;/li>
+&lt;/ul>
+&lt;h3 id="大模型开发范式">大模型开发范式&lt;/h3>
+&lt;p>解决局限性问题的两种方式是：&lt;/p>
+&lt;h4 id="1-rag">1. RAG&lt;/h4>
+&lt;p>RAG: Retrieval Augmented Generation，使用外挂数据库，检索相关知识增强生成结果，特点：&lt;/p>
+&lt;ul>
+&lt;li>低成本&lt;/li>
+&lt;li>可实时更新&lt;/li>
+&lt;li>受基座模型影响大&lt;/li>
+&lt;li>单次回答知识有限&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/RAG_flow.webp"
+width="690"
+height="668"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/RAG_flow_hue435df51197f5a26305e3a4eed1f11d8_13242_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/RAG_flow_hue435df51197f5a26305e3a4eed1f11d8_13242_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="RAG_frame"
+class="gallery-image"
+data-flex-grow="103"
+data-flex-basis="247px"
+>&lt;/p>
+&lt;ul>
+&lt;li>流程
+&lt;ol>
+&lt;li>输入文本转化为向量&lt;/li>
+&lt;li>在向量数据库中匹配相似文本&lt;/li>
+&lt;li>作为prompt在大模型中寻找答案&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="2-finetune">2. Finetune&lt;/h4>
+&lt;p>也即通称的微调，特点：&lt;/p>
+&lt;ul>
+&lt;li>可个性化微调&lt;/li>
+&lt;li>知识覆盖面广&lt;/li>
+&lt;li>成本高昂&lt;/li>
+&lt;li>无法实时更新&lt;/li>
+&lt;/ul>
+&lt;h2 id="基于-langchain-搭建-rag-应用">基于 LangChain 搭建 RAG 应用&lt;/h2>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain.webp"
+width="1104"
+height="790"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain_hudd7e07a76c7f5daf5a1b69019809a62c_30560_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain_hudd7e07a76c7f5daf5a1b69019809a62c_30560_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="rag_based_langchain"
+class="gallery-image"
+data-flex-grow="139"
+data-flex-basis="335px"
+>&lt;/p>
+&lt;h3 id="langchain框架简介">LangChain框架简介&lt;/h3>
+&lt;p>LangChain 框架是一个开源工具，通过为各种 LLM 提供通用接口来简化应用程序的开发流程，帮助开发者自由构建 LLM 应用。&lt;/p>
+&lt;p>LangChain 的核心组成模块：&lt;/p>
+&lt;ul>
+&lt;li>链 (Chains) ：将组件组合实现端到端应用，通过一个对象封装实现一系列LLM操作&lt;/li>
+&lt;li>Eg. 检索问答链，覆盖实现了 RAG （检索增强生成）的全部流程&lt;/li>
+&lt;/ul>
+&lt;h3 id="构建向量数据库">构建向量数据库&lt;/h3>
+&lt;h4 id="加载源文件">加载源文件&lt;/h4>
+&lt;ul>
+&lt;li>确定源文件类型，针对不同类型的源文件选用不同的加载器
+&lt;ul>
+&lt;li>核心在于将带格式的文本转化为无格式的字符串&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="文档分块">文档分块&lt;/h4>
+&lt;ul>
+&lt;li>由于单个文档往往超过模型上下文上限，我们需要对加载的文档进行切分
+&lt;ul>
+&lt;li>一般按字符串长度进行分割&lt;/li>
+&lt;li>可以手动控制分割块的长度和重叠区间长度&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="文档向量化">文档向量化&lt;/h4>
+&lt;ul>
+&lt;li>使用向量数据库来支持语义检索，需要将文档向量化存入向量数据库
+&lt;ul>
+&lt;li>可以使用任意一种 Embedding 模型来进行向量化&lt;/li>
+&lt;li>可以使用多种支持语义检索的向量数据库，一般使用轻量级的 Chroma&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="搭建知识库助手">搭建知识库助手&lt;/h3>
+&lt;h4 id="将-internlm-接入-langchain">将 InternLM 接入 LangChain&lt;/h4>
+&lt;ul>
+&lt;li>LangChain 支持自定义 LLM，可以直接接入到框架中&lt;/li>
+&lt;li>我们只需将 lnternLM 部署在本地，并封装一个自定义 LLM 类，调用本地 lnternLM 即可&lt;/li>
+&lt;/ul>
+&lt;h4 id="构建检索问答链">构建检索问答链&lt;/h4>
+&lt;ul>
+&lt;li>LangChain 提供了检索问答链模版，可以自动实现知识检索、Prompt 嵌入、LLM 问答的全部流程&lt;/li>
+&lt;li>将基于 lnternLM 的自定义 LLM 和已构建的向量数据库接入到检索问答链的上游&lt;/li>
+&lt;li>调用检索问答链，即可实现知识库助手的核心功能&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/query_answer_chain.webp"
+width="808"
+height="425"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/query_answer_chain_hu7a3dcadb9394bffe8a8eafd5905ccdc3_7082_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/query_answer_chain_hu7a3dcadb9394bffe8a8eafd5905ccdc3_7082_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="query_answer_chain"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="456px"
+>&lt;/p>
+&lt;h4 id="rag-方案优化建议">RAG 方案优化建议&lt;/h4>
+&lt;ul>
+&lt;li>基于RAG的问答系统性能核心受限于：
+&lt;ul>
+&lt;li>检索精度&lt;/li>
+&lt;li>Prompt性能&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一些可能的优化点：
+&lt;ul>
+&lt;li>检索方面：
+&lt;ul>
+&lt;li>基于语义分割，保证每一个chunk的语义完整&lt;/li>
+&lt;li>给每一个chunk生成概括式索引，检索时匹配索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Prompt方面
+&lt;ul>
+&lt;li>迭代优化Prompt策略&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="作业">作业&lt;/h2>
+&lt;h3 id="基础作业">基础作业&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：复现课程知识库助手搭建过程 (截图)&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="环境配置">环境配置&lt;/h4>
+&lt;p>本次沿用上节课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+>InternStudio&lt;/a> 平台开发机，省去了一些环境准备的时间，过程不再赘述，教学文档中有详细步骤。&lt;/p>
+&lt;h4 id="构建向量数据库-1">构建向量数据库&lt;/h4>
+&lt;ul>
+&lt;li>终端命令：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/create_db_cmd.png"
+width="2173"
+height="278"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/create_db_cmd_hud8229e4d622c983353773f9945aaccd3_24332_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/create_db_cmd_hud8229e4d622c983353773f9945aaccd3_24332_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="create_db_cmd"
+class="gallery-image"
+data-flex-grow="781"
+data-flex-basis="1875px"
+>&lt;/p>
+&lt;h4 id="web-demo">Web Demo&lt;/h4>
+&lt;ul>
+&lt;li>终端命令：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo_cmd.png"
+width="2180"
+height="258"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo_cmd_hua4068ac19bb600449ace1e52d26a44e6_22079_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo_cmd_hua4068ac19bb600449ace1e52d26a44e6_22079_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="gradio_demo_cmd"
+class="gallery-image"
+data-flex-grow="844"
+data-flex-basis="2027px"
+>&lt;/p>
+&lt;ul>
+&lt;li>结果图：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo.png"
+width="1543"
+height="874"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo_hu1cb02b189be1795ff0b6408c8207f27a_31308_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo_hu1cb02b189be1795ff0b6408c8207f27a_31308_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="gradio_demo"
+class="gallery-image"
+data-flex-grow="176"
+data-flex-basis="423px"
+>&lt;/p>
+&lt;ul>
+&lt;li>分析：从结果来看，大模型回答出了有关23年12月的问题，这不在它本身训练数据中，证明检索问答链是有效的。&lt;/li>
+&lt;/ul>
+&lt;h3 id="进阶作业">进阶作业&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：选择一个垂直领域，收集该领域的专业资料构建专业知识库，并搭建专业问答助手，并在 &lt;a class="link" href="https://openxlab.org.cn/apps" target="_blank" rel="noopener"
+>OpenXLab&lt;/a> 上成功部署（截图，并提供应用地址）&lt;/p>
+&lt;/blockquote>
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.png" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第二节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1Ci4y1z72H/" target="_blank" rel="noopener"
->B站_BV1Ci4y1z72H&lt;/a>&lt;/li>
+>B站 BV1Ci4y1z72H&lt;/a>&lt;/li>
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/helloworld/hello_world.md" target="_blank" rel="noopener"
->InternLM/tutorial_helloworld&lt;/a>&lt;/li>
+>InternLM/tutorial helloworld&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="笔记">笔记&lt;/h2>
 &lt;p>由于配套的说明文档已经记录的相当详细并且图文并茂，这节课丝毫没有记录笔记的必要，所以本文仅仅记录课后作业&lt;/p>
