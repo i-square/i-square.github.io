@@ -1,4 +1,241 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>学习笔记 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><description>Recent content in 学习笔记 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 11 Jan 2024 16:56:30 +0800</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.webp" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>学习笔记 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><description>Recent content in 学习笔记 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Jan 2024 09:50:54 +0800</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第四节&lt;/p>
+&lt;ul>
+&lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1yK4y1B75J/" target="_blank" rel="noopener"
+>B站 BV1yK4y1B75J&lt;/a>&lt;/li>
+&lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
+>InternLM/tutorial xtuner&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="finetune简介">Finetune简介&lt;/h2>
+&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到两种的微调模式&lt;/p>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune.webp"
+width="1441"
+height="105"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_huef66cf2caa2bdae3207a736027637305_15282_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_huef66cf2caa2bdae3207a736027637305_15282_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="finetune"
+class="gallery-image"
+data-flex-grow="1372"
+data-flex-basis="3293px"
+>&lt;/p>
+&lt;h3 id="增量预训练微调">增量预训练微调&lt;/h3>
+&lt;ul>
+&lt;li>使用场景：让基座模型学习到一些新知识，如某个垂类领域的常识&lt;/li>
+&lt;li>训练数据：文章、书籍、代码等&lt;/li>
+&lt;li>数据构成：没有 &lt;code>System&lt;/code> 和 &lt;code>Input&lt;/code>，只有 &lt;code>Output&lt;/code>，全部参与loss计算&lt;/li>
+&lt;/ul>
+&lt;h3 id="指令跟随微调">指令跟随微调&lt;/h3>
+&lt;ul>
+&lt;li>使用场景：让模型学会对话模板，根据人类指令进行对话&lt;/li>
+&lt;li>训练数据：高质量的对话、问答数据&lt;/li>
+&lt;li>数据构成：包含 &lt;code>System&lt;/code>、&lt;code>Input&lt;/code> 和 &lt;code>Output&lt;/code> ，但只有 &lt;code>Output&lt;/code> 部分参与loss计算&lt;/li>
+&lt;/ul>
+&lt;h3 id="对话模板">对话模板&lt;/h3>
+&lt;ul>
+&lt;li>对话模板是为了能够让 LLM 区分出 &lt;strong>System&lt;/strong>、&lt;strong>User&lt;/strong> 和 &lt;strong>Assistant&lt;/strong>&lt;/li>
+&lt;li>不同的模型会有不同的模板&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/chat_template.webp"
+width="1693"
+height="718"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/chat_template_hu3ec7abb32f2ce92791a8f7db528daec1_73986_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/chat_template_hu3ec7abb32f2ce92791a8f7db528daec1_73986_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="chat_template"
+class="gallery-image"
+data-flex-grow="235"
+data-flex-basis="565px"
+>&lt;/p>
+&lt;h3 id="lora--qlora">LoRA &amp;amp; QLoRA&lt;/h3>
+&lt;h4 id="lora-low-rank-adaptation-of-large-language-models">LoRA: Low-Rank Adaptation of Large Language Models&lt;/h4>
+&lt;ul>
+&lt;li>LLM 的参数量主要集中在模型中的 Linear, 训练这些参数会耗费大量的显存&lt;/li>
+&lt;li>LoRA 通过在原本的 Linear 旁，新增一个支路，包含两个连续的小 linear，新增的这个支路通常叫做 Adapter&lt;/li>
+&lt;li>Adapter 参数量远小于原本的 Linear，能大幅降低训练的显存消耗&lt;/li>
+&lt;/ul>
+&lt;h4 id="qlora-quantized-llms-with-low-rank-adapters">QLoRA: Quantized LLMs with Low-Rank Adapters&lt;/h4>
+&lt;ul>
+&lt;li>4位NormalFloat量化：这是一种改进量化的方法，确保每个量化仓中有相同数量的值，这避免了计算问题和异常值的错误。&lt;/li>
+&lt;li>双量化：对量化常量再次量化以节省额外内存的过程。&lt;/li>
+&lt;li>统一内存分页：它依赖于NVIDIA统一内存管理，自动处理CPU和GPU之间的页到页传输，它可以保证GPU处理无错，特别是在GPU可能耗尽内存的情况下。&lt;/li>
+&lt;/ul>
+&lt;h4 id="全量微调loraqlora对比">全量微调、LoRA、QLoRA对比&lt;/h4>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare.webp"
+width="1463"
+height="800"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare_hu683ce0fd2081c91d802ac80b2ad43a34_60268_480x0_resize_q75_h2_box_2.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare_hu683ce0fd2081c91d802ac80b2ad43a34_60268_1024x0_resize_q75_h2_box_2.webp 1024w"
+loading="lazy"
+alt="finetune_compare"
+class="gallery-image"
+data-flex-grow="182"
+data-flex-basis="438px"
+>&lt;/p>
+&lt;h2 id="xtuner简介">XTuner简介&lt;/h2>
+&lt;p>详见 &lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+>XTuner&lt;/a> 的官方仓库&lt;/p>
+&lt;h2 id="xtuner快速上手">XTuner快速上手&lt;/h2>
+&lt;p>参考配套教学文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
+>InternLM/tutorial xtuner&lt;/a>&lt;/p>
+&lt;h3 id="自定义微调数据">自定义微调数据&lt;/h3>
+&lt;p>按照教学文档，实操一遍即可，XTuner 上手确实很简单&lt;/p>
+&lt;h3 id="ms-agent-数据集">MS-Agent 数据集&lt;/h3>
+&lt;p>这个数据集比较有意思，能够赋予大模型调用api的agent能力，原理：&lt;/p>
+&lt;ul>
+&lt;li>模型的回复中会包括插件调用代码和执行代码
+&lt;ul>
+&lt;li>调用代码是 LLM 生成的&lt;/li>
+&lt;li>执行代码是需要调用服务来生成结果的，这里我们需要给 &lt;code>xtuner chat&lt;/code> 增加 &lt;code>--lagent&lt;/code> 参数来实现&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="lagent调用实战">lagent调用实战&lt;/h3>
+&lt;p>本次继续沿用之前课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+>InternStudio&lt;/a> 平台开发机&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># conda环境创建&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda create --name xtuner0.1.9 &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.10 -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda activate xtuner0.1.9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~ &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> mkdir xtuner019 &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> xtuner019
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone -b v0.1.9 https://gitee.com/Internlm/xtuner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> xtuner
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install -e &lt;span class="s1">&amp;#39;.[all]&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 资源准备&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir ~/ft-msagent &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="nb">cd&lt;/span> ~/ft-msagent
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -r /root/share/temp/model_repos/internlm-chat-7b/ .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 用modelscope下载微调参数&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install modelscope
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 保存 download.py&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat &lt;span class="s">&amp;lt;&amp;lt; EOF &amp;gt; download.py
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">from modelscope import snapshot_download
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">model_dir = snapshot_download(&amp;#39;xtuner/internlm-7b-qlora-msagent-react&amp;#39;)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 指定保存路径到当前目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">MODELSCOPE_CACHE&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="nb">pwd&lt;/span>&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python download.py &lt;span class="c1"># 模型下载到了 xtuner/internlm-7b-qlora-msagent-react&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置 serper 环境变量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">SERPER_API_KEY&lt;/span>&lt;span class="o">=&lt;/span>xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">xtuner chat ./internlm-chat-7b --adapter xtuner/internlm-7b-qlora-msagent-react --lagent
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 报错的话，按照教学文档处理&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vim /root/xtuner019/xtuner/xtuner/tools/chat.py &lt;span class="c1"># 按文档修改，注释掉139行 &amp;#39;trust_remote_code&amp;#39;: True&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重新启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">xtuner chat ./internlm-chat-7b --adapter xtuner/internlm-7b-qlora-msagent-react --lagent
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="测试验证">测试验证&lt;/h4>
+&lt;p>&lt;em>prompt: 你好，西安明天天气怎么样？&lt;/em>&lt;/p>
+&lt;ul>
+&lt;li>结果图：
+&lt;ul>
+&lt;li>教学视频里回答失败了，但我自己部署是成功的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/chat_lagent.png"
+width="1248"
+height="204"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/chat_lagent_hu5bafbf7b8738257202ae5dda08b0a37c_16529_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/chat_lagent_hu5bafbf7b8738257202ae5dda08b0a37c_16529_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="chat_lagent"
+class="gallery-image"
+data-flex-grow="611"
+data-flex-basis="1468px"
+>&lt;/p>
+&lt;h2 id="作业">作业&lt;/h2>
+&lt;h3 id="基础作业">基础作业&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：构建数据集，使用 XTuner 微调 InternLM-Chat-7B 模型, 让模型学习到它是你的智能小助手，效果如下图所示，本作业训练出来的模型的输出需要&lt;strong>将不要葱姜蒜大佬&lt;/strong>替换成自己名字或昵称！&lt;/p>
+&lt;/blockquote>
+&lt;p>作业参考文档： &lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/self.md" target="_blank" rel="noopener"
+>XTuner InternLM-Chat 个人小助手认知微调实践&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>训练最后的 eval chat结果已经有变化了：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/homework/eval_chat.png"
+width="945"
+height="430"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/homework/eval_chat_hu5e1a3206595256d802f2e2e466aed5e3_32738_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/homework/eval_chat_hu5e1a3206595256d802f2e2e466aed5e3_32738_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="eval_chat"
+class="gallery-image"
+data-flex-grow="219"
+data-flex-basis="527px"
+>&lt;/p>
+&lt;ul>
+&lt;li>Web Demo 结果图：
+&lt;ul>
+&lt;li>其中前3条是我给的训练数据，后面两条是模型自己学习到的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/homework/self.png"
+width="751"
+height="852"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/homework/self_hu86f2eef6c30de5d908adb3ca0ab1f673_21396_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/homework/self_hu86f2eef6c30de5d908adb3ca0ab1f673_21396_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="self"
+class="gallery-image"
+data-flex-grow="88"
+data-flex-basis="211px"
+>&lt;/p>
+&lt;h3 id="进阶作业">进阶作业&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：&lt;/p>
+&lt;ul>
+&lt;li>将训练好的Adapter模型权重上传到 OpenXLab、Hugging Face 或者 MoelScope 任一一平台。&lt;/li>
+&lt;li>将训练好后的模型应用部署到 OpenXLab 平台，参考部署文档请访问：https://aicarrier.feishu.cn/docx/MQH6dygcKolG37x0ekcc4oZhnCe&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.webp" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第三节&lt;/p>
 &lt;ul>
