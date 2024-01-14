@@ -1,4 +1,236 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>学习笔记 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><description>Recent content in 学习笔记 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Jan 2024 09:50:54 +0800</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>学习笔记 on 平方君的后花园</title><link>https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><description>Recent content in 学习笔记 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 14 Jan 2024 17:29:20 +0800</lastBuildDate><atom:link href="https://i-square.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</link><pubDate>Sun, 14 Jan 2024 17:29:20 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/cover.webp" alt="Featured image of post 书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第五节&lt;/p>
+&lt;ul>
+&lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1iW4y1A77P/" target="_blank" rel="noopener"
+>B站 BV1iW4y1A77P&lt;/a>&lt;/li>
+&lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/lmdeploy/lmdeploy.md" target="_blank" rel="noopener"
+>InternLM/tutorial lmdeploy&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="大模型部署背景">大模型部署背景&lt;/h2>
+&lt;h3 id="模型部署">模型部署&lt;/h3>
+&lt;ul>
+&lt;li>定义
+&lt;ul>
+&lt;li>将训练好的模型在特定软硬件环境中启动的过程，使模型能够接收输入并返回预测结果&lt;/li>
+&lt;li>为了满足性能和效率的需求，常常需要对模型进行优化，例如模型压缩和硬件加速&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>产品形态
+&lt;ul>
+&lt;li>云端、边缘计算端、移动端&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>计算设备
+&lt;ul>
+&lt;li>CPU、GPU、NPU、TPU 等&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="大模型特点">大模型特点&lt;/h3>
+&lt;ul>
+&lt;li>内存开销巨大
+&lt;ul>
+&lt;li>庞大的参数量。7B模型仅权重就需要 14+G 内存&lt;/li>
+&lt;li>采用自回归生成 token，需要缓存 Attention 的 k/v，带来巨大的内存开销&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>动态 shape
+&lt;ul>
+&lt;li>请求数不固定&lt;/li>
+&lt;li>Token 逐个生成，且数量不定&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>相对视觉模型，LLM 结构简单
+&lt;ul>
+&lt;li>Transformers 结构，大部分是 decoder-only&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="大模型部署挑战">大模型部署挑战&lt;/h3>
+&lt;ul>
+&lt;li>设备
+&lt;ul>
+&lt;li>如何应对巨大的存储问题？低存储设备（消费级显卡、手机等）如何部署？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>推理
+&lt;ul>
+&lt;li>如何加速 token 的生成速度&lt;/li>
+&lt;li>如何解决动态 shape，让推理可以不间断&lt;/li>
+&lt;li>如何有效管理和利用内存&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>服务如何提升系统整体吞吐量？&lt;/li>
+&lt;li>对于个体用户，如何降低响应时间？&lt;/li>
+&lt;/ul>
+&lt;h3 id="大模型部署方案">大模型部署方案&lt;/h3>
+&lt;ul>
+&lt;li>技术点
+&lt;ul>
+&lt;li>模型并行&lt;/li>
+&lt;li>低比特量化&lt;/li>
+&lt;li>Page Attention&lt;/li>
+&lt;li>transformer 计算和访存优化&lt;/li>
+&lt;li>Continuous Batch&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>方案
+&lt;ul>
+&lt;li>huggingface transformers&lt;/li>
+&lt;li>专门的推理加速框架
+&lt;ul>
+&lt;li>云端
+&lt;ul>
+&lt;li>lmdeploy&lt;/li>
+&lt;li>vllm&lt;/li>
+&lt;li>tensorrt-llm&lt;/li>
+&lt;li>deepspeed&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>移动端
+&lt;ul>
+&lt;li>llama.cpp&lt;/li>
+&lt;li>mlc-llm&lt;/li>
+&lt;li>&amp;hellip;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="lmdeploy-简介">LMDeploy 简介&lt;/h2>
+&lt;p>LMDeploy 是 LLM 在英伟达设备上部署的全流程解决方案。包括模型轻量化、推理和服务。项目地址： &lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
+>https://github.com/InternLM/lmdeploy&lt;/a>&lt;/p>
+&lt;p>LMDeploy 提供以下核心功能（细节详见官方仓库，这里不做赘述）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>高效推理引擎 TurboMind&lt;/strong>：开发了 Persistent Batch(即 Continuous Batch)，Blocked K/V Cache，动态拆分和融合，张量并行，高效的计算 kernel等重要特性，保障了 LLMs 推理时的高吞吐和低延时。&lt;/li>
+&lt;li>&lt;strong>有状态推理&lt;/strong>：通过缓存多轮对话过程中 attention 的 k/v，记住对话历史，从而避免重复处理历史会话。显著提升长文本多轮对话场景中的效率。&lt;/li>
+&lt;li>&lt;strong>量化&lt;/strong>：LMDeploy 支持多种量化方式和高效的量化模型推理。在不同规模的模型上，验证了量化的可靠性。&lt;/li>
+&lt;/ul>
+&lt;h2 id="动手实践环节安装部署量化">动手实践环节——安装、部署、量化&lt;/h2>
+&lt;p>跟着教学配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/lmdeploy/lmdeploy.md" target="_blank" rel="noopener"
+>InternLM/tutorial lmdeploy&lt;/a> 一步一步跟下来即可&lt;/p>
+&lt;h2 id="作业">作业&lt;/h2>
+&lt;h3 id="基础作业">基础作业&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：使用 LMDeploy 以本地对话、网页Gradio、API服务中的一种方式部署 InternLM-Chat-7B 模型，生成 300 字的小故事（需截图）&lt;/p>
+&lt;/blockquote>
+&lt;p>作业很简单，只需要几条命令即可，索性3种方式都来一遍，操作流程：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 离线转换&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lmdeploy convert internlm-chat-7b /root/share/temp/model_repos/internlm-chat-7b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 1. TurboMind 推理+命令行本地对话&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lmdeploy chat turbomind ./workspace
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2. TurboMind推理+API服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># server端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lmdeploy serve api_server ./workspace &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --server_name 0.0.0.0 &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --server_port &lt;span class="m">8888&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --instance_num &lt;span class="m">64&lt;/span> &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> --tp &lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># client端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lmdeploy serve api_client http://localhost:8888
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3. 网页gradio部署&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 先把端口转发一下&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh -CNg -L 8008:127.0.0.1:8008 root@ssh.intern-ai.org.cn -p &lt;span class="m">34664&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动server&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lmdeploy serve gradio ./workspace --server_port &lt;span class="m">8008&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 本地访问 127.0.0.1:8008进行对话&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;em>使用的prompt：帮我生成一个300字的小故事，主角是打工人叫平方君，内容是他通过不断努力升职加薪、当上总经理、出任CEO、迎娶白富美、走上人生巅峰的励志故事&lt;/em>&lt;/p>
+&lt;ul>
+&lt;li>本地对话结果：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/local_chat.png"
+width="1826"
+height="692"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/local_chat_hu1b070dc5ae132c510d996990e7d32982_94568_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/local_chat_hu1b070dc5ae132c510d996990e7d32982_94568_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="local_chat"
+class="gallery-image"
+data-flex-grow="263"
+data-flex-basis="633px"
+>&lt;/p>
+&lt;ul>
+&lt;li>API服务结果：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/api_chat.png"
+width="1690"
+height="762"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/api_chat_hu7b14bb89d694606f7938d2580a20275d_113193_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/api_chat_hu7b14bb89d694606f7938d2580a20275d_113193_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="api_chat"
+class="gallery-image"
+data-flex-grow="221"
+data-flex-basis="532px"
+>&lt;/p>
+&lt;ul>
+&lt;li>网页Gradio结果：&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/gradio_chat.png"
+width="1810"
+height="805"
+srcset="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/gradio_chat_hud19c95c02e191ef2ce4e1b26b957e5d9_38670_480x0_resize_box_3.png 480w, https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/homework/gradio_chat_hud19c95c02e191ef2ce4e1b26b957e5d9_38670_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+alt="gradio_chat"
+class="gallery-image"
+data-flex-grow="224"
+data-flex-basis="539px"
+>&lt;/p>
+&lt;h3 id="进阶作业可选做">进阶作业（可选做）&lt;/h3>
+&lt;blockquote>
+&lt;p>目标：&lt;/p>
+&lt;ul>
+&lt;li>将第四节课训练自我认知小助手模型使用 LMDeploy 量化部署到 OpenXLab 平台。&lt;/li>
+&lt;li>对internlm-chat-7b模型进行量化，并同时使用KV Cache量化，使用量化后的模型完成API服务的部署，分别对比模型量化前后和 KV Cache 量化前后的显存大小（将 bs设置为 1 和 max len 设置为512）。&lt;/li>
+&lt;li>在自己的任务数据集上任取若干条进行Benchmark测试，测试方向包括：&lt;br>
+（1）TurboMind推理+Python代码集成&lt;br>
+（2）在（1）的基础上采用W4A16量化&lt;br>
+（3）在（1）的基础上开启KV Cache量化&lt;br>
+（4）在（2）的基础上开启KV Cache量化&lt;br>
+（5）使用Huggingface推理&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第四节&lt;/p>
 &lt;ul>
