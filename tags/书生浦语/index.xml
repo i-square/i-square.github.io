@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>书生·浦语 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/</link><description>Recent content in 书生·浦语 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 14 Jan 2024 17:29:20 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</link><pubDate>Sun, 14 Jan 2024 17:29:20 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/cover.webp" alt="Featured image of post 书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践" />&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>书生·浦语 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/</link><description>Recent content in 书生·浦语 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Feb 2024 16:36:57 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（六）：OpenCompass大模型评测</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</link><pubDate>Sun, 04 Feb 2024 16:36:57 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/OpenCampass.svg" alt="Featured image of post 书生·浦语大模型实战营（六）：OpenCompass大模型评测" />&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>书生·浦语大模型实战营&lt;/a>的课程笔记系列第六节&lt;/p>
+&lt;ul>
+&lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1Gg4y1U7uc/" target="_blank" rel="noopener"
+>B站 BV1Gg4y1U7uc&lt;/a>&lt;/li>
+&lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/opencompass/opencompass_tutorial.md" target="_blank" rel="noopener"
+>InternLM/tutorial opencompass&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="关于评测的三个问题">关于评测的三个问题&lt;/h2>
+&lt;h3 id="为什么需要评测">为什么需要评测&lt;/h3>
+&lt;ul>
+&lt;li>模型选型&lt;/li>
+&lt;li>能力提升&lt;/li>
+&lt;li>应用场景效果评测&lt;/li>
+&lt;/ul>
+&lt;p>对于不同主体的看待角度来说：&lt;/p>
+&lt;ul>
+&lt;li>普通用户：了解模型的特色能力和实际效果&lt;/li>
+&lt;li>开发者：监控模型能力变化，指导优化模型生产&lt;/li>
+&lt;li>管理机构：减少大模型带来的社会风险&lt;/li>
+&lt;li>产业界：找出最适合产业应用的模型，赋能真实场景&lt;/li>
+&lt;/ul>
+&lt;h3 id="需要评测什么">需要评测什么&lt;/h3>
+&lt;ul>
+&lt;li>知识、推理、语言&lt;/li>
+&lt;li>长文本、智能体、多轮对话&lt;/li>
+&lt;li>情感、认知、价值观。&lt;/li>
+&lt;/ul>
+&lt;h3 id="怎么样测试大语言模型">怎么样测试大语言模型&lt;/h3>
+&lt;ul>
+&lt;li>自动化客观评测&lt;/li>
+&lt;li>人机交互评测&lt;/li>
+&lt;li>基于大模型的大模型评测&lt;/li>
+&lt;/ul>
+&lt;p>当然，也有其他评测角度，比如利用&lt;strong>提示词工程&lt;/strong>，评测大模型对prompt的敏感性，反映模型鲁棒性&lt;/p>
+&lt;h2 id="opencompass">OpenCompass&lt;/h2>
+&lt;p>这部分的介绍请参考官方文档和配套教学文档，这里不再赘述&lt;/p>
+&lt;ul>
+&lt;li>官方仓库： &lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
+>https://github.com/open-compass/opencompass&lt;/a>&lt;/li>
+&lt;li>官方教程： &lt;a class="link" href="https://opencompass.readthedocs.io/zh-cn/latest/" target="_blank" rel="noopener"
+>https://opencompass.readthedocs.io/zh-cn/latest/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="作业">作业&lt;/h2>
+&lt;h3 id="基础作业">基础作业&lt;/h3>
+&lt;blockquote>
+&lt;p>使用 OpenCompass 评测 InternLM2-Chat-7B 模型在 C-Eval 数据集上的性能&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>只需要把教学视频和配套文档里的 &lt;code>internlm-chat-7b&lt;/code> 模型修改为 &lt;code>internlm2-chat-7b&lt;/code> 评测即可，模型已经在开发机中了，路径： &lt;code>/share/model_repos/internlm2-chat-7b&lt;/code>&lt;/li>
+&lt;li>运行代码：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在 opencompass 目录和环境下&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">conda&lt;/span> &lt;span class="n">activate&lt;/span> &lt;span class="n">opencompass&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">python&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">datasets&lt;/span> &lt;span class="n">ceval_gen&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">hf&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">path&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">share&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">model_repos&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">internlm2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="n">b&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">tokenizer&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">path&lt;/span> &lt;span class="o">/&lt;/span>&lt;span class="n">share&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">model_repos&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">internlm2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="n">b&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">tokenizer&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">kwargs&lt;/span> &lt;span class="n">padding_side&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;left&amp;#39;&lt;/span> &lt;span class="n">truncation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;left&amp;#39;&lt;/span> &lt;span class="n">trust_remote_code&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">kwargs&lt;/span> &lt;span class="n">trust_remote_code&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span> &lt;span class="n">device_map&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;auto&amp;#39;&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="nb">max&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">seq&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nb">len&lt;/span> &lt;span class="mi">2048&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="nb">max&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">out&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nb">len&lt;/span> &lt;span class="mi">16&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">batch&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">size&lt;/span> &lt;span class="mi">4&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">num&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">gpus&lt;/span> &lt;span class="mi">1&lt;/span> \
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">--&lt;/span>&lt;span class="n">debug&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>跑评测耗时还挺久的，跑起来就去干别的了
+&lt;ul>
+&lt;li>然后由于开发机所剩算力不够被强制停机了，没看到最终结果 :P&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="进阶作业">进阶作业&lt;/h3>
+&lt;blockquote>
+&lt;p>使用 OpenCompass 评测 InternLM2-Chat-7B 模型使用 LMDeploy 0.2.0 部署后在 C-Eval 数据集上的性能&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>2种思路，时间关系就不实操了
+&lt;ol>
+&lt;li>使用api评测方式&lt;/li>
+&lt;li>使用 LMDeploy 转换的 turbomind 格式，参考教程：&lt;a class="link" href="https://opencompass.readthedocs.io/zh-cn/latest/advanced_guides/evaluation_turbomind.html" target="_blank" rel="noopener"
+>评测 LMDEPLOY 模型&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>本节课是实战营的最后一节课了，有始亦有终。&lt;/p>
+&lt;p>本次实战营的课程内容涵盖了大模型的全链路开源体系，从基础的模型理解，到趣味的实践Demo，再到知识库的搭建，微调实践，量化部署，以及模型评测，每一节课都在为我打开一个新的视角，让我对大模型有了更全面的认识。&lt;/p>
+&lt;p>这是一次丰富的学习经历，期待下一次的学习之旅！&lt;/p></description></item><item><title>书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</link><pubDate>Sun, 14 Jan 2024 17:29:20 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/cover.webp" alt="Featured image of post 书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践" />&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第五节&lt;/p>
 &lt;ul>
