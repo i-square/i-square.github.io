@@ -346,7 +346,7 @@ data-flex-basis="539px"
 >InternLM/tutorial xtuner&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="finetune简介">Finetune简介&lt;/h2>
-&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到两种的微调模式&lt;/p>
+&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到的两种微调模式&lt;/p>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune.webp"
 width="1441"
 height="105"
@@ -674,12 +674,12 @@ data-flex-basis="335px"
 &lt;h4 id="将-internlm-接入-langchain">将 InternLM 接入 LangChain&lt;/h4>
 &lt;ul>
 &lt;li>LangChain 支持自定义 LLM，可以直接接入到框架中&lt;/li>
-&lt;li>我们只需将 lnternLM 部署在本地，并封装一个自定义 LLM 类，调用本地 lnternLM 即可&lt;/li>
+&lt;li>我们只需将 InternLM 部署在本地，并封装一个自定义 LLM 类，调用本地 InternLM 即可&lt;/li>
 &lt;/ul>
 &lt;h4 id="构建检索问答链">构建检索问答链&lt;/h4>
 &lt;ul>
 &lt;li>LangChain 提供了检索问答链模版，可以自动实现知识检索、Prompt 嵌入、LLM 问答的全部流程&lt;/li>
-&lt;li>将基于 lnternLM 的自定义 LLM 和已构建的向量数据库接入到检索问答链的上游&lt;/li>
+&lt;li>将基于 InternLM 的自定义 LLM 和已构建的向量数据库接入到检索问答链的上游&lt;/li>
 &lt;li>调用检索问答链，即可实现知识库助手的核心功能&lt;/li>
 &lt;/ul>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/query_answer_chain.webp"

@@ -8,7 +8,7 @@
 >InternLM/tutorial xtuner&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="finetune简介">Finetune简介&lt;/h2>
-&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到两种的微调模式&lt;/p>
+&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到的两种微调模式&lt;/p>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune.webp"
 width="1441"
 height="105"
