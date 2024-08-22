@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPS on 平方君的后花园</title><link>https://i-square.github.io/tags/VPS/</link><description>Recent content in VPS on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 06 Mar 2017 09:24:30 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/VPS/index.xml" rel="self" type="application/rss+xml"/><item><title>增强VPS安全性的常用方法</title><link>https://i-square.github.io/p/Common-Ways-to-Enhance-VPS-Security/</link><pubDate>Mon, 06 Mar 2017 09:24:30 +0000</pubDate><guid>https://i-square.github.io/p/Common-Ways-to-Enhance-VPS-Security/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>因为之前提到的Gihub学生包，我入手了 &lt;code>DigitalOcean&lt;/code> 的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPS on 平方君的后花园</title><link>https://i-square.github.io/tags/VPS/</link><description>Recent content in VPS on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 06 Mar 2017 09:24:30 +0000</lastBuildDate><atom:link href="https://i-square.github.io/tags/VPS/index.xml" rel="self" type="application/rss+xml"/><item><title>增强VPS安全性的常用方法</title><link>https://i-square.github.io/p/Common-Ways-to-Enhance-VPS-Security/</link><pubDate>Mon, 06 Mar 2017 09:24:30 +0000</pubDate><guid>https://i-square.github.io/p/Common-Ways-to-Enhance-VPS-Security/</guid><description>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>因为之前提到的Gihub学生包，我入手了 &lt;code>DigitalOcean&lt;/code> 的VPS，由于刚刚接触VPS，对于VPS的安全性并没有什么概念，所以我直接使用一个汉化版PuTTY客户端，以root账户在22端口登录的，刚开始登录几次都没出现什么状况，然而隔天登录的时候就出现了类似以下的提示，这才让我产生了要提高VPS安全性的想法。&lt;/p>
 &lt;!-- more -->
 &lt;blockquote>
 &lt;p>Last failed login: Tue Feb 10 23:32:08 EST 2017 from static-15-64-34.rpnspl.com on ssh:notty
@@ -52,8 +52,8 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;li>如果还不放心，我们可以直接禁用密码登录验证VPS的方式，改用密钥登录，这样安全系数是相当高了&lt;/li>
 &lt;/ul>
 &lt;p>&lt;em>注：本人主机为CentOS 7 x64系统，以下内容均基于此环境&lt;/em>&lt;/p>
-&lt;h2 id="denyhosts攻击">Denyhosts攻击&lt;/h2>
-&lt;ol>
+&lt;h2 id="denyhosts攻击">Denyhosts攻击
+&lt;/h2>&lt;ol>
 &lt;li>Linux各平台现在基本上都可以直接安装Denyhosts了，直接运行命令安装&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -72,8 +72,8 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;p>如果你要自定义Denyhosts的相关配置，执行： &lt;code>vi /etc/denyhosts.conf&lt;/code> ，相关参数的说明可以自行搜索，一般用户默认即可。&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h2 id="修改ssh端口">修改SSH端口&lt;/h2>
-&lt;p>输入命令&lt;/p>
+&lt;h2 id="修改ssh端口">修改SSH端口
+&lt;/h2>&lt;p>输入命令&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -91,8 +91,8 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl restart sshd.service
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="禁用root账户">禁用Root账户&lt;/h2>
-&lt;p>禁用root账户之前，必须先新建一个新的账户。&lt;/p>
+&lt;/div>&lt;h2 id="禁用root账户">禁用Root账户
+&lt;/h2>&lt;p>禁用root账户之前，必须先新建一个新的账户。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -121,9 +121,9 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl restart sshd.service
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="使用密钥登录">使用密钥登录&lt;/h2>
-&lt;h3 id="生成密钥">生成密钥&lt;/h3>
-&lt;p>SSH登录方式有账号+密码和密钥认证两种形式，为了阻止暴力破解VPS的账号和密码，我们可以放弃密码验证的方式，改用密钥文件验证。&lt;/p>
+&lt;/div>&lt;h2 id="使用密钥登录">使用密钥登录
+&lt;/h2>&lt;h3 id="生成密钥">生成密钥
+&lt;/h3>&lt;p>SSH登录方式有账号+密码和密钥认证两种形式，为了阻止暴力破解VPS的账号和密码，我们可以放弃密码验证的方式，改用密钥文件验证。&lt;/p>
 &lt;p>以&lt;strong>普通用户&lt;/strong>(如user)执行以下命令，在VPS上生成密钥文件&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -144,8 +144,8 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>将id-rsa这个私钥文件用winSCP下载到本地，打开PuTTYGen软件，执行Conversions-&amp;gt;Import Key，导入这个私钥文件，然后选择Save private key，这时会在本地生成一个PPK文件，在PuTTY的 &lt;code>Connection/SSH/Auth&lt;/code> 中选择刚刚保存的PPK文件，以后即可用密钥认证登录VPS了。&lt;/p>
-&lt;h3 id="centos-7权限问题">CentOS 7权限问题&lt;/h3>
-&lt;p>CentOS 7系统下，用户user的home目录： &lt;code>/home/user&lt;/code> 的权限变成了 &lt;code>777&lt;/code> ，造成不能正常登陆SSH，报如下错误： &lt;code>Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)&lt;/code>&lt;/p>
+&lt;h3 id="centos-7权限问题">CentOS 7权限问题
+&lt;/h3>&lt;p>CentOS 7系统下，用户user的home目录： &lt;code>/home/user&lt;/code> 的权限变成了 &lt;code>777&lt;/code> ，造成不能正常登陆SSH，报如下错误： &lt;code>Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)&lt;/code>&lt;/p>
 &lt;p>SSH对公钥、私钥的权限和所有权的要求是非常严格的，总结如下：
 1、下面两个目录的所有权必须是 &lt;code>user&lt;/code> ，所属组也应该是 &lt;code>user&lt;/code> ，权限必须为 &lt;code>700&lt;/code>&lt;/p>
 &lt;blockquote>
@@ -204,8 +204,8 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl restart sshd.service
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="禁止密码登录">禁止密码登录&lt;/h3>
-&lt;p>&lt;strong>注意：请确认你已经可以通过密钥认证的方式登录VPS&lt;/strong>&lt;/p>
+&lt;/div>&lt;h3 id="禁止密码登录">禁止密码登录
+&lt;/h3>&lt;p>&lt;strong>注意：请确认你已经可以通过密钥认证的方式登录VPS&lt;/strong>&lt;/p>
 &lt;p>有了密钥登录VPS，我们就可以禁止用密码登录这种验证方式了，还是
 编辑SSH配置文件&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -225,5 +225,5 @@ Last login: Tue Feb 10 18:54:37 2017 from &lt;code>ip&lt;/code>&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">systemctl restart sshd.service
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="小结">小结&lt;/h2>
-&lt;p>通过以上这些措施可以有效防范暴力破解VPS，平时使用官方软件也是提升安全性的一大举措，总而言之，没有绝对的安全，但是只要我们平时稍加留心就不会给破解者可乘之机。&lt;/p></description></item></channel></rss>
+&lt;/div>&lt;h2 id="小结">小结
+&lt;/h2>&lt;p>通过以上这些措施可以有效防范暴力破解VPS，平时使用官方软件也是提升安全性的一大举措，总而言之，没有绝对的安全，但是只要我们平时稍加留心就不会给破解者可乘之机。&lt;/p></description></item></channel></rss>

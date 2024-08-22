@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>评测 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E8%AF%84%E6%B5%8B/</link><description>Recent content in 评测 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Feb 2024 16:36:57 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E8%AF%84%E6%B5%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（六）：OpenCompass大模型评测</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</link><pubDate>Sun, 04 Feb 2024 16:36:57 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/OpenCampass.svg" alt="Featured image of post 书生·浦语大模型实战营（六）：OpenCompass大模型评测" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>评测 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E8%AF%84%E6%B5%8B/</link><description>Recent content in 评测 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Feb 2024 16:36:57 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E8%AF%84%E6%B5%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（六）：OpenCompass大模型评测</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</link><pubDate>Sun, 04 Feb 2024 16:36:57 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/OpenCampass.svg" alt="Featured image of post 书生·浦语大模型实战营（六）：OpenCompass大模型评测" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第六节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1Gg4y1U7uc/" target="_blank" rel="noopener"
@@ -7,9 +7,9 @@
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/opencompass/opencompass_tutorial.md" target="_blank" rel="noopener"
 >InternLM/tutorial opencompass&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="关于评测的三个问题">关于评测的三个问题&lt;/h2>
-&lt;h3 id="为什么需要评测">为什么需要评测&lt;/h3>
-&lt;ul>
+&lt;h2 id="关于评测的三个问题">关于评测的三个问题
+&lt;/h2>&lt;h3 id="为什么需要评测">为什么需要评测
+&lt;/h3>&lt;ul>
 &lt;li>模型选型&lt;/li>
 &lt;li>能力提升&lt;/li>
 &lt;li>应用场景效果评测&lt;/li>
@@ -21,30 +21,30 @@
 &lt;li>管理机构：减少大模型带来的社会风险&lt;/li>
 &lt;li>产业界：找出最适合产业应用的模型，赋能真实场景&lt;/li>
 &lt;/ul>
-&lt;h3 id="需要评测什么">需要评测什么&lt;/h3>
-&lt;ul>
+&lt;h3 id="需要评测什么">需要评测什么
+&lt;/h3>&lt;ul>
 &lt;li>知识、推理、语言&lt;/li>
 &lt;li>长文本、智能体、多轮对话&lt;/li>
 &lt;li>情感、认知、价值观。&lt;/li>
 &lt;/ul>
-&lt;h3 id="怎么样测试大语言模型">怎么样测试大语言模型&lt;/h3>
-&lt;ul>
+&lt;h3 id="怎么样测试大语言模型">怎么样测试大语言模型
+&lt;/h3>&lt;ul>
 &lt;li>自动化客观评测&lt;/li>
 &lt;li>人机交互评测&lt;/li>
 &lt;li>基于大模型的大模型评测&lt;/li>
 &lt;/ul>
 &lt;p>当然，也有其他评测角度，比如利用&lt;strong>提示词工程&lt;/strong>，评测大模型对prompt的敏感性，反映模型鲁棒性&lt;/p>
-&lt;h2 id="opencompass">OpenCompass&lt;/h2>
-&lt;p>这部分的介绍请参考官方文档和配套教学文档，这里不再赘述&lt;/p>
+&lt;h2 id="opencompass">OpenCompass
+&lt;/h2>&lt;p>这部分的介绍请参考官方文档和配套教学文档，这里不再赘述&lt;/p>
 &lt;ul>
 &lt;li>官方仓库： &lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
 >https://github.com/open-compass/opencompass&lt;/a>&lt;/li>
 &lt;li>官方教程： &lt;a class="link" href="https://opencompass.readthedocs.io/zh-cn/latest/" target="_blank" rel="noopener"
 >https://opencompass.readthedocs.io/zh-cn/latest/&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="作业">作业&lt;/h2>
-&lt;h3 id="基础作业">基础作业&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="作业">作业
+&lt;/h2>&lt;h3 id="基础作业">基础作业
+&lt;/h3>&lt;blockquote>
 &lt;p>使用 OpenCompass 评测 InternLM2-Chat-7B 模型在 C-Eval 数据集上的性能&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -88,8 +88,8 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="进阶作业">进阶作业&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="进阶作业">进阶作业
+&lt;/h3>&lt;blockquote>
 &lt;p>使用 OpenCompass 评测 InternLM2-Chat-7B 模型使用 LMDeploy 0.2.0 部署后在 C-Eval 数据集上的性能&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -101,7 +101,7 @@
 &lt;/ol>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>本节课是实战营的最后一节课了，有始亦有终。&lt;/p>
+&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>本节课是实战营的最后一节课了，有始亦有终。&lt;/p>
 &lt;p>本次实战营的课程内容涵盖了大模型的全链路开源体系，从基础的模型理解，到趣味的实践Demo，再到知识库的搭建，微调实践，量化部署，以及模型评测，每一节课都在为我打开一个新的视角，让我对大模型有了更全面的认识。&lt;/p>
 &lt;p>这是一次丰富的学习经历，期待下一次的学习之旅！&lt;/p></description></item></channel></rss>

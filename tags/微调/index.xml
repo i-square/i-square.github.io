@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>微调 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E5%BE%AE%E8%B0%83/</link><description>Recent content in 微调 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Jan 2024 09:50:54 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E5%BE%AE%E8%B0%83/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>微调 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E5%BE%AE%E8%B0%83/</link><description>Recent content in 微调 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 12 Jan 2024 09:50:54 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E5%BE%AE%E8%B0%83/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第四节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1yK4y1B75J/" target="_blank" rel="noopener"
@@ -7,8 +7,8 @@
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
 >InternLM/tutorial xtuner&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="finetune简介">Finetune简介&lt;/h2>
-&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到的两种微调模式&lt;/p>
+&lt;h2 id="finetune简介">Finetune简介
+&lt;/h2>&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到的两种微调模式&lt;/p>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune.webp"
 width="1441"
 height="105"
@@ -19,20 +19,20 @@ class="gallery-image"
 data-flex-grow="1372"
 data-flex-basis="3293px"
 >&lt;/p>
-&lt;h3 id="增量预训练微调">增量预训练微调&lt;/h3>
-&lt;ul>
+&lt;h3 id="增量预训练微调">增量预训练微调
+&lt;/h3>&lt;ul>
 &lt;li>使用场景：让基座模型学习到一些新知识，如某个垂类领域的常识&lt;/li>
 &lt;li>训练数据：文章、书籍、代码等&lt;/li>
 &lt;li>数据构成：没有 &lt;code>System&lt;/code> 和 &lt;code>Input&lt;/code>，只有 &lt;code>Output&lt;/code>，全部参与loss计算&lt;/li>
 &lt;/ul>
-&lt;h3 id="指令跟随微调">指令跟随微调&lt;/h3>
-&lt;ul>
+&lt;h3 id="指令跟随微调">指令跟随微调
+&lt;/h3>&lt;ul>
 &lt;li>使用场景：让模型学会对话模板，根据人类指令进行对话&lt;/li>
 &lt;li>训练数据：高质量的对话、问答数据&lt;/li>
 &lt;li>数据构成：包含 &lt;code>System&lt;/code>、&lt;code>Input&lt;/code> 和 &lt;code>Output&lt;/code> ，但只有 &lt;code>Output&lt;/code> 部分参与loss计算&lt;/li>
 &lt;/ul>
-&lt;h3 id="对话模板">对话模板&lt;/h3>
-&lt;ul>
+&lt;h3 id="对话模板">对话模板
+&lt;/h3>&lt;ul>
 &lt;li>对话模板是为了能够让 LLM 区分出 &lt;strong>System&lt;/strong>、&lt;strong>User&lt;/strong> 和 &lt;strong>Assistant&lt;/strong>&lt;/li>
 &lt;li>不同的模型会有不同的模板&lt;/li>
 &lt;/ul>
@@ -46,21 +46,21 @@ class="gallery-image"
 data-flex-grow="235"
 data-flex-basis="565px"
 >&lt;/p>
-&lt;h3 id="lora--qlora">LoRA &amp;amp; QLoRA&lt;/h3>
-&lt;h4 id="lora-low-rank-adaptation-of-large-language-models">LoRA: Low-Rank Adaptation of Large Language Models&lt;/h4>
-&lt;ul>
+&lt;h3 id="lora--qlora">LoRA &amp;amp; QLoRA
+&lt;/h3>&lt;h4 id="lora-low-rank-adaptation-of-large-language-models">LoRA: Low-Rank Adaptation of Large Language Models
+&lt;/h4>&lt;ul>
 &lt;li>LLM 的参数量主要集中在模型中的 Linear, 训练这些参数会耗费大量的显存&lt;/li>
 &lt;li>LoRA 通过在原本的 Linear 旁，新增一个支路，包含两个连续的小 linear，新增的这个支路通常叫做 Adapter&lt;/li>
 &lt;li>Adapter 参数量远小于原本的 Linear，能大幅降低训练的显存消耗&lt;/li>
 &lt;/ul>
-&lt;h4 id="qlora-quantized-llms-with-low-rank-adapters">QLoRA: Quantized LLMs with Low-Rank Adapters&lt;/h4>
-&lt;ul>
+&lt;h4 id="qlora-quantized-llms-with-low-rank-adapters">QLoRA: Quantized LLMs with Low-Rank Adapters
+&lt;/h4>&lt;ul>
 &lt;li>4位NormalFloat量化：这是一种改进量化的方法，确保每个量化仓中有相同数量的值，这避免了计算问题和异常值的错误。&lt;/li>
 &lt;li>双量化：对量化常量再次量化以节省额外内存的过程。&lt;/li>
 &lt;li>统一内存分页：它依赖于NVIDIA统一内存管理，自动处理CPU和GPU之间的页到页传输，它可以保证GPU处理无错，特别是在GPU可能耗尽内存的情况下。&lt;/li>
 &lt;/ul>
-&lt;h4 id="全量微调loraqlora对比">全量微调、LoRA、QLoRA对比&lt;/h4>
-&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare.webp"
+&lt;h4 id="全量微调loraqlora对比">全量微调、LoRA、QLoRA对比
+&lt;/h4>&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare.webp"
 width="1463"
 height="800"
 srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare_hu951007297494479200.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare_hu11609811338984103858.webp 1024w"
@@ -70,16 +70,16 @@ class="gallery-image"
 data-flex-grow="182"
 data-flex-basis="438px"
 >&lt;/p>
-&lt;h2 id="xtuner简介">XTuner简介&lt;/h2>
-&lt;p>详见 &lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+&lt;h2 id="xtuner简介">XTuner简介
+&lt;/h2>&lt;p>详见 &lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
 >XTuner&lt;/a> 的官方仓库&lt;/p>
-&lt;h2 id="xtuner快速上手">XTuner快速上手&lt;/h2>
-&lt;p>参考配套教学文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
+&lt;h2 id="xtuner快速上手">XTuner快速上手
+&lt;/h2>&lt;p>参考配套教学文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
 >InternLM/tutorial xtuner&lt;/a>&lt;/p>
-&lt;h3 id="自定义微调数据">自定义微调数据&lt;/h3>
-&lt;p>按照教学文档，实操一遍即可，XTuner 上手确实很简单&lt;/p>
-&lt;h3 id="ms-agent-数据集">MS-Agent 数据集&lt;/h3>
-&lt;p>这个数据集比较有意思，能够赋予大模型调用api的agent能力，原理：&lt;/p>
+&lt;h3 id="自定义微调数据">自定义微调数据
+&lt;/h3>&lt;p>按照教学文档，实操一遍即可，XTuner 上手确实很简单&lt;/p>
+&lt;h3 id="ms-agent-数据集">MS-Agent 数据集
+&lt;/h3>&lt;p>这个数据集比较有意思，能够赋予大模型调用api的agent能力，原理：&lt;/p>
 &lt;ul>
 &lt;li>模型的回复中会包括插件调用代码和执行代码
 &lt;ul>
@@ -88,8 +88,8 @@ data-flex-basis="438px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="lagent调用实战">lagent调用实战&lt;/h3>
-&lt;p>本次继续沿用之前课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+&lt;h3 id="lagent调用实战">lagent调用实战
+&lt;/h3>&lt;p>本次继续沿用之前课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
 >InternStudio&lt;/a> 平台开发机&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -171,8 +171,8 @@ data-flex-basis="438px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">xtuner chat ./internlm-chat-7b --adapter xtuner/internlm-7b-qlora-msagent-react --lagent
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h4 id="测试验证">测试验证&lt;/h4>
-&lt;p>&lt;em>prompt: 你好，西安明天天气怎么样？&lt;/em>&lt;/p>
+&lt;/div>&lt;h4 id="测试验证">测试验证
+&lt;/h4>&lt;p>&lt;em>prompt: 你好，西安明天天气怎么样？&lt;/em>&lt;/p>
 &lt;ul>
 &lt;li>结果图：
 &lt;ul>
@@ -190,9 +190,9 @@ class="gallery-image"
 data-flex-grow="611"
 data-flex-basis="1468px"
 >&lt;/p>
-&lt;h2 id="作业">作业&lt;/h2>
-&lt;h3 id="基础作业">基础作业&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="作业">作业
+&lt;/h2>&lt;h3 id="基础作业">基础作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：构建数据集，使用 XTuner 微调 InternLM-Chat-7B 模型, 让模型学习到它是你的智能小助手，效果如下图所示，本作业训练出来的模型的输出需要&lt;strong>将不要葱姜蒜大佬&lt;/strong>替换成自己名字或昵称！&lt;/p>
 &lt;/blockquote>
 &lt;p>作业参考文档： &lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/self.md" target="_blank" rel="noopener"
@@ -227,8 +227,8 @@ class="gallery-image"
 data-flex-grow="88"
 data-flex-basis="211px"
 >&lt;/p>
-&lt;h3 id="进阶作业">进阶作业&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="进阶作业">进阶作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：&lt;/p>
 &lt;ul>
 &lt;li>将训练好的Adapter模型权重上传到 OpenXLab、Hugging Face 或者 MoelScope 任一一平台。&lt;/li>

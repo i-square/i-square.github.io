@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on 平方君的后花园</title><link>https://i-square.github.io/page/</link><description>Recent content in Pages on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Feb 2017 18:00:00 +0800</lastBuildDate><atom:link href="https://i-square.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>关于 | About</title><link>https://i-square.github.io/about/</link><pubDate>Thu, 23 Feb 2017 18:00:00 +0800</pubDate><guid>https://i-square.github.io/about/</guid><description>&lt;blockquote>
 &lt;p>佛曰： 一花一世界，一叶一菩提。&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;span>《华严经》&lt;/span>&lt;cite>&lt;/cite>&lt;/span>&lt;/blockquote>
-&lt;h2 id="hello-world">Hello World&lt;/h2>
-&lt;p>我是 &lt;code>i-square&lt;/code>，一个兴趣使然的程序员。&lt;/p>
+&lt;h2 id="hello-world">Hello World
+&lt;/h2>&lt;p>我是 &lt;code>i-square&lt;/code>，一个兴趣使然的程序员。&lt;/p>
 &lt;p>欢迎来到我的博客，这里是我分享日常、心得、体验的地方。&lt;/p>
-&lt;h2 id="blog-history">Blog History&lt;/h2>
-&lt;p>这个博客是基于 &lt;code>Hugo&lt;/code> 和 &lt;code>GitHub Pages&lt;/code> 的静态博客，使用了 &lt;code>Markdown&lt;/code> 作为写作方式。&lt;/p>
+&lt;h2 id="blog-history">Blog History
+&lt;/h2>&lt;p>这个博客是基于 &lt;code>Hugo&lt;/code> 和 &lt;code>GitHub Pages&lt;/code> 的静态博客，使用了 &lt;code>Markdown&lt;/code> 作为写作方式。&lt;/p>
 &lt;p>这并不是我的第一个博客。从2013年开始，我先后折腾过各种博客平台，但都没有坚持多久，在此留个记录：&lt;/p>
 &lt;ul>
 &lt;li>2013年2月15日：初次接触 &lt;code>Wordpress&lt;/code> 搭建自己的第一个独立博客（折腾了虚拟主机、域名、CDN等）&lt;/li>
@@ -14,8 +14,8 @@
 &lt;li>2018~2023年：毕业、工作、没有折腾博客&lt;/li>
 &lt;li>2023年2月8日：从 &lt;code>Hexo&lt;/code> 迁移到 &lt;code>Hugo&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;h2 id="contact-me">Contact Me&lt;/h2>
-&lt;ul>
+&lt;h2 id="contact-me">Contact Me
+&lt;/h2>&lt;ul>
 &lt;li>GitHub：&lt;a class="link" href="https://github.com/i-square" target="_blank" rel="noopener"
 >i-square&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>标签 | Tags</title><link>https://i-square.github.io/tags/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://i-square.github.io/tags/</guid><description/></item><item><title>分类 | Categories</title><link>https://i-square.github.io/categories/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://i-square.github.io/categories/</guid><description/></item><item><title>归档 | Archives</title><link>https://i-square.github.io/archives/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://i-square.github.io/archives/</guid><description/></item><item><title>链接 | Links</title><link>https://i-square.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://i-square.github.io/links/</guid><description/></item><item><title>搜索 | Search</title><link>https://i-square.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://i-square.github.io/search/</guid><description/></item></channel></rss>

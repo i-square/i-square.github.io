@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Windows on 平方君的后花园</title><link>https://i-square.github.io/tags/windows/</link><description>Recent content in Windows on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 25 Aug 2022 17:55:27 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>高效冲浪指北</title><link>https://i-square.github.io/p/Guide-to-Efficient-Surfing/</link><pubDate>Thu, 25 Aug 2022 17:55:27 +0800</pubDate><guid>https://i-square.github.io/p/Guide-to-Efficient-Surfing/</guid><description>&lt;img src="https://i-square.github.io/p/Guide-to-Efficient-Surfing/wave-riding.svg" alt="Featured image of post 高效冲浪指北" />&lt;h2 id="引言">引言&lt;/h2>
-&lt;h3 id="分享内容">分享内容&lt;/h3>
-&lt;ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Windows on 平方君的后花园</title><link>https://i-square.github.io/tags/windows/</link><description>Recent content in Windows on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 25 Aug 2022 17:55:27 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>高效冲浪指北</title><link>https://i-square.github.io/p/Guide-to-Efficient-Surfing/</link><pubDate>Thu, 25 Aug 2022 17:55:27 +0800</pubDate><guid>https://i-square.github.io/p/Guide-to-Efficient-Surfing/</guid><description>&lt;img src="https://i-square.github.io/p/Guide-to-Efficient-Surfing/wave-riding.svg" alt="Featured image of post 高效冲浪指北" />&lt;h2 id="引言">引言
+&lt;/h2>&lt;h3 id="分享内容">分享内容
+&lt;/h3>&lt;ul>
 &lt;li>工具推荐&lt;/li>
 &lt;li>方法分享&lt;/li>
 &lt;li>开拓思路&lt;/li>
 &lt;/ul>
-&lt;h3 id="如何高效">如何高效？&lt;/h3>
-&lt;ul>
+&lt;h3 id="如何高效">如何高效？
+&lt;/h3>&lt;ul>
 &lt;li>聚焦：摒除杂质&lt;/li>
 &lt;li>有序：有条不紊&lt;/li>
 &lt;li>简化：化繁为简&lt;/li>
 &lt;/ul>
-&lt;h2 id="浏览器">浏览器&lt;/h2>
-&lt;h3 id="发展史">发展史&lt;/h3>
-&lt;h4 id="内核">内核&lt;/h4>
-&lt;ul>
+&lt;h2 id="浏览器">浏览器
+&lt;/h2>&lt;h3 id="发展史">发展史
+&lt;/h3>&lt;h4 id="内核">内核
+&lt;/h4>&lt;ul>
 &lt;li>Trident（IE） -&amp;gt; EdgeHTML（早期edge）&lt;/li>
 &lt;li>KHTML -&amp;gt; WebKit （早期Safari）&lt;/li>
 &lt;li>↘ Chromium（早期chrome）-&amp;gt; Blink（后期chrome等）&lt;/li>
@@ -22,8 +22,8 @@
 &lt;li>Gecko（早期firefox） -&amp;gt; Servo&lt;/li>
 &lt;li>Presto（早期opera）&lt;/li>
 &lt;/ul>
-&lt;h4 id="浏览器大战">浏览器大战&lt;/h4>
-&lt;ul>
+&lt;h4 id="浏览器大战">浏览器大战
+&lt;/h4>&lt;ul>
 &lt;li>第一次大战：垄断之战
 &lt;ul>
 &lt;li>Netscape Navigator&lt;/li>
@@ -43,58 +43,58 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="扩展">扩展&lt;/h3>
-&lt;h3 id="广告过滤">广告过滤&lt;/h3>
-&lt;ul>
+&lt;h3 id="扩展">扩展
+&lt;/h3>&lt;h3 id="广告过滤">广告过滤
+&lt;/h3>&lt;ul>
 &lt;li>Adblock Plus/AdBlock&lt;/li>
 &lt;li>uBlock Origin&lt;/li>
 &lt;/ul>
-&lt;h3 id="脚本管理">脚本管理&lt;/h3>
-&lt;ul>
+&lt;h3 id="脚本管理">脚本管理
+&lt;/h3>&lt;ul>
 &lt;li>Greasemonkey&lt;/li>
 &lt;li>Violentmonkey&lt;/li>
 &lt;li>Tampermonkey&lt;/li>
 &lt;/ul>
-&lt;h3 id="网络代理">网络代理&lt;/h3>
-&lt;ul>
+&lt;h3 id="网络代理">网络代理
+&lt;/h3>&lt;ul>
 &lt;li>AutoProxy&lt;/li>
 &lt;li>SwitchyOmega&lt;/li>
 &lt;/ul>
-&lt;h3 id="键盘导航">键盘导航&lt;/h3>
-&lt;ul>
+&lt;h3 id="键盘导航">键盘导航
+&lt;/h3>&lt;ul>
 &lt;li>Vimium&lt;/li>
 &lt;li>Surfingkeys&lt;/li>
 &lt;/ul>
-&lt;h2 id="实用工具">实用工具&lt;/h2>
-&lt;h3 id="全局广告过滤">全局广告过滤&lt;/h3>
-&lt;h4 id="路由器openwrt">路由器(OpenWrt)&lt;/h4>
-&lt;ul>
+&lt;h2 id="实用工具">实用工具
+&lt;/h2>&lt;h3 id="全局广告过滤">全局广告过滤
+&lt;/h3>&lt;h4 id="路由器openwrt">路由器(OpenWrt)
+&lt;/h4>&lt;ul>
 &lt;li>Adbyby&lt;/li>
 &lt;li>KoolProxy&lt;/li>
 &lt;/ul>
-&lt;h4 id="桌面端">桌面端&lt;/h4>
-&lt;ul>
+&lt;h4 id="桌面端">桌面端
+&lt;/h4>&lt;ul>
 &lt;li>hosts&lt;/li>
 &lt;li>AdGuard&lt;/li>
 &lt;/ul>
-&lt;h3 id="全局代理管理">全局代理管理&lt;/h3>
-&lt;ul>
+&lt;h3 id="全局代理管理">全局代理管理
+&lt;/h3>&lt;ul>
 &lt;li>系统代理&lt;/li>
 &lt;li>Proxifier&lt;/li>
 &lt;/ul>
-&lt;h3 id="全局手势">全局手势&lt;/h3>
-&lt;h4 id="鼠标手势">鼠标手势&lt;/h4>
-&lt;ul>
+&lt;h3 id="全局手势">全局手势
+&lt;/h3>&lt;h4 id="鼠标手势">鼠标手势
+&lt;/h4>&lt;ul>
 &lt;li>Win：WGestures/StrokesPlus&lt;/li>
 &lt;li>Ubuntu：EasyStroke&lt;/li>
 &lt;/ul>
-&lt;h4 id="触摸板手势">触摸板手势&lt;/h4>
-&lt;ul>
+&lt;h4 id="触摸板手势">触摸板手势
+&lt;/h4>&lt;ul>
 &lt;li>Win：GestureSign&lt;/li>
 &lt;li>Mac：Jitouch&lt;/li>
 &lt;/ul>
-&lt;h3 id="多任务管理">多任务管理&lt;/h3>
-&lt;ul>
+&lt;h3 id="多任务管理">多任务管理
+&lt;/h3>&lt;ul>
 &lt;li>单机：多桌面+单桌面任务聚焦&lt;/li>
 &lt;li>多机
 &lt;ul>
@@ -103,9 +103,9 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="终端">终端&lt;/h2>
-&lt;h4 id="模拟器">模拟器&lt;/h4>
-&lt;ul>
+&lt;h2 id="终端">终端
+&lt;/h2>&lt;h4 id="模拟器">模拟器
+&lt;/h4>&lt;ul>
 &lt;li>Win：XShell/SecureCRT&lt;/li>
 &lt;li>Mac：iTerm2
 &lt;ul>
@@ -115,13 +115,13 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="zsh">zsh&lt;/h4>
-&lt;ul>
+&lt;h4 id="zsh">zsh
+&lt;/h4>&lt;ul>
 &lt;li>配置：oh my zsh&lt;/li>
 &lt;li>主题：powerlevel10k&lt;/li>
 &lt;/ul>
-&lt;h4 id="tmux">tmux&lt;/h4>
-&lt;ul>
+&lt;h4 id="tmux">tmux
+&lt;/h4>&lt;ul>
 &lt;li>终端复用&lt;/li>
 &lt;li>Tmux Plugin Manager
 &lt;ul>
@@ -130,26 +130,26 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="docker">docker&lt;/h4>
-&lt;ul>
+&lt;h4 id="docker">docker
+&lt;/h4>&lt;ul>
 &lt;li>环境隔离&lt;/li>
 &lt;li>轻量化&lt;/li>
 &lt;li>微服务&lt;/li>
 &lt;li>k8s&lt;/li>
 &lt;/ul>
-&lt;h4 id="shell脚本">shell脚本&lt;/h4>
-&lt;ul>
+&lt;h4 id="shell脚本">shell脚本
+&lt;/h4>&lt;ul>
 &lt;li>grep&lt;/li>
 &lt;li>awk&lt;/li>
 &lt;li>sed&lt;/li>
-&lt;/ul></description></item><item><title>C盘根目录下的两个sys文件说明</title><link>https://i-square.github.io/p/Description-of-the-two-sys-files-in-the-root-directory-of-the-C-drive/</link><pubDate>Wed, 19 Apr 2017 16:24:22 +0000</pubDate><guid>https://i-square.github.io/p/Description-of-the-two-sys-files-in-the-root-directory-of-the-C-drive/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。&lt;/p>
+&lt;/ul></description></item><item><title>C盘根目录下的两个sys文件说明</title><link>https://i-square.github.io/p/Description-of-the-two-sys-files-in-the-root-directory-of-the-C-drive/</link><pubDate>Wed, 19 Apr 2017 16:24:22 +0000</pubDate><guid>https://i-square.github.io/p/Description-of-the-two-sys-files-in-the-root-directory-of-the-C-drive/</guid><description>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>实验室里有一台高配工作站，内存有512GB，用一块256GB的SSD安装Win7 x64操作系统以后，硬盘空间只剩下几十MB了，查看C盘下的文件之后，发现有两个隐藏的系统文件占用了200GB+的空间，于是马上查了它们的来头。&lt;/p>
 &lt;!-- more -->
-&lt;h2 id="pagefilesys">pagefile.sys&lt;/h2>
-&lt;p>&lt;code>pagefile.sys&lt;/code> 是系统安装过程中创建的虚拟内存页面文件。这个文件的大小是自己系统虚拟内存设置的最小值的大小。假如虚拟内存的设置为800MB－1600MB 那么你在自己的设定驱动盘下面就可看到大小为800MB的 &lt;code>pagefile.sys&lt;/code> 文件。&lt;/p>
-&lt;h3 id="优化方法">优化方法&lt;/h3>
-&lt;p>通常自己可以在 &lt;code>我的电脑&lt;/code> 右键 &lt;code>属性&lt;/code> &amp;ndash;&amp;gt; &lt;code>高级&lt;/code> &amp;ndash;&amp;gt; &lt;code>性能&lt;/code> &amp;ndash;&amp;gt; &lt;code>高级&lt;/code> &amp;ndash;&amp;gt; &lt;code>虚拟内存&lt;/code> 中将所有盘的虚拟内存设置为无分页文件，并选择&lt;code>设置&lt;/code>后重启系统，就可以删除页面文件&lt;code>pagefile.sys&lt;/code>。&lt;/p>
-&lt;h2 id="hiberfilsys">hiberfil.sys&lt;/h2>
-&lt;p>这个文件是系统的休眠功能所占用的硬盘空间的文件（Windows默认休眠功能是处于打开状态的），电脑处于休眠状态时，内存中的所有内容将保存到硬盘，并且电脑会被关闭。电脑在返回打开状态之后，关闭电脑时打开的所有程序和文档将全都还原到桌面。也就是说，当你让电脑进入休眠状态时，Windows在关闭系统前将所有的内存内容写入 &lt;code>hiberfil.sys&lt;/code> 文件，当你重新打开电脑，操作系统使用 &lt;code>hiberfil.sys&lt;/code> 把所有信息放回内存，电脑恢复到关闭前的状态。然而，只要休眠功能开启，Windows就会在硬盘上留下 &lt;code>hiberfil.sys&lt;/code> 文件，即使你从来不休眠。&lt;/p>
-&lt;h3 id="优化方法-1">优化方法&lt;/h3>
-&lt;p>以管理员身份运行CMD，然后输入命令 &lt;code>powercfg -h off&lt;/code> ，回车后立即生效， &lt;code>hiberfil.sys&lt;/code> 文件已经不见了。&lt;/p></description></item></channel></rss>
+&lt;h2 id="pagefilesys">pagefile.sys
+&lt;/h2>&lt;p>&lt;code>pagefile.sys&lt;/code> 是系统安装过程中创建的虚拟内存页面文件。这个文件的大小是自己系统虚拟内存设置的最小值的大小。假如虚拟内存的设置为800MB－1600MB 那么你在自己的设定驱动盘下面就可看到大小为800MB的 &lt;code>pagefile.sys&lt;/code> 文件。&lt;/p>
+&lt;h3 id="优化方法">优化方法
+&lt;/h3>&lt;p>通常自己可以在 &lt;code>我的电脑&lt;/code> 右键 &lt;code>属性&lt;/code> &amp;ndash;&amp;gt; &lt;code>高级&lt;/code> &amp;ndash;&amp;gt; &lt;code>性能&lt;/code> &amp;ndash;&amp;gt; &lt;code>高级&lt;/code> &amp;ndash;&amp;gt; &lt;code>虚拟内存&lt;/code> 中将所有盘的虚拟内存设置为无分页文件，并选择&lt;code>设置&lt;/code>后重启系统，就可以删除页面文件&lt;code>pagefile.sys&lt;/code>。&lt;/p>
+&lt;h2 id="hiberfilsys">hiberfil.sys
+&lt;/h2>&lt;p>这个文件是系统的休眠功能所占用的硬盘空间的文件（Windows默认休眠功能是处于打开状态的），电脑处于休眠状态时，内存中的所有内容将保存到硬盘，并且电脑会被关闭。电脑在返回打开状态之后，关闭电脑时打开的所有程序和文档将全都还原到桌面。也就是说，当你让电脑进入休眠状态时，Windows在关闭系统前将所有的内存内容写入 &lt;code>hiberfil.sys&lt;/code> 文件，当你重新打开电脑，操作系统使用 &lt;code>hiberfil.sys&lt;/code> 把所有信息放回内存，电脑恢复到关闭前的状态。然而，只要休眠功能开启，Windows就会在硬盘上留下 &lt;code>hiberfil.sys&lt;/code> 文件，即使你从来不休眠。&lt;/p>
+&lt;h3 id="优化方法-1">优化方法
+&lt;/h3>&lt;p>以管理员身份运行CMD，然后输入命令 &lt;code>powercfg -h off&lt;/code> ，回车后立即生效， &lt;code>hiberfil.sys&lt;/code> 文件已经不见了。&lt;/p></description></item></channel></rss>

@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Expect on 平方君的后花园</title><link>https://i-square.github.io/tags/expect/</link><description>Recent content in Expect on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 18 Mar 2022 17:34:07 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/expect/index.xml" rel="self" type="application/rss+xml"/><item><title>使用expect脚本一键登录跳板机</title><link>https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/</link><pubDate>Fri, 18 Mar 2022 17:34:07 +0800</pubDate><guid>https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/</guid><description>&lt;img src="https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg" alt="Featured image of post 使用expect脚本一键登录跳板机" />&lt;h2 id="背景">背景&lt;/h2>
-&lt;p>为了安全，多数公司会采用跳板机的方式访问内网服务器，登录需要输入AD密码和谷歌验证码，非常繁琐，这里提供一个基于expect脚本的方法，实现一键登录跳板机&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Expect on 平方君的后花园</title><link>https://i-square.github.io/tags/expect/</link><description>Recent content in Expect on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 18 Mar 2022 17:34:07 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/expect/index.xml" rel="self" type="application/rss+xml"/><item><title>使用expect脚本一键登录跳板机</title><link>https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/</link><pubDate>Fri, 18 Mar 2022 17:34:07 +0800</pubDate><guid>https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/</guid><description>&lt;img src="https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg" alt="Featured image of post 使用expect脚本一键登录跳板机" />&lt;h2 id="背景">背景
+&lt;/h2>&lt;p>为了安全，多数公司会采用跳板机的方式访问内网服务器，登录需要输入AD密码和谷歌验证码，非常繁琐，这里提供一个基于expect脚本的方法，实现一键登录跳板机&lt;/p>
 &lt;blockquote>
 &lt;p>注：笔者在 MacOS 和 Ubuntu20.04 环境下测试ok，其他环境大同小异，按需修改即可。&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="方法">方法&lt;/h2>
-&lt;p>此方式思路是利用expect脚本交互式输入预设的AD密码，输入实时获取的谷歌验证码（使用 python authenticator 工具）&lt;/p>
-&lt;h3 id="所需依赖">所需依赖&lt;/h3>
-&lt;p>安装以下工具，各平台安装方法请自行搜索：&lt;/p>
+&lt;h2 id="方法">方法
+&lt;/h2>&lt;p>此方式思路是利用expect脚本交互式输入预设的AD密码，输入实时获取的谷歌验证码（使用 python authenticator 工具）&lt;/p>
+&lt;h3 id="所需依赖">所需依赖
+&lt;/h3>&lt;p>安装以下工具，各平台安装方法请自行搜索：&lt;/p>
 &lt;ul>
 &lt;li>expect&lt;/li>
 &lt;li>python&lt;/li>
 &lt;li>pip&lt;/li>
 &lt;li>authenticator&lt;/li>
 &lt;/ul>
-&lt;h2 id="authenticator配置">authenticator配置&lt;/h2>
-&lt;h3 id="安装">安装&lt;/h3>
-&lt;p>&lt;code>pip install authenticator&lt;/code> 若不成功，请先升级pip到最新版本&lt;/p>
-&lt;h3 id="配置">配置&lt;/h3>
-&lt;ol>
+&lt;h2 id="authenticator配置">authenticator配置
+&lt;/h2>&lt;h3 id="安装">安装
+&lt;/h3>&lt;p>&lt;code>pip install authenticator&lt;/code> 若不成功，请先升级pip到最新版本&lt;/p>
+&lt;h3 id="配置">配置
+&lt;/h3>&lt;ol>
 &lt;li>执行 &lt;code>authenticator add $user&lt;/code>（AD账号无邮箱后缀）&lt;/li>
 &lt;li>提示 &lt;code>Enter passphrase&lt;/code> 这里输入2次AD密码&lt;/li>
 &lt;li>提示 &lt;code>Enter shared secret&lt;/code> 需要把谷歌验证码的字符串输入到这里&lt;/li>
@@ -26,11 +26,11 @@
 &lt;blockquote>
 &lt;p>配置完成之后就可以使用expect脚本来自动登录了&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="注意点">注意点&lt;/h3>
-&lt;p>多数公司的AD密码可能需要每隔一段时间更新一次，在更新AD密码后，使用 &lt;code>authenticator&lt;/code> 仍然需要输入旧密码，所以下述脚本内相应的做了一下兼容&lt;/p>
-&lt;h2 id="expect脚本">expect脚本&lt;/h2>
-&lt;h3 id="脚本">脚本&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="注意点">注意点
+&lt;/h3>&lt;p>多数公司的AD密码可能需要每隔一段时间更新一次，在更新AD密码后，使用 &lt;code>authenticator&lt;/code> 仍然需要输入旧密码，所以下述脚本内相应的做了一下兼容&lt;/p>
+&lt;h2 id="expect脚本">expect脚本
+&lt;/h2>&lt;h3 id="脚本">脚本
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
@@ -112,8 +112,8 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interact
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="使用">使用&lt;/h3>
-&lt;ol>
+&lt;/div>&lt;h3 id="使用">使用
+&lt;/h3>&lt;ol>
 &lt;li>把脚本开头的几个变量设置一下，或者自己修改为从argv里读取
 &lt;ul>
 &lt;li>&lt;code>USERNAME&lt;/code> AD账户不带邮箱后缀&lt;/li>

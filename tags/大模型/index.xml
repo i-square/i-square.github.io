@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>大模型 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link><description>Recent content in 大模型 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Feb 2024 16:36:57 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（六）：OpenCompass大模型评测</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</link><pubDate>Sun, 04 Feb 2024 16:36:57 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/OpenCampass.svg" alt="Featured image of post 书生·浦语大模型实战营（六）：OpenCompass大模型评测" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>大模型 on 平方君的后花园</title><link>https://i-square.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link><description>Recent content in 大模型 on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Feb 2024 16:36:57 +0800</lastBuildDate><atom:link href="https://i-square.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>书生·浦语大模型实战营（六）：OpenCompass大模型评测</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</link><pubDate>Sun, 04 Feb 2024 16:36:57 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection6-OpenCompass-and-LLM-Evaluation/OpenCampass.svg" alt="Featured image of post 书生·浦语大模型实战营（六）：OpenCompass大模型评测" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第六节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1Gg4y1U7uc/" target="_blank" rel="noopener"
@@ -7,9 +7,9 @@
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/opencompass/opencompass_tutorial.md" target="_blank" rel="noopener"
 >InternLM/tutorial opencompass&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="关于评测的三个问题">关于评测的三个问题&lt;/h2>
-&lt;h3 id="为什么需要评测">为什么需要评测&lt;/h3>
-&lt;ul>
+&lt;h2 id="关于评测的三个问题">关于评测的三个问题
+&lt;/h2>&lt;h3 id="为什么需要评测">为什么需要评测
+&lt;/h3>&lt;ul>
 &lt;li>模型选型&lt;/li>
 &lt;li>能力提升&lt;/li>
 &lt;li>应用场景效果评测&lt;/li>
@@ -21,30 +21,30 @@
 &lt;li>管理机构：减少大模型带来的社会风险&lt;/li>
 &lt;li>产业界：找出最适合产业应用的模型，赋能真实场景&lt;/li>
 &lt;/ul>
-&lt;h3 id="需要评测什么">需要评测什么&lt;/h3>
-&lt;ul>
+&lt;h3 id="需要评测什么">需要评测什么
+&lt;/h3>&lt;ul>
 &lt;li>知识、推理、语言&lt;/li>
 &lt;li>长文本、智能体、多轮对话&lt;/li>
 &lt;li>情感、认知、价值观。&lt;/li>
 &lt;/ul>
-&lt;h3 id="怎么样测试大语言模型">怎么样测试大语言模型&lt;/h3>
-&lt;ul>
+&lt;h3 id="怎么样测试大语言模型">怎么样测试大语言模型
+&lt;/h3>&lt;ul>
 &lt;li>自动化客观评测&lt;/li>
 &lt;li>人机交互评测&lt;/li>
 &lt;li>基于大模型的大模型评测&lt;/li>
 &lt;/ul>
 &lt;p>当然，也有其他评测角度，比如利用&lt;strong>提示词工程&lt;/strong>，评测大模型对prompt的敏感性，反映模型鲁棒性&lt;/p>
-&lt;h2 id="opencompass">OpenCompass&lt;/h2>
-&lt;p>这部分的介绍请参考官方文档和配套教学文档，这里不再赘述&lt;/p>
+&lt;h2 id="opencompass">OpenCompass
+&lt;/h2>&lt;p>这部分的介绍请参考官方文档和配套教学文档，这里不再赘述&lt;/p>
 &lt;ul>
 &lt;li>官方仓库： &lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
 >https://github.com/open-compass/opencompass&lt;/a>&lt;/li>
 &lt;li>官方教程： &lt;a class="link" href="https://opencompass.readthedocs.io/zh-cn/latest/" target="_blank" rel="noopener"
 >https://opencompass.readthedocs.io/zh-cn/latest/&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="作业">作业&lt;/h2>
-&lt;h3 id="基础作业">基础作业&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="作业">作业
+&lt;/h2>&lt;h3 id="基础作业">基础作业
+&lt;/h3>&lt;blockquote>
 &lt;p>使用 OpenCompass 评测 InternLM2-Chat-7B 模型在 C-Eval 数据集上的性能&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -88,8 +88,8 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="进阶作业">进阶作业&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="进阶作业">进阶作业
+&lt;/h3>&lt;blockquote>
 &lt;p>使用 OpenCompass 评测 InternLM2-Chat-7B 模型使用 LMDeploy 0.2.0 部署后在 C-Eval 数据集上的性能&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -101,11 +101,11 @@
 &lt;/ol>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>本节课是实战营的最后一节课了，有始亦有终。&lt;/p>
+&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>本节课是实战营的最后一节课了，有始亦有终。&lt;/p>
 &lt;p>本次实战营的课程内容涵盖了大模型的全链路开源体系，从基础的模型理解，到趣味的实践Demo，再到知识库的搭建，微调实践，量化部署，以及模型评测，每一节课都在为我打开一个新的视角，让我对大模型有了更全面的认识。&lt;/p>
-&lt;p>这是一次丰富的学习经历，期待下一次的学习之旅！&lt;/p></description></item><item><title>书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</link><pubDate>Sun, 14 Jan 2024 17:29:20 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/cover.webp" alt="Featured image of post 书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+&lt;p>这是一次丰富的学习经历，期待下一次的学习之旅！&lt;/p></description></item><item><title>书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</link><pubDate>Sun, 14 Jan 2024 17:29:20 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection5-LLM-Quantization-Deployment-Practice-based-on-LMDeploy/cover.webp" alt="Featured image of post 书生·浦语大模型实战营（五）：LMDeploy 大模型量化部署实践" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第五节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1iW4y1A77P/" target="_blank" rel="noopener"
@@ -113,9 +113,9 @@
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/lmdeploy/lmdeploy.md" target="_blank" rel="noopener"
 >InternLM/tutorial lmdeploy&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="大模型部署背景">大模型部署背景&lt;/h2>
-&lt;h3 id="模型部署">模型部署&lt;/h3>
-&lt;ul>
+&lt;h2 id="大模型部署背景">大模型部署背景
+&lt;/h2>&lt;h3 id="模型部署">模型部署
+&lt;/h3>&lt;ul>
 &lt;li>定义
 &lt;ul>
 &lt;li>将训练好的模型在特定软硬件环境中启动的过程，使模型能够接收输入并返回预测结果&lt;/li>
@@ -133,8 +133,8 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="大模型特点">大模型特点&lt;/h3>
-&lt;ul>
+&lt;h3 id="大模型特点">大模型特点
+&lt;/h3>&lt;ul>
 &lt;li>内存开销巨大
 &lt;ul>
 &lt;li>庞大的参数量。7B模型仅权重就需要 14+G 内存&lt;/li>
@@ -153,8 +153,8 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="大模型部署挑战">大模型部署挑战&lt;/h3>
-&lt;ul>
+&lt;h3 id="大模型部署挑战">大模型部署挑战
+&lt;/h3>&lt;ul>
 &lt;li>设备
 &lt;ul>
 &lt;li>如何应对巨大的存储问题？低存储设备（消费级显卡、手机等）如何部署？&lt;/li>
@@ -170,8 +170,8 @@
 &lt;li>服务如何提升系统整体吞吐量？&lt;/li>
 &lt;li>对于个体用户，如何降低响应时间？&lt;/li>
 &lt;/ul>
-&lt;h3 id="大模型部署方案">大模型部署方案&lt;/h3>
-&lt;ul>
+&lt;h3 id="大模型部署方案">大模型部署方案
+&lt;/h3>&lt;ul>
 &lt;li>技术点
 &lt;ul>
 &lt;li>模型并行&lt;/li>
@@ -208,8 +208,8 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="lmdeploy-简介">LMDeploy 简介&lt;/h2>
-&lt;p>LMDeploy 是 LLM 在英伟达设备上部署的全流程解决方案。包括模型轻量化、推理和服务。项目地址： &lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
+&lt;h2 id="lmdeploy-简介">LMDeploy 简介
+&lt;/h2>&lt;p>LMDeploy 是 LLM 在英伟达设备上部署的全流程解决方案。包括模型轻量化、推理和服务。项目地址： &lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
 >https://github.com/InternLM/lmdeploy&lt;/a>&lt;/p>
 &lt;p>LMDeploy 提供以下核心功能（细节详见官方仓库，这里不做赘述）：&lt;/p>
 &lt;ul>
@@ -217,12 +217,12 @@
 &lt;li>&lt;strong>有状态推理&lt;/strong>：通过缓存多轮对话过程中 attention 的 k/v，记住对话历史，从而避免重复处理历史会话。显著提升长文本多轮对话场景中的效率。&lt;/li>
 &lt;li>&lt;strong>量化&lt;/strong>：LMDeploy 支持多种量化方式和高效的量化模型推理。在不同规模的模型上，验证了量化的可靠性。&lt;/li>
 &lt;/ul>
-&lt;h2 id="动手实践环节安装部署量化">动手实践环节——安装、部署、量化&lt;/h2>
-&lt;p>跟着教学配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/lmdeploy/lmdeploy.md" target="_blank" rel="noopener"
+&lt;h2 id="动手实践环节安装部署量化">动手实践环节——安装、部署、量化
+&lt;/h2>&lt;p>跟着教学配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/lmdeploy/lmdeploy.md" target="_blank" rel="noopener"
 >InternLM/tutorial lmdeploy&lt;/a> 一步一步跟下来即可&lt;/p>
-&lt;h2 id="作业">作业&lt;/h2>
-&lt;h3 id="基础作业">基础作业&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="作业">作业
+&lt;/h2>&lt;h3 id="基础作业">基础作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：使用 LMDeploy 以本地对话、网页Gradio、API服务中的一种方式部署 InternLM-Chat-7B 模型，生成 300 字的小故事（需截图）&lt;/p>
 &lt;/blockquote>
 &lt;p>作业很简单，只需要几条命令即可，索性3种方式都来一遍，操作流程：&lt;/p>
@@ -322,8 +322,8 @@ class="gallery-image"
 data-flex-grow="224"
 data-flex-basis="539px"
 >&lt;/p>
-&lt;h3 id="进阶作业可选做">进阶作业（可选做）&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="进阶作业可选做">进阶作业（可选做）
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：&lt;/p>
 &lt;ul>
 &lt;li>将第四节课训练自我认知小助手模型使用 LMDeploy 量化部署到 OpenXLab 平台。&lt;/li>
@@ -336,8 +336,8 @@ data-flex-basis="539px"
 （5）使用Huggingface推理&lt;/li>
 &lt;/ul>
 &lt;/blockquote>
-&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</link><pubDate>Fri, 12 Jan 2024 09:50:54 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/head.webp" alt="Featured image of post 书生·浦语大模型实战营（四）：XTuner 大模型单卡低成本微调实战" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第四节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1yK4y1B75J/" target="_blank" rel="noopener"
@@ -345,8 +345,8 @@ data-flex-basis="539px"
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
 >InternLM/tutorial xtuner&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="finetune简介">Finetune简介&lt;/h2>
-&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到的两种微调模式&lt;/p>
+&lt;h2 id="finetune简介">Finetune简介
+&lt;/h2>&lt;p>LLM 的下游应用中，&lt;strong>增量预训练&lt;/strong>和&lt;strong>指令跟随&lt;/strong>是经常会用到的两种微调模式&lt;/p>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune.webp"
 width="1441"
 height="105"
@@ -357,20 +357,20 @@ class="gallery-image"
 data-flex-grow="1372"
 data-flex-basis="3293px"
 >&lt;/p>
-&lt;h3 id="增量预训练微调">增量预训练微调&lt;/h3>
-&lt;ul>
+&lt;h3 id="增量预训练微调">增量预训练微调
+&lt;/h3>&lt;ul>
 &lt;li>使用场景：让基座模型学习到一些新知识，如某个垂类领域的常识&lt;/li>
 &lt;li>训练数据：文章、书籍、代码等&lt;/li>
 &lt;li>数据构成：没有 &lt;code>System&lt;/code> 和 &lt;code>Input&lt;/code>，只有 &lt;code>Output&lt;/code>，全部参与loss计算&lt;/li>
 &lt;/ul>
-&lt;h3 id="指令跟随微调">指令跟随微调&lt;/h3>
-&lt;ul>
+&lt;h3 id="指令跟随微调">指令跟随微调
+&lt;/h3>&lt;ul>
 &lt;li>使用场景：让模型学会对话模板，根据人类指令进行对话&lt;/li>
 &lt;li>训练数据：高质量的对话、问答数据&lt;/li>
 &lt;li>数据构成：包含 &lt;code>System&lt;/code>、&lt;code>Input&lt;/code> 和 &lt;code>Output&lt;/code> ，但只有 &lt;code>Output&lt;/code> 部分参与loss计算&lt;/li>
 &lt;/ul>
-&lt;h3 id="对话模板">对话模板&lt;/h3>
-&lt;ul>
+&lt;h3 id="对话模板">对话模板
+&lt;/h3>&lt;ul>
 &lt;li>对话模板是为了能够让 LLM 区分出 &lt;strong>System&lt;/strong>、&lt;strong>User&lt;/strong> 和 &lt;strong>Assistant&lt;/strong>&lt;/li>
 &lt;li>不同的模型会有不同的模板&lt;/li>
 &lt;/ul>
@@ -384,21 +384,21 @@ class="gallery-image"
 data-flex-grow="235"
 data-flex-basis="565px"
 >&lt;/p>
-&lt;h3 id="lora--qlora">LoRA &amp;amp; QLoRA&lt;/h3>
-&lt;h4 id="lora-low-rank-adaptation-of-large-language-models">LoRA: Low-Rank Adaptation of Large Language Models&lt;/h4>
-&lt;ul>
+&lt;h3 id="lora--qlora">LoRA &amp;amp; QLoRA
+&lt;/h3>&lt;h4 id="lora-low-rank-adaptation-of-large-language-models">LoRA: Low-Rank Adaptation of Large Language Models
+&lt;/h4>&lt;ul>
 &lt;li>LLM 的参数量主要集中在模型中的 Linear, 训练这些参数会耗费大量的显存&lt;/li>
 &lt;li>LoRA 通过在原本的 Linear 旁，新增一个支路，包含两个连续的小 linear，新增的这个支路通常叫做 Adapter&lt;/li>
 &lt;li>Adapter 参数量远小于原本的 Linear，能大幅降低训练的显存消耗&lt;/li>
 &lt;/ul>
-&lt;h4 id="qlora-quantized-llms-with-low-rank-adapters">QLoRA: Quantized LLMs with Low-Rank Adapters&lt;/h4>
-&lt;ul>
+&lt;h4 id="qlora-quantized-llms-with-low-rank-adapters">QLoRA: Quantized LLMs with Low-Rank Adapters
+&lt;/h4>&lt;ul>
 &lt;li>4位NormalFloat量化：这是一种改进量化的方法，确保每个量化仓中有相同数量的值，这避免了计算问题和异常值的错误。&lt;/li>
 &lt;li>双量化：对量化常量再次量化以节省额外内存的过程。&lt;/li>
 &lt;li>统一内存分页：它依赖于NVIDIA统一内存管理，自动处理CPU和GPU之间的页到页传输，它可以保证GPU处理无错，特别是在GPU可能耗尽内存的情况下。&lt;/li>
 &lt;/ul>
-&lt;h4 id="全量微调loraqlora对比">全量微调、LoRA、QLoRA对比&lt;/h4>
-&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare.webp"
+&lt;h4 id="全量微调loraqlora对比">全量微调、LoRA、QLoRA对比
+&lt;/h4>&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare.webp"
 width="1463"
 height="800"
 srcset="https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare_hu951007297494479200.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection4-XTuner-based-LLM-Single-GPU-Low-cost-Finetune-Practice/screenshots/finetune_compare_hu11609811338984103858.webp 1024w"
@@ -408,16 +408,16 @@ class="gallery-image"
 data-flex-grow="182"
 data-flex-basis="438px"
 >&lt;/p>
-&lt;h2 id="xtuner简介">XTuner简介&lt;/h2>
-&lt;p>详见 &lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+&lt;h2 id="xtuner简介">XTuner简介
+&lt;/h2>&lt;p>详见 &lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
 >XTuner&lt;/a> 的官方仓库&lt;/p>
-&lt;h2 id="xtuner快速上手">XTuner快速上手&lt;/h2>
-&lt;p>参考配套教学文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
+&lt;h2 id="xtuner快速上手">XTuner快速上手
+&lt;/h2>&lt;p>参考配套教学文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/README.md" target="_blank" rel="noopener"
 >InternLM/tutorial xtuner&lt;/a>&lt;/p>
-&lt;h3 id="自定义微调数据">自定义微调数据&lt;/h3>
-&lt;p>按照教学文档，实操一遍即可，XTuner 上手确实很简单&lt;/p>
-&lt;h3 id="ms-agent-数据集">MS-Agent 数据集&lt;/h3>
-&lt;p>这个数据集比较有意思，能够赋予大模型调用api的agent能力，原理：&lt;/p>
+&lt;h3 id="自定义微调数据">自定义微调数据
+&lt;/h3>&lt;p>按照教学文档，实操一遍即可，XTuner 上手确实很简单&lt;/p>
+&lt;h3 id="ms-agent-数据集">MS-Agent 数据集
+&lt;/h3>&lt;p>这个数据集比较有意思，能够赋予大模型调用api的agent能力，原理：&lt;/p>
 &lt;ul>
 &lt;li>模型的回复中会包括插件调用代码和执行代码
 &lt;ul>
@@ -426,8 +426,8 @@ data-flex-basis="438px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="lagent调用实战">lagent调用实战&lt;/h3>
-&lt;p>本次继续沿用之前课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+&lt;h3 id="lagent调用实战">lagent调用实战
+&lt;/h3>&lt;p>本次继续沿用之前课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
 >InternStudio&lt;/a> 平台开发机&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -509,8 +509,8 @@ data-flex-basis="438px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">xtuner chat ./internlm-chat-7b --adapter xtuner/internlm-7b-qlora-msagent-react --lagent
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h4 id="测试验证">测试验证&lt;/h4>
-&lt;p>&lt;em>prompt: 你好，西安明天天气怎么样？&lt;/em>&lt;/p>
+&lt;/div>&lt;h4 id="测试验证">测试验证
+&lt;/h4>&lt;p>&lt;em>prompt: 你好，西安明天天气怎么样？&lt;/em>&lt;/p>
 &lt;ul>
 &lt;li>结果图：
 &lt;ul>
@@ -528,9 +528,9 @@ class="gallery-image"
 data-flex-grow="611"
 data-flex-basis="1468px"
 >&lt;/p>
-&lt;h2 id="作业">作业&lt;/h2>
-&lt;h3 id="基础作业">基础作业&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="作业">作业
+&lt;/h2>&lt;h3 id="基础作业">基础作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：构建数据集，使用 XTuner 微调 InternLM-Chat-7B 模型, 让模型学习到它是你的智能小助手，效果如下图所示，本作业训练出来的模型的输出需要&lt;strong>将不要葱姜蒜大佬&lt;/strong>替换成自己名字或昵称！&lt;/p>
 &lt;/blockquote>
 &lt;p>作业参考文档： &lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/xtuner/self.md" target="_blank" rel="noopener"
@@ -565,16 +565,16 @@ class="gallery-image"
 data-flex-grow="88"
 data-flex-basis="211px"
 >&lt;/p>
-&lt;h3 id="进阶作业">进阶作业&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="进阶作业">进阶作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：&lt;/p>
 &lt;ul>
 &lt;li>将训练好的Adapter模型权重上传到 OpenXLab、Hugging Face 或者 MoelScope 任一一平台。&lt;/li>
 &lt;li>将训练好后的模型应用部署到 OpenXLab 平台，参考部署文档请访问：https://aicarrier.feishu.cn/docx/MQH6dygcKolG37x0ekcc4oZhnCe&lt;/li>
 &lt;/ul>
 &lt;/blockquote>
-&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.webp" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</link><pubDate>Thu, 11 Jan 2024 16:56:30 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/head.webp" alt="Featured image of post 书生·浦语大模型实战营（三）：基于 InternLM 和 LangChain 搭建你的知识库" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第三节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1sT4y1p71V/" target="_blank" rel="noopener"
@@ -582,16 +582,16 @@ data-flex-basis="211px"
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/langchain/readme.md" target="_blank" rel="noopener"
 >InternLM/tutorial langchain&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="llm的局限性">LLM的局限性&lt;/h2>
-&lt;ul>
+&lt;h2 id="llm的局限性">LLM的局限性
+&lt;/h2>&lt;ul>
 &lt;li>知识时效性受限：如何让LLM能够获取最新的知识&lt;/li>
 &lt;li>专业能力有限：如何打造垂域大模型&lt;/li>
 &lt;li>定制化成本高：如何打造个人专属的LLM应用&lt;/li>
 &lt;/ul>
-&lt;h3 id="大模型开发范式">大模型开发范式&lt;/h3>
-&lt;p>解决局限性问题的两种方式是：&lt;/p>
-&lt;h4 id="1-rag">1. RAG&lt;/h4>
-&lt;p>RAG: Retrieval Augmented Generation，使用外挂数据库，检索相关知识增强生成结果，特点：&lt;/p>
+&lt;h3 id="大模型开发范式">大模型开发范式
+&lt;/h3>&lt;p>解决局限性问题的两种方式是：&lt;/p>
+&lt;h4 id="1-rag">1. RAG
+&lt;/h4>&lt;p>RAG: Retrieval Augmented Generation，使用外挂数据库，检索相关知识增强生成结果，特点：&lt;/p>
 &lt;ul>
 &lt;li>低成本&lt;/li>
 &lt;li>可实时更新&lt;/li>
@@ -617,16 +617,16 @@ data-flex-basis="247px"
 &lt;/ol>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="2-finetune">2. Finetune&lt;/h4>
-&lt;p>也即通称的微调，特点：&lt;/p>
+&lt;h4 id="2-finetune">2. Finetune
+&lt;/h4>&lt;p>也即通称的微调，特点：&lt;/p>
 &lt;ul>
 &lt;li>可个性化微调&lt;/li>
 &lt;li>知识覆盖面广&lt;/li>
 &lt;li>成本高昂&lt;/li>
 &lt;li>无法实时更新&lt;/li>
 &lt;/ul>
-&lt;h2 id="基于-langchain-搭建-rag-应用">基于 LangChain 搭建 RAG 应用&lt;/h2>
-&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain.webp"
+&lt;h2 id="基于-langchain-搭建-rag-应用">基于 LangChain 搭建 RAG 应用
+&lt;/h2>&lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain.webp"
 width="1104"
 height="790"
 srcset="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain_hu9780007860702041187.webp 480w, https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/screenshots/rag_based_langchain_hu7679006650690745247.webp 1024w"
@@ -636,24 +636,24 @@ class="gallery-image"
 data-flex-grow="139"
 data-flex-basis="335px"
 >&lt;/p>
-&lt;h3 id="langchain框架简介">LangChain框架简介&lt;/h3>
-&lt;p>LangChain 框架是一个开源工具，通过为各种 LLM 提供通用接口来简化应用程序的开发流程，帮助开发者自由构建 LLM 应用。&lt;/p>
+&lt;h3 id="langchain框架简介">LangChain框架简介
+&lt;/h3>&lt;p>LangChain 框架是一个开源工具，通过为各种 LLM 提供通用接口来简化应用程序的开发流程，帮助开发者自由构建 LLM 应用。&lt;/p>
 &lt;p>LangChain 的核心组成模块：&lt;/p>
 &lt;ul>
 &lt;li>链 (Chains) ：将组件组合实现端到端应用，通过一个对象封装实现一系列LLM操作&lt;/li>
 &lt;li>Eg. 检索问答链，覆盖实现了 RAG （检索增强生成）的全部流程&lt;/li>
 &lt;/ul>
-&lt;h3 id="构建向量数据库">构建向量数据库&lt;/h3>
-&lt;h4 id="加载源文件">加载源文件&lt;/h4>
-&lt;ul>
+&lt;h3 id="构建向量数据库">构建向量数据库
+&lt;/h3>&lt;h4 id="加载源文件">加载源文件
+&lt;/h4>&lt;ul>
 &lt;li>确定源文件类型，针对不同类型的源文件选用不同的加载器
 &lt;ul>
 &lt;li>核心在于将带格式的文本转化为无格式的字符串&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="文档分块">文档分块&lt;/h4>
-&lt;ul>
+&lt;h4 id="文档分块">文档分块
+&lt;/h4>&lt;ul>
 &lt;li>由于单个文档往往超过模型上下文上限，我们需要对加载的文档进行切分
 &lt;ul>
 &lt;li>一般按字符串长度进行分割&lt;/li>
@@ -661,8 +661,8 @@ data-flex-basis="335px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="文档向量化">文档向量化&lt;/h4>
-&lt;ul>
+&lt;h4 id="文档向量化">文档向量化
+&lt;/h4>&lt;ul>
 &lt;li>使用向量数据库来支持语义检索，需要将文档向量化存入向量数据库
 &lt;ul>
 &lt;li>可以使用任意一种 Embedding 模型来进行向量化&lt;/li>
@@ -670,14 +670,14 @@ data-flex-basis="335px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="搭建知识库助手">搭建知识库助手&lt;/h3>
-&lt;h4 id="将-internlm-接入-langchain">将 InternLM 接入 LangChain&lt;/h4>
-&lt;ul>
+&lt;h3 id="搭建知识库助手">搭建知识库助手
+&lt;/h3>&lt;h4 id="将-internlm-接入-langchain">将 InternLM 接入 LangChain
+&lt;/h4>&lt;ul>
 &lt;li>LangChain 支持自定义 LLM，可以直接接入到框架中&lt;/li>
 &lt;li>我们只需将 InternLM 部署在本地，并封装一个自定义 LLM 类，调用本地 InternLM 即可&lt;/li>
 &lt;/ul>
-&lt;h4 id="构建检索问答链">构建检索问答链&lt;/h4>
-&lt;ul>
+&lt;h4 id="构建检索问答链">构建检索问答链
+&lt;/h4>&lt;ul>
 &lt;li>LangChain 提供了检索问答链模版，可以自动实现知识检索、Prompt 嵌入、LLM 问答的全部流程&lt;/li>
 &lt;li>将基于 InternLM 的自定义 LLM 和已构建的向量数据库接入到检索问答链的上游&lt;/li>
 &lt;li>调用检索问答链，即可实现知识库助手的核心功能&lt;/li>
@@ -692,8 +692,8 @@ class="gallery-image"
 data-flex-grow="190"
 data-flex-basis="456px"
 >&lt;/p>
-&lt;h4 id="rag-方案优化建议">RAG 方案优化建议&lt;/h4>
-&lt;ul>
+&lt;h4 id="rag-方案优化建议">RAG 方案优化建议
+&lt;/h4>&lt;ul>
 &lt;li>基于RAG的问答系统性能核心受限于：
 &lt;ul>
 &lt;li>检索精度&lt;/li>
@@ -716,16 +716,16 @@ data-flex-basis="456px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="作业">作业&lt;/h2>
-&lt;h3 id="基础作业">基础作业&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="作业">作业
+&lt;/h2>&lt;h3 id="基础作业">基础作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：复现课程知识库助手搭建过程 (截图)&lt;/p>
 &lt;/blockquote>
-&lt;h4 id="环境配置">环境配置&lt;/h4>
-&lt;p>本次沿用上节课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+&lt;h4 id="环境配置">环境配置
+&lt;/h4>&lt;p>本次沿用上节课程配置的 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
 >InternStudio&lt;/a> 平台开发机，省去了一些环境准备的时间，过程不再赘述，教学文档中有详细步骤。&lt;/p>
-&lt;h4 id="构建向量数据库-1">构建向量数据库&lt;/h4>
-&lt;ul>
+&lt;h4 id="构建向量数据库-1">构建向量数据库
+&lt;/h4>&lt;ul>
 &lt;li>终端命令：&lt;/li>
 &lt;/ul>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/create_db_cmd.png"
@@ -738,8 +738,8 @@ class="gallery-image"
 data-flex-grow="781"
 data-flex-basis="1875px"
 >&lt;/p>
-&lt;h4 id="web-demo">Web Demo&lt;/h4>
-&lt;ul>
+&lt;h4 id="web-demo">Web Demo
+&lt;/h4>&lt;ul>
 &lt;li>终端命令：&lt;/li>
 &lt;/ul>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection3-Build-Knowledge-Base-Using-InternLM-and-LangChain/homework/gradio_demo_cmd.png"
@@ -768,13 +768,13 @@ data-flex-basis="423px"
 &lt;ul>
 &lt;li>分析：从结果来看，大模型回答出了有关23年12月的问题，这不在它本身训练数据中，证明检索问答链是有效的。&lt;/li>
 &lt;/ul>
-&lt;h3 id="进阶作业">进阶作业&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="进阶作业">进阶作业
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：选择一个垂直领域，收集该领域的专业资料构建专业知识库，并搭建专业问答助手，并在 &lt;a class="link" href="https://openxlab.org.cn/apps" target="_blank" rel="noopener"
 >OpenXLab&lt;/a> 上成功部署（截图，并提供应用地址）&lt;/p>
 &lt;/blockquote>
-&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.webp" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+&lt;p>由于时间关系，进阶作业没有计划做&lt;/p></description></item><item><title>书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</link><pubDate>Wed, 10 Jan 2024 15:44:22 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/head.webp" alt="Featured image of post 书生·浦语大模型实战营（二）：轻松玩转书生·浦语大模型趣味Demo" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第二节&lt;/p>
 &lt;ul>
 &lt;li>教学视频：&lt;a class="link" href="https://www.bilibili.com/video/BV1Ci4y1z72H/" target="_blank" rel="noopener"
@@ -782,11 +782,11 @@ data-flex-basis="423px"
 &lt;li>配套文档：&lt;a class="link" href="https://github.com/InternLM/tutorial/blob/main/helloworld/hello_world.md" target="_blank" rel="noopener"
 >InternLM/tutorial helloworld&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;h2 id="笔记">笔记&lt;/h2>
-&lt;p>由于配套的说明文档已经记录的相当详细并且图文并茂，这节课丝毫没有记录笔记的必要，所以本文仅仅记录课后作业&lt;/p>
-&lt;h2 id="基础作业">基础作业&lt;/h2>
-&lt;h3 id="hf模型下载">HF模型下载&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="笔记">笔记
+&lt;/h2>&lt;p>由于配套的说明文档已经记录的相当详细并且图文并茂，这节课丝毫没有记录笔记的必要，所以本文仅仅记录课后作业&lt;/p>
+&lt;h2 id="基础作业">基础作业
+&lt;/h2>&lt;h3 id="hf模型下载">HF模型下载
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：熟悉 &lt;code>hugging face&lt;/code> 下载功能，使用 &lt;code>huggingface_hub&lt;/code> python 包，下载 &lt;code>InternLM-20B&lt;/code> 的 &lt;code>config.json&lt;/code> 文件到本地（需截图下载过程）。&lt;/p>
 &lt;/blockquote>
 &lt;p>这个无需多言，只是基本的命令使用，需要注意的是，由于众所周知的原因，国内直接下载 &lt;code>hugging face&lt;/code> 是不行的，这里使用镜像站 &lt;a class="link" href="https://hf-mirror.com/" target="_blank" rel="noopener"
@@ -804,8 +804,8 @@ class="gallery-image"
 data-flex-grow="208"
 data-flex-basis="501px"
 >&lt;/p>
-&lt;h3 id="浦语7b模型部署demo">浦语7B模型部署demo&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="浦语7b模型部署demo">浦语7B模型部署demo
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：使用 InternLM-Chat-7B 模型生成 300 字的小故事（需截图）。&lt;/p>
 &lt;/blockquote>
 &lt;p>这里我们可以使用两种demo来完成，分别是 &lt;code>cli_demo&lt;/code> 和 &lt;code>web_demo&lt;/code>，详细步骤参考配套教学文档，以下为大致总结：&lt;/p>
@@ -837,8 +837,8 @@ data-flex-basis="501px"
 &lt;/li>
 &lt;/ol>
 &lt;p>&lt;em>使用的prompt：帮我生成一个300字的小故事，主角是打工人叫平方君，内容是他通过不断努力升职加薪、当上总经理、出任CEO、迎娶白富美、走上人生巅峰的励志故事&lt;/em>&lt;/p>
-&lt;h4 id="cli_demo">cli_demo&lt;/h4>
-&lt;ul>
+&lt;h4 id="cli_demo">cli_demo
+&lt;/h4>&lt;ul>
 &lt;li>结果图：&lt;/li>
 &lt;/ul>
 &lt;p>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection2-Easy-Fun-with-InternLM-Entertaining-Demo/homework/1_cli_demo.png"
@@ -851,8 +851,8 @@ class="gallery-image"
 data-flex-grow="575"
 data-flex-basis="1381px"
 >&lt;/p>
-&lt;h4 id="web_demo">web_demo&lt;/h4>
-&lt;p>由于 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
+&lt;h4 id="web_demo">web_demo
+&lt;/h4>&lt;p>由于 &lt;a class="link" href="https://studio.intern-ai.org.cn/" target="_blank" rel="noopener"
 >InternStudio&lt;/a> 平台的开发机不能直接通过web访问，所以需要做一下端口映射，原理是利用 &lt;code>ssh&lt;/code> 做端口转发。&lt;/p>
 &lt;p>在本地主机运行：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -902,9 +902,9 @@ class="gallery-image"
 data-flex-grow="95"
 data-flex-basis="228px"
 >&lt;/p>
-&lt;h2 id="进阶作业可选做">进阶作业（可选做）&lt;/h2>
-&lt;h3 id="lagent部署demo">Lagent部署demo&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="进阶作业可选做">进阶作业（可选做）
+&lt;/h2>&lt;h3 id="lagent部署demo">Lagent部署demo
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：完成 &lt;code>Lagent&lt;/code> 工具调用 Demo 创作部署（需截图）&lt;/p>
 &lt;/blockquote>
 &lt;p>由于涉及到图形化操作，这里只有 &lt;code>web_demo&lt;/code>，详细步骤参考配套教学文档，以下为大致总结：&lt;/p>
@@ -961,8 +961,8 @@ class="gallery-image"
 data-flex-grow="116"
 data-flex-basis="279px"
 >&lt;/p>
-&lt;h3 id="浦语灵笔部署demo">浦语·灵笔部署demo&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="浦语灵笔部署demo">浦语·灵笔部署demo
+&lt;/h3>&lt;blockquote>
 &lt;p>目标：完成浦语·灵笔的图文理解及创作部署（需截图）&lt;/p>
 &lt;/blockquote>
 &lt;p>由于涉及到图形化操作，这里也只有 &lt;code>web_demo&lt;/code>，详细步骤参考配套教学文档，以下为大致总结：&lt;/p>
@@ -1029,49 +1029,49 @@ alt="4_xcomposer_web_demo2"
 class="gallery-image"
 data-flex-grow="143"
 data-flex-basis="343px"
->&lt;/p></description></item><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.webp" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
+>&lt;/p></description></item><item><title>书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系</title><link>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</link><pubDate>Tue, 09 Jan 2024 18:50:55 +0800</pubDate><guid>https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/</guid><description>&lt;img src="https://i-square.github.io/p/InternLM-tutorial-campsection1-LLM-Full-Stack-Open-Source-Ecosystem/camp.webp" alt="Featured image of post 书生·浦语大模型实战营（一）：书生·浦语大模型全链路开源体系" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本文为&lt;a class="link" href="https://github.com/InternLM/tutorial" target="_blank" rel="noopener"
 >书生·浦语大模型实战营&lt;/a>的课程笔记系列第一节，课程地址：&lt;a class="link" href="https://www.bilibili.com/video/BV1Rc411b7ns/" target="_blank" rel="noopener"
 >https://www.bilibili.com/video/BV1Rc411b7ns/&lt;/a>&lt;/p>
-&lt;h2 id="从专用模型到通用大模型">从专用模型到通用大模型&lt;/h2>
-&lt;p>在过去，人工智能领域的发展一直遵循着一个基本原则：一个模型对应一个场景或者任务。然而，随着技术的进步和需求的增长，这一格局正在发生深刻的变化。如今，我们正迈向一个新的时代，一个模型不再局限于一个场景或任务，而是可以应用于多个场景、多模态的复杂环境中。&lt;/p>
-&lt;h2 id="书生浦语大模型发展历程">书生·浦语大模型发展历程&lt;/h2>
-&lt;p>书生·浦语大模型的发展历程彰显了这一变革的重要性。它从轻量级的7B社区模型，逐步升级到中量级的20B商业模型，再到重量级的123B全场景模型。这一演进不仅仅是在模型规模上的提升，更是对多模态、多场景应用需求的积极响应。&lt;/p>
-&lt;h3 id="interlm-20b全面领先的开源模型">InterLM-20B：全面领先的开源模型&lt;/h3>
-&lt;p>&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
+&lt;h2 id="从专用模型到通用大模型">从专用模型到通用大模型
+&lt;/h2>&lt;p>在过去，人工智能领域的发展一直遵循着一个基本原则：一个模型对应一个场景或者任务。然而，随着技术的进步和需求的增长，这一格局正在发生深刻的变化。如今，我们正迈向一个新的时代，一个模型不再局限于一个场景或任务，而是可以应用于多个场景、多模态的复杂环境中。&lt;/p>
+&lt;h2 id="书生浦语大模型发展历程">书生·浦语大模型发展历程
+&lt;/h2>&lt;p>书生·浦语大模型的发展历程彰显了这一变革的重要性。它从轻量级的7B社区模型，逐步升级到中量级的20B商业模型，再到重量级的123B全场景模型。这一演进不仅仅是在模型规模上的提升，更是对多模态、多场景应用需求的积极响应。&lt;/p>
+&lt;h3 id="interlm-20b全面领先的开源模型">InterLM-20B：全面领先的开源模型
+&lt;/h3>&lt;p>&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
 >InterLM-20B&lt;/a>是一款千亿参数级别的开源模型，其性能在全球范围内处于领先地位。与相近规模的Llama-33B、Llama2-13B以及国内主流的7B、13B开源模型相比，InterLM-20B在不足三分之一的参数量下，却达到了Llama2-70B的水平。&lt;/p>
-&lt;h2 id="从模型到应用六个关键步骤">从模型到应用：六个关键步骤&lt;/h2>
-&lt;h3 id="第一步模型选型">第一步：模型选型&lt;/h3>
-&lt;p>在应用场景中，根据多个大模型的相关维度进行能力比较，并进行模型评测。初步选型后，可确定意向大模型。&lt;/p>
-&lt;h3 id="第二步评估业务场景复杂度">第二步：评估业务场景复杂度&lt;/h3>
-&lt;ul>
+&lt;h2 id="从模型到应用六个关键步骤">从模型到应用：六个关键步骤
+&lt;/h2>&lt;h3 id="第一步模型选型">第一步：模型选型
+&lt;/h3>&lt;p>在应用场景中，根据多个大模型的相关维度进行能力比较，并进行模型评测。初步选型后，可确定意向大模型。&lt;/p>
+&lt;h3 id="第二步评估业务场景复杂度">第二步：评估业务场景复杂度
+&lt;/h3>&lt;ul>
 &lt;li>&lt;strong>业务场景简单：&lt;/strong> 如果业务场景不太复杂，可以直接将选定的模型应用于场景中。&lt;/li>
 &lt;li>&lt;strong>业务场景复杂：&lt;/strong> 对于复杂场景，通常直接使用开源模型难以满足需求，需要进一步微调、进行prompt工程等构建工作。&lt;/li>
 &lt;/ul>
-&lt;h3 id="第三步判断微调策略">第三步：判断微调策略&lt;/h3>
-&lt;ul>
+&lt;h3 id="第三步判断微调策略">第三步：判断微调策略
+&lt;/h3>&lt;ul>
 &lt;li>&lt;strong>全参数微调：&lt;/strong> 若算力足够，可以进行全参数微调，提高模型性能。&lt;/li>
 &lt;li>&lt;strong>部分参数微调：&lt;/strong> 如果算力受限，只能进行部分参数微调，固定大部分参数，调整一小部分参数。&lt;/li>
 &lt;/ul>
-&lt;h3 id="第四步构建智能体">第四步：构建智能体&lt;/h3>
-&lt;ul>
+&lt;h3 id="第四步构建智能体">第四步：构建智能体
+&lt;/h3>&lt;ul>
 &lt;li>&lt;strong>模型与环境交互：&lt;/strong> 考虑模型与环境的交互，特别是如果需要调用外部API或与已有业务数据库交互，则需要构建智能体。&lt;/li>
 &lt;li>&lt;strong>无环境交互：&lt;/strong> 如果模型在业务场景中不需要与环境进行交互，可以直接将微调好的模型应用于场景。&lt;/li>
 &lt;/ul>
-&lt;h3 id="第五步模型评测与应用上线">第五步：模型评测与应用上线&lt;/h3>
-&lt;ul>
+&lt;h3 id="第五步模型评测与应用上线">第五步：模型评测与应用上线
+&lt;/h3>&lt;ul>
 &lt;li>&lt;strong>模型评测：&lt;/strong> 进行模型评测，确保在实际场景中表现良好。&lt;/li>
 &lt;li>&lt;strong>上线或迭代：&lt;/strong> 根据评测结果，决定是否上线应用或者继续迭代模型。&lt;/li>
 &lt;/ul>
-&lt;h3 id="第六步模型部署">第六步：模型部署&lt;/h3>
-&lt;p>考虑软件系统相关性能、安全、功能等方面内容：&lt;/p>
+&lt;h3 id="第六步模型部署">第六步：模型部署
+&lt;/h3>&lt;p>考虑软件系统相关性能、安全、功能等方面内容：&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>资源优化：&lt;/strong> 考虑如何以更少的资源部署模型。&lt;/li>
 &lt;li>&lt;strong>吞吐量提升：&lt;/strong> 提升整个应用的吞吐量，确保在生产环境中的性能表现。&lt;/li>
 &lt;/ul>
 &lt;p>这六个步骤构成了从选择模型到应用部署的全链条，确保在实际应用中大模型能够充分发挥作用。&lt;/p>
-&lt;h2 id="书生-浦语全链条开源开放体系">书生-浦语全链条开源开放体系&lt;/h2>
-&lt;p>书生·浦语大模型打破了传统的人工智能应用模式，提出了全链条开源开放体系。这一体系涵盖了从数据到预训练、微调、部署、评测到应用的全过程，为通用人工智能的实现提供了完整的解决方案。数据（&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
+&lt;h2 id="书生-浦语全链条开源开放体系">书生-浦语全链条开源开放体系
+&lt;/h2>&lt;p>书生·浦语大模型打破了传统的人工智能应用模式，提出了全链条开源开放体系。这一体系涵盖了从数据到预训练、微调、部署、评测到应用的全过程，为通用人工智能的实现提供了完整的解决方案。数据（&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
 >书生·万卷&lt;/a>）作为起点，经过&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
 >IntermLM-Train&lt;/a>的预训练，使用&lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
 >XTuner&lt;/a>进行微调，通过&lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
@@ -1079,17 +1079,17 @@ data-flex-basis="343px"
 >OpenCompass&lt;/a>进行全面评测，最终应用在&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
 >Lagent&lt;/a>构建的多模态智能体中。&lt;/p>
 &lt;p>这一全链条开源开放体系，为大模型的发展提供了创新性的方法，促使人工智能更好地服务于多样化的现实需求。&lt;/p>
-&lt;h3 id="数据覆盖多模态和任务">数据：覆盖多模态和任务&lt;/h3>
-&lt;p>全链条开源体系以&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
+&lt;h3 id="数据覆盖多模态和任务">数据：覆盖多模态和任务
+&lt;/h3>&lt;p>全链条开源体系以&lt;a class="link" href="https://github.com/opendatalab/WanJuan1.0" target="_blank" rel="noopener"
 >书生-万卷&lt;/a>为基础，涵盖了多模态和多任务的数据需求，为模型的学习提供了全面支持。&lt;/p>
-&lt;h4 id="opendatalab开放数据平台">OpenDataLab：开放数据平台&lt;/h4>
-&lt;p>&lt;a class="link" href="https://github.com/opendatalab" target="_blank" rel="noopener"
+&lt;h4 id="opendatalab开放数据平台">OpenDataLab：开放数据平台
+&lt;/h4>&lt;p>&lt;a class="link" href="https://github.com/opendatalab" target="_blank" rel="noopener"
 >OpenDataLab&lt;/a>作为开放数据平台，不仅包含丰富多样的开放数据，还为大模型的发展提供了数据支持和实验平台。&lt;/p>
-&lt;h3 id="预训练并行训练极致优化">预训练：并行训练，极致优化&lt;/h3>
-&lt;p>&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
+&lt;h3 id="预训练并行训练极致优化">预训练：并行训练，极致优化
+&lt;/h3>&lt;p>&lt;a class="link" href="https://github.com/InternLM/InternLM" target="_blank" rel="noopener"
 >InterLM&lt;/a>采用并行训练的方式，通过极致优化实现了高效的预训练，为模型的通用性奠定基础。&lt;/p>
-&lt;h3 id="微调xtuner支持全参数微调支持lora等低成本微调">微调：XTuner，支持全参数微调，支持Lora等低成本微调&lt;/h3>
-&lt;p>微调阶段使用&lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
+&lt;h3 id="微调xtuner支持全参数微调支持lora等低成本微调">微调：XTuner，支持全参数微调，支持Lora等低成本微调
+&lt;/h3>&lt;p>微调阶段使用&lt;a class="link" href="https://github.com/InternLM/xtuner" target="_blank" rel="noopener"
 >XTuner&lt;/a>工具，支持全参数微调，同时还支持诸如Lora等低成本微调方法，使模型更好地适应各种特定任务。&lt;/p>
 &lt;p>特性：&lt;/p>
 &lt;ul>
@@ -1099,11 +1099,11 @@ data-flex-basis="343px"
 &lt;li>适配多种开源生态：支持加载HuggingFace、ModelScope模型或者数据级&lt;/li>
 &lt;li>自动优化加速：开发者无需关注复杂的显存优化和计算加速细节&lt;/li>
 &lt;/ul>
-&lt;h3 id="部署lmdeploy全链路部署性能领先">部署：LMDeploy，全链路部署，性能领先&lt;/h3>
-&lt;p>&lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
+&lt;h3 id="部署lmdeploy全链路部署性能领先">部署：LMDeploy，全链路部署，性能领先
+&lt;/h3>&lt;p>&lt;a class="link" href="https://github.com/InternLM/lmdeploy" target="_blank" rel="noopener"
 >LMDeploy&lt;/a>提供了全链路部署的解决方案，包括模型轻量化、推理和服务，使得大模型在GPU上的部署更加高效，性能领先。&lt;/p>
-&lt;h3 id="评测opencompass全方位评测性能可以复现全球领先的大模型开源评测体系">评测：OpenCompass，全方位评测，性能可以复现，全球领先的大模型开源评测体系&lt;/h3>
-&lt;p>评测阶段使用&lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
+&lt;h3 id="评测opencompass全方位评测性能可以复现全球领先的大模型开源评测体系">评测：OpenCompass，全方位评测，性能可以复现，全球领先的大模型开源评测体系
+&lt;/h3>&lt;p>评测阶段使用&lt;a class="link" href="https://github.com/open-compass/opencompass" target="_blank" rel="noopener"
 >OpenCompass&lt;/a>工具，全方位评测模型性能，保证了评测结果的复现性，成为全球领先的大模型开源评测体系。&lt;/p>
 &lt;p>特性：&lt;/p>
 &lt;ul>
@@ -1112,8 +1112,8 @@ data-flex-basis="343px"
 &lt;li>便捷的数据集接口：支持社区用户根据自身需求快速添加自定义数据集。&lt;/li>
 &lt;li>敏捷的能力迭代：每周更新大模型能力榜单。&lt;/li>
 &lt;/ul>
-&lt;h3 id="应用legentagentlego-支持多种智能体支持代码解释器和多种工具">应用：Legent、AgentLego 支持多种智能体，支持代码解释器和多种工具&lt;/h3>
-&lt;p>最终，模型的应用在&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
+&lt;h3 id="应用legentagentlego-支持多种智能体支持代码解释器和多种工具">应用：Legent、AgentLego 支持多种智能体，支持代码解释器和多种工具
+&lt;/h3>&lt;p>最终，模型的应用在&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
 >Legent&lt;/a>和&lt;a class="link" href="https://github.com/InternLM/Lagent" target="_blank" rel="noopener"
 >AgentLego&lt;/a>等多种智能体中得以体现，支持代码解释器和多种工具，实现了多模态智能体的灵活应用。&lt;/p>
 &lt;p>特性：&lt;/p>
