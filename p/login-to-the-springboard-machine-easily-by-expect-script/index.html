@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="非常方便的一键登录跳板机教程"><meta name=keywords content="expect,ssh,script,跳板机"><title>使用expect脚本一键登录跳板机</title>
-<link rel=canonical href=https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/><link rel=stylesheet href=/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css><meta property='og:title' content="使用expect脚本一键登录跳板机"><meta property='og:description' content="非常方便的一键登录跳板机教程"><meta property='og:url' content='https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/'><meta property='og:site_name' content='平方君的后花园'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='expect'><meta property='article:tag' content='ssh'><meta property='article:tag' content='script'><meta property='article:tag' content='跳板机'><meta property='article:published_time' content='2022-03-18T17:34:07+08:00'><meta property='article:modified_time' content='2023-02-28T18:07:04+08:00'><meta property='og:image' content='https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg'><meta name=twitter:title content="使用expect脚本一键登录跳板机"><meta name=twitter:description content="非常方便的一键登录跳板机教程"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg'><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-S4LP96619L"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-S4LP96619L")}</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<link rel=canonical href=https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/><link rel=stylesheet href=/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css><meta property='og:title' content="使用expect脚本一键登录跳板机"><meta property='og:description' content="非常方便的一键登录跳板机教程"><meta property='og:url' content='https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/'><meta property='og:site_name' content='平方君的后花园'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='expect'><meta property='article:tag' content='ssh'><meta property='article:tag' content='script'><meta property='article:tag' content='跳板机'><meta property='article:published_time' content='2022-03-18T17:34:07+08:00'><meta property='article:modified_time' content='2024-09-25T20:40:51+08:00'><meta property='og:image' content='https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg'><meta name=twitter:title content="使用expect脚本一键登录跳板机"><meta name=twitter:description content="非常方便的一键登录跳板机教程"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg'><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-S4LP96619L"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-S4LP96619L")}</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
 <span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu18300395301994943118.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
 </a><span class=emoji>💤</span></figure><div class=site-meta><h1 class=site-name><a href=/>平方君的后花园</a></h1><h2 class=site-description>人生苦短，及时行乐。</h2></div></header><ol class=menu-social><li><a href=mailto:i_square@qq.com target=_blank title=E-Mail rel=me><svg class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5m0 2a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M3 7l9 6 9-6"/></svg></a></li><li><a href=https://github.com/i-square target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
 <span>主页 | Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
@@ -12,91 +12,299 @@
 <span>Love Story</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
 <select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://i-square.github.io/ selected>中文</option><option value=https://i-square.github.io/en/>English</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#背景>背景</a></li><li><a href=#方法>方法</a><ol><li><a href=#所需依赖>所需依赖</a></li></ol></li><li><a href=#authenticator配置>authenticator配置</a><ol><li><a href=#安装>安装</a></li><li><a href=#配置>配置</a></li><li><a href=#注意点>注意点</a></li></ol></li><li><a href=#expect脚本>expect脚本</a><ol><li><a href=#脚本>脚本</a></li><li><a href=#使用>使用</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/login-to-the-springboard-machine-easily-by-expect-script/><img src=/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg loading=lazy alt="Featured image of post 使用expect脚本一键登录跳板机"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%AC%94%E8%AE%B0/>笔记
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#背景>背景</a></li><li><a href=#方法>方法</a></li><li><a href=#自动获取谷歌验证码>自动获取谷歌验证码</a><ol><li><a href=#所需依赖>所需依赖</a></li><li><a href=#方法一推荐oathtool>方法一（推荐）：<code>oathtool</code></a><ol><li><a href=#安装>安装</a></li><li><a href=#使用>使用</a></li></ol></li><li><a href=#方法二python-authenticator>方法二：<code>python authenticator</code></a><ol><li><a href=#安装-1>安装</a></li><li><a href=#配置>配置</a></li><li><a href=#注意点>注意点</a></li></ol></li></ol></li><li><a href=#expect脚本>expect脚本</a><ol><li><a href=#功能>功能</a></li><li><a href=#使用-1>使用</a></li><li><a href=#代码>代码</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/login-to-the-springboard-machine-easily-by-expect-script/><img src=/p/login-to-the-springboard-machine-easily-by-expect-script/login.svg loading=lazy alt="Featured image of post 使用expect脚本一键登录跳板机"></a></div><div class=article-details><header class=article-category><a href=/categories/%E7%AC%94%E8%AE%B0/>笔记
 </a><a href=/categories/%E5%88%86%E4%BA%AB/>分享</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/login-to-the-springboard-machine-easily-by-expect-script/>使用expect脚本一键登录跳板机</a></h2><h3 class=article-subtitle>非常方便的一键登录跳板机教程</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published>2022-03-18</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><h2 id=背景>背景</h2><p>为了安全，多数公司会采用跳板机的方式访问内网服务器，登录需要输入AD密码和谷歌验证码，非常繁琐，这里提供一个基于expect脚本的方法，实现一键登录跳板机</p><blockquote><p>注：笔者在 MacOS 和 Ubuntu20.04 环境下测试ok，其他环境大同小异，按需修改即可。</p></blockquote><h2 id=方法>方法</h2><p>此方式思路是利用expect脚本交互式输入预设的AD密码，输入实时获取的谷歌验证码（使用 python authenticator 工具）</p><h3 id=所需依赖>所需依赖</h3><p>安装以下工具，各平台安装方法请自行搜索：</p><ul><li>expect</li><li>python</li><li>pip</li><li>authenticator</li></ul><h2 id=authenticator配置>authenticator配置</h2><h3 id=安装>安装</h3><p><code>pip install authenticator</code> 若不成功，请先升级pip到最新版本</p><h3 id=配置>配置</h3><ol><li>执行 <code>authenticator add $user</code>（AD账号无邮箱后缀）</li><li>提示 <code>Enter passphrase</code> 这里输入2次AD密码</li><li>提示 <code>Enter shared secret</code> 需要把谷歌验证码的字符串输入到这里</li><li>到这里就配置ok了，执行 <code>authenticator generate</code> ，输入AD密码，看到谷歌验证码正常输出就是成功了</li></ol><blockquote><p>配置完成之后就可以使用expect脚本来自动登录了</p></blockquote><h3 id=注意点>注意点</h3><p>多数公司的AD密码可能需要每隔一段时间更新一次，在更新AD密码后，使用 <code>authenticator</code> 仍然需要输入旧密码，所以下述脚本内相应的做了一下兼容</p><h2 id=expect脚本>expect脚本</h2><h3 id=脚本>脚本</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/usr/bin/expect
-</span></span></span><span class=line><span class=cl><span class=cp></span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> timeout <span class=m>1000</span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> USERNAME xxx
-</span></span><span class=line><span class=cl><span class=nb>set</span> PASSWORD_GEN xxxx  <span class=c1># 首次配置 authenticator 时使用的密码</span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> PASSWORD xxxxxxxx  <span class=c1># AD密码，每隔 xx 天更新一次</span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> JUMP_ZONE zone     <span class=c1># 假如跳板机区分区域</span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> LINK_TYPE ssh
-</span></span><span class=line><span class=cl><span class=nb>set</span> DOMAIN example.com <span class=c1># 登录域名</span>
+<time class=article-time--reading>阅读时长: 3 分钟</time></div></footer></div></header><section class=article-content><h2 id=背景>背景</h2><p>为了安全，多数公司会采用跳板机的方式访问内网服务器，登录需要输入AD密码和谷歌验证码，非常繁琐，这里提供一个基于 <code>expect</code> 脚本的方法，实现一键登录跳板机</p><blockquote><p>注：笔者在 <code>MacOS</code> 和 <code>Ubuntu20.04</code> 环境下测试ok，其他环境大同小异，按需修改即可。</p></blockquote><h2 id=方法>方法</h2><p>此方式思路是利用 <code>expect</code> 脚本交互式输入预设的AD密码，输入实时获取的谷歌验证码（使用 <code>oathtool</code> 或 <code>python authenticator</code> 等工具）</p><h2 id=自动获取谷歌验证码>自动获取谷歌验证码</h2><h3 id=所需依赖>所需依赖</h3><p>安装以下工具，各平台安装方法请自行搜索：</p><ul><li><code>expect</code></li><li><code>oathtool</code>（推荐）</li><li>或者使用 <code>python</code> 包<ul><li><code>python</code></li><li><code>pip</code></li><li><code>authenticator</code></li></ul></li></ul><h3 id=方法一推荐oathtool>方法一（推荐）：<code>oathtool</code></h3><p>使用指南：<a class=link href=https://manpages.ubuntu.com/manpages/jammy/en/man1/oathtool.1.html target=_blank rel=noopener>Ubuntu man1/oathtool.1.html</a></p><h4 id=安装>安装</h4><p><code>sudo apt install -y oathtool</code></p><h4 id=使用>使用</h4><ol><li>获取谷歌验证码的 <code>SECRET</code> 字符串</li><li>执行 <code>oathtool --totp -b ${SECRET}</code> 即可获取到当前时间的动态码</li></ol><h3 id=方法二python-authenticator>方法二：<code>python authenticator</code></h3><h4 id=安装-1>安装</h4><p><code>pip install authenticator</code> 若不成功，请先升级 <code>pip</code> 到最新版本</p><h4 id=配置>配置</h4><ol><li>执行 <code>authenticator add $user</code>（AD账号无邮箱后缀）</li><li>提示 <code>Enter passphrase</code> 这里输入2次AD密码</li><li>提示 <code>Enter shared secret</code> 需要把谷歌验证码的 <code>SECRET</code> 字符串输入到这里</li><li>到这里就配置ok了，执行 <code>authenticator generate</code> ，输入AD密码，看到谷歌验证码正常输出就是成功了</li></ol><blockquote><p>能够自动获取谷歌验证码之后就可以使用expect脚本来实现自动登录了</p></blockquote><h4 id=注意点>注意点</h4><p>多数公司的AD密码可能需要每隔一段时间更新一次，在更新AD密码后，使用 <code>authenticator</code> 仍然需要输入旧密码，所以下述脚本内相应的做了一下兼容</p><h2 id=expect脚本>expect脚本</h2><h3 id=功能>功能</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-console data-lang=console><span class=line><span class=cl><span class=gp>$</span> jump --help
+</span></span><span class=line><span class=cl><span class=go>Usage: jump [--user &lt;username&gt;] [--auth &lt;auth_type&gt;] [--type &lt;link_type&gt;] [--zone &lt;jump_zone&gt;] [--help]
+</span></span></span><span class=line><span class=cl><span class=go>--user &lt;username&gt;    Specify the username to use (default: $DEFAULT_USER)
+</span></span></span><span class=line><span class=cl><span class=go>--auth &lt;auth_type&gt;   Specify the auth type, &#39;py&#39; for using authenticator (default: oathtool)
+</span></span></span><span class=line><span class=cl><span class=go>--type &lt;link_type&gt;   Specify the link type, &#39;ssh&#39; or &#39;sftp&#39; (default: ssh)
+</span></span></span><span class=line><span class=cl><span class=go>--zone &lt;jump_zone&gt;   Specify the jump server zone, &#39;bj&#39; or &#39;sh&#39; (default: sh)
+</span></span></span><span class=line><span class=cl><span class=go>--help               Display this help message
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=使用-1>使用</h3><ol><li>把 <code>users</code> 相关的几个变量填写好<ul><li><code>PASSWORD</code> AD密码</li><li><code>PASSWORD_GEN</code> 生成密码</li><li><code>SECRET</code> 密钥</li></ul></li><li>假设保存文件为 <code>~/jump.exp</code></li><li>执行脚本即可自动化登录到跳板机 <code>expect ~/jump.exp</code><ol><li>也可以给脚本加上可执行权限 <code>chmod a+x ~/jump.exp</code></li><li>然后直接执行即可 <code>~/jump.exp</code></li></ol></li></ol><h3 id=代码>代码</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=c1>#!/usr/bin/expect</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1># 判断是否是 vscode 云端环境</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>{</span><span class=nv>$JUMP_ZONE</span> !<span class=o>=</span> <span class=s2>&#34;vscode&#34;</span><span class=o>}</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>    <span class=nb>set</span> main_response <span class=s2>&#34;Opt&gt;&#34;</span>
-</span></span><span class=line><span class=cl><span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>    <span class=nb>set</span> main_response <span class=s2>&#34;Ip:&#34;</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置超时</span>
+</span></span><span class=line><span class=cl><span class=n>set</span> <span class=n>timeout</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl><span class=n>set</span> <span class=n>JUMP_ZONE</span> <span class=n>sh</span>
+</span></span><span class=line><span class=cl><span class=n>set</span> <span class=n>LINK_TYPE</span> <span class=n>ssh</span>
+</span></span><span class=line><span class=cl><span class=n>set</span> <span class=n>DEFAULT_USER</span> <span class=n>userAAA</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>spawn authenticator generate
-</span></span><span class=line><span class=cl>expect <span class=s2>&#34;passphrase:&#34;</span>
-</span></span><span class=line><span class=cl>send <span class=s2>&#34;</span><span class=nv>$PASSWORD_GEN</span><span class=s2>\r&#34;</span>
-</span></span><span class=line><span class=cl>expect <span class=s2>&#34;seconds&#34;</span>
-</span></span><span class=line><span class=cl><span class=nb>set</span> found <span class=o>[</span>regexp <span class=o>{([</span>0-9<span class=o>]{</span>6<span class=o>})}</span> <span class=nv>$expect_out</span><span class=o>(</span>buffer<span class=o>)</span> match verify_code<span class=o>]</span>
-</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>{</span><span class=nv>$found</span> <span class=o>==</span> 1<span class=o>}</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>    send <span class=se>\x</span><span class=m>03</span>   <span class=c1># 发送 Ctrl-C 结束 authenticator 进程</span>
-</span></span><span class=line><span class=cl><span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>    puts <span class=s2>&#34;invalid verification code&#34;</span>
-</span></span><span class=line><span class=cl>    <span class=nb>exit</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=c1># 扁平化关联数组，使用键名结合用户名</span>
+</span></span><span class=line><span class=cl><span class=n>array</span> <span class=n>set</span> <span class=n>users</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>userBBB_PASSWORD</span> <span class=s2>&#34;xxxxxxxxxx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>userBBB_PASSWORD_GEN</span> <span class=s2>&#34;xxxxxxxxxx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>userBBB_SECRET</span> <span class=s2>&#34;xxxxxxxxxx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>userAAA_PASSWORD</span> <span class=s2>&#34;xxxxxxxxxx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>userAAA_PASSWORD_GEN</span> <span class=s2>&#34;xxxxxxxxxx&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>userAAA_SECRET</span> <span class=s2>&#34;xxxxxxxxxx&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>spawn <span class=si>${</span><span class=nv>LINK_TYPE</span><span class=si>}</span> <span class=si>${</span><span class=nv>USERNAME</span><span class=si>}</span>@jump-<span class=si>${</span><span class=nv>JUMP_ZONE</span><span class=si>}</span>.<span class=si>${</span><span class=nv>DOMAIN</span><span class=si>}</span>
-</span></span><span class=line><span class=cl>expect <span class=o>{</span>
-</span></span><span class=line><span class=cl>    <span class=s2>&#34;yes/no&#34;</span> <span class=o>{</span> send <span class=s2>&#34;yes\r&#34;</span><span class=p>;</span> exp_continue <span class=o>}</span>
-</span></span><span class=line><span class=cl>    <span class=s2>&#34;Verification code:&#34;</span> <span class=o>{</span> send <span class=s2>&#34;</span><span class=nv>$verify_code</span><span class=s2>\r&#34;</span><span class=p>;</span> exp_continue <span class=o>}</span>
-</span></span><span class=line><span class=cl>    <span class=s2>&#34;assword:&#34;</span> <span class=o>{</span> send <span class=s2>&#34;</span><span class=nv>$PASSWORD</span><span class=s2>\r&#34;</span><span class=p>;</span> exp_continue <span class=o>}</span>
-</span></span><span class=line><span class=cl>    <span class=s2>&#34;MFA auth&#34;</span> <span class=o>{</span> send <span class=s2>&#34;</span><span class=nv>$verify_code</span><span class=s2>\r&#34;</span><span class=p>;</span> exp_continue <span class=o>}</span>
-</span></span><span class=line><span class=cl>    <span class=nv>$main_response</span> <span class=o>{</span> <span class=o>}</span>
-</span></span><span class=line><span class=cl><span class=o>}</span>
-</span></span><span class=line><span class=cl>interact
-</span></span></code></pre></td></tr></table></div></div><h3 id=使用>使用</h3><ol><li>把脚本开头的几个变量设置一下，或者自己修改为从argv里读取<ul><li><code>USERNAME</code> AD账户不带邮箱后缀</li><li><code>PASSWORD</code> AD密码</li><li><code>JUMP_ZONE</code> 是跳板机的区域代码，按需</li><li><code>LINK_TYPE</code> 是连接协议，比如 <code>ssh | sftp</code>，按需</li></ul></li><li>假设保存文件为 <code>~/jump_ssh.exp</code></li><li>执行脚本即可自动化登录到跳板机 <code>expect ~/jump_ssh.exp</code><ol><li>也可以给脚本加上可执行权限 <code>chmod a+x ~/jump_ssh.exp</code></li><li>然后直接执行即可 <code>~/jump_ssh.exp</code></li></ol></li></ol></section><footer class=article-footer><section class=article-tags><a href=/tags/expect/>Expect</a>
+</span></span><span class=line><span class=cl><span class=c1># 初始化变量</span>
+</span></span><span class=line><span class=cl><span class=n>set</span> <span class=n>USERNAME</span> <span class=o>$</span><span class=n>DEFAULT_USER</span>
+</span></span><span class=line><span class=cl><span class=n>set</span> <span class=n>use_authenticator</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 打印 usage 信息</span>
+</span></span><span class=line><span class=cl><span class=n>proc</span> <span class=n>print_usage</span> <span class=p>{}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=p>{</span><span class=n>Usage</span><span class=p>:</span> <span class=n>jump</span> <span class=p>[</span><span class=o>--</span><span class=n>user</span> <span class=o>&lt;</span><span class=n>username</span><span class=o>&gt;</span><span class=p>]</span> <span class=p>[</span><span class=o>--</span><span class=n>auth</span> <span class=o>&lt;</span><span class=n>auth_type</span><span class=o>&gt;</span><span class=p>]</span> <span class=p>[</span><span class=o>--</span><span class=n>type</span> <span class=o>&lt;</span><span class=n>link_type</span><span class=o>&gt;</span><span class=p>]</span> <span class=p>[</span><span class=o>--</span><span class=n>help</span><span class=p>]}</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=p>{</span><span class=o>--</span><span class=n>user</span> <span class=o>&lt;</span><span class=n>username</span><span class=o>&gt;</span>    <span class=n>Specify</span> <span class=n>the</span> <span class=n>username</span> <span class=n>to</span> <span class=n>use</span> <span class=p>(</span><span class=n>default</span><span class=p>:</span> <span class=o>$</span><span class=n>DEFAULT_USER</span><span class=p>)}</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=p>{</span><span class=o>--</span><span class=n>auth</span> <span class=o>&lt;</span><span class=n>auth_type</span><span class=o>&gt;</span>   <span class=n>Specify</span> <span class=n>the</span> <span class=n>auth</span> <span class=n>type</span><span class=p>,</span> <span class=s1>&#39;py&#39;</span> <span class=k>for</span> <span class=n>using</span> <span class=n>authenticator</span> <span class=p>(</span><span class=n>default</span><span class=p>:</span> <span class=n>oathtool</span><span class=p>)}</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=p>{</span><span class=o>--</span><span class=n>type</span> <span class=o>&lt;</span><span class=n>link_type</span><span class=o>&gt;</span>   <span class=n>Specify</span> <span class=n>the</span> <span class=n>link</span> <span class=n>type</span><span class=p>,</span> <span class=s1>&#39;ssh&#39;</span> <span class=ow>or</span> <span class=s1>&#39;sftp&#39;</span> <span class=p>(</span><span class=n>default</span><span class=p>:</span> <span class=n>ssh</span><span class=p>)}</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=p>{</span><span class=o>--</span><span class=n>zone</span> <span class=o>&lt;</span><span class=n>jump_zone</span><span class=o>&gt;</span>   <span class=n>Specify</span> <span class=n>the</span> <span class=n>jump</span> <span class=n>server</span> <span class=n>zone</span><span class=p>,</span> <span class=s1>&#39;bj&#39;</span> <span class=ow>or</span> <span class=s1>&#39;sh&#39;</span> <span class=p>(</span><span class=n>default</span><span class=p>:</span> <span class=n>sh</span><span class=p>)}</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=p>{</span><span class=o>--</span><span class=n>help</span>               <span class=n>Display</span> <span class=n>this</span> <span class=n>help</span> <span class=n>message</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>exit</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 解析命令行参数</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=p>{</span><span class=n>set</span> <span class=n>i</span> <span class=mi>0</span><span class=p>}</span> <span class=p>{</span><span class=o>$</span><span class=n>i</span> <span class=o>&lt;</span> <span class=p>[</span><span class=n>llength</span> <span class=o>$</span><span class=n>argv</span><span class=p>]}</span> <span class=p>{</span><span class=n>incr</span> <span class=n>i</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>{[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=o>$</span><span class=n>i</span><span class=p>]</span> <span class=n>eq</span> <span class=s2>&#34;--user&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>{[</span><span class=n>expr</span> <span class=p>{</span><span class=o>$</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>}]</span> <span class=o>&lt;</span> <span class=p>[</span><span class=n>llength</span> <span class=o>$</span><span class=n>argv</span><span class=p>]}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>set</span> <span class=n>USERNAME</span> <span class=p>[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=p>[</span><span class=n>expr</span> <span class=o>$</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>puts</span> <span class=s2>&#34;Error: --user requires an argument&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=n>elseif</span> <span class=p>{[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=o>$</span><span class=n>i</span><span class=p>]</span> <span class=n>eq</span> <span class=s2>&#34;--auth&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>{[</span><span class=n>expr</span> <span class=p>{</span><span class=o>$</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>}]</span> <span class=o>&lt;</span> <span class=p>[</span><span class=n>llength</span> <span class=o>$</span><span class=n>argv</span><span class=p>]}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=p>{[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=p>[</span><span class=n>expr</span> <span class=o>$</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]]</span> <span class=n>eq</span> <span class=s2>&#34;py&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>set</span> <span class=n>use_authenticator</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>puts</span> <span class=s2>&#34;Error: --auth requires an argument&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=n>elseif</span> <span class=p>{[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=o>$</span><span class=n>i</span><span class=p>]</span> <span class=n>eq</span> <span class=s2>&#34;--type&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>{[</span><span class=n>expr</span> <span class=p>{</span><span class=o>$</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>}]</span> <span class=o>&lt;</span> <span class=p>[</span><span class=n>llength</span> <span class=o>$</span><span class=n>argv</span><span class=p>]}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>set</span> <span class=n>LINK_TYPE</span> <span class=p>[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=p>[</span><span class=n>expr</span> <span class=o>$</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=p>{</span><span class=o>$</span><span class=n>LINK_TYPE</span> <span class=n>ne</span> <span class=s2>&#34;ssh&#34;</span> <span class=o>&amp;&amp;</span> <span class=o>$</span><span class=n>LINK_TYPE</span> <span class=n>ne</span> <span class=s2>&#34;sftp&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>puts</span> <span class=s2>&#34;Error: Invalid link type. Use &#39;ssh&#39; or &#39;sftp&#39;.&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>puts</span> <span class=s2>&#34;Error: --type requires an argument&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=n>elseif</span> <span class=p>{[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=o>$</span><span class=n>i</span><span class=p>]</span> <span class=n>eq</span> <span class=s2>&#34;--zone&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>{[</span><span class=n>expr</span> <span class=p>{</span><span class=o>$</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>}]</span> <span class=o>&lt;</span> <span class=p>[</span><span class=n>llength</span> <span class=o>$</span><span class=n>argv</span><span class=p>]}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>set</span> <span class=n>JUMP_ZONE</span> <span class=p>[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=p>[</span><span class=n>expr</span> <span class=o>$</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=p>{</span><span class=o>$</span><span class=n>JUMP_ZONE</span> <span class=n>ne</span> <span class=s2>&#34;sh&#34;</span> <span class=o>&amp;&amp;</span> <span class=o>$</span><span class=n>JUMP_ZONE</span> <span class=n>ne</span> <span class=s2>&#34;bj&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>puts</span> <span class=s2>&#34;Error: Invalid jump zone. Use &#39;sh&#39; or &#39;bj&#39;.&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>puts</span> <span class=s2>&#34;Error: --zone requires an argument&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=n>elseif</span> <span class=p>{[</span><span class=n>lindex</span> <span class=o>$</span><span class=n>argv</span> <span class=o>$</span><span class=n>i</span><span class=p>]</span> <span class=n>eq</span> <span class=s2>&#34;--help&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>print_usage</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 检查用户名是否存在</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>{[</span><span class=n>info</span> <span class=n>exists</span> <span class=n>users</span><span class=p>(</span><span class=o>$</span><span class=p>{</span><span class=n>USERNAME</span><span class=p>}</span><span class=n>_PASSWORD</span><span class=p>)]}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>set</span> <span class=n>PASSWORD</span> <span class=o>$</span><span class=n>users</span><span class=p>(</span><span class=o>$</span><span class=p>{</span><span class=n>USERNAME</span><span class=p>}</span><span class=n>_PASSWORD</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>set</span> <span class=n>PASSWORD_GEN</span> <span class=o>$</span><span class=n>users</span><span class=p>(</span><span class=o>$</span><span class=p>{</span><span class=n>USERNAME</span><span class=p>}</span><span class=n>_PASSWORD_GEN</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>set</span> <span class=n>SECRET</span> <span class=o>$</span><span class=n>users</span><span class=p>(</span><span class=o>$</span><span class=p>{</span><span class=n>USERNAME</span><span class=p>}</span><span class=n>_SECRET</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span> <span class=s2>&#34;Error: User $USERNAME not found&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 获取验证代码</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>{</span><span class=o>$</span><span class=n>use_authenticator</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用 authenticator generate 生成验证码</span>
+</span></span><span class=line><span class=cl>    <span class=n>spawn</span> <span class=n>authenticator</span> <span class=n>generate</span>
+</span></span><span class=line><span class=cl>    <span class=n>expect</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;passphrase:&#34;</span> <span class=p>{</span> <span class=n>send</span> <span class=s2>&#34;$PASSWORD_GEN</span><span class=se>\r</span><span class=s2>&#34;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>timeout</span> <span class=p>{</span> <span class=n>puts</span> <span class=s2>&#34;Error: Authenticator timeout&#34;</span><span class=p>;</span> <span class=n>exit</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>expect</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;seconds&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=n>set</span> <span class=n>found</span> <span class=p>[</span><span class=n>regexp</span> <span class=p>{([</span><span class=mi>0</span><span class=o>-</span><span class=mi>9</span><span class=p>]{</span><span class=mi>6</span><span class=p>})}</span> <span class=o>$</span><span class=n>expect_out</span><span class=p>(</span><span class=n>buffer</span><span class=p>)</span> <span class=n>match</span> <span class=n>verify_code</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=p>{</span><span class=o>$</span><span class=n>found</span> <span class=o>==</span> <span class=mi>1</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>send</span> \<span class=n>x03</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=n>puts</span> <span class=s2>&#34;Error: Invalid verification code&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=n>timeout</span> <span class=p>{</span> <span class=n>puts</span> <span class=s2>&#34;Error: Failed to retrieve verification code&#34;</span><span class=p>;</span> <span class=n>exit</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 使用 oathtool 生成验证码</span>
+</span></span><span class=line><span class=cl>    <span class=n>set</span> <span class=n>verify_code</span> <span class=p>[</span><span class=n>exec</span> <span class=n>oathtool</span> <span class=o>--</span><span class=n>totp</span> <span class=o>-</span><span class=n>b</span> <span class=o>$</span><span class=n>SECRET</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>{</span><span class=o>$</span><span class=n>verify_code</span> <span class=n>eq</span> <span class=s2>&#34;&#34;</span><span class=p>}</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span> <span class=s2>&#34;Error: Failed to generate verification code&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>exit</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 启动连接并处理交互</span>
+</span></span><span class=line><span class=cl><span class=n>spawn</span> <span class=o>$</span><span class=p>{</span><span class=n>LINK_TYPE</span><span class=p>}</span> <span class=o>$</span><span class=p>{</span><span class=n>USERNAME</span><span class=p>}</span><span class=err>@</span><span class=n>jump</span><span class=o>-$</span><span class=p>{</span><span class=n>JUMP_ZONE</span><span class=p>}</span><span class=o>.</span><span class=n>sensetime</span><span class=o>.</span><span class=n>com</span>
+</span></span><span class=line><span class=cl><span class=n>expect</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;yes/no&#34;</span> <span class=p>{</span> <span class=n>send</span> <span class=s2>&#34;yes</span><span class=se>\r</span><span class=s2>&#34;</span><span class=p>;</span> <span class=n>exp_continue</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;Verification code:&#34;</span> <span class=p>{</span> <span class=n>send</span> <span class=s2>&#34;$verify_code</span><span class=se>\r</span><span class=s2>&#34;</span><span class=p>;</span> <span class=n>exp_continue</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;assword:&#34;</span> <span class=p>{</span> <span class=n>send</span> <span class=s2>&#34;$PASSWORD</span><span class=se>\r</span><span class=s2>&#34;</span><span class=p>;</span> <span class=n>exp_continue</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;MFA auth&#34;</span> <span class=p>{</span> <span class=n>send</span> <span class=s2>&#34;$verify_code</span><span class=se>\r</span><span class=s2>&#34;</span><span class=p>;</span> <span class=n>exp_continue</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;Opt&gt;&#34;</span> <span class=p>{</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sftp&gt;&#34;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>send</span> <span class=s2>&#34;ls</span><span class=se>\r</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=n>expect</span> <span class=s2>&#34;sftp&gt;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>timeout</span> <span class=p>{</span> <span class=n>puts</span> <span class=s2>&#34;Error: Connection timeout&#34;</span><span class=p>;</span> <span class=n>exit</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>eof</span> <span class=p>{</span> <span class=n>puts</span> <span class=s2>&#34;Error: Unexpected EOF&#34;</span><span class=p>;</span> <span class=n>exit</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 进入交互模式</span>
+</span></span><span class=line><span class=cl><span class=n>interact</span>
+</span></span></code></pre></td></tr></table></div></div></section><footer class=article-footer><section class=article-tags><a href=/tags/expect/>Expect</a>
 <a href=/tags/ssh/>Ssh</a>
 <a href=/tags/script/>Script</a>
 <a href=/tags/%E8%B7%B3%E6%9D%BF%E6%9C%BA/>跳板机</a></section><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
 <span>Licensed under CC BY-NC-SA 4.0</span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<span>最后更新于 2023-02-28 18:07 CST</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/><div class=article-image><img src=/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/man_23to24.svg loading=lazy data-key="hugo upgrade and hugo-theme-stack modify and last modified time" data-hash=/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/man_23to24.svg></div><div class=article-details><h2 class=article-title>hugo升级与hugo-theme-stack主题修改与最后修改时间问题</h2></div></a></article><article class=has-image><a href=/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/><div class=article-image><img src=/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/macOS-Monterey-on-MBP-Feature.a670ca7d1c7a6980acb7c265ae1543d1_hu3331952553699494217.webp width=250 height=150 loading=lazy alt="Featured image of post 升级MacOS12.x(Monterey)后sudo失效问题及解决方式" data-key="Problem and solution of sudo unavailability after upgrading to MacOS12.x(Monterey)" data-hash="md5-pnDKfRx6aYCst8JlrhVD0Q=="></div><div class=article-details><h2 class=article-title>升级MacOS12.x(Monterey)后sudo失效问题及解决方式</h2></div></a></article><article class=has-image><a href=/p/Guide-to-Efficient-Surfing/><div class=article-image><img src=/p/Guide-to-Efficient-Surfing/wave-riding.svg loading=lazy data-key="Guide to Efficient Surfing" data-hash=/p/Guide-to-Efficient-Surfing/wave-riding.svg></div><div class=article-details><h2 class=article-title>高效冲浪指北</h2></div></a></article><article class=has-image><a href=/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/><div class=article-image><img src=/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg loading=lazy data-key="Experience GitHub Copilot Labs: Explore the infinite possibilities of AI in programming" data-hash=/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg></div><div class=article-details><h2 class=article-title>体验GitHub Copilot Labs：探索AI在编程领域的无限可能</h2></div></a></article><article class=has-image><a href=/p/Experience-new-bing-a-brand-new-search-engine/><div class=article-image><img src=/p/Experience-new-bing-a-brand-new-search-engine/newbing_logo.a1c6c2c835e52036ea38ff969b1b8e09_hu7992376798240011765.png width=250 height=150 loading=lazy alt="Featured image of post 体验new bing：一个全新的搜索引擎" data-key="Experience new bing: a brand new search engine" data-hash="md5-ocbCyDXlIDbqOP+WmxuOCQ=="></div><div class=article-details><h2 class=article-title>体验new bing：一个全新的搜索引擎</h2></div></a></article></div></div></aside><div id=cusdis_thread data-host=https://cusdis.com data-app-id=0d2babe1-c058-48ca-a64b-c5afdfa1cb19 data-page-id=9a54c3d99fec400d343e176172960e2a data-page-url=https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/ data-page-title=使用expect脚本一键登录跳板机></div><script async defer src=https://cusdis.com/js/cusdis.es.js></script><script>function setCusdisTheme(e){let t=document.querySelector("#cusdis_thread iframe");t&&window.CUSDIS.setTheme(e)}window.addEventListener("onColorSchemeChange",e=>{setCusdisTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
+<span>最后更新于 2024-09-25 20:40 CST</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/><div class=article-image><img src=/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/man_23to24.svg loading=lazy data-key="hugo upgrade and hugo-theme-stack modify and last modified time" data-hash=/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/man_23to24.svg></div><div class=article-details><h2 class=article-title>hugo升级与hugo-theme-stack主题修改与最后修改时间问题</h2></div></a></article><article class=has-image><a href=/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/><div class=article-image><img src=/p/Problem-and-solution-of-sudo-unavailability-after-upgrading-to-MacOS12.xMonterey/macOS-Monterey-on-MBP-Feature.a670ca7d1c7a6980acb7c265ae1543d1_hu3331952553699494217.webp width=250 height=150 loading=lazy alt="Featured image of post 升级MacOS12.x(Monterey)后sudo失效问题及解决方式" data-key="Problem and solution of sudo unavailability after upgrading to MacOS12.x(Monterey)" data-hash="md5-pnDKfRx6aYCst8JlrhVD0Q=="></div><div class=article-details><h2 class=article-title>升级MacOS12.x(Monterey)后sudo失效问题及解决方式</h2></div></a></article><article class=has-image><a href=/p/Guide-to-Efficient-Surfing/><div class=article-image><img src=/p/Guide-to-Efficient-Surfing/wave-riding.svg loading=lazy data-key="Guide to Efficient Surfing" data-hash=/p/Guide-to-Efficient-Surfing/wave-riding.svg></div><div class=article-details><h2 class=article-title>高效冲浪指北</h2></div></a></article><article class=has-image><a href=/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/><div class=article-image><img src=/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg loading=lazy data-key="Experience GitHub Copilot Labs: Explore the infinite possibilities of AI in programming" data-hash=/p/Experience-GitHub-Copilot-Labs-Explore-the-infinite-possibilities-of-AI-in-programming/copilot.svg></div><div class=article-details><h2 class=article-title>体验GitHub Copilot Labs：探索AI在编程领域的无限可能</h2></div></a></article><article class=has-image><a href=/p/Experience-new-bing-a-brand-new-search-engine/><div class=article-image><img src=/p/Experience-new-bing-a-brand-new-search-engine/newbing_logo.a1c6c2c835e52036ea38ff969b1b8e09_hu7992376798240011765.png width=250 height=150 loading=lazy alt="Featured image of post 体验new bing：一个全新的搜索引擎" data-key="Experience new bing: a brand new search engine" data-hash="md5-ocbCyDXlIDbqOP+WmxuOCQ=="></div><div class=article-details><h2 class=article-title>体验new bing：一个全新的搜索引擎</h2></div></a></article></div></div></aside><div id=cusdis_thread data-host=https://cusdis.com data-app-id=0d2babe1-c058-48ca-a64b-c5afdfa1cb19 data-page-id=9a54c3d99fec400d343e176172960e2a data-page-url=https://i-square.github.io/p/login-to-the-springboard-machine-easily-by-expect-script/ data-page-title=使用expect脚本一键登录跳板机></div><script async defer src=https://cusdis.com/js/cusdis.es.js></script><script>function setCusdisTheme(e){let t=document.querySelector("#cusdis_thread iframe");t&&window.CUSDIS.setTheme(e)}window.addEventListener("onColorSchemeChange",e=>{setCusdisTheme(e.detail)})</script><footer class=site-footer><section class=copyright>&copy;
 2017 -
 2024 平方君的后花园</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.26.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
