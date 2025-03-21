@@ -1,4 +1,686 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>平方君的后花园</title><link>https://i-square.github.io/</link><description>Recent content on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://i-square.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>hugo升级与hugo-theme-stack主题修改与最后修改时间问题</title><link>https://i-square.github.io/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/</link><pubDate>Wed, 21 Aug 2024 13:23:16 +0800</pubDate><guid>https://i-square.github.io/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/</guid><description>&lt;img src="https://i-square.github.io/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/man_23to24.svg" alt="Featured image of post hugo升级与hugo-theme-stack主题修改与最后修改时间问题" />&lt;h2 id="前言">前言
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>平方君的后花园</title><link>https://i-square.github.io/</link><description>Recent content on 平方君的后花园</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><atom:link href="https://i-square.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux网络工具之nc和socat</title><link>https://i-square.github.io/p/Linux-Network-Tools-nc-and-socat/</link><pubDate>Thu, 20 Mar 2025 19:35:02 +0800</pubDate><guid>https://i-square.github.io/p/Linux-Network-Tools-nc-and-socat/</guid><description>&lt;img src="https://i-square.github.io/p/Linux-Network-Tools-nc-and-socat/nc-socat.svg" alt="Featured image of post Linux网络工具之nc和socat" />&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>作为一名开发人员，日常工作中不可避免地会遇到一些网络相关的任务，例如网络连通性测试、临时发送文件、端口转发等。&lt;/p>
+&lt;p>传统工具如 &lt;code>scp&lt;/code>、&lt;code>rsync&lt;/code> 在文件传输时存在认证流程复杂的问题，而 &lt;code>telnet&lt;/code> 等工具功能单一。但我们还有 &lt;code>nc&lt;/code> 和 &lt;code>socat&lt;/code> 这两款强大的命令行工具，它们简化了许多复杂的网络操作。&lt;/p>
+&lt;p>本文将结合我的实际经验，重点介绍&lt;code>nc&lt;/code>在文件传输和网络测试中的应用，以及&lt;code>socat&lt;/code>在端口转发方面的强大功能，并总结一些常见的使用场景和安全建议。&lt;/p>
+&lt;hr>
+&lt;h2 id="ncnetcat命令详解">&lt;code>nc&lt;/code>（Netcat）命令详解
+&lt;/h2>&lt;p>&lt;code>nc&lt;/code>（Netcat）被誉为“网络瑞士军刀”，因为它支持TCP和UDP协议，适用于端口扫描、数据传输、网络调试等多个场景。&lt;/p>
+&lt;h3 id="安装与版本差异">安装与版本差异
+&lt;/h3>&lt;h4 id="安装">安装
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Debian/Ubuntu (默认安装traditional版本)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install netcat
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 可选OpenBSD变体（支持加密）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install netcat-openbsd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># RHEL/CentOS&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum install nc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="版本差异">版本差异
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>版本特性&lt;/th>
+&lt;th>Traditional&lt;/th>
+&lt;th>OpenBSD变体&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>加密支持&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅ Twofish 256位加密&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>UNIX套接字&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>轻量化&lt;/td>
+&lt;td>✅ 仅基础功能&lt;/td>
+&lt;td>❌ 功能更丰富&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="常用参数">常用参数
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>功能说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>-l&lt;/code>&lt;/td>
+&lt;td>监听模式（服务端）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>-p&lt;/code>&lt;/td>
+&lt;td>指定监听端口&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>-u&lt;/code>&lt;/td>
+&lt;td>使用UDP协议（默认TCP）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>-v&lt;/code>&lt;/td>
+&lt;td>显示详细输出（调试信息）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>-z&lt;/code>&lt;/td>
+&lt;td>端口扫描时不发送数据&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>-w&lt;/code>&lt;/td>
+&lt;td>设置超时时间（秒）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>-e&lt;/code>&lt;/td>
+&lt;td>执行指定程序（如&lt;code>cmd.exe&lt;/code>或&lt;code>/bin/bash&lt;/code>）&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="核心功能">核心功能
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>端口监听与连接&lt;/strong>：通过&lt;code>nc&lt;/code>可以轻松地作为服务端或客户端建立TCP/UDP连接。&lt;/li>
+&lt;li>&lt;strong>文件传输&lt;/strong>：利用&lt;code>nc&lt;/code>的管道特性，快速实现跨主机文件传输。&lt;/li>
+&lt;li>&lt;strong>端口扫描&lt;/strong>：可以快速扫描目标主机的开放端口。&lt;/li>
+&lt;li>&lt;strong>反向Shell&lt;/strong>：通过&lt;code>nc&lt;/code>的&lt;code>-e&lt;/code>选项，简单实现远程控制。&lt;/li>
+&lt;/ul>
+&lt;h4 id="文件传输支持双向">文件传输（支持双向）
+&lt;/h4>&lt;p>&lt;strong>发送端 -&amp;gt; 接收端（接收端做server）&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端启动监听（保存为data.iso）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l -p PORT &amp;gt; data.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端推送文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc IP PORT &amp;lt; data.iso
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>接收端 -&amp;gt; 发送端（反向传输，发送端做server）&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端监听端口等待接收&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l -p PORT &amp;lt; data.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端主动拉取&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc IP PORT &amp;gt; local_copy.iso
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="可用于网络测速">可用于网络测速
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l &lt;span class="m">9999&lt;/span> &amp;gt; /dev/null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc TARGET_IP &lt;span class="m">9999&lt;/span> &amp;lt; /dev/zero
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>性能对比&lt;/strong>：千兆网络下传输速度可达900Mbps，比SCP快2.3倍&lt;/p>
+&lt;h4 id="目录传输">目录传输
+&lt;/h4>&lt;h5 id="在接收端先执行监听命令">在接收端先执行监听命令
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">nc -l PORT &lt;span class="p">|&lt;/span> tar xvfp -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;code>tar&lt;/code> 参数说明：
+&lt;ul>
+&lt;li>&lt;code>x&lt;/code>: 解压&lt;/li>
+&lt;li>&lt;code>v&lt;/code>: 显示进度&lt;/li>
+&lt;li>&lt;code>f&lt;/code>: 文件操作&lt;/li>
+&lt;li>&lt;code>p&lt;/code>: 保留权限&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="在发送端执行打包发送命令">在发送端执行打包发送命令
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">tar cfp - /path/to/directory &lt;span class="p">|&lt;/span> nc IP PORT
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>&lt;code>c&lt;/code>: 创建压缩包&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>f&lt;/code>: 文件操作&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>p&lt;/code>: 保留权限&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>-&lt;/code>: 表示输出到标准输出&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>注意事项：&lt;/p>
+&lt;ol>
+&lt;li>请确保两端防火墙允许该端口通信&lt;/li>
+&lt;li>传输完成后建议进行校验：&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端生成校验&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cf - /path &lt;span class="p">|&lt;/span> md5sum
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端验证&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar xf - &lt;span class="p">|&lt;/span> md5sum
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="大文件目录传输带进度显示">大文件目录传输（带进度显示）
+&lt;/h4>&lt;ul>
+&lt;li>搭配 &lt;code>pv&lt;/code> 命令显示进度&lt;/li>
+&lt;li>可选用 &lt;code>z&lt;/code> 参数压缩大文件&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装进度监控工具pv&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install pv &lt;span class="c1"># Debian/Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum install pv &lt;span class="c1"># RHEL/CentOS&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 数量进度&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cf - /path &lt;span class="p">|&lt;/span> pv &lt;span class="p">|&lt;/span> nc IP PORT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 具体大小进度&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar czf - /data &lt;span class="p">|&lt;/span> pv -s &lt;span class="k">$(&lt;/span>du -sb /data &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span> &lt;span class="p">|&lt;/span> nc -l PORT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc TARGET_ip PORT &lt;span class="p">|&lt;/span> tar xzvf -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="-性能技巧使用-mbuffer-增加传输缓冲区提升30速度">💡 &lt;strong>性能技巧&lt;/strong>：使用 &lt;code>mbuffer&lt;/code> 增加传输缓冲区（提升30%+速度）
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端优化&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cf - /data &lt;span class="p">|&lt;/span> mbuffer -m 4G &lt;span class="p">|&lt;/span> nc ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端优化&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc ... &lt;span class="p">|&lt;/span> mbuffer -m 4G &lt;span class="p">|&lt;/span> tar xf -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="快速端口诊断">快速端口诊断
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># TCP端口扫描（20-30端口范围）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -zv example.com 20-30 &lt;span class="c1"># 可添加 -w 1 设置超时1秒&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># UDP服务测试（DNS示例）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -u DNS_IP &lt;span class="m">53&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># HTTP请求测试&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;GET / HTTP/1.1\nHost: example.com\n&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> nc example.com &lt;span class="m">80&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="反弹shell-实现远程控制">反弹Shell 实现远程控制
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 服务端监听&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l -p &lt;span class="m">12345&lt;/span> -e /bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 客户端连接&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc TARGET_IP &lt;span class="m">12345&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="安全注意事项">安全注意事项
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>明文传输风险&lt;/strong>：默认情况下，&lt;code>nc&lt;/code> 不会加密数据，敏感信息可能被窃取。如有需要，建议使用 &lt;code>ncat --ssl&lt;/code> 来代替。&lt;/li>
+&lt;li>&lt;strong>反弹Shell防护&lt;/strong>：避免在公网环境中启动未授权监听。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="socat-命令详解">&lt;code>socat&lt;/code> 命令详解
+&lt;/h2>&lt;p>&lt;code>socat&lt;/code>是&lt;code>nc&lt;/code>的增强版，支持更多协议（如SSL、UNIX套接字）和复杂场景（如多路复用、协议转换）。它在端口转发和加密通信方面尤其强大。&lt;/p>
+&lt;h3 id="安装-1">安装
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 主流Linux发行版安装&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install socat &lt;span class="c1"># Debian/Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum install socat &lt;span class="c1"># RHEL/CentOS&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="常用参数与地址描述符">常用参数与地址描述符
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数/地址&lt;/th>
+&lt;th>功能说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>TCP-LISTEN:&amp;lt;端口&amp;gt;&lt;/code>&lt;/td>
+&lt;td>监听TCP端口&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>UDP-LISTEN:&amp;lt;端口&amp;gt;&lt;/code>&lt;/td>
+&lt;td>监听UDP端口&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>OPENSSL-LISTEN:&amp;lt;端口&amp;gt;&lt;/code>&lt;/td>
+&lt;td>启用SSL加密监听&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>EXEC:&amp;lt;程序&amp;gt;&lt;/code>&lt;/td>
+&lt;td>执行指定程序（如&lt;code>/bin/bash&lt;/code>）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>fork&lt;/code>&lt;/td>
+&lt;td>多路复用，处理并发连接&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="核心功能-1">核心功能
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>协议转换&lt;/strong>：支持TCP ↔ UDP、TCP ↔ SSL、UNIX套接字 ↔ 网络端口等转换。&lt;/li>
+&lt;li>&lt;strong>加密通信&lt;/strong>：通过OpenSSL实现端到端加密。&lt;/li>
+&lt;li>&lt;strong>多路复用&lt;/strong>：通过&lt;code>fork&lt;/code>选项处理并发连接。&lt;/li>
+&lt;li>&lt;strong>端口转发&lt;/strong>：可以将本地端口流量转发至远程服务。&lt;/li>
+&lt;/ul>
+&lt;h4 id="稳定端口转发">稳定端口转发
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 将本机8000端口转发至内网指定端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP4-LISTEN:8000,fork,reuseaddr TCP4:LOCAL_IP:TARGET_PORT
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>🔒 &lt;strong>安全增强&lt;/strong>：限制源IP范围，比如内网段&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">socat TCP4-LISTEN:8000,fork,range&lt;span class="o">=&lt;/span>10.0.0.0/8 TCP4:LOCAL_IP:TARGET_PORT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安全增强版端口转发（IP白名单+日志记录）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP-LISTEN:8000,fork,range&lt;span class="o">=&lt;/span>10.0.0.0/8,su&lt;span class="o">=&lt;/span>nobody TCP:LOCAL_IP:TARGET_PORT 2&amp;gt;&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="m">1&lt;/span> &lt;span class="p">|&lt;/span> tee -a /var/log/socat.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="systemd-服务化配置">&lt;code>systemd&lt;/code> 服务化配置
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建服务文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo tee /etc/systemd/system/socat-proxy.service &amp;gt; /dev/null &lt;span class="s">&amp;lt;&amp;lt;EOF
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[Unit]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">Description=Socat Port Forward Service
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">After=network.target
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[Service]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">Type=simple
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">ExecStart=/usr/bin/socat \\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> TCP-LISTEN:SRC_PORT,fork,reuseaddr,range=10.0.0.0/8 \\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> TCP:LOCAL_IP:TARGET_PORT
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">Restart=always
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">RestartSec=5s
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">StandardOutput=journal
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">StandardError=journal
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">[Install]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">WantedBy=multi-user.target
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">EOF&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启用服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl &lt;span class="nb">enable&lt;/span> --now socat-proxy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="ssl加密通信">SSL加密通信
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 生成自签名证书（示例）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days &lt;span class="m">365&lt;/span> -nodes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 服务端（需提前生成证书）标准SSL终端代理配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat OPENSSL-LISTEN:443,cert&lt;span class="o">=&lt;/span>cert.pem,key&lt;span class="o">=&lt;/span>key.pem,fork,verify&lt;span class="o">=&lt;/span>&lt;span class="m">0&lt;/span> TCP:localhost:80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 客户端连接（verify=0表示不验证服务端证书）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat - OPENSSL-CONNECT:gateway.example.com:443,verify&lt;span class="o">=&lt;/span>&lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="双向认证">双向认证
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 服务端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat OPENSSL-LISTEN:443,cert&lt;span class="o">=&lt;/span>server.pem,key&lt;span class="o">=&lt;/span>server.key,cafile&lt;span class="o">=&lt;/span>client.crt,verify&lt;span class="o">=&lt;/span>1,fork...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 客户端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat - OPENSSL-CONNECT:host:443,cert&lt;span class="o">=&lt;/span>client.pem,key&lt;span class="o">=&lt;/span>client.key,cafile&lt;span class="o">=&lt;/span>server.crt,verify&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="协议转换">协议转换
+&lt;/h4>&lt;h5 id="tcp转udp">TCP转UDP
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收TCP请求转发至UDP服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP-LISTEN:1234,fork UDP:LOCAL_IP:5678
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="unix套接字转tcp">UNIX套接字转TCP
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 服务端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat UNIX-LISTEN:/tmp/sock,fork TCP:localhost:80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 客户端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat UNIX-CONNECT:/tmp/sock -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="反向shell远程控制">反向Shell，远程控制
+&lt;/h4>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 目标主机&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP-LISTEN:4444 EXEC:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 控制端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP:TARGET_IP:4444 -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h5 id="加密shell">加密Shell
+&lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 服务端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat OPENSSL-LISTEN:4443,cert&lt;span class="o">=&lt;/span>server.pem,fork EXEC:/bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 客户端&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat OPENSSL:&amp;lt;目标IP&amp;gt;:4443,cert&lt;span class="o">=&lt;/span>client.pem -
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h4 id="安全注意事项-1">安全注意事项
+&lt;/h4>&lt;ul>
+&lt;li>&lt;strong>加密传输&lt;/strong>：优先使用&lt;code>OPENSSL&lt;/code>地址描述符来配置SSL证书，避免明文通信。&lt;/li>
+&lt;li>&lt;strong>权限控制&lt;/strong>：限制&lt;code>EXEC&lt;/code>参数绑定的程序权限，防止未授权访问。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="核心功能对比与选型指南">核心功能对比与选型指南
+&lt;/h2>&lt;h3 id="功能对比">功能对比
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>功能&lt;/th>
+&lt;th>&lt;code>nc&lt;/code>&lt;/th>
+&lt;th>&lt;code>socat&lt;/code>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>协议支持&lt;/strong>&lt;/td>
+&lt;td>TCP/UDP&lt;/td>
+&lt;td>TCP/UDP/SSL/UNIX套接字等&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>加密传输&lt;/strong>&lt;/td>
+&lt;td>需依赖&lt;code>ncat&lt;/code>（&lt;code>--ssl&lt;/code>选项）&lt;/td>
+&lt;td>原生支持OpenSSL&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>多路复用&lt;/strong>&lt;/td>
+&lt;td>不支持&lt;/td>
+&lt;td>支持（&lt;code>fork&lt;/code>选项）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>端口转发&lt;/strong>&lt;/td>
+&lt;td>需手动组合命令&lt;/td>
+&lt;td>直接支持&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>脚本集成&lt;/strong>&lt;/td>
+&lt;td>简单易用&lt;/td>
+&lt;td>复杂但功能强大&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>典型场景&lt;/strong>&lt;/td>
+&lt;td>快速端口扫描、简单文件传输&lt;/td>
+&lt;td>加密通信、协议转换、复杂代理&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="选型指南">选型指南
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>场景&lt;/th>
+&lt;th>推荐工具&lt;/th>
+&lt;th>优势说明&lt;/th>
+&lt;th>典型命令&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>内网大文件传输&lt;/td>
+&lt;td>nc+tar&lt;/td>
+&lt;td>无需加密，极限速度&lt;/td>
+&lt;td>&lt;code>tar czf - /data | nc...&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>跨网段服务暴露&lt;/td>
+&lt;td>socat&lt;/td>
+&lt;td>支持协议转换/IPv6&lt;/td>
+&lt;td>&lt;code>socat TCP6-LISTEN...TCP4...&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>加密远程维护&lt;/td>
+&lt;td>socat&lt;/td>
+&lt;td>双向SSL认证&lt;/td>
+&lt;td>&lt;code>socat OPENSSL...EXEC:/bash&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>临时日志收集&lt;/td>
+&lt;td>nc&lt;/td>
+&lt;td>快速搭建HTTP服务&lt;/td>
+&lt;td>&lt;code>nc -l 80 &amp;lt; /var/log/nginx/access.log&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;hr>
+&lt;h2 id="安全增强方案">安全增强方案
+&lt;/h2>&lt;h3 id="网络层防护">网络层防护
+&lt;/h3>&lt;p>最小化监听范围&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用iptables限制访问&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo iptables -A INPUT -p tcp --dport &lt;span class="m">8000&lt;/span> ! -s 192.168.1.0/24 -j DROP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 或仅允许指定IP段访问&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat TCP-LISTEN:8000,fork,range&lt;span class="o">=&lt;/span>192.168.1.0/24 ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="审计监控方案">审计监控方案
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用auditd监控敏感操作&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo auditctl -w /usr/bin/nc -p x -k net_tool
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo auditctl -w /usr/bin/socat -p x -k net_tool
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 记录所有传输日志&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">socat ... 2&amp;gt;&lt;span class="p">&amp;amp;&lt;/span>&lt;span class="m">1&lt;/span> &lt;span class="p">|&lt;/span> tee /var/log/socat_audit.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="安全使用建议">安全使用建议
+&lt;/h3>&lt;ol>
+&lt;li>禁用高危参数（如&lt;code>nc -e&lt;/code>）&lt;/li>
+&lt;li>定期更新工具版本（修复CVE漏洞）&lt;/li>
+&lt;li>敏感操作通过VPN进行&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="总结">总结
+&lt;/h2>&lt;p>通过合理搭配使用 &lt;code>nc&lt;/code> 和 &lt;code>socat&lt;/code>，可以做到：&lt;/p>
+&lt;ul>
+&lt;li>🚀 &lt;strong>效率提升&lt;/strong>：快速完成日常网络任务&lt;/li>
+&lt;li>🔧 &lt;strong>场景覆盖&lt;/strong>：从简单调试到复杂网络工程&lt;/li>
+&lt;li>🛡️ &lt;strong>安全可靠&lt;/strong>：SSL加密+系统级防护&lt;/li>
+&lt;/ul></description></item><item><title>hugo升级与hugo-theme-stack主题修改与最后修改时间问题</title><link>https://i-square.github.io/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/</link><pubDate>Wed, 21 Aug 2024 13:23:16 +0800</pubDate><guid>https://i-square.github.io/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/</guid><description>&lt;img src="https://i-square.github.io/p/hugo-upgrade-and-hugo-theme-stack-modify-and-last-modified-time/man_23to24.svg" alt="Featured image of post hugo升级与hugo-theme-stack主题修改与最后修改时间问题" />&lt;h2 id="前言">前言
 &lt;/h2>&lt;p>自从上次的 &lt;a class="link" href="https://i-square.github.io/p/Blog-migration-from-hexo-to-hugo/" >博客迁移-从hexo到hugo&lt;/a> 发布以来，我本地的环境就再没更新过 &lt;code>hugo&lt;/code> 和主题 &lt;code>hugo-theme-stack&lt;/code> 了，但配置的 &lt;code>Github Action&lt;/code> 却是一直使用最新版本，竟然一直没出问题，运气较好。🤭&lt;/p>
 &lt;p>刚好最近申请了一个免费域名，也给博客配置上了（&lt;code>github pages&lt;/code> 绑定域名的教程太多，就不单独分享了），正好顺便升级一下本地环境。&lt;/p>
 &lt;h2 id="升级">升级

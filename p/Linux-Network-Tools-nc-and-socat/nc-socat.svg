@@ -1,0 +1,73 @@
+<svg width="1000" height="250" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f" />
+      <stop offset="100%" stop-color="#172a45" />
+    </linearGradient>
+    <!-- 瑞士军刀红色 -->
+    <linearGradient id="knifeRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e74c3c" />
+      <stop offset="100%" stop-color="#c0392b" />
+    </linearGradient>
+    <!-- 网络蓝色渐变 -->
+    <linearGradient id="networkBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3498db" />
+      <stop offset="100%" stop-color="#2980b9" />
+    </linearGradient>
+    <!-- 中央圆形渐变 -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ecf0f1" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#bdc3c7" stop-opacity="0.7" />
+    </radialGradient>
+  </defs>
+  <!-- 背景 -->
+  <rect width="1000" height="250" fill="url(#bgGradient)" />
+  <!-- 抽象网络连线 - 背景 -->
+  <path d="M0,50 C200,80 400,20 600,80 S800,140 1000,70" 
+        stroke="#2c3e50" stroke-width="2" fill="none" opacity="0.3" />
+  <path d="M0,200 C200,170 400,230 600,170 S800,110 1000,180" 
+        stroke="#2c3e50" stroke-width="2" fill="none" opacity="0.3" />
+  <!-- 中央抽象瑞士军刀轮廓 -->
+  <path d="M450,80 L550,80 C570,80 580,90 580,110 L580,150 C580,180 560,190 530,190 
+           L470,190 C440,190 420,180 420,150 L420,110 C420,90 430,80 450,80 Z" 
+        fill="url(#knifeRed)" stroke="#7f8c8d" stroke-width="2" />
+  <!-- 军刀多功能工具抽象表达 - 不同方向延伸的线条 -->
+  <path d="M500,80 L500,60 L520,40" stroke="#ecf0f1" stroke-width="3" fill="none" />
+  <path d="M550,110 L590,100 L610,120" stroke="#ecf0f1" stroke-width="3" fill="none" />
+  <path d="M550,160 L580,180 L570,210" stroke="#ecf0f1" stroke-width="3" fill="none" />
+  <path d="M450,160 L420,180 L430,210" stroke="#ecf0f1" stroke-width="3" fill="none" />
+  <path d="M450,110 L410,100 L390,120" stroke="#ecf0f1" stroke-width="3" fill="none" />
+  <!-- 网络节点 -->
+  <circle cx="200" cy="125" r="15" fill="url(#networkBlue)" />
+  <circle cx="800" cy="125" r="15" fill="url(#networkBlue)" />
+  <circle cx="140" cy="90" r="8" fill="url(#networkBlue)" opacity="0.7" />
+  <circle cx="260" cy="160" r="8" fill="url(#networkBlue)" opacity="0.7" />
+  <circle cx="740" cy="90" r="8" fill="url(#networkBlue)" opacity="0.7" />
+  <circle cx="860" cy="160" r="8" fill="url(#networkBlue)" opacity="0.7" />
+  <!-- 数据流动效果 - 从军刀通向网络节点 -->
+  <path d="M420,135 C360,110 300,120 200,125" stroke="#2ecc71" stroke-width="2" stroke-dasharray="5,3" fill="none" />
+  <path d="M580,135 C640,110 700,120 800,125" stroke="#2ecc71" stroke-width="2" stroke-dasharray="5,3" fill="none" />
+  <!-- 小圆点表示数据包 -->
+  <circle cx="380" cy="125" r="4" fill="#2ecc71" />
+  <circle cx="340" cy="124" r="4" fill="#2ecc71" />
+  <circle cx="300" cy="124" r="4" fill="#2ecc71" />
+  <circle cx="620" cy="125" r="4" fill="#2ecc71" />
+  <circle cx="660" cy="124" r="4" fill="#2ecc71" />
+  <circle cx="700" cy="124" r="4" fill="#2ecc71" />
+  <!-- 背景装饰 - 表示各种网络协议和功能 -->
+  <rect x="50" y="60" width="30" height="30" rx="4" stroke="#3498db" stroke-width="1" fill="none" opacity="0.4" />
+  <rect x="80" y="180" width="30" height="30" rx="4" stroke="#3498db" stroke-width="1" fill="none" opacity="0.4" />
+  <rect x="920" y="60" width="30" height="30" rx="4" stroke="#3498db" stroke-width="1" fill="none" opacity="0.4" />
+  <rect x="890" y="180" width="30" height="30" rx="4" stroke="#3498db" stroke-width="1" fill="none" opacity="0.4" />
+  <!-- 中央圆形与NC/SOCAT文本 -->
+  <circle cx="500" cy="135" r="35" fill="url(#centerGlow)" stroke="#7f8c8d" stroke-width="1.5" />
+  <path d="M475,135 L525,135" stroke="#34495e" stroke-width="1.5" opacity="0.6" />
+  <text x="500" y="127" font-family="Consolas, monospace" font-size="16" fill="#34495e" text-anchor="middle" font-weight="bold">NC</text>
+  <text x="500" y="147" font-family="Consolas, monospace" font-size="16" fill="#34495e" text-anchor="middle" font-weight="bold">SOCAT</text>
+  <!-- 点状六边形表示命令和选项的多样性 -->
+  <polygon points="540,105 550,115 540,125 530,115" fill="#c0392b" opacity="0.8" />
+  <polygon points="460,105 470,115 460,125 450,115" fill="#c0392b" opacity="0.8" />
+  <polygon points="540,145 550,155 540,165 530,155" fill="#c0392b" opacity="0.8" />
+  <polygon points="460,145 470,155 460,165 450,155" fill="#c0392b" opacity="0.8" />
+</svg>
