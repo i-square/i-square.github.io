@@ -95,6 +95,15 @@
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;h4 id="传输结束不断开问题">传输结束不断开问题
+&lt;/h4>&lt;p>不同版本和操作系统里的 &lt;code>nc&lt;/code> 的行为不完全一致，最常见的问题是文件传输完毕不断开，仍保持连接。&lt;/p>
+&lt;p>可通过以下方式解决（需 &lt;code>man nc&lt;/code> 查看当前平台的参数支持情况，选择合适方式）：&lt;/p>
+&lt;ul>
+&lt;li>传输完毕后直接 &lt;code>CTRL+C&lt;/code> 中断或者 &lt;code>kill&lt;/code> 掉进程&lt;/li>
+&lt;li>在 &lt;code>client端&lt;/code> 添加参数 &lt;code>-N&lt;/code>，会在输入遇到 &lt;code>EOF&lt;/code> 时立即关闭 &lt;code>socket&lt;/code> 连接&lt;/li>
+&lt;li>在 &lt;code>client端&lt;/code> 添加参数 &lt;code>-q 0&lt;/code>，表示输入遇到 &lt;code>EOF&lt;/code> 后等待指定秒数再退出，0表示立即退出&lt;/li>
+&lt;/ul>
+&lt;p>下文以 &lt;code>-N&lt;/code> 为例，如你的环境是其他方式请自行修改相关命令。&lt;/p>
 &lt;h3 id="核心功能">核心功能
 &lt;/h3>&lt;ul>
 &lt;li>&lt;strong>端口监听与连接&lt;/strong>：通过&lt;code>nc&lt;/code>可以轻松地作为服务端或客户端建立TCP/UDP连接。&lt;/li>
@@ -103,7 +112,7 @@
 &lt;li>&lt;strong>反向Shell&lt;/strong>：通过&lt;code>nc&lt;/code>的&lt;code>-e&lt;/code>选项，简单实现远程控制。&lt;/li>
 &lt;/ul>
 &lt;h4 id="文件传输支持双向">文件传输（支持双向）
-&lt;/h4>&lt;p>&lt;strong>发送端 -&amp;gt; 接收端（接收端做server）&lt;/strong>&lt;/p>
+&lt;/h4>&lt;p>&lt;strong>client（发送端） -&amp;gt; server（接收端）&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -113,14 +122,14 @@
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端启动监听（保存为data.iso）&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端先启动监听（保存为data.iso）&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l -p PORT &amp;gt; data.iso
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端推送文件&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc IP PORT &amp;lt; data.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -N IP PORT &amp;lt; data.iso
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>&lt;strong>接收端 -&amp;gt; 发送端（反向传输，发送端做server）&lt;/strong>&lt;/p>
+&lt;/div>&lt;p>&lt;strong>server（发送端） -&amp;gt; client（接收端）&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -130,11 +139,11 @@
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端监听端口等待接收&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端先启动监听等待发送&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l -p PORT &amp;lt; data.iso
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端主动拉取&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc IP PORT &amp;gt; local_copy.iso
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -N IP PORT &amp;gt; local_copy.iso
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h5 id="可用于网络测速">可用于网络测速
@@ -154,7 +163,12 @@
 &lt;/div>
 &lt;/div>&lt;p>&lt;strong>性能对比&lt;/strong>：千兆网络下传输速度可达900Mbps，比SCP快2.3倍&lt;/p>
 &lt;h4 id="目录传输">目录传输
-&lt;/h4>&lt;h5 id="在接收端先执行监听命令">在接收端先执行监听命令
+&lt;/h4>&lt;p>传输目录因需要与 &lt;code>tar&lt;/code> 组合使用，建议在接收端监听，发送端打包发送，结束后可以自动断开。&lt;/p>
+&lt;blockquote>
+&lt;p>若在发送端监听，传输结束后需手动中断&lt;/p>
+&lt;p>或者先打包为tar文件再用发送文件的方式传输，更加灵活&lt;/p>
+&lt;/blockquote>
+&lt;h5 id="在接收端先执行监听命令">在接收端先执行监听命令
 &lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -198,11 +212,9 @@
 &lt;li>
 &lt;p>注意事项：&lt;/p>
 &lt;ol>
+&lt;li>此处不用添加 &lt;code>-N&lt;/code> 参数，传输结束自动断开，因为 &lt;code>tar&lt;/code> 命令会自动关闭输出流&lt;/li>
 &lt;li>请确保两端防火墙允许该端口通信&lt;/li>
-&lt;li>传输完成后建议进行校验：&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ul>
+&lt;li>传输完成后建议进行校验：
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -217,7 +229,11 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar xf - &lt;span class="p">|&lt;/span> md5sum
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h4 id="大文件目录传输带进度显示">大文件目录传输（带进度显示）
+&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="大文件目录传输带进度显示">大文件目录传输（带进度显示）
 &lt;/h4>&lt;ul>
 &lt;li>搭配 &lt;code>pv&lt;/code> 命令显示进度&lt;/li>
 &lt;li>可选用 &lt;code>z&lt;/code> 参数压缩大文件&lt;/li>
@@ -242,17 +258,17 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install pv &lt;span class="c1"># Debian/Ubuntu&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum install pv &lt;span class="c1"># RHEL/CentOS&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 数量进度&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cf - /path &lt;span class="p">|&lt;/span> pv &lt;span class="p">|&lt;/span> nc IP PORT
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 具体大小进度&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar czf - /data &lt;span class="p">|&lt;/span> pv -s &lt;span class="k">$(&lt;/span>du -sb /data &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span> &lt;span class="p">|&lt;/span> nc -l PORT
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc TARGET_ip PORT &lt;span class="p">|&lt;/span> tar xzvf -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nc -l PORT &lt;span class="p">|&lt;/span> tar xvf -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 显示已发送数据量、已进行时间、发送速度&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cf - /path &lt;span class="p">|&lt;/span> pv &lt;span class="p">|&lt;/span> nc TARGET_IP PORT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 显示已发送数据量、已进行时间、发送速度，以及数据量百分比&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">DIR&lt;/span>&lt;span class="o">=&lt;/span>/data &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> tar cf - &lt;span class="nv">$DIR&lt;/span> &lt;span class="p">|&lt;/span> pv -s &lt;span class="k">$(&lt;/span>du -sb &lt;span class="nv">$DIR&lt;/span> &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span> &lt;span class="p">|&lt;/span> nc TARGET_IP PORT
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h5 id="-性能技巧使用-mbuffer-增加传输缓冲区提升30速度">💡 &lt;strong>性能技巧&lt;/strong>：使用 &lt;code>mbuffer&lt;/code> 增加传输缓冲区（提升30%+速度）
+&lt;/div>&lt;h5 id="-性能技巧使用-mbuffer-增加传输缓冲区">💡 &lt;strong>性能技巧&lt;/strong>：使用 &lt;code>mbuffer&lt;/code> 增加传输缓冲区
 &lt;/h5>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -260,9 +276,17 @@
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端优化&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装mbuffer&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install mbuffer &lt;span class="c1"># Debian/Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum install mbuffer &lt;span class="c1"># RHEL/CentOS&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送端优化&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cf - /data &lt;span class="p">|&lt;/span> mbuffer -m 4G &lt;span class="p">|&lt;/span> nc ...
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 接收端优化&lt;/span>
